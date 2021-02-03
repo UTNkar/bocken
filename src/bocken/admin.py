@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from bocken.models import Admin
+from bocken.models import Admin, Agreement, JournalEntry, Report
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -34,10 +34,13 @@ class UserCreationForm(forms.ModelForm):
 
 
 class UserChangeForm(forms.ModelForm):
-    """A form for updating users. Includes all the fields on
-    the user, but replaces the password field with admin's
-    password hash display field.
     """
+    A form for updating users.
+
+    Includes all the fields on the user, but replaces the password field with
+    admin's password hash display field.
+    """
+
     password = ReadOnlyPasswordHashField(
         help_text=(
             "<a href=\"../password/\">Change the user's password here</a>."
@@ -84,6 +87,9 @@ class UserAdmin(BaseUserAdmin):
 
 
 admin.site.register(Admin, UserAdmin)
+admin.site.register(Agreement)
+admin.site.register(JournalEntry)
+admin.site.register(Report)
 
 # Hide groups from the admin view since they are not used
 admin.site.unregister(Group)

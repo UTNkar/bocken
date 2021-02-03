@@ -4,6 +4,11 @@ from personnummer import personnummer
 
 
 def validate_phonenumber(phonenumber):
+    """
+    Validate a phonenumber.
+
+    Raises ValidationError if the phonenumber is not valid
+    """
     try:
         parsed_phone = parse(phonenumber, "SE")
         if not is_valid_number(parsed_phone):
@@ -15,6 +20,11 @@ def validate_phonenumber(phonenumber):
 
 
 def validate_personnummer(person_nummer):
+    """
+    Validate a personnummer.
+
+    Raises ValidationError if the personnummer is not valid
+    """
     valid = personnummer.valid(person_nummer)
 
     # If the personummer is invalid it could be a t-number.

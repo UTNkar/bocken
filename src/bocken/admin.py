@@ -8,6 +8,8 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 
 
 class UserCreationForm(forms.ModelForm):
+    """A form for creating administrators in the admin pages."""
+
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
     password2 = forms.CharField(
         label='Password confirmation',
@@ -19,6 +21,7 @@ class UserCreationForm(forms.ModelForm):
         fields = ('email', 'is_staff')
 
     def clean_password2(self):
+        """Check that the two passwords are the same."""
         # Check that the two password entries match
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
@@ -26,7 +29,7 @@ class UserCreationForm(forms.ModelForm):
             raise ValidationError("Passwords don't match")
         return password2
 
-    def save(self, commit=True):
+    def save(self, commit=True): # noqa
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         user.save()
@@ -53,7 +56,7 @@ class UserChangeForm(forms.ModelForm):
             'email', 'password', 'is_staff'
         )
 
-    def clean_password(self):
+    def clean_password(self): # noqa
         # Regardless of what the user provides, return the initial value.
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
@@ -61,6 +64,8 @@ class UserChangeForm(forms.ModelForm):
 
 
 class UserAdmin(BaseUserAdmin):
+    """A Custom UserAdmin class for our Admin model."""
+
     # The forms to add and change user instances
     form = UserChangeForm
     add_form = UserCreationForm

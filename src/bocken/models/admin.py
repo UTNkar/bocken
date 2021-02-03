@@ -4,16 +4,27 @@ from django.db import models
 
 
 class AdminUserManager(BaseUserManager):
+    """The UserManager for our Admin class."""
+
     def create_user(self, email, password):
+        """Create a user and return it."""
         user = get_user_model().objects.create(email=email)
         user.set_password(password)
-        return user.save()
+        user.save()
+        return user
 
     def create_superuser(self, email, password):
+        """
+        Create a superuser and return it.
+
+        Since all admins are superusers, a superuser is just a normal user
+        """
         return self.create_user(email, password)
 
 
 class Admin(AbstractBaseUser):
+    """Our custom user model for the administrators."""
+
     email = models.EmailField(primary_key=True)
     is_staff = models.BooleanField(default=True)
 
@@ -23,7 +34,9 @@ class Admin(AbstractBaseUser):
     objects = AdminUserManager()
 
     def has_perm(self, perm, obj=None):
+        """Django requires this function."""
         return True
 
     def has_module_perms(self, app_label):
+        """Django requires this function."""
         return True

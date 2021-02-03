@@ -10,4 +10,4 @@ exclude =
     */migrations/*
     venv/*
 
-ignore = D100, D104
+ignore = D100, D104, D106

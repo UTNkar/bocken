@@ -3,6 +3,13 @@ from bocken.validators import validate_phonenumber, validate_personnummer
 
 
 class Agreement(models.Model):
+    """
+    Represents a person who has signed a bocken-agreement.
+
+    When a person has signed a bocken-agreement they can drive bocken
+    for 1 year. After that year they have to sign a new agreement.
+    """
+
     number = models.IntegerField(primary_key=True)
     name = models.TextField(max_length=120)
     personnummer = models.TextField(

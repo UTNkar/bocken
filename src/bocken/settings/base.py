@@ -27,6 +27,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bocken',
+    'tailwind',
+    'utn_tailwind_theme'
 ]
 
 MIDDLEWARE = [
@@ -119,4 +121,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 AUTH_USER_MODEL = 'bocken.Admin'
+
+TAILWIND_APP_NAME = 'utn_tailwind_theme'

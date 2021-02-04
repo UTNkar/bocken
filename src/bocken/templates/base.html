@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 {% load static %}
+{% load fontawesome_5 %}
 <html>
     <head>
         <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        {% fontawesome_5_static %}
         {% block extra_head %}
         {% endblock %}
     </head>
     <body>
-        <main class="container bg-blue-500 mx-auto">
+        <main class="container mx-auto bg-indigo-100 p-4">
             {% block body %}
             {% endblock %}
         </main>

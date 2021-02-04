@@ -26,6 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'widget_tweaks',
+    'fontawesome_5',
     'bocken',
     'tailwind',
     'utn_tailwind_theme'

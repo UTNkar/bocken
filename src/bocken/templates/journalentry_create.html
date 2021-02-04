@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
+{% load widget_tweaks fontawesome_5 %}
 {% block body %}
-<form>
-{{ form.as_p }}
+<form class=>
+    <div class="flex flex-col bg-white p-4">
+        {% for field in form %}
+        <div class="flex font-sans mb-4 text-gray-400 border-gray-100 border-solid border-2">
+            <label>{% fa5_icon field.label %}</label>
+            {{ field|add_class:"flex-1" }}
+        </div>
+        {% endfor %}
+    </div>
 </form>
 {% endblock %}

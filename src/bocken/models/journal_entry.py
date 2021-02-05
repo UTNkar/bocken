@@ -20,8 +20,14 @@ class JournalEntry(models.Model):
         """Calculate the total distance driven."""
         return self.meter_stop - self.meter_start
 
+    @staticmethod
     def get_latest_entry():
+        """Get the entry that was last created."""
         try:
-            return JournalEntry.objects.latest('-created')
+            return JournalEntry.objects.latest('created')
         except JournalEntry.DoesNotExist:
             return None
+
+    def save(self, *args, **kwargs): # noqa
+        self.total_distance = self.calculate_total_distance()
+        super(JournalEntry, self).save(*args, **kwargs)

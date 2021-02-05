@@ -11,13 +11,13 @@ class Agreement(models.Model):
     """
 
     number = models.IntegerField(primary_key=True)
-    name = models.TextField(max_length=120)
-    personnummer = models.TextField(
+    name = models.CharField(max_length=120)
+    personnummer = models.CharField(
         max_length=13,
         validators=[validate_personnummer],
         unique=True
     )
-    phonenumber = models.TextField(
+    phonenumber = models.CharField(
         max_length=20,
         validators=[validate_phonenumber]
     )

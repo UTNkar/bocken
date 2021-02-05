@@ -14,7 +14,8 @@ class Agreement(models.Model):
     name = models.TextField(max_length=120)
     personnummer = models.TextField(
         max_length=13,
-        validators=[validate_personnummer]
+        validators=[validate_personnummer],
+        unique=True
     )
     phonenumber = models.TextField(
         max_length=20,

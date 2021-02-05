@@ -9,8 +9,7 @@ class JournalEntry(models.Model):
     that describes how far they have driven
     """
 
-    agreement_number = models.ForeignKey("Agreement", on_delete=models.PROTECT)
-    name = models.CharField(max_length=120)
+    agreement = models.ForeignKey("Agreement", on_delete=models.PROTECT)
     group = models.CharField(max_length=120, choices=())
     meter_start = models.IntegerField()
     meter_stop = models.IntegerField()

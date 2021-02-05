@@ -21,5 +21,14 @@ class Agreement(models.Model):
         max_length=20,
         validators=[validate_phonenumber]
     )
-    email = models.EmailField(unique=True)
+
+    # Email is allowed to be null since we don't have an email address to
+    # everyone who has an agreement at the time of creation of this system.
+    # TODO: Remove blank and null when there is an email address for all
+    # agreements
+    email = models.EmailField(
+        unique=True,
+        blank=True,
+        null=True
+    )
     signed = models.DateField(auto_now_add=True)

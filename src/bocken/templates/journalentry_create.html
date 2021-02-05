@@ -1,14 +1,22 @@
 {% extends 'base.html' %}
 {% load widget_tweaks fontawesome_5 %}
 {% block body %}
-<form class=>
+<form method="post">
     <div class="flex flex-col bg-white p-4">
         {% for field in form %}
-        <div class="flex font-sans mb-4 text-gray-400 border-gray-100 border-solid border-2">
-            <label>{% fa5_icon field.label %}</label>
-            {{ field|add_class:"flex-1" }}
+        {% if field == form.confirm%}
+        <div class="flex items-center">
+            {{ field }}
+            <label class="flex-1 ml-2" for="{{ field.id_for_label }}">{{ field.label }}</label>
         </div>
+        {% else %}
+        <div class="flex items-center relative font-thin font-sans mb-4 text-gray-400 border-gray-100 border-solid border-2">
+            <label for="{{ field.id_for_label }}" class="absolute flex justify-center items-center text-xl w-8 h-full">{% fa5_icon field.label %}</label>
+            {{ field|add_class:"flex-1 flex justify-center font-extralight text-lg h-12 pl-8" }}
+        </div>
+        {% endif %}
         {% endfor %}
+        <input type="submit" class="block mx-auto mt-4">
     </div>
 </form>
 {% endblock %}

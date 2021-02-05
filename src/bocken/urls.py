@@ -19,5 +19,5 @@ from bocken import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('add_entry/', views.JournalEntryCreate.as_view())
+    path('add_entry/', views.JournalEntryCreate.as_view(), name='add-entry')
 ]

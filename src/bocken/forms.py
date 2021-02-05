@@ -38,3 +38,14 @@ class JournalEntryForm(ModelForm):
             'meter_start': 'play-circle',
             'meter_stop': 'stop-circle',
         }
+
+    def __init__(self, *args, **kwargs):
+        super(JournalEntryForm, self).__init__(*args, **kwargs)
+        # Set the initial value for the meter start to the stop value of the
+        # last entry since it most likely is the value of the meter when a
+        # person starts driving.
+        latest_entry = JournalEntry.get_latest_entry()
+        if latest_entry:
+            self.initial = {
+                'meter_start': latest_entry.meter_stop
+            }

@@ -1,5 +1,6 @@
 from django.forms import ModelForm, TextInput, BooleanField, CharField
-from .models import JournalEntry
+from django.core.exceptions import ValidationError
+from .models import JournalEntry, Agreement
 from .validators import validate_personnummer
 
 
@@ -49,3 +50,12 @@ class JournalEntryForm(ModelForm):
             self.initial = {
                 'meter_start': latest_entry.meter_stop
             }
+
+    def clean_personnummer(self):
+        try:
+            agreement = Agreement.objects.get(
+                personnummer=self.cleaned_data['personnummer']
+            )
+            self.instance.agreement = agreement
+        except Agreement.DoesNotExist:
+            raise ValidationError("You don't have a written agreement")

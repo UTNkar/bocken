@@ -1,6 +1,9 @@
 // This is a minimal config.
 // If you need the full config, get it from here:
 // https://unpkg.com/browse/tailwindcss@latest/stubs/defaultConfig.stub.js
+
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
     purge: [
         // Templates within theme app (e.g. base.html)
@@ -13,7 +16,7 @@ module.exports = {
     theme: {
         extend: {},
         fontFamily: {
-            'sans': ['Inter', 'Helvetica', 'Arial', 'sans-serif'],
+            'sans': ['Inter', ...defaultTheme.fontFamily.sans],
         }
     },
     variants: {

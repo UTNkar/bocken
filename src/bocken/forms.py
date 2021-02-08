@@ -32,13 +32,15 @@ class JournalEntryForm(ModelForm):
             "meter_start": TextInput(
                 attrs={
                     'placeholder': _("Trip meter at start"),
-                    'autocomplete': "off"
+                    'autocomplete': "off",
+                    'inputmode': 'numeric'
                 }
             ),
             "meter_stop": TextInput(
                 attrs={
                     'placeholder': _("Trip meter at stop"),
-                    'autocomplete': "off"
+                    'autocomplete': "off",
+                    'inputmode': 'numeric'
                 }
             ),
         }

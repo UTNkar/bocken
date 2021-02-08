@@ -28,16 +28,35 @@ class JournalEntryForm(ModelForm):
         ]
         widgets = {
             "meter_start": TextInput(
-                attrs={'placeholder': 'Mätare vid start'}
+                attrs={
+                    'placeholder': 'Mätare vid start',
+                    'autocomplete': "off"
+                }
             ),
             "meter_stop": TextInput(
-                attrs={'placeholder': 'Mätare vid stopp'}
+                attrs={
+                    'placeholder': 'Mätare vid stopp',
+                    'autocomplete': "off"
+                }
             ),
         }
         labels = {
             'group': 'users',
             'meter_start': 'play-circle',
             'meter_stop': 'stop-circle',
+        }
+        help_texts = {
+            'personnummer': "Ditt personnummer",
+            'group': (
+                "Är du osäker på vilken grupp du ska välja? "
+                "Välj den grupp som känns rimligast att betala för din resa."
+            ),
+            'meter_start': (
+                'Mätare vid start fylls i automatiskt från den senaste '
+                'inlägget. Om siffran inte stämmer, fyll i det värdet '
+                'som mätaren hade när du började köra samt kontakta '
+                'UTN:s klubbmästare.'
+            ),
         }
 
     def __init__(self, *args, **kwargs):

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load widget_tweaks fontawesome_5 %}
+{% load widget_tweaks fontawesome_5 i18n %}
 {% block body %}
 <form method="post">
     {% csrf_token %}
@@ -9,7 +9,7 @@
             {% if field == form.confirm %}
             <!--Displays number of kilometers driven-->
             <div class="flex flex-col justify-center text-center mb-8">
-                <b class>Antal kilometer</b>
+                <b class>{% translate 'Total kilometers' %}</b>
                 <b id="nr-kilometers" class="text-5xl font-bold">0</b>
             </div>
 
@@ -23,11 +23,16 @@
                 {{ field|add_class:"flex-1 flex justify-center font-extralight text-lg h-12 pl-8" }}
             </div>
             <p class="text-xs">{{ field.help_text }}</p>
+            {% endif %}
         </div>
-        {% endif %}
         {% endfor %}
 
         <input type="submit" class="block mx-auto mt-4 py-2 px-8 rounded text-white bg-blue-500">
+
+        <p class="text-xs mt-8">
+            {% translate 'Is something not working? Contact the head of the pub crew and send a copy of the details you provided above to'%}
+            <a class="text-blue-700" href="mailto:klubbmastare@utn.se">klubbmastare@utn.se</a>
+        </p>
     </div>
 </form>
 {% endblock %}

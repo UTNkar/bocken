@@ -1,0 +1,85 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-02-08 16:33+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: bocken/admin.py:30
+msgid "Passwords don't match"
+msgstr "Lösenorden matchar inte"
+
+#: bocken/admin.py:50
+msgid "<a href=\"../password/\">Change the user's password here</a>."
+msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
+
+#: bocken/forms.py:18
+msgid "Your personnummer"
+msgstr "Ditt personnummer"
+
+#: bocken/forms.py:23
+msgid "I confirm that Bocken is clean and in good shape"
+msgstr "Jag intygar att Bocken är i gott skick"
+
+#: bocken/forms.py:34
+msgid "Trip meter at start"
+msgstr "Mätare vid start"
+
+#: bocken/forms.py:40
+msgid "Trip meter at stop"
+msgstr "Mätare vid stop"
+
+#: bocken/forms.py:52
+msgid ""
+"Not sure which group to choose? Choose the group that seems most reasonable "
+"to be paying for your trip."
+msgstr ""
+"Osäker på vilken grupp du ska välja? Välj den grupp som känns mest rimlig "
+"att betala din resa"
+
+#: bocken/forms.py:56
+msgid ""
+"Trip meter at start is filled in automatically from the latest entry. If the "
+"number is not correct, enter the value that the meter had when you started "
+"driving. Also inform the head of the pub crew about this."
+msgstr ""
+"Mätaren vid start fylls i automatiskt från det senaste inlägget. Om värdet "
+"inte stämmer, skriv in det värde som mätaren hade när du började köra samt "
+"informera UTN:s klubbmästare."
+
+#: bocken/forms.py:81
+msgid "You don't have a written agreement"
+msgstr "Du har inte ett skrivet avtal"
+
+#: bocken/templates/journalentry_create.html:12
+msgid "Total kilometers"
+msgstr "Antal kilometer"
+
+#: bocken/templates/journalentry_create.html:33
+msgid ""
+"Is something not working? Contact the head of the pub crew and send a copy "
+"of the details you provided above to"
+msgstr ""
+"Strular formuläret? Kontakta UTN:s klubbmastare och skicka med en kopia av "
+"informationen som du skrev in ovanför till"
+
+#: bocken/validators.py:20
+msgid "Invalid phonenumber"
+msgstr "Ogiltigt telefonnummer"
+
+#: bocken/validators.py:44
+msgid "Invalid personnummer"
+msgstr "Ogiltigt personnummer"

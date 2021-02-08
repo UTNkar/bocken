@@ -2,6 +2,7 @@ from django.forms import ModelForm, TextInput, BooleanField, CharField
 from django.core.exceptions import ValidationError
 from .models import JournalEntry, Agreement
 from .validators import validate_personnummer
+from django.utils.translation import gettext as _
 
 
 class JournalEntryForm(ModelForm):
@@ -14,11 +15,12 @@ class JournalEntryForm(ModelForm):
         widget=TextInput(attrs={
             'placeholder': 'YYYYMMDD-XXXX',
         }),
+        help_text=_("Your personnummer")
     )
 
     confirm = BooleanField(
         required=True,
-        label='Jag intygar att bocken är i gott skick'
+        label=_("I confirm that Bocken is clean and in good shape")
     )
 
     class Meta:
@@ -29,13 +31,13 @@ class JournalEntryForm(ModelForm):
         widgets = {
             "meter_start": TextInput(
                 attrs={
-                    'placeholder': 'Mätare vid start',
+                    'placeholder': _("Trip meter at start"),
                     'autocomplete': "off"
                 }
             ),
             "meter_stop": TextInput(
                 attrs={
-                    'placeholder': 'Mätare vid stopp',
+                    'placeholder': _("Trip meter at stop"),
                     'autocomplete': "off"
                 }
             ),
@@ -46,17 +48,16 @@ class JournalEntryForm(ModelForm):
             'meter_stop': 'stop-circle',
         }
         help_texts = {
-            'personnummer': "Ditt personnummer",
-            'group': (
-                "Är du osäker på vilken grupp du ska välja? "
-                "Välj den grupp som känns rimligast att betala för din resa."
+            'group': _(
+                "Not sure which group to choose? Choose the group that seems "
+                "most reasonable to be paying for your trip."
             ),
-            'meter_start': (
-                'Mätare vid start fylls i automatiskt från den senaste '
-                'inlägget. Om siffran inte stämmer, fyll i det värdet '
-                'som mätaren hade när du började köra samt kontakta '
-                'UTN:s klubbmästare.'
-            ),
+            'meter_start': _(
+                "Trip meter at start is filled in automatically from the "
+                "latest entry. If the number is not correct, enter the value "
+                "that the meter had when you started driving. Also inform the "
+                "head of the pub crew about this."
+            )
         }
 
     def __init__(self, *args, **kwargs):
@@ -77,4 +78,4 @@ class JournalEntryForm(ModelForm):
             )
             self.instance.agreement = agreement
         except Agreement.DoesNotExist:
-            raise ValidationError("You don't have a written agreement")
+            raise ValidationError(_("You don't have a written agreement"))

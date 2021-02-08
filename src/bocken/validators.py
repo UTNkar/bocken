@@ -1,6 +1,7 @@
 from phonenumbers import parse, is_valid_number
 from django.core.exceptions import ValidationError
 from personnummer import personnummer
+from django.utils.translation import gettext as _
 
 
 def validate_phonenumber(phonenumber):
@@ -16,7 +17,7 @@ def validate_phonenumber(phonenumber):
 
         return phonenumber
     except Exception:
-        raise ValidationError("Invalid phonenumber")
+        raise ValidationError(_("Invalid phonenumber"))
 
 
 def validate_personnummer(person_nummer):
@@ -40,4 +41,4 @@ def validate_personnummer(person_nummer):
         valid = personnummer.valid(person_nummer)
 
         if not valid:
-            raise ValidationError("Invalid personnummer")
+            raise ValidationError(_("Invalid personnummer"))

@@ -73,7 +73,7 @@ msgid ""
 "Is something not working? Contact the head of the pub crew and send a copy "
 "of the details you provided above to"
 msgstr ""
-"Strular formuläret? Kontakta UTN:s klubbmastare och skicka med en kopia av "
+"Strular formuläret? Kontakta UTN:s klubbmästare och skicka med en kopia av "
 "informationen som du skrev in ovanför till"
 
 #: bocken/validators.py:20

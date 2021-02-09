@@ -10,7 +10,7 @@ class JournalEntry(models.Model):
     """
 
     agreement = models.ForeignKey("Agreement", on_delete=models.PROTECT)
-    group = models.CharField(max_length=120, choices=[('td', 'TD')])
+    group = models.CharField(max_length=120)
     meter_start = models.IntegerField()
     meter_stop = models.IntegerField()
     total_distance = models.IntegerField()

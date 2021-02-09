@@ -17,6 +17,10 @@ module.exports = {
         extend: {},
         fontFamily: {
             'sans': ['Inter', ...defaultTheme.fontFamily.sans],
+        },
+        minHeight: {
+            '3': '3rem',
+            ...defaultTheme.minHeight
         }
     },
     variants: {

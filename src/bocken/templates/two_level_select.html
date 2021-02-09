@@ -1,0 +1,47 @@
+<div class="flex flex-col {{ widget.attrs.class }}">
+    <select id="options">
+        <option value="" disabled selected>Select an option</option>
+        <option value="Option 1">Option 1</option>
+        <option value="Option 2">Option 2</option>
+        <option value="Option 3">Option 3</option>
+    </select>
+
+    <select
+        name="{{ widget.attrs.name }}"
+        id="{{ widget.attrs.id }}"
+        {% if widget.attrs.required %}required{% endif %}
+    >
+        <option value="" disabled selected>Please select an option</option>
+    </select>
+</div>
+
+<script>
+    //Isolate the code using the javascript module pattern
+    (function() {
+        var lookup = {
+            'Option 1': ['Option 1 - Choice 1', 'Option 1 - Choice 2', 'Option 1 - Choice 3'],
+            'Option 2': ['Option 2 - Choice 1', 'Option 2 - Choice 2'],
+            'Option 3': ['Option 3 - Choice 1'],
+        };
+
+        // When the main group is changed, only display the groups in that main group
+        document.getElementById('options').addEventListener('change', function() {
+            const selectedValue = this.value;
+
+            const group = document.getElementById('{{ widget.attrs.id }}');
+
+            // Empty the current groups in the select tag
+            group.innerHTML = "";
+
+            // For each group in the selected main group,
+            // only add the groups that belong to that main group
+            for (i = 0; i < lookup[selectedValue].length; i++) {
+                var parser = new DOMParser();
+                var doc = parser.parseFromString("<option value='" + lookup[selectedValue][i] + "'>" + lookup[selectedValue][i] + "</option>", 'text/html');
+                // DOMParser adds a body tag around the option tag. To get rid of it we
+                // append the first child in the body tag a.k.a. the option tag
+                group.append(doc.body.firstChild);
+            }
+        });
+    })();
+</script>

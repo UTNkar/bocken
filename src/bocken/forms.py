@@ -2,6 +2,7 @@ from django.forms import ModelForm, TextInput, BooleanField, CharField
 from django.core.exceptions import ValidationError
 from .models import JournalEntry, Agreement
 from .validators import validate_personnummer
+from .widgets import TwoLevelSelect
 from django.utils.translation import gettext as _
 
 
@@ -43,6 +44,7 @@ class JournalEntryForm(ModelForm):
                     'inputmode': 'numeric'
                 }
             ),
+            "group": TwoLevelSelect(),
         }
         labels = {
             'group': 'users',

@@ -1,31 +1,40 @@
+{% load i18n %}
 <div class="flex flex-col {{ widget.attrs.class }}">
-    <select id="options">
-        <option value="" disabled selected>Select an option</option>
-        <option value="Option 1">Option 1</option>
-        <option value="Option 2">Option 2</option>
-        <option value="Option 3">Option 3</option>
-    </select>
+    <div class="p-4 text-black">
+        <p class="text-xs font-normal mb-2">
+            {% translate 'The groups have been split up into different main groups to make it easier to find your group. Choose the main group that your group belongs to and then your group.' %}
+        </p>
+        <select id="main-group" class="mb-2 border border-solid border-gray-200 p-2 w-full">
+            <option value="" disabled selected>{% translate 'Choose a main group' %}</option>
+            {% for key, group in groups.items %}
+            <option value="{{ key }}">{{ group.verbose_name }}</option>
+            {% endfor %}
+        </select>
 
-    <select
-        name="{{ widget.attrs.name }}"
-        id="{{ widget.attrs.id }}"
-        {% if widget.attrs.required %}required{% endif %}
-    >
-        <option value="" disabled selected>Please select an option</option>
-    </select>
+        <select
+            name="{{ widget.name }}"
+            id="{{ widget.attrs.id }}"
+            {% if widget.attrs.required %}required{% endif %}
+            class="border border-solid border-gray-200 p-2 w-full"
+        >
+            <option value="" disabled selected>{% translate 'Choose your group' %}</option>
+        </select>
+    </div>
 </div>
 
 <script>
     //Isolate the code using the javascript module pattern
     (function() {
+        {% autoescape off %}
         var lookup = {
-            'Option 1': ['Option 1 - Choice 1', 'Option 1 - Choice 2', 'Option 1 - Choice 3'],
-            'Option 2': ['Option 2 - Choice 1', 'Option 2 - Choice 2'],
-            'Option 3': ['Option 3 - Choice 1'],
+            {% for key, verbose_names in groups_verbose_names.items %}
+            '{{ key }}': {{ verbose_names }},
+            {% endfor %}
         };
+        {% endautoescape %}
 
         // When the main group is changed, only display the groups in that main group
-        document.getElementById('options').addEventListener('change', function() {
+        document.getElementById('main-group').addEventListener('change', function() {
             const selectedValue = this.value;
 
             const group = document.getElementById('{{ widget.attrs.id }}');

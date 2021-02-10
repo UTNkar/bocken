@@ -14,7 +14,7 @@ class TwoLevelSelect(Select):
             verbose_names = []
             for group in main_group['groups']:
                 verbose_names.append(group[1])
-            groups_verbose_names[key] = verbose_names
+            groups_verbose_names[key] = sorted(verbose_names)
 
         context['groups_verbose_names'] = groups_verbose_names
         return context

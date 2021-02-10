@@ -1,5 +1,5 @@
 from django.forms.widgets import Select
-from .constants import JOURNAL_ENTRY_GROUPS
+from .constants import JOURNAL_ENTRY_ALL_GROUPS
 
 
 class TwoLevelSelect(Select):
@@ -7,10 +7,10 @@ class TwoLevelSelect(Select):
 
     def get_context(self, name, value, attrs):
         context = super(TwoLevelSelect, self).get_context(name, value, attrs)
-        context['groups'] = JOURNAL_ENTRY_GROUPS
+        context['groups'] = JOURNAL_ENTRY_ALL_GROUPS
 
         groups_verbose_names = {}
-        for key, main_group in JOURNAL_ENTRY_GROUPS.items():
+        for key, main_group in JOURNAL_ENTRY_ALL_GROUPS.items():
             verbose_names = []
             for group in main_group['groups']:
                 verbose_names.append(group[1])

@@ -1,4 +1,12 @@
 from django.db import models
+from ..constants import (
+    JOURNAL_ENTRY_COMMITTEES_WORKGROUPS,
+    JOURNAL_ENTRY_COOPERATINS,
+    JOURNAL_ENTRY_FUM,
+    JOURNAL_ENTRY_LG_AND_BOARD,
+    JOURNAL_ENTRY_OTHER_OFFICIALS,
+    JOURNAL_ENTRY_SECTIONS,
+)
 
 
 class JournalEntry(models.Model):
@@ -10,7 +18,17 @@ class JournalEntry(models.Model):
     """
 
     agreement = models.ForeignKey("Agreement", on_delete=models.PROTECT)
-    group = models.CharField(max_length=120)
+    group = models.CharField(
+        max_length=120,
+        choices=(
+            JOURNAL_ENTRY_COMMITTEES_WORKGROUPS +
+            JOURNAL_ENTRY_COOPERATINS +
+            JOURNAL_ENTRY_FUM +
+            JOURNAL_ENTRY_LG_AND_BOARD +
+            JOURNAL_ENTRY_OTHER_OFFICIALS +
+            JOURNAL_ENTRY_SECTIONS
+        )
+    )
     meter_start = models.IntegerField()
     meter_stop = models.IntegerField()
     total_distance = models.IntegerField()

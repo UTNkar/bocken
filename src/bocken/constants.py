@@ -7,41 +7,108 @@ from django.utils.translation import gettext as _
 # will use when storing a group in the database.
 # The second element is the string that the user will see in the form.
 # This mimics django's behaviour of choices.
-JOURNAL_ENTRY_GROUPS = {
+
+JOURNAL_ENTRY_COMMITTEES_WORKGROUPS = [
+    ('baska', 'Baskå'),
+    ('td', 'TD'),
+    ('proppen', 'Proppen'),
+    ('kv', 'KV'),
+    ('rebusrallyt', 'Rallykå'),
+    ('balen', 'Balkå'),
+    ('cafegruppen', 'Cafegruppen'),
+    ('forska', 'Forskå'),
+    ('eventgruppen', 'Eventgruppen'),
+    ('exkå', 'Examenkå'),
+    ('marknadsforingsgruppen', 'Marknadsföringsgruppen'),
+    ('mer', 'MER'),
+    ('utnarm', 'Utnarm'),
+    ('polhacks', 'Polhackskå'),
+    ('dka', 'Dkå'),
+    ('karhusgruppen', 'Kårhusgruppen'),
+    ('techna', 'Techna'),
+    ('mfk', 'MFK'),
+    ('gb', 'GB')
+]
+
+JOURNAL_ENTRY_LG_AND_BOARD = [
+    ('board', 'Styrelsen'),
+    ('utbex', 'UTB-ex'),
+    ('utbn', 'UTB-N'),
+    ('utbt', 'UTB-T'),
+    ('soc', 'Soc'),
+    ('int', 'Int'),
+    ('na', 'NA'),
+    ('plutnarm', 'PL Utnarm'),
+    ('ordf', 'Ordförande'),
+    ('viceordf', 'Vice Ordförande')
+]
+
+JOURNAL_ENTRY_FUM = [
+    ('tmp', 'TMP'),
+    ('valberedningen', 'Valberedningen')
+]
+
+JOURNAL_ENTRY_OTHER_OFFICIALS = [
+    ('forvaltning', 'Förvaltning'),
+    ('historiograf', 'Historiograf'),
+    ('pelarmarskalk', 'Pelarmarskalk'),
+    ('internrevisorer', 'Internrevisorer')
+]
+
+JOURNAL_ENTRY_SECTIONS = [
+    ('bas', 'BAS'),
+    ('dv', 'DV'),
+    ('e', 'E'),
+    ('es', 'ES'),
+    ('f', 'F'),
+    ('h', 'H'),
+    ('i', 'I'),
+    ('it', 'IT'),
+    ('k', 'K'),
+    ('nvb', 'NVB (Bär)'),
+    ('nvf', 'NVF (Fyskam)'),
+    ('nvg', 'NVG (Grus)'),
+    ('nvk', 'NVK (Iupak)'),
+    ('nvm', 'NVM (Moebius)'),
+    ('q', 'Q'),
+    ('sts', 'STS'),
+    ('w', 'W'),
+    ('x', 'X'),
+]
+
+JOURNAL_ENTRY_COOPERATINS = [
+    ('best', 'BEST'),
+    ('teknatspex', 'Teknat Spex'),
+    ('genius', 'Genius'),
+    ('iaeste', 'IAESTE'),
+    ('ibk', 'IBK'),
+    ('igem', 'IGEM'),
+    ('siv', 'SIV')
+]
+
+JOURNAL_ENTRY_ALL_GROUPS = {
     'committees_workgroups': {
         'verbose_name': _("UTN's committees and workgroups"),
-        'groups': [
-            ('td', _('TD'))
-        ]
+        'groups': JOURNAL_ENTRY_COMMITTEES_WORKGROUPS
     },
     'lg_and_board': {
         'verbose_name': _("UTN's management team and board"),
-        'groups': [
-            ('board', _('Board'))
-        ]
+        'groups': JOURNAL_ENTRY_LG_AND_BOARD
     },
     'fum': {
         'verbose_name': _("FUM"),
-        'groups': [
-            ('tmp', _('TMP'))
-        ]
+        'groups': JOURNAL_ENTRY_FUM
     },
     'other_officials': {
         'verbose_name': _("Other officials within UTN"),
-        'groups': [
-            ('head_of_administrations', _('Head of administrations'))
-        ]
+        'groups': JOURNAL_ENTRY_OTHER_OFFICIALS
     },
     'sections': {
         'verbose_name': _("Sections"),
-        'groups': [
-            ('dv', _('DV'))
-        ]
+        'groups': JOURNAL_ENTRY_SECTIONS
     },
     'cooperations': {
         'verbose_name': _("Cooperations"),
-        'groups': [
-            ('best', _('BEST'))
-        ]
+        'groups': JOURNAL_ENTRY_COOPERATINS
     },
 }

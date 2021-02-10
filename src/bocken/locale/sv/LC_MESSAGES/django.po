@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-08 16:33+0100\n"
+"POT-Creation-Date: 2021-02-10 16:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,23 +26,47 @@ msgstr "Lösenorden matchar inte"
 msgid "<a href=\"../password/\">Change the user's password here</a>."
 msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
 
-#: bocken/forms.py:18
+#: bocken/constants.py:91
+msgid "UTN's committees and workgroups"
+msgstr "UTN:s kommittéer och arbetsgrupper"
+
+#: bocken/constants.py:95
+msgid "UTN's management team and board"
+msgstr "UTN:s ledningsgrupp och styrelse"
+
+#: bocken/constants.py:99
+msgid "FUM"
+msgstr "FUM"
+
+#: bocken/constants.py:103
+msgid "Other officials within UTN"
+msgstr "Övriga ämbetsverkare inom UTN"
+
+#: bocken/constants.py:107
+msgid "Sections"
+msgstr "Sektioner"
+
+#: bocken/constants.py:111
+msgid "Cooperations"
+msgstr "Samarbetsföreningar"
+
+#: bocken/forms.py:19
 msgid "Your personnummer"
 msgstr "Ditt personnummer"
 
-#: bocken/forms.py:23
+#: bocken/forms.py:24
 msgid "I confirm that Bocken is clean and in good shape"
 msgstr "Jag intygar att Bocken är i gott skick"
 
-#: bocken/forms.py:34
+#: bocken/forms.py:35
 msgid "Trip meter at start"
 msgstr "Mätare vid start"
 
-#: bocken/forms.py:40
+#: bocken/forms.py:42
 msgid "Trip meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/forms.py:52
+#: bocken/forms.py:56
 msgid ""
 "Not sure which group to choose? Choose the group that seems most reasonable "
 "to be paying for your trip."
@@ -50,7 +74,7 @@ msgstr ""
 "Osäker på vilken grupp du ska välja? Välj den grupp som känns mest rimlig "
 "att betala din resa"
 
-#: bocken/forms.py:56
+#: bocken/forms.py:60
 msgid ""
 "Trip meter at start is filled in automatically from the latest entry. If the "
 "number is not correct, enter the value that the meter had when you started "
@@ -60,21 +84,39 @@ msgstr ""
 "inte stämmer, skriv in det värde som mätaren hade när du började köra samt "
 "informera UTN:s klubbmästare."
 
-#: bocken/forms.py:81
+#: bocken/forms.py:90
 msgid "You don't have a written agreement"
 msgstr "Du har inte ett skrivet avtal"
 
-#: bocken/templates/journalentry_create.html:12
+#: bocken/templates/journalentry_create.html:13
 msgid "Total kilometers"
 msgstr "Antal kilometer"
 
-#: bocken/templates/journalentry_create.html:33
+#: bocken/templates/journalentry_create.html:34
 msgid ""
 "Is something not working? Contact the head of the pub crew and send a copy "
 "of the details you provided above to"
 msgstr ""
 "Strular formuläret? Kontakta UTN:s klubbmästare och skicka med en kopia av "
 "informationen som du skrev in ovanför till"
+
+#: bocken/templates/two_level_select.html:5
+msgid ""
+"The groups have been split up into different main groups to make it easier "
+"to find your group. Choose the main group that your group belongs to and "
+"then your group."
+msgstr ""
+"Grupperna har delats upp i olika huvudgrupper för att göra det lättare "
+"att hitta din grupp. Välj den huvudgrupp som din grupp tillhör and sedan "
+"din grupp."
+
+#: bocken/templates/two_level_select.html:8
+msgid "Choose a main group"
+msgstr "Välj en huvudgrupp"
+
+#: bocken/templates/two_level_select.html:20
+msgid "Choose your group"
+msgstr "Välj din grupp"
 
 #: bocken/validators.py:20
 msgid "Invalid phonenumber"

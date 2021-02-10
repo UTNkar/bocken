@@ -76,6 +76,11 @@ class JournalEntryForm(ModelForm):
             }
 
     def clean_personnummer(self):
+        """
+        Get the agreement associated to the provided personnummer.
+
+        The agreement is added to the instance.
+        """
         try:
             agreement = Agreement.objects.get(
                 personnummer=self.cleaned_data['personnummer']

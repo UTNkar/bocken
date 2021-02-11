@@ -42,3 +42,5 @@ def validate_personnummer(person_nummer):
 
         if not valid:
             raise ValidationError(_("Invalid personnummer"))
+
+    return person_nummer

@@ -18,7 +18,7 @@ JOURNAL_ENTRY_COMMITTEES_WORKGROUPS = [
     ('cafegruppen', 'Cafegruppen'),
     ('forska', 'Forskå'),
     ('eventgruppen', 'Eventgruppen'),
-    ('exkå', 'Examenkå'),
+    ('exka', 'Examenkå'),
     ('marknadsforingsgruppen', 'Marknadsföringsgruppen'),
     ('mer', 'MER'),
     ('utnarm', 'Utnarm'),

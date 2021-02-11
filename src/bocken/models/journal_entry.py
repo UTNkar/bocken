@@ -29,9 +29,9 @@ class JournalEntry(models.Model):
             JOURNAL_ENTRY_SECTIONS
         )
     )
-    meter_start = models.IntegerField()
-    meter_stop = models.IntegerField()
-    total_distance = models.IntegerField()
+    meter_start = models.PositiveIntegerField()
+    meter_stop = models.PositiveIntegerField()
+    total_distance = models.PositiveIntegerField()
     created = models.DateTimeField(auto_now_add=True)
 
     def calculate_total_distance(self):

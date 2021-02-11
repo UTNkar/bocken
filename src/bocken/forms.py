@@ -86,6 +86,7 @@ class JournalEntryForm(ModelForm):
                 personnummer=self.cleaned_data['personnummer']
             )
             self.instance.agreement = agreement
+            return self.cleaned_data['personnummer']
         except Agreement.DoesNotExist:
             raise ValidationError(_("You don't have a written agreement"))
 
@@ -97,12 +98,15 @@ class JournalEntryForm(ModelForm):
                 "than the last entry in the journal"
             ) + ': {0} km'.format(latest_entry.meter_stop))
 
-    def clean_meter_stop(self):
-        """Meter_stop must be larger than meter_start."""
-        print(self.cleaned_data)
-        meter_start = self.cleaned_data.get['meter_start']
-        if self.cleaned_data['meter_stop'] <= meter_start:
-            raise ValidationError(_(
+        return self.cleaned_data['meter_start']
+
+    def clean(self):
+        cleaned_data = super(JournalEntryForm, self).clean()
+        meter_start = cleaned_data.get('meter_start', 0)
+        if cleaned_data['meter_stop'] <= meter_start:
+            self.add_error('meter_stop', _(
                 "Trip meter at stop must be larger than the trip meter at "
                 "start"
             ))
+
+        return cleaned_data

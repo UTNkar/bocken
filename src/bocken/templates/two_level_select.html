@@ -26,30 +26,32 @@
     //Isolate the code using the javascript module pattern
     (function() {
         {% autoescape off %}
-        var lookup = {
-            {% for key, verbose_names in groups_verbose_names.items %}
-            '{{ key }}': {{ verbose_names }},
+        var all_groups = {
+            {% for key, main_group in groups.items %}
+            '{{ key }}': {{ main_group }},
             {% endfor %}
         };
         {% endautoescape %}
 
         // When the main group is changed, only display the groups in that main group
         document.getElementById('main-group').addEventListener('change', function() {
-            const selectedValue = this.value;
+            const selectedMainGroup = this.value;
 
-            const group = document.getElementById('{{ widget.attrs.id }}');
+            const groupSelect = document.getElementById('{{ widget.attrs.id }}');
 
             // Empty the current groups in the select tag
-            group.innerHTML = "";
+            groupSelect.innerHTML = "";
 
             // For each group in the selected main group,
             // only add the groups that belong to that main group
-            for (i = 0; i < lookup[selectedValue].length; i++) {
+            const groupsInSelectedMainGroup = all_groups[selectedMainGroup].groups;
+            for (let index in groupsInSelectedMainGroup) {
+                const group = groupsInSelectedMainGroup[index];
                 var parser = new DOMParser();
-                var doc = parser.parseFromString("<option value='" + lookup[selectedValue][i] + "'>" + lookup[selectedValue][i] + "</option>", 'text/html');
+                var doc = parser.parseFromString(`<option value='${group[0]}'>${group[1]}</option>`, 'text/html');
                 // DOMParser adds a body tag around the option tag. To get rid of it we
                 // append the first child in the body tag a.k.a. the option tag
-                group.append(doc.body.firstChild);
+                groupSelect.append(doc.body.firstChild);
             }
         });
     })();

@@ -25,16 +25,14 @@ JOURNAL_ENTRY_COMMITTEES_WORKGROUPS = [
     ('polhacks', 'Polhackskå'),
     ('dka', 'Dkå'),
     ('karhusgruppen', 'Kårhusgruppen'),
-    ('techna', 'Techna'),
-    ('mfk', 'MFK'),
-    ('gb', 'GB')
+    ('techna', 'Techna')
 ]
 
 JOURNAL_ENTRY_LG_AND_BOARD = [
     ('board', 'Styrelsen'),
-    ('utbex', 'UTB-ex'),
-    ('utbn', 'UTB-N'),
-    ('utbt', 'UTB-T'),
+    ('utbex', 'Utb-ex'),
+    ('utbn', 'Utb-n'),
+    ('utbt', 'Utb-t'),
     ('soc', 'Soc'),
     ('int', 'Int'),
     ('na', 'NA'),
@@ -65,10 +63,11 @@ JOURNAL_ENTRY_SECTIONS = [
     ('i', 'I'),
     ('it', 'IT'),
     ('k', 'K'),
-    ('nvb', 'NVB (Bär)'),
-    ('nvf', 'NVF (Fyskam)'),
-    ('nvg', 'NVG (Grus)'),
-    ('nvk', 'NVK (Iupak)'),
+    ('nvb', 'NVB (BÄR)'),
+    ('nvf', 'NVF (FysKam)'),
+    ('nvg', 'NVG (GRUS)'),
+    ('nvk', 'NVK (IUPAK)'),
+    ('nvl', 'NVL (LärNat)'),
     ('nvm', 'NVM (Moebius)'),
     ('q', 'Q'),
     ('sts', 'STS'),
@@ -83,7 +82,9 @@ JOURNAL_ENTRY_COOPERATINS = [
     ('iaeste', 'IAESTE'),
     ('ibk', 'IBK'),
     ('igem', 'IGEM'),
-    ('siv', 'SIV')
+    ('siv', 'SIV'),
+    ('mfk', 'MFK'),
+    ('gb', 'GB')
 ]
 
 JOURNAL_ENTRY_ALL_GROUPS = {

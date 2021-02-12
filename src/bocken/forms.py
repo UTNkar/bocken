@@ -4,6 +4,7 @@ from .models import JournalEntry, Agreement
 from .validators import validate_personnummer
 from .widgets import TwoLevelSelect
 from django.utils.translation import gettext as _
+from personnummer import personnummer
 
 
 class JournalEntryForm(ModelForm):
@@ -82,15 +83,17 @@ class JournalEntryForm(ModelForm):
         The agreement is added to the instance.
         """
         try:
-            agreement = Agreement.objects.get(
-                personnummer=self.cleaned_data['personnummer']
-            )
-            self.instance.agreement = agreement
+            pn = personnummer.parse(self.cleaned_data['personnummer'])
+            # Format the personnummer into the long format
+            return pn.format(True)
+        except personnummer.PersonnummerException:
+            # This exception occurs if the personnummer is a t-number.
+            # All logic regarding the t-numbers are handled in the
+            # personnummer validator so here we just return the personnummer.
             return self.cleaned_data['personnummer']
-        except Agreement.DoesNotExist:
-            raise ValidationError(_("You don't have a written agreement"))
 
     def clean_meter_start(self):
+        """Meter start must be larger than the meter stop in the last entry."""
         latest_entry = JournalEntry.get_latest_entry()
         if latest_entry.meter_stop > self.cleaned_data['meter_start']:
             raise ValidationError(_(
@@ -100,8 +103,21 @@ class JournalEntryForm(ModelForm):
 
         return self.cleaned_data['meter_start']
 
-    def clean(self):
+    def clean(self): # noqa
         cleaned_data = super(JournalEntryForm, self).clean()
+
+        # Find the corresponding agreement
+        try:
+            agreement = Agreement.objects.get(
+                personnummer=self.cleaned_data.get('personnummer')
+            )
+            self.instance.agreement = agreement
+        except Agreement.DoesNotExist:
+            self.add_error('personnummer', _(
+                "You don't have a written agreement"
+            ))
+
+        # Make sure meter stop is larger than meter start
         meter_start = cleaned_data.get('meter_start', 0)
         if cleaned_data['meter_stop'] <= meter_start:
             self.add_error('meter_stop', _(

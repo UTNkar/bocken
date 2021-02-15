@@ -44,8 +44,7 @@ class JournalEntryForm(ModelForm):
                     'autocomplete': "off",
                     'inputmode': 'numeric'
                 }
-            ),
-            "group": TwoLevelSelect(),
+            )
         }
         labels = {
             'group': 'users',
@@ -75,6 +74,21 @@ class JournalEntryForm(ModelForm):
             self.initial = {
                 'meter_start': latest_entry.meter_stop
             }
+
+        # If there is data from the previous form (a.k.a. invalid data
+        # was passed) we need to add some of that data to the TwoLevelSelect
+        # widget so that it can automatically choose a default option.
+        # The widget is not capable of doing this on it's own since it does
+        # not have access to the context of the form
+        if 'data' in kwargs:
+            form_data = kwargs.get('data')
+
+            self.fields['group'].widget = TwoLevelSelect(
+                initial_group=form_data.get('group'),
+                initial_main_group=form_data.get("main-group")
+            )
+        else:
+            self.fields['group'].widget = TwoLevelSelect()
 
     def clean_personnummer(self):
         """

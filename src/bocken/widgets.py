@@ -15,8 +15,15 @@ class TwoLevelSelect(Select):
 
     template_name = 'two_level_select.html'
 
+    def __init__(
+        self, attrs=None, initial_group=None, initial_main_group=None
+    ):
+        super(TwoLevelSelect, self).__init__()
+        self.initial_group = initial_group
+        self.initial_main_group = initial_main_group
+
     def get_context(self, name, value, attrs):
-        """Provide all the groups to the template."""
+        """Provide all the groups and initial values to the template."""
         context = super(TwoLevelSelect, self).get_context(name, value, attrs)
 
         # Convert all list of tuples to list of lists since javascript
@@ -29,4 +36,8 @@ class TwoLevelSelect(Select):
             groups[key]['groups'] = groups_to_array
 
         context['groups'] = groups
+
+        context['initial_group'] = self.initial_group
+        context['initial_main_group'] = self.initial_main_group
+
         return context

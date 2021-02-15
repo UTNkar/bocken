@@ -25,8 +25,9 @@
 <script>
     //Isolate the code using the javascript module pattern
     (function() {
+        // The javascript version of all groups
         {% autoescape off %}
-        var all_groups = {
+        const all_groups = {
             {% for key, main_group in groups.items %}
             '{{ key }}': {{ main_group }},
             {% endfor %}
@@ -47,8 +48,8 @@
             const groupsInSelectedMainGroup = all_groups[selectedMainGroup].groups;
             for (let index in groupsInSelectedMainGroup) {
                 const group = groupsInSelectedMainGroup[index];
-                var parser = new DOMParser();
-                var doc = parser.parseFromString(`<option value='${group[0]}'>${group[1]}</option>`, 'text/html');
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(`<option value='${group[0]}'>${group[1]}</option>`, 'text/html');
                 // DOMParser adds a body tag around the option tag. To get rid of it we
                 // append the first child in the body tag a.k.a. the option tag
                 groupSelect.append(doc.body.firstChild);

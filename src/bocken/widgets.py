@@ -22,6 +22,10 @@ class TwoLevelSelect(Select):
         self.initial_group = initial_group
         self.initial_main_group = initial_main_group
 
+    @staticmethod
+    def _take_second(element):
+        return element[1]
+
     def get_context(self, name, value, attrs):
         """Provide all the groups and initial values to the template."""
         context = super(TwoLevelSelect, self).get_context(name, value, attrs)
@@ -31,7 +35,14 @@ class TwoLevelSelect(Select):
         groups = JOURNAL_ENTRY_ALL_GROUPS
         for key, main_group in JOURNAL_ENTRY_ALL_GROUPS.items():
             groups_to_array = []
-            for group in main_group['groups']:
+
+            # Sort the groups based on their verbose name
+            sorted_groups = sorted(
+                main_group['groups'],
+                key=TwoLevelSelect._take_second
+            )
+
+            for group in sorted_groups:
                 groups_to_array.append(list(group))
             groups[key]['groups'] = groups_to_array
 

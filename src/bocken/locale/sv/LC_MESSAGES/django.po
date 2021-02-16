@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-10 16:48+0100\n"
+"POT-Creation-Date: 2021-02-16 10:11+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,43 +26,43 @@ msgstr "Lösenorden matchar inte"
 msgid "<a href=\"../password/\">Change the user's password here</a>."
 msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
 
-#: bocken/constants.py:91
+#: bocken/constants.py:92
 msgid "UTN's committees and workgroups"
 msgstr "UTN:s kommittéer och arbetsgrupper"
 
-#: bocken/constants.py:95
+#: bocken/constants.py:96
 msgid "UTN's management team and board"
 msgstr "UTN:s ledningsgrupp och styrelse"
 
-#: bocken/constants.py:99
+#: bocken/constants.py:100
 msgid "FUM"
 msgstr "FUM"
 
-#: bocken/constants.py:103
+#: bocken/constants.py:104
 msgid "Other officials within UTN"
 msgstr "Övriga ämbetsverkare inom UTN"
 
-#: bocken/constants.py:107
+#: bocken/constants.py:108
 msgid "Sections"
 msgstr "Sektioner"
 
-#: bocken/constants.py:111
+#: bocken/constants.py:112
 msgid "Cooperations"
 msgstr "Samarbetsföreningar"
 
-#: bocken/forms.py:19
+#: bocken/forms.py:20
 msgid "Your personnummer"
 msgstr "Ditt personnummer"
 
-#: bocken/forms.py:24
+#: bocken/forms.py:25
 msgid "I confirm that Bocken is clean and in good shape"
 msgstr "Jag intygar att Bocken är i gott skick"
 
-#: bocken/forms.py:35
+#: bocken/forms.py:36
 msgid "Trip meter at start"
 msgstr "Mätare vid start"
 
-#: bocken/forms.py:42
+#: bocken/forms.py:43
 msgid "Trip meter at stop"
 msgstr "Mätare vid stop"
 
@@ -84,15 +84,30 @@ msgstr ""
 "inte stämmer, skriv in det värde som mätaren hade när du började köra samt "
 "informera UTN:s klubbmästare."
 
-#: bocken/forms.py:90
-msgid "You don't have a written agreement"
-msgstr "Du har inte ett skrivet avtal"
+#: bocken/forms.py:114
+msgid "Trip meter at start must be larger than the last entry in the journal"
+msgstr ""
+"Tripmätare vid start måste vara större än det senaste inlägget i körjournalen"
 
-#: bocken/templates/journalentry_create.html:13
+#: bocken/forms.py:136
+msgid ""
+"You don't have a written agreement which you must have to drive bocken. "
+"Contact the head of the pub crew and send a copy of the details you wrote "
+"into the fields below."
+msgstr ""
+"Du har inte ett skrivet avtal som du måsta ha för att köra bocken. Kontakta "
+"UTN:s klubbmästare och skicka med en kopia av detaljerna som du skrev in i "
+"fälten nedan."
+
+#: bocken/forms.py:146
+msgid "Trip meter at stop must be larger than the trip meter at start"
+msgstr "Tripmätare vid stop måste vara större än trippmätare vid start"
+
+#: bocken/templates/journalentry_create.html:12
 msgid "Total kilometers"
 msgstr "Antal kilometer"
 
-#: bocken/templates/journalentry_create.html:34
+#: bocken/templates/journalentry_create.html:38
 msgid ""
 "Is something not working? Contact the head of the pub crew and send a copy "
 "of the details you provided above to"
@@ -106,22 +121,26 @@ msgid ""
 "to find your group. Choose the main group that your group belongs to and "
 "then your group."
 msgstr ""
-"Grupperna har delats upp i olika huvudgrupper för att göra det lättare "
-"att hitta din grupp. Välj den huvudgrupp som din grupp tillhör and sedan "
-"din grupp."
+"Grupperna har delats upp i olika huvudgrupper för att göra det lättare att "
+"hitta din grupp. Välj den huvudgrupp som din grupp tillhör and sedan din "
+"grupp."
 
 #: bocken/templates/two_level_select.html:8
 msgid "Choose a main group"
 msgstr "Välj en huvudgrupp"
 
-#: bocken/templates/two_level_select.html:20
+#: bocken/templates/two_level_select.html:59
 msgid "Choose your group"
 msgstr "Välj din grupp"
 
-#: bocken/validators.py:20
+#: bocken/validators.py:22
 msgid "Invalid phonenumber"
 msgstr "Ogiltigt telefonnummer"
 
-#: bocken/validators.py:44
+#: bocken/validators.py:42
+msgid "Your personnummer must be on the format YYYYMMDD-XXXX"
+msgstr "Ditt personnummer måste vara på formen YYYYMMDD-XXXX"
+
+#: bocken/validators.py:52
 msgid "Invalid personnummer"
 msgstr "Ogiltigt personnummer"

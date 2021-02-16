@@ -120,16 +120,24 @@ class JournalEntryForm(ModelForm):
     def clean(self): # noqa
         cleaned_data = super(JournalEntryForm, self).clean()
 
-        # Find the corresponding agreement
-        try:
-            agreement = Agreement.objects.get(
-                personnummer=self.cleaned_data.get('personnummer')
-            )
-            self.instance.agreement = agreement
-        except Agreement.DoesNotExist:
-            self.add_error('personnummer', _(
-                "You don't have a written agreement"
-            ))
+        # Find the corresponding agreement. If the personnummer is not
+        # availble it means that the personnummer is invalid. In that case
+        # we don't need to add an error message that a user does not
+        # have a written agreement.
+        person_nummer = self.cleaned_data.get('personnummer')
+        if person_nummer:
+            try:
+                agreement = Agreement.objects.get(
+                    personnummer=person_nummer
+                )
+                self.instance.agreement = agreement
+            except Agreement.DoesNotExist:
+                self.add_error('personnummer', _(
+                    "You don't have a written agreement which you must have "
+                    "to drive bocken. Contact the head of the pub crew and "
+                    "send a copy of the details you wrote into the fields "
+                    "below."
+                ))
 
         # Make sure meter stop is larger than meter start
         meter_start = cleaned_data.get('meter_start', 0)

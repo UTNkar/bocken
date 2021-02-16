@@ -1,4 +1,6 @@
-from django.forms import ModelForm, TextInput, BooleanField, CharField
+from django.forms import (
+    ModelForm, TextInput, BooleanField, CharField, CheckboxInput
+)
 from django.core.exceptions import ValidationError
 from .models import JournalEntry, Agreement
 from .validators import validate_personnummer
@@ -22,7 +24,8 @@ class JournalEntryForm(ModelForm):
 
     confirm = BooleanField(
         required=True,
-        label=_("I confirm that Bocken is clean and in good shape")
+        label=_("I confirm that Bocken is clean and in good shape"),
+        widget=CheckboxInput(attrs={'class': 'h-8 w-8'})
     )
 
     class Meta:

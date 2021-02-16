@@ -100,11 +100,12 @@ class JournalEntryForm(ModelForm):
     def clean_meter_start(self):
         """Meter start must be larger than the meter stop in the last entry."""
         latest_entry = JournalEntry.get_latest_entry()
-        if latest_entry.meter_stop > self.cleaned_data['meter_start']:
-            raise ValidationError(_(
-                "Trip meter at start must be larger "
-                "than the last entry in the journal"
-            ) + ': {0} km'.format(latest_entry.meter_stop))
+        if latest_entry:
+            if latest_entry.meter_stop > self.cleaned_data['meter_start']:
+                raise ValidationError(_(
+                    "Trip meter at start must be larger "
+                    "than the last entry in the journal"
+                ) + ': {0} km'.format(latest_entry.meter_stop))
 
         return self.cleaned_data['meter_start']
 

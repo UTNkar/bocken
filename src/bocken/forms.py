@@ -4,9 +4,9 @@ from django.forms import (
 from django.core.exceptions import ValidationError
 from .models import JournalEntry, Agreement
 from .validators import validate_personnummer
+from .utils import format_personnummer
 from .widgets import TwoLevelSelect
 from django.utils.translation import gettext as _
-from personnummer import personnummer
 
 
 class JournalEntryForm(ModelForm):
@@ -94,20 +94,8 @@ class JournalEntryForm(ModelForm):
             self.fields['group'].widget = TwoLevelSelect()
 
     def clean_personnummer(self):
-        """
-        Get the agreement associated to the provided personnummer.
-
-        The agreement is added to the instance.
-        """
-        try:
-            pn = personnummer.parse(self.cleaned_data['personnummer'])
-            # Format the personnummer into the long format
-            return pn.format(True)
-        except personnummer.PersonnummerException:
-            # This exception occurs if the personnummer is a t-number.
-            # All logic regarding the t-numbers are handled in the
-            # personnummer validator so here we just return the personnummer.
-            return self.cleaned_data['personnummer']
+        """Format the personnummer to the correct format."""
+        return format_personnummer(self.cleaned_data['personnummer'])
 
     def clean_meter_start(self):
         """Meter start must be larger than the meter stop in the last entry."""

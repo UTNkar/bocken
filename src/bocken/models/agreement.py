@@ -32,7 +32,7 @@ class Agreement(models.Model):
         blank=True,
         null=True
     )
-    signed = models.DateField(auto_now_add=True)
+    expires = models.DateField()
 
     def save(self, *args, **kwargs): # noqa
         self.personnummer = format_personnummer(self.personnummer)

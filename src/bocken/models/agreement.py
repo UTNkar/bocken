@@ -1,6 +1,7 @@
 from django.db import models
 from bocken.validators import validate_phonenumber, validate_personnummer
 from ..utils import format_personnummer
+from django.utils import timezone
 
 
 class Agreement(models.Model):
@@ -32,7 +33,7 @@ class Agreement(models.Model):
         blank=True,
         null=True
     )
-    expires = models.DateField()
+    expires = models.DateField(default=timezone.now)
 
     def save(self, *args, **kwargs): # noqa
         self.personnummer = format_personnummer(self.personnummer)

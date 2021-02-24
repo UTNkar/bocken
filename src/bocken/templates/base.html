@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-{% load static %}
-{% load fontawesome_5 %}
+{% load static fontawesome_5 %}
 <html>
     <head>
         <meta charset="UTF-8">
@@ -13,7 +12,10 @@
         {% endblock %}
     </head>
     <body class="h-screen bg-indigo-100">
-        <main class="container mx-auto p-4">
+        <main class="container mx-auto px-4">
+            <div class="flex mb-4 justify-end">
+                {% include 'switch_language_button.html' %}
+            </div>
             {% block body %}
             {% endblock %}
         </main>

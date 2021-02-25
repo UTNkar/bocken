@@ -6,7 +6,7 @@ from .models import JournalEntry, Agreement
 from .validators import validate_personnummer
 from .utils import format_personnummer
 from .widgets import TwoLevelSelect
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 
 class JournalEntryForm(ModelForm):

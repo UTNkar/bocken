@@ -1,6 +1,8 @@
 from django.test import TestCase
 from ..forms import JournalEntryForm
 from ..models import JournalEntry, Agreement
+from django.utils import timezone
+from datetime import timedelta
 
 
 class JournalEntryFormTestCase(TestCase):
@@ -12,7 +14,8 @@ class JournalEntryFormTestCase(TestCase):
             name="Name name",
             personnummer="980101-3039",
             phonenumber="0733221122",
-            email="mail@mail.se"
+            email="mail@mail.se",
+            expires=timezone.now() + timedelta(days=365)
         )
         self.agreement.save()
 

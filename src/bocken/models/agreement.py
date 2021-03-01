@@ -1,6 +1,7 @@
 from django.db import models
 from bocken.validators import validate_phonenumber, validate_personnummer
 from ..utils import format_personnummer
+from ..fields import PhonenumberField
 from django.utils.translation import gettext_lazy as _
 
 
@@ -25,7 +26,7 @@ class Agreement(models.Model):
         validators=[validate_personnummer],
         unique=True
     )
-    phonenumber = models.CharField(
+    phonenumber = PhonenumberField(
         max_length=20,
         validators=[validate_phonenumber],
         verbose_name=_("Phonenumber")

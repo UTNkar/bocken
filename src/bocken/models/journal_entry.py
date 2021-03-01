@@ -53,6 +53,7 @@ class JournalEntry(models.Model):
     class Meta:
         verbose_name = _("Journal Entry")
         verbose_name_plural = _("Journal Entries")
+        get_latest_by = "created"
 
     def __str__(self): # noqa
         return "{} - {}".format(
@@ -68,7 +69,7 @@ class JournalEntry(models.Model):
     def get_latest_entry():
         """Get the entry that was last created."""
         try:
-            return JournalEntry.objects.latest('created')
+            return JournalEntry.objects.latest()
         except JournalEntry.DoesNotExist:
             return None
 

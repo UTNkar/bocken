@@ -25,6 +25,7 @@ class Report(models.Model):
     class Meta:
         verbose_name = _("Report")
         verbose_name_plural = _("Reports")
+        get_latest_by = "created"
 
     @staticmethod
     def get_latest_report():

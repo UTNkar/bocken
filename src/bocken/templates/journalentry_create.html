@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load widget_tweaks fontawesome_5 i18n %}
+{% block body %}
+<form method="post">
+    {% csrf_token %}
+    <div class="flex flex-col bg-white p-4">
+        {% for field in form %}
+        <div class="mb-4">
+            {% if field == form.confirm %}
+            <!--Displays number of kilometers driven-->
+            <div class="flex flex-col justify-center text-center mb-8">
+                <b class>{% translate 'Total kilometers' %}</b>
+                <b id="nr-kilometers" class="text-5xl font-bold">0</b>
+            </div>
+
+            <div class="flex items-center">
+                {{ field }}
+                <label class="flex-1 ml-2" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            </div>
+            {% else %}
+            <div class="flex items-center relative font-thin font-sans text-gray-400 {% if field.errors %}border-red-600{% else %}border-gray-100{% endif %} border-solid border-2">
+                <label for="{{ field.id_for_label }}" class="absolute flex justify-center items-center text-xl w-8 h-full">{% fa5_icon field.label %}</label>
+                {{ field|add_class:"flex-1 flex justify-center font-extralight text-lg min-h-3 pl-8" }}
+            </div>
+            {% if field.errors %}
+            {% for error in field.errors %}
+            <p class="text-xs text-red-600">{{ error }}</p>
+            {% endfor %}
+            {% endif %}
+            <p class="text-xs">{{ field.help_text }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        <input type="submit" class="block mx-auto mt-4 py-2 px-8 rounded text-white bg-blue-500">
+
+        <p class="text-xs mt-8">
+            {% translate 'Is something not working? Contact the head of the pub crew and send a copy of the details you provided above to'%}
+            <a class="text-blue-700" href="mailto:klubbmastare@utn.se">klubbmastare@utn.se</a>
+        </p>
+    </div>
+</form>
+{% endblock %}
+{% block extra_js %}
+{{ block.super }}
+<script>
+    // Calculates the total distance driven
+    document.getElementById("id_meter_start").addEventListener("input", calculateTotalDistance);
+    document.getElementById("id_meter_stop").addEventListener("input", calculateTotalDistance);
+    function calculateTotalDistance(){
+        const start = parseInt(document.getElementById("id_meter_start").value);
+        const stop = parseInt(document.getElementById("id_meter_stop").value);
+        let value = 0;
+
+        // Only show the distance driven if the stop is larger than the start.
+        // This is to prevent negative numbers from being displayed
+        if (stop > start){
+            value = stop - start;
+        } else{
+            value = 0;
+        }
+
+        document.querySelector("#nr-kilometers").innerHTML = value;
+    }
+</script>
+{% endblock %}
+

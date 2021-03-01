@@ -11,3 +11,12 @@ phonenumbers==8.12.18
 
 # Personummer verification
 personnummer==3.0.2
+
+# Tailwind css
+django-tailwind==1.1.1
+
+# Adds handy filters to templates
+django-widget-tweaks==1.4.8
+
+# Font awesome version 5
+django-fontawesome-5==1.0.18

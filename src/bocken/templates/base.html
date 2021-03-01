@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static fontawesome_5 %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&;700display=swap" rel="stylesheet">
+        {% fontawesome_5_static %}
+        {% block extra_head %}
+        {% endblock %}
+    </head>
+    <body class="h-screen bg-indigo-100">
+        <main class="container mx-auto px-4">
+            <div class="flex mb-4 justify-end">
+                {% include 'switch_language_button.html' %}
+            </div>
+            {% block body %}
+            {% endblock %}
+        </main>
+    </body>
+    {% block extra_js %}
+    {% endblock %}
+</html>

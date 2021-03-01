@@ -1,0 +1,82 @@
+{% load i18n %}
+<div class="flex flex-col {{ widget.attrs.class }}">
+    <div class="p-4 text-black">
+        <p class="text-xs font-normal mb-2">
+            {% translate 'The groups have been split up into different main groups to make it easier to find your group. Choose the main group that your group belongs to and then your group.' %}
+        </p>
+        <select name="main-group" id="main-group" class="mb-2 border border-solid border-gray-200 p-2 w-full">
+            <option value="" disabled {% if not initial_main_group %}selected{% endif %}>{% translate 'Choose a main group' %}</option>
+            {% for key, main_group in groups.items %}
+            <option value="{{ key }}" {% if key == initial_main_group %}selected{% endif %}>{{ main_group.verbose_name }}</option>
+            {% endfor %}
+        </select>
+
+        <select
+            name="{{ widget.name }}"
+            id="{{ widget.attrs.id }}"
+            {% if widget.attrs.required %}required{% endif %}
+            class="border border-solid border-gray-200 p-2 w-full"
+        >
+        </select>
+    </div>
+</div>
+<script>
+    //Isolate the code using the javascript module pattern
+    (function() {
+        // The javascript version of all groups.
+        {% autoescape off %}
+        const all_groups = {
+            {% for key, main_group in groups.items %}
+            '{{ key }}': {{ main_group }},
+            {% endfor %}
+        };
+        {% endautoescape %}
+
+        let initialGroup = '{% if initial_group %}{{ initial_group }}{% endif %}';
+
+        // Parses the html string 'option_string' and appends it to 'select_element'
+        function add_option(select_element, option_string){
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(option_string, 'text/html');
+            // DOMParser adds a body tag around the option tag. To get rid of it we
+            // append the first child in the body tag a.k.a. the option tag
+            select_element.append(doc.body.firstChild);
+        }
+
+        // Changes the groups depending on which main group is selected.
+        function change_groups() {
+            const selectedMainGroup = document.getElementById('main-group').value;
+            const groupSelect = document.getElementById('{{ widget.attrs.id }}');
+
+            // Empty the current groups in the select tag
+            groupSelect.innerHTML = "";
+
+            // The "choose your group" option should only be selected when the user switches main group.
+            // When the page loads the "choose your group" should only be selected if no group was chosen
+            // in the previous request (this occurs when a user has selected a group but some other field
+            // was invalid)
+            const selected = !initialGroup ? 'selected': '';
+            add_option(groupSelect, "<option value='' disabled " + selected + ">{% translate 'Choose your group' %}</option>")
+
+            // For each group in the selected main group,
+            // only add the groups that belong to that main group
+            if (selectedMainGroup) {
+                const groupsInSelectedMainGroup = all_groups[selectedMainGroup].groups;
+                for (let index in groupsInSelectedMainGroup) {
+                    const group = groupsInSelectedMainGroup[index];
+                    const selected = group[0] == initialGroup ? 'selected': '';
+                    add_option(groupSelect, `<option value='${group[0]}' ${selected}>${group[1]}</option>`);
+                }
+            }
+
+            // Remove the initial group since it should only be loaded once on load
+            initialGroup = "";
+        }
+
+        // The groups are filled on load and when a user selects a new main group.
+        // It is runned on load to allow the choice from the last request to be automatically
+        // selected.
+        document.addEventListener('DOMContentLoaded', change_groups);
+        document.getElementById('main-group').addEventListener('change', change_groups);
+    })();
+</script>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-01 10:21+0100\n"
+"POT-Creation-Date: 2021-03-01 11:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -151,11 +151,15 @@ msgstr "Mätare vid stop"
 msgid "Driven Distance (km)"
 msgstr "Körd sträcka (km)"
 
-#: bocken/models/journal_entry.py:51
+#: bocken/models/journal_entry.py:50
+msgid "Created"
+msgstr "Skapad"
+
+#: bocken/models/journal_entry.py:54
 msgid "Journal Entry"
 msgstr "Journalinlägg"
 
-#: bocken/models/journal_entry.py:52
+#: bocken/models/journal_entry.py:55
 msgid "Journal Entries"
 msgstr "Journalinlägg"
 

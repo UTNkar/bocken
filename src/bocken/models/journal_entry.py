@@ -45,7 +45,10 @@ class JournalEntry(models.Model):
     total_distance = models.PositiveIntegerField(
         verbose_name=_("Driven Distance (km)")
     )
-    created = models.DateTimeField(auto_now_add=True)
+    created = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('Created')
+    )
 
     class Meta:
         verbose_name = _("Journal Entry")

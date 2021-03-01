@@ -96,11 +96,21 @@ class UserAdmin(BaseUserAdmin):
 class JournalEntryAdmin(ModelAdmin):
     """Custom class for the admin pages for journal entry."""
 
-    readonly_fields = ('total_distance',)
+    readonly_fields = ('total_distance', 'created')
+    list_display = (
+        'agreement', 'created', 'group',
+        'meter_start', 'meter_stop', 'total_distance'
+    )
+
+
+class AgreementAdmin(ModelAdmin):
+    """Custom class for the admin pages for Agreement."""
+
+    list_display = ('name', 'personnummer', 'phonenumber', 'email', 'expires')
 
 
 admin.site.register(Admin, UserAdmin)
-admin.site.register(Agreement)
+admin.site.register(Agreement, AgreementAdmin)
 admin.site.register(JournalEntry, JournalEntryAdmin)
 admin.site.register(Report)
 

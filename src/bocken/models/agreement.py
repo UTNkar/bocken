@@ -12,8 +12,14 @@ class Agreement(models.Model):
     for 1 year. After that year they have to sign a new agreement.
     """
 
-    number = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=120)
+    number = models.IntegerField(
+        primary_key=True,
+        verbose_name=_("Agreement number")
+    )
+    name = models.CharField(
+        max_length=120,
+        verbose_name=_("Name")
+    )
     personnummer = models.CharField(
         max_length=13,
         validators=[validate_personnummer],
@@ -21,7 +27,8 @@ class Agreement(models.Model):
     )
     phonenumber = models.CharField(
         max_length=20,
-        validators=[validate_phonenumber]
+        validators=[validate_phonenumber],
+        verbose_name=_("Phonenumber")
     )
 
     # Email is allowed to be null since we don't have an email address to
@@ -33,7 +40,9 @@ class Agreement(models.Model):
         blank=True,
         null=True
     )
-    expires = models.DateField()
+    expires = models.DateField(
+        verbose_name=_("Valid until")
+    )
 
     class Meta:
         verbose_name = _("Agreement")

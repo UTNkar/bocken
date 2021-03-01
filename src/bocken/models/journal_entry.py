@@ -19,7 +19,11 @@ class JournalEntry(models.Model):
     that describes how far they have driven
     """
 
-    agreement = models.ForeignKey("Agreement", on_delete=models.PROTECT)
+    agreement = models.ForeignKey(
+        "Agreement",
+        on_delete=models.PROTECT,
+        verbose_name=_("Agreement")
+    )
     group = models.CharField(
         max_length=120,
         choices=(
@@ -29,11 +33,18 @@ class JournalEntry(models.Model):
             JOURNAL_ENTRY_LG_AND_BOARD +
             JOURNAL_ENTRY_OTHER_OFFICIALS +
             JOURNAL_ENTRY_SECTIONS
-        )
+        ),
+        verbose_name=_("Group")
     )
-    meter_start = models.PositiveIntegerField()
-    meter_stop = models.PositiveIntegerField()
-    total_distance = models.PositiveIntegerField()
+    meter_start = models.PositiveIntegerField(
+        verbose_name=_("Meter at start")
+    )
+    meter_stop = models.PositiveIntegerField(
+        verbose_name=_("Meter at stop")
+    )
+    total_distance = models.PositiveIntegerField(
+        verbose_name=_("Driven Distance (km)")
+    )
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:

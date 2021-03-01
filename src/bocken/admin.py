@@ -5,6 +5,7 @@ from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
+from django.contrib.admin import ModelAdmin
 from django.utils.translation import gettext as _
 
 
@@ -92,9 +93,15 @@ class UserAdmin(BaseUserAdmin):
     filter_horizontal = ()
 
 
+class JournalEntryAdmin(ModelAdmin):
+    """Custom class for the admin pages for journal entry."""
+
+    readonly_fields = ('total_distance',)
+
+
 admin.site.register(Admin, UserAdmin)
 admin.site.register(Agreement)
-admin.site.register(JournalEntry)
+admin.site.register(JournalEntry, JournalEntryAdmin)
 admin.site.register(Report)
 
 # Hide groups from the admin view since they are not used

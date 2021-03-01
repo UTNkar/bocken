@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-01 10:08+0100\n"
+"POT-Creation-Date: 2021-03-01 10:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bocken/admin.py:30
+#: bocken/admin.py:31
 msgid "Passwords don't match"
 msgstr "Lösenorden matchar inte"
 
-#: bocken/admin.py:50
+#: bocken/admin.py:51
 msgid "<a href=\"../password/\">Change the user's password here</a>."
 msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
 
@@ -111,19 +111,51 @@ msgstr "Administratör"
 msgid "Admins"
 msgstr "Administratörer"
 
-#: bocken/models/agreement.py:39
+#: bocken/models/agreement.py:17
+msgid "Agreement number"
+msgstr "Avtalsnummer"
+
+#: bocken/models/agreement.py:21
+msgid "Name"
+msgstr "Namn"
+
+#: bocken/models/agreement.py:31
+msgid "Phonenumber"
+msgstr "Telefonnummer"
+
+#: bocken/models/agreement.py:44
+msgid "Valid until"
+msgstr "Giltig t.o.m"
+
+#: bocken/models/agreement.py:48 bocken/models/journal_entry.py:25
 msgid "Agreement"
 msgstr "Köravtal"
 
-#: bocken/models/agreement.py:40
+#: bocken/models/agreement.py:49
 msgid "Agreements"
 msgstr "Köravtal"
 
+#: bocken/models/journal_entry.py:37
+msgid "Group"
+msgstr "Grupp"
+
 #: bocken/models/journal_entry.py:40
+msgid "Meter at start"
+msgstr "Mätare vid start"
+
+#: bocken/models/journal_entry.py:43
+msgid "Meter at stop"
+msgstr "Mätare vid stop"
+
+#: bocken/models/journal_entry.py:46
+msgid "Driven Distance (km)"
+msgstr "Körd sträcka (km)"
+
+#: bocken/models/journal_entry.py:51
 msgid "Journal Entry"
 msgstr "Journalinlägg"
 
-#: bocken/models/journal_entry.py:41
+#: bocken/models/journal_entry.py:52
 msgid "Journal Entries"
 msgstr "Journalinlägg"
 

@@ -101,6 +101,7 @@ class JournalEntryAdmin(ModelAdmin):
         'agreement', 'created', 'group',
         'meter_start', 'meter_stop', 'total_distance'
     )
+    ordering = ('-created', )
 
 
 class AgreementAdmin(ModelAdmin):

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-16 10:11+0100\n"
+"POT-Creation-Date: 2021-03-01 10:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,23 +50,23 @@ msgstr "Sektioner"
 msgid "Cooperations"
 msgstr "Samarbetsföreningar"
 
-#: bocken/forms.py:20
+#: bocken/forms.py:22
 msgid "Your personnummer"
 msgstr "Ditt personnummer"
 
-#: bocken/forms.py:25
+#: bocken/forms.py:27
 msgid "I confirm that Bocken is clean and in good shape"
 msgstr "Jag intygar att Bocken är i gott skick"
 
-#: bocken/forms.py:36
+#: bocken/forms.py:39
 msgid "Trip meter at start"
 msgstr "Mätare vid start"
 
-#: bocken/forms.py:43
+#: bocken/forms.py:46
 msgid "Trip meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/forms.py:56
+#: bocken/forms.py:59
 msgid ""
 "Not sure which group to choose? Choose the group that seems most reasonable "
 "to be paying for your trip."
@@ -74,7 +74,7 @@ msgstr ""
 "Osäker på vilken grupp du ska välja? Välj den grupp som känns mest rimlig "
 "att betala din resa"
 
-#: bocken/forms.py:60
+#: bocken/forms.py:63
 msgid ""
 "Trip meter at start is filled in automatically from the latest entry. If the "
 "number is not correct, enter the value that the meter had when you started "
@@ -84,12 +84,12 @@ msgstr ""
 "inte stämmer, skriv in det värde som mätaren hade när du började köra samt "
 "informera UTN:s klubbmästare."
 
-#: bocken/forms.py:114
+#: bocken/forms.py:106
 msgid "Trip meter at start must be larger than the last entry in the journal"
 msgstr ""
 "Tripmätare vid start måste vara större än det senaste inlägget i körjournalen"
 
-#: bocken/forms.py:136
+#: bocken/forms.py:128
 msgid ""
 "You don't have a written agreement which you must have to drive bocken. "
 "Contact the head of the pub crew and send a copy of the details you wrote "
@@ -99,9 +99,49 @@ msgstr ""
 "UTN:s klubbmästare och skicka med en kopia av detaljerna som du skrev in i "
 "fälten nedan."
 
-#: bocken/forms.py:146
+#: bocken/forms.py:138
 msgid "Trip meter at stop must be larger than the trip meter at start"
 msgstr "Tripmätare vid stop måste vara större än trippmätare vid start"
+
+#: bocken/models/admin.py:38
+msgid "Admin"
+msgstr "Administratör"
+
+#: bocken/models/admin.py:39
+msgid "Admins"
+msgstr "Administratörer"
+
+#: bocken/models/agreement.py:39
+msgid "Agreement"
+msgstr "Köravtal"
+
+#: bocken/models/agreement.py:40
+msgid "Agreements"
+msgstr "Köravtal"
+
+#: bocken/models/journal_entry.py:40
+msgid "Journal Entry"
+msgstr "Journalinlägg"
+
+#: bocken/models/journal_entry.py:41
+msgid "Journal Entries"
+msgstr "Journalinlägg"
+
+#: bocken/models/report.py:26
+msgid "Report"
+msgstr "Rapport"
+
+#: bocken/models/report.py:27
+msgid "Reports"
+msgstr "Rapporter"
+
+#: bocken/settings/base.py:115
+msgid "Swedish"
+msgstr "Svenska"
+
+#: bocken/settings/base.py:116
+msgid "English"
+msgstr "Engelska"
 
 #: bocken/templates/journalentry_create.html:12
 msgid "Total kilometers"

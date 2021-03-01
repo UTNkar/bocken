@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class AdminUserManager(BaseUserManager):
@@ -32,6 +33,10 @@ class Admin(AbstractBaseUser):
     EMAIL_FIELD = 'email'
 
     objects = AdminUserManager()
+
+    class Meta:
+        verbose_name = _("Admin")
+        verbose_name_plural = _("Admins")
 
     def has_perm(self, perm, obj=None):
         """Django requires this function."""

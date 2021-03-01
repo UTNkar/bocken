@@ -7,6 +7,8 @@ from ..constants import (
     JOURNAL_ENTRY_OTHER_OFFICIALS,
     JOURNAL_ENTRY_SECTIONS,
 )
+from django.utils.formats import date_format
+from django.utils.translation import gettext_lazy as _
 
 
 class JournalEntry(models.Model):
@@ -33,6 +35,16 @@ class JournalEntry(models.Model):
     meter_stop = models.PositiveIntegerField()
     total_distance = models.PositiveIntegerField()
     created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("Journal Entry")
+        verbose_name_plural = _("Journal Entries")
+
+    def __str__(self): # noqa
+        return "{} - {}".format(
+            date_format(self.created, format='j F Y H:i'),
+            self.agreement.name
+        )
 
     def calculate_total_distance(self):
         """Calculate the total distance driven."""

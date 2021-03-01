@@ -1,6 +1,7 @@
 from django.db import models
 from bocken.validators import validate_phonenumber, validate_personnummer
 from ..utils import format_personnummer
+from django.utils.translation import gettext_lazy as _
 
 
 class Agreement(models.Model):
@@ -33,6 +34,13 @@ class Agreement(models.Model):
         null=True
     )
     expires = models.DateField()
+
+    class Meta:
+        verbose_name = _("Agreement")
+        verbose_name_plural = _("Agreements")
+
+    def __str__(self): # noqa
+        return "{} - {}".format(self.name, self.personnummer)
 
     def save(self, *args, **kwargs): # noqa
         self.personnummer = format_personnummer(self.personnummer)

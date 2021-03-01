@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class Report(models.Model):
@@ -20,6 +21,10 @@ class Report(models.Model):
         related_name="+"
     )
     created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("Report")
+        verbose_name_plural = _("Reports")
 
     @staticmethod
     def get_latest_report():

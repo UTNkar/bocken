@@ -7,6 +7,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.admin import ModelAdmin
 from django.utils.translation import gettext as _
+from .forms import CreateReportForm
 
 
 class UserCreationForm(forms.ModelForm):
@@ -110,10 +111,16 @@ class AgreementAdmin(ModelAdmin):
     list_display = ('name', 'personnummer', 'phonenumber', 'email', 'expires')
 
 
+class ReportAdmin(ModelAdmin):
+    """Custom class for the admin pages for Report."""
+
+    form = CreateReportForm
+
+
 admin.site.register(Admin, UserAdmin)
 admin.site.register(Agreement, AgreementAdmin)
 admin.site.register(JournalEntry, JournalEntryAdmin)
-admin.site.register(Report)
+admin.site.register(Report, ReportAdmin)
 
 # Hide groups from the admin view since they are not used
 admin.site.unregister(Group)

@@ -2,7 +2,7 @@ from django.forms import (
     ModelForm, TextInput, BooleanField, CharField, CheckboxInput
 )
 from django.core.exceptions import ValidationError
-from .models import JournalEntry, Agreement
+from .models import JournalEntry, Agreement, Report
 from .validators import validate_personnummer
 from .utils import format_personnummer
 from .widgets import TwoLevelSelect
@@ -140,3 +140,39 @@ class JournalEntryForm(ModelForm):
             ))
 
         return cleaned_data
+
+
+class CreateReportForm(ModelForm):
+    """
+    Form for creating a report in the admin pages.
+
+    The first and last journal entry is automatically selected.
+    The first is the earliest journal entry that is not included in a
+    report.
+    The last is the most recent journal entry.
+    """
+
+    class Meta:
+        model = Report
+        fields = []
+
+    def clean(self): # noqa
+        super(CreateReportForm, self).clean()
+        if JournalEntry.objects.count() == 0:
+            raise ValidationError(
+                _(
+                    "Can not create a report because "
+                    "there are no journal entries"
+                )
+            )
+
+    def save(self, commit=True): # noqa
+        report = super(CreateReportForm, self).save(commit=False)
+        report.first = \
+            Report.get_first_journal_entry_not_in_report()
+        # TODO: Handle case when all journal entries are in a report
+        report.last = JournalEntry.objects.latest()
+
+        if commit:
+            report.save()
+        return report

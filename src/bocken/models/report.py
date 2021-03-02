@@ -55,8 +55,12 @@ class Report(models.Model):
         latest_report = Report.get_latest_report()
         if latest_report:
             previous_last = latest_report.last
-            return JournalEntry.objects \
-                .exclude(created__lte=previous_last.created) \
-                .earliest()
+            try:
+                return JournalEntry.objects \
+                    .exclude(created__lte=previous_last.created) \
+                    .earliest()
+            except JournalEntry.DoesNotExist:
+                # TODO: Make sure this is handled
+                return None
         else:
             return JournalEntry.objects.earliest()

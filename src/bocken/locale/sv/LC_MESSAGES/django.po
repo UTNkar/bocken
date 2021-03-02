@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-01 11:03+0100\n"
+"POT-Creation-Date: 2021-03-02 09:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bocken/admin.py:31
+#: bocken/admin.py:32
 msgid "Passwords don't match"
 msgstr "Lösenorden matchar inte"
 
-#: bocken/admin.py:51
+#: bocken/admin.py:52
 msgid "<a href=\"../password/\">Change the user's password here</a>."
 msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
 
@@ -103,6 +103,15 @@ msgstr ""
 msgid "Trip meter at stop must be larger than the trip meter at start"
 msgstr "Tripmätare vid stop måste vara större än trippmätare vid start"
 
+#: bocken/forms.py:164
+msgid "Can not create a report because there are no journal entries"
+msgstr "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg"
+
+#: bocken/forms.py:172
+msgid ""
+"Can not create a report because all journalentries already belong to a report"
+msgstr "Kunde inte skapa en rapport för att alla journalinlägg finns redan med i en tidigare rapport"
+
 #: bocken/models/admin.py:38
 msgid "Admin"
 msgstr "Administratör"
@@ -111,27 +120,27 @@ msgstr "Administratör"
 msgid "Admins"
 msgstr "Administratörer"
 
-#: bocken/models/agreement.py:17
+#: bocken/models/agreement.py:18
 msgid "Agreement number"
 msgstr "Avtalsnummer"
 
-#: bocken/models/agreement.py:21
+#: bocken/models/agreement.py:22
 msgid "Name"
 msgstr "Namn"
 
-#: bocken/models/agreement.py:31
+#: bocken/models/agreement.py:32
 msgid "Phonenumber"
 msgstr "Telefonnummer"
 
-#: bocken/models/agreement.py:44
+#: bocken/models/agreement.py:45
 msgid "Valid until"
 msgstr "Giltig t.o.m"
 
-#: bocken/models/agreement.py:48 bocken/models/journal_entry.py:25
+#: bocken/models/agreement.py:49 bocken/models/journal_entry.py:25
 msgid "Agreement"
 msgstr "Köravtal"
 
-#: bocken/models/agreement.py:49
+#: bocken/models/agreement.py:50
 msgid "Agreements"
 msgstr "Köravtal"
 
@@ -163,11 +172,11 @@ msgstr "Journalinlägg"
 msgid "Journal Entries"
 msgstr "Journalinlägg"
 
-#: bocken/models/report.py:26
+#: bocken/models/report.py:27
 msgid "Report"
 msgstr "Rapport"
 
-#: bocken/models/report.py:27
+#: bocken/models/report.py:28
 msgid "Reports"
 msgstr "Rapporter"
 

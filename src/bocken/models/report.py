@@ -37,6 +37,15 @@ class Report(models.Model):
             return None
 
     @staticmethod
+    def all_journal_entries_are_in_report():
+        """
+        Check if all journal entries already belong to a report.
+
+        Return True if all journal entries belong to a report, False otherwise
+        """
+        return Report.get_latest_report().last == JournalEntry.objects.latest()
+
+    @staticmethod
     def get_first_journal_entry_not_in_report():
         """
         Get the first journal entry that is not included in any report.

@@ -32,7 +32,7 @@ class Report(models.Model):
     def get_latest_report():
         """Return the lastest created report."""
         try:
-            return Report.objects.earliest()
+            return Report.objects.latest()
         except Report.DoesNotExist:
             return None
 
@@ -55,9 +55,8 @@ class Report(models.Model):
         latest_report = Report.get_latest_report()
         if latest_report:
             previous_last = latest_report.last
-            return Report.objects \
-                .order_by("-created") \
+            return JournalEntry.objects \
                 .exclude(created__lte=previous_last.created) \
-                .first()
+                .earliest()
         else:
             return JournalEntry.objects.earliest()

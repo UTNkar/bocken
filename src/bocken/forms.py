@@ -166,19 +166,35 @@ class CreateReportForm(ModelForm):
                 )
             )
 
-        if Report.all_journal_entries_are_in_report():
-            raise ValidationError(
-                _(
-                    "Can not create a report because all journal"
-                    "entries already belong to a report"
+        if (hasattr(self.cleaned_data, 'first') and
+                hasattr(self.cleaned_data, 'last')):
+            first = self.cleaned_data['first']
+            last = self.cleaned_data['last']
+
+            if first.created > last.created:
+                raise ValidationError(
+                    _(
+                        "The first journal entry must have been created "
+                        "before the last"
+                    )
                 )
-            )
+        else:
+            if Report.all_journal_entries_are_in_report():
+                raise ValidationError(
+                    _(
+                        "Can not create a report because all journal"
+                        "entries already belong to a report"
+                    )
+                )
 
     def save(self, commit=True): # noqa
         report = super(CreateReportForm, self).save(commit=False)
-        report.first = \
-            Report.get_first_journal_entry_not_in_report()
-        report.last = JournalEntry.objects.latest()
+        if not hasattr(report, 'first'):
+            report.first = \
+                Report.get_first_journal_entry_not_in_report()
+
+        if not hasattr(report, 'last'):
+            report.last = JournalEntry.objects.latest()
 
         if commit:
             report.save()

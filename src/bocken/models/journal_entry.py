@@ -55,11 +55,16 @@ class JournalEntry(models.Model):
         verbose_name_plural = _("Journal Entries")
         get_latest_by = "created"
 
-    def __str__(self): # noqa
+    def __str__(self):  # noqa
         return "{} - {}".format(
-            date_format(self.created, format='j F Y H:i'),
+            self.created_formatted,
             self.agreement.name
         )
+
+    @property
+    def created_formatted(self):
+        """Return the created date in the correct format."""
+        return date_format(self.created, format='j F Y H:i')
 
     def calculate_total_distance(self):
         """Calculate the total distance driven."""
@@ -73,6 +78,6 @@ class JournalEntry(models.Model):
         except JournalEntry.DoesNotExist:
             return None
 
-    def save(self, *args, **kwargs): # noqa
+    def save(self, *args, **kwargs):  # noqa
         self.total_distance = self.calculate_total_distance()
         super(JournalEntry, self).save(*args, **kwargs)

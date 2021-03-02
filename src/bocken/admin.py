@@ -115,16 +115,8 @@ class ReportAdmin(ModelAdmin):
     """Custom class for the admin pages for Report."""
 
     form = CreateReportForm
-
-    def add_view(self, request, extra_content=None):
-        self.fields = []
-        return super(ReportAdmin, self).add_view(request)
-
-    def change_view(self, request, object_id, extra_content=None):
-        self.fields = ['first', 'last']
-        return super(ReportAdmin, self).change_view(
-            request, object_id, extra_content
-        )
+    add_form_template = 'admin/add_report_form.html'
+    change_form_template = 'admin/change_report_form.html'
 
 
 admin.site.register(Admin, UserAdmin)

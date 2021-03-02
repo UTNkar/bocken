@@ -116,6 +116,16 @@ class ReportAdmin(ModelAdmin):
 
     form = CreateReportForm
 
+    def add_view(self, request, extra_content=None):
+        self.fields = []
+        return super(ReportAdmin, self).add_view(request)
+
+    def change_view(self, request, object_id, extra_content=None):
+        self.fields = ['first', 'last']
+        return super(ReportAdmin, self).change_view(
+            request, object_id, extra_content
+        )
+
 
 admin.site.register(Admin, UserAdmin)
 admin.site.register(Agreement, AgreementAdmin)

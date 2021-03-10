@@ -42,9 +42,6 @@ class JournalEntry(models.Model):
     meter_stop = models.PositiveIntegerField(
         verbose_name=_("Meter at stop")
     )
-    total_distance = models.PositiveIntegerField(
-        verbose_name=_("Driven Distance (km)")
-    )
     created = models.DateTimeField(
         auto_now_add=True,
         verbose_name=_('Created')
@@ -78,6 +75,9 @@ class JournalEntry(models.Model):
         except JournalEntry.DoesNotExist:
             return None
 
-    def save(self, *args, **kwargs):  # noqa
-        self.total_distance = self.get_total_distance()
-        super(JournalEntry, self).save(*args, **kwargs)
+    @staticmethod
+    def get_entries_between(first, last):
+        entries = JournalEntry.objects.filter(
+            created__range=(first.created, last.created)
+        )
+        return entries

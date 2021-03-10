@@ -28,6 +28,11 @@ class Report(models.Model):
         verbose_name_plural = _("Reports")
         get_latest_by = "created"
 
+    def __str__(self):
+        return "{} - {}".format(
+            self.first.created_formatted, self.last.created_formatted
+        )
+
     @staticmethod
     def get_latest_report():
         """Return the lastest created report."""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-02 09:21+0100\n"
+"POT-Creation-Date: 2021-03-10 16:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,12 +105,19 @@ msgstr "Tripmätare vid stop måste vara större än trippmätare vid start"
 
 #: bocken/forms.py:164
 msgid "Can not create a report because there are no journal entries"
-msgstr "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg"
+msgstr ""
+"Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg"
 
-#: bocken/forms.py:172
+#: bocken/forms.py:177
+msgid "The first journal entry must have been created before the last"
+msgstr "Den första journalinlägget i rapporten måste vara skapat före det sista"
+
+#: bocken/forms.py:185
 msgid ""
 "Can not create a report because all journalentries already belong to a report"
-msgstr "Kunde inte skapa en rapport för att alla journalinlägg finns redan med i en tidigare rapport"
+msgstr ""
+"Kunde inte skapa en rapport för att alla journalinlägg finns redan med i en "
+"tidigare rapport"
 
 #: bocken/models/admin.py:38
 msgid "Admin"
@@ -145,6 +152,7 @@ msgid "Agreements"
 msgstr "Köravtal"
 
 #: bocken/models/journal_entry.py:37
+#: bocken/templates/admin/change_report_form.html:8
 msgid "Group"
 msgstr "Grupp"
 
@@ -156,27 +164,27 @@ msgstr "Mätare vid start"
 msgid "Meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/models/journal_entry.py:46
-msgid "Driven Distance (km)"
-msgstr "Körd sträcka (km)"
-
-#: bocken/models/journal_entry.py:50
+#: bocken/models/journal_entry.py:47
 msgid "Created"
 msgstr "Skapad"
 
-#: bocken/models/journal_entry.py:54
+#: bocken/models/journal_entry.py:51
 msgid "Journal Entry"
 msgstr "Journalinlägg"
 
-#: bocken/models/journal_entry.py:55
+#: bocken/models/journal_entry.py:52
 msgid "Journal Entries"
 msgstr "Journalinlägg"
 
-#: bocken/models/report.py:27
+#: bocken/models/journal_entry.py:69
+msgid "Driven Distance (km)"
+msgstr "Körd sträcka (km)"
+
+#: bocken/models/report.py:28
 msgid "Report"
 msgstr "Rapport"
 
-#: bocken/models/report.py:28
+#: bocken/models/report.py:29
 msgid "Reports"
 msgstr "Rapporter"
 
@@ -188,9 +196,21 @@ msgstr "Svenska"
 msgid "English"
 msgstr "Engelska"
 
+#: bocken/templates/admin/change_report_form.html:9
 #: bocken/templates/journalentry_create.html:12
 msgid "Total kilometers"
 msgstr "Antal kilometer"
+
+#: bocken/templates/admin/change_report_form.html:21
+msgid "Total"
+msgstr "Totalt"
+
+#: bocken/templates/admin/change_report_form.html:26
+msgid ""
+"Groups that are not displayed above have not driven bocken during this time "
+"period"
+msgstr ""
+"Grupper som inte visas ovan har inte kört bocken något under denna tidsperiod"
 
 #: bocken/templates/journalentry_create.html:38
 msgid ""

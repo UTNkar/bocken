@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from . import JournalEntry
+from collections import defaultdict
 
 
 class Report(models.Model):
@@ -32,6 +33,44 @@ class Report(models.Model):
         return "{} - {}".format(
             self.first.created_formatted, self.last.created_formatted
         )
+
+    def get_entries(self):
+        """
+        Get all journal entries within this report.
+
+        Returns a queryset of journal entries
+        """
+        return JournalEntry.get_entries_between(self.first, self.last)
+
+    def get_total_kilometers(self):
+        """Get the total kilometers in this report."""
+        entries = self.get_entries()
+
+        total_kilometers = 0
+        for entry in entries:
+            total_kilometers += entry.get_total_distance()
+
+        return total_kilometers
+
+    def get_total_kilometers_for_groups(self):
+        """
+        Get the total kilometers driven for each group.
+
+        If a group has not driven any kilometers they are not included.
+
+        Returns a defaultdict with the group names as keys and their total
+        kilometers driven as value.
+        Ex. {'Baskå': 20}
+        """
+        entries = self.get_entries()
+
+        total_kilometers = defaultdict(int)
+        if entries:
+            for entry in entries:
+                total_kilometers[entry.get_group_display()] += \
+                    entry.get_total_distance()
+
+        return total_kilometers
 
     @staticmethod
     def get_latest_report():

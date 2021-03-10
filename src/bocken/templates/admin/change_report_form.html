@@ -1,6 +1,28 @@
 {# Override the default admin template #}
 {% extends "admin/change_form.html" %}
+{% load i18n %}
 {% block content %}
 {{ block.super }}
-ffef
+<table>
+    <thead>
+        <th>{% translate 'Group' %}</th>
+        <th>{% translate 'Total kilometers' %}</th>
+    </thead>
+    <tbody>
+        {% for group, kilometers in total_kilometers_groups %}
+        <tr>
+            <td>{{ group }}</td>
+            <td>{{ kilometers }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>{% translate 'Sum' %}</td>
+            <td>{{ original.get_total_kilometers }}</td>
+        </tr>
+    </tfoot>
+</table>
+<p class="small">{% translate 'Groups that are not displayed above have not driven bocken during this time period' %}
+</p>
 {% endblock %}

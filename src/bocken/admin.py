@@ -32,7 +32,7 @@ class UserCreationForm(forms.ModelForm):
             raise ValidationError(_("Passwords don't match"))
         return password2
 
-    def save(self, commit=True): # noqa
+    def save(self, commit=True):  # noqa
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
         user.save()
@@ -59,7 +59,7 @@ class UserChangeForm(forms.ModelForm):
             'email', 'password', 'is_staff'
         )
 
-    def clean_password(self): # noqa
+    def clean_password(self):  # noqa
         # Regardless of what the user provides, return the initial value.
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
@@ -117,6 +117,24 @@ class ReportAdmin(ModelAdmin):
     form = CreateReportForm
     add_form_template = 'admin/add_report_form.html'
     change_form_template = 'admin/change_report_form.html'
+
+    def change_view(self, request, object_id, extra_context=None):
+        """Django view for overriding the editing view for reports."""
+        extra_context = extra_context or {}
+
+        report = Report.objects.get(pk=object_id)
+        total_kilometers_groups = report.get_total_kilometers_for_groups()
+
+        # Templates in django don't handle defaultdicts well and
+        # should be converted to dicts according to the docs.
+        # https://docs.djangoproject.com/en/3.1/ref/templates/language/#variables
+        extra_context['total_kilometers_groups'] = sorted(
+            dict(total_kilometers_groups).items()
+        )
+
+        return super(ReportAdmin, self).change_view(
+            request, object_id, extra_context=extra_context
+        )
 
 
 admin.site.register(Admin, UserAdmin)

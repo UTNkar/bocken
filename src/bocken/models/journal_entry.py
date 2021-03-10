@@ -66,7 +66,7 @@ class JournalEntry(models.Model):
         """Return the created date in the correct format."""
         return date_format(self.created, format='j F Y H:i')
 
-    def calculate_total_distance(self):
+    def get_total_distance(self):
         """Calculate the total distance driven."""
         return self.meter_stop - self.meter_start
 
@@ -79,5 +79,5 @@ class JournalEntry(models.Model):
             return None
 
     def save(self, *args, **kwargs):  # noqa
-        self.total_distance = self.calculate_total_distance()
+        self.total_distance = self.get_total_distance()
         super(JournalEntry, self).save(*args, **kwargs)

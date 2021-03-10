@@ -97,10 +97,10 @@ class UserAdmin(BaseUserAdmin):
 class JournalEntryAdmin(ModelAdmin):
     """Custom class for the admin pages for journal entry."""
 
-    readonly_fields = ('total_distance', 'created')
+    readonly_fields = ('created', 'get_total_distance')
     list_display = (
         'agreement', 'created', 'group',
-        'meter_start', 'meter_stop', 'total_distance'
+        'meter_start', 'meter_stop', 'get_total_distance'
     )
     ordering = ('-created', )
 

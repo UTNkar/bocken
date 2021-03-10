@@ -66,6 +66,7 @@ class JournalEntry(models.Model):
     def get_total_distance(self):
         """Calculate the total distance driven."""
         return self.meter_stop - self.meter_start
+    get_total_distance.short_description = _("Driven Distance (km)")
 
     @staticmethod
     def get_latest_entry():

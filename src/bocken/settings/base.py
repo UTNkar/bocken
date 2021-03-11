@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
-import sys, os
+import sys
+import os
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -80,7 +81,7 @@ else:
             'USER': config('DJANGO_DB_USER', default='bocken'),
             'PASSWORD': config('DJANGO_DB_PASS', default=''),
             'HOST': config('DJANGO_DB_HOST', default='127.0.0.1'),
-            'PORT':  config('DJANGO_DB_PORT', default='5432'),
+            'PORT': config('DJANGO_DB_PORT', default='5432'),
         }
     }
 

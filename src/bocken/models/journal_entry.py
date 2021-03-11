@@ -69,6 +69,16 @@ class JournalEntry(models.Model):
     get_total_distance.short_description = _("Driven Distance (km)")
 
     @staticmethod
+    def entries_exists():
+        """
+        Check if there exists any journal entries.
+
+        Returns True if there are not journal entries in the database,
+        False otherwise
+        """
+        return JournalEntry.objects.exists()
+
+    @staticmethod
     def get_latest_entry():
         """Get the entry that was last created."""
         try:

@@ -128,6 +128,9 @@ class ReportAdmin(ModelAdmin):
     add_form_template = 'admin/add_report_form.html'
     change_form_template = 'admin/change_report_form.html'
 
+    list_display = ("__str__", "created")
+    ordering = ("-created", )
+
     def add_view(self, request, form_url='', extra_context=None):
         extra_context = extra_context or {}
 

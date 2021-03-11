@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from . import JournalEntry
 from collections import defaultdict
+from django.template.defaultfilters import date
+from django.utils.timezone import localtime
 
 
 class Report(models.Model):
@@ -12,16 +14,10 @@ class Report(models.Model):
     driven bocken between the first and last journal entry of a report
     """
 
-    first = models.ForeignKey(
-        "JournalEntry",
-        on_delete=models.PROTECT,
-        related_name="+"
-    )
-    last = models.ForeignKey(
-        "JournalEntry",
-        on_delete=models.PROTECT,
-        related_name="+"
-    )
+    first = models.DateTimeField()
+
+    last = models.DateTimeField()
+
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -31,7 +27,8 @@ class Report(models.Model):
 
     def __str__(self):
         return "{} - {}".format(
-            self.first.created_formatted, self.last.created_formatted
+            date(localtime(self.first), "j F Y H:i"),
+            date(localtime(self.last), "j F Y H:i")
         )
 
     def get_entries(self):
@@ -67,10 +64,23 @@ class Report(models.Model):
         total_kilometers = defaultdict(int)
         if entries:
             for entry in entries:
-                total_kilometers[entry.get_group_display()] += \
-                    entry.get_total_distance()
+                total_kilometers[entry.get_group_display(
+                )] += entry.get_total_distance()
 
         return total_kilometers
+
+    @staticmethod
+    def get_first_for_new_report():
+        latest_report = Report.get_latest_report()
+        if latest_report:
+            first = latest_report.last
+        else:
+            try:
+                first = JournalEntry.objects.earliest().created
+            except JournalEntry.DoesNotExist:
+                first = None
+
+        return first
 
     @staticmethod
     def get_latest_report():
@@ -100,9 +110,9 @@ class Report(models.Model):
         if latest_report:
             previous_last = latest_report.last
             try:
-                return JournalEntry.objects \
-                    .exclude(created__lte=previous_last.created) \
-                    .earliest()
+                return JournalEntry.objects.exclude(
+                    created__lte=previous_last.created
+                ).earliest()
             except JournalEntry.DoesNotExist:
                 # TODO: Make sure this is handled
                 return None

@@ -79,6 +79,6 @@ class JournalEntry(models.Model):
     @staticmethod
     def get_entries_between(first, last):
         entries = JournalEntry.objects.filter(
-            created__range=(first.created, last.created)
+            created__range=(first, last)
         )
         return entries

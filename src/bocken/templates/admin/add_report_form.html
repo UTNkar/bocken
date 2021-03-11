@@ -1,7 +1,8 @@
 {# Override the default admin template #}
 {% extends "admin/change_form.html" %}
-{% load journalentry_tags %}
+{% load report_tags %}
 {% block submit_buttons_bottom %}
-<p>{% get_new_report_range %}</p>
+{% get_new_first as first %}
+<p>{{ first|date:"j F Y H:i" }} - {% now "j F Y H:i" %}</p>
 <input type="submit" value="Skapa">
 {% endblock %}

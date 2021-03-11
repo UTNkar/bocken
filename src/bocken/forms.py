@@ -7,6 +7,7 @@ from .validators import validate_personnummer
 from .utils import format_personnummer
 from .widgets import TwoLevelSelect
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 
 
 class JournalEntryForm(ModelForm):
@@ -109,7 +110,7 @@ class JournalEntryForm(ModelForm):
 
         return self.cleaned_data['meter_start']
 
-    def clean(self): # noqa
+    def clean(self):  # noqa
         cleaned_data = super(JournalEntryForm, self).clean()
 
         # Find the corresponding agreement. If the personnummer is not
@@ -156,7 +157,7 @@ class CreateReportForm(ModelForm):
         model = Report
         fields = []
 
-    def clean(self): # noqa
+    def clean(self):  # noqa
         super(CreateReportForm, self).clean()
         if JournalEntry.objects.count() == 0:
             raise ValidationError(
@@ -166,36 +167,18 @@ class CreateReportForm(ModelForm):
                 )
             )
 
-        if (hasattr(self.cleaned_data, 'first') and
-                hasattr(self.cleaned_data, 'last')):
-            first = self.cleaned_data['first']
-            last = self.cleaned_data['last']
+        first = Report.get_first_for_new_report()
 
-            if first.created > last.created:
-                raise ValidationError(
-                    _(
-                        "The first journal entry must have been created "
-                        "before the last"
-                    )
-                )
+        last = timezone.now()
+
+        entries = JournalEntry.get_entries_between(first, last)
+        if entries:
+            self.instance.first = first
+            self.instance.last = last
         else:
-            if Report.all_journal_entries_are_in_report():
-                raise ValidationError(
-                    _(
-                        "Can not create a report because all journal"
-                        "entries already belong to a report"
-                    )
+            raise ValidationError(
+                _(
+                    "Can not create a report because there are no "
+                    "Journal entries between these two timestamps"
                 )
-
-    def save(self, commit=True): # noqa
-        report = super(CreateReportForm, self).save(commit=False)
-        if not hasattr(report, 'first'):
-            report.first = \
-                Report.get_first_journal_entry_not_in_report()
-
-        if not hasattr(report, 'last'):
-            report.last = JournalEntry.objects.latest()
-
-        if commit:
-            report.save()
-        return report
+            )

@@ -159,7 +159,7 @@ class CreateReportForm(ModelForm):
 
     def clean(self):  # noqa
         super(CreateReportForm, self).clean()
-        if JournalEntry.objects.count() == 0:
+        if not JournalEntry.entries_exists():
             raise ValidationError(
                 _(
                     "Can not create a report because "
@@ -167,11 +167,8 @@ class CreateReportForm(ModelForm):
                 )
             )
 
-        first = Report.get_first_for_new_report()
+        first, last, entries = Report.get_new_report()
 
-        last = timezone.now()
-
-        entries = JournalEntry.get_entries_between(first, last)
         if entries:
             self.instance.first = first
             self.instance.last = last
@@ -179,6 +176,6 @@ class CreateReportForm(ModelForm):
             raise ValidationError(
                 _(
                     "Can not create a report because there are no "
-                    "Journal entries between these two timestamps"
+                    "journal entries between these two timestamps"
                 )
             )

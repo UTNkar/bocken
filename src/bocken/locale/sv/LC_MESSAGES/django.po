@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-11 14:32+0100\n"
+"POT-Creation-Date: 2021-03-11 17:10+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,7 +113,8 @@ msgid ""
 "Can not create a report because there are no journal entries between these "
 "two timestamps"
 msgstr ""
-"Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg mellan dessa tidstämplar"
+"Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg "
+"mellan dessa tidstämplar"
 
 #: bocken/models/admin.py:38
 msgid "Admin"
@@ -192,25 +193,39 @@ msgstr "Svenska"
 msgid "English"
 msgstr "Engelska"
 
+#: bocken/templates/admin/add_report_form.html:4
 #: bocken/templates/admin/add_report_form.html:7
+#: bocken/templates/admin/add_report_form.html:24
+msgid "Create report"
+msgstr "Skapa rapport"
+
+#: bocken/templates/admin/add_report_form.html:4
+msgid "Django site admin"
+msgstr "Django webbplatsadministration"
+
+#: bocken/templates/admin/add_report_form.html:14
+msgid "Home"
+msgstr "Hem"
+
+#: bocken/templates/admin/add_report_form.html:34
 msgid "A report can not be created since there are no journal entries"
 msgstr ""
 "En rapport kan inte skapas eftersom att det inte finns några journalinlägg"
 
-#: bocken/templates/admin/add_report_form.html:9
+#: bocken/templates/admin/add_report_form.html:36
 msgid ""
 "A report can not be created since there are no new journal entries since the "
 "latest report"
 msgstr ""
-"En rapport kan inte skapas eftersom att det inte finns några nya journalinlägg "
-"sen den senaste rapporten"
+"En rapport kan inte skapas eftersom att det inte finns några nya "
+"journalinlägg sen den senaste rapporten"
 
-#: bocken/templates/admin/add_report_form.html:11
+#: bocken/templates/admin/add_report_form.html:38
 msgid ""
 "The new report will include all journal entries between the following times"
 msgstr ""
-"Den nya rapporten kommer inkludera alla journalinlägg som skapats mellan "
-"de följande tiderna"
+"Den nya rapporten kommer inkludera alla journalinlägg som skapats mellan de "
+"följande tiderna"
 
 #: bocken/templates/admin/change_report_form.html:9
 #: bocken/templates/journalentry_create.html:12

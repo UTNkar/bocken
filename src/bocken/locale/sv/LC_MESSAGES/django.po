@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-10 16:01+0100\n"
+"POT-Creation-Date: 2021-03-11 14:32+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,23 +50,23 @@ msgstr "Sektioner"
 msgid "Cooperations"
 msgstr "Samarbetsföreningar"
 
-#: bocken/forms.py:22
+#: bocken/forms.py:23
 msgid "Your personnummer"
 msgstr "Ditt personnummer"
 
-#: bocken/forms.py:27
+#: bocken/forms.py:28
 msgid "I confirm that Bocken is clean and in good shape"
 msgstr "Jag intygar att Bocken är i gott skick"
 
-#: bocken/forms.py:39
+#: bocken/forms.py:40
 msgid "Trip meter at start"
 msgstr "Mätare vid start"
 
-#: bocken/forms.py:46
+#: bocken/forms.py:47
 msgid "Trip meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/forms.py:59
+#: bocken/forms.py:60
 msgid ""
 "Not sure which group to choose? Choose the group that seems most reasonable "
 "to be paying for your trip."
@@ -74,7 +74,7 @@ msgstr ""
 "Osäker på vilken grupp du ska välja? Välj den grupp som känns mest rimlig "
 "att betala din resa"
 
-#: bocken/forms.py:63
+#: bocken/forms.py:64
 msgid ""
 "Trip meter at start is filled in automatically from the latest entry. If the "
 "number is not correct, enter the value that the meter had when you started "
@@ -84,12 +84,12 @@ msgstr ""
 "inte stämmer, skriv in det värde som mätaren hade när du började köra samt "
 "informera UTN:s klubbmästare."
 
-#: bocken/forms.py:106
+#: bocken/forms.py:107
 msgid "Trip meter at start must be larger than the last entry in the journal"
 msgstr ""
 "Tripmätare vid start måste vara större än det senaste inlägget i körjournalen"
 
-#: bocken/forms.py:128
+#: bocken/forms.py:129
 msgid ""
 "You don't have a written agreement which you must have to drive bocken. "
 "Contact the head of the pub crew and send a copy of the details you wrote "
@@ -99,25 +99,21 @@ msgstr ""
 "UTN:s klubbmästare och skicka med en kopia av detaljerna som du skrev in i "
 "fälten nedan."
 
-#: bocken/forms.py:138
+#: bocken/forms.py:139
 msgid "Trip meter at stop must be larger than the trip meter at start"
 msgstr "Tripmätare vid stop måste vara större än trippmätare vid start"
 
-#: bocken/forms.py:164
+#: bocken/forms.py:165
 msgid "Can not create a report because there are no journal entries"
 msgstr ""
 "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg"
 
-#: bocken/forms.py:177
-msgid "The first journal entry must have been created before the last"
-msgstr "Den första journalinlägget i rapporten måste vara skapat före det sista"
-
-#: bocken/forms.py:185
+#: bocken/forms.py:178
 msgid ""
-"Can not create a report because all journalentries already belong to a report"
+"Can not create a report because there are no journal entries between these "
+"two timestamps"
 msgstr ""
-"Kunde inte skapa en rapport för att alla journalinlägg finns redan med i en "
-"tidigare rapport"
+"Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg mellan dessa tidstämplar"
 
 #: bocken/models/admin.py:38
 msgid "Admin"
@@ -180,21 +176,41 @@ msgstr "Journalinlägg"
 msgid "Driven Distance (km)"
 msgstr "Körd sträcka (km)"
 
-#: bocken/models/report.py:28
+#: bocken/models/report.py:25
 msgid "Report"
 msgstr "Rapport"
 
-#: bocken/models/report.py:29
+#: bocken/models/report.py:26
 msgid "Reports"
 msgstr "Rapporter"
 
-#: bocken/settings/base.py:115
+#: bocken/settings/base.py:116
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:116
+#: bocken/settings/base.py:117
 msgid "English"
 msgstr "Engelska"
+
+#: bocken/templates/admin/add_report_form.html:7
+msgid "A report can not be created since there are no journal entries"
+msgstr ""
+"En rapport kan inte skapas eftersom att det inte finns några journalinlägg"
+
+#: bocken/templates/admin/add_report_form.html:9
+msgid ""
+"A report can not be created since there are no new journal entries since the "
+"latest report"
+msgstr ""
+"En rapport kan inte skapas eftersom att det inte finns några nya journalinlägg "
+"sen den senaste rapporten"
+
+#: bocken/templates/admin/add_report_form.html:11
+msgid ""
+"The new report will include all journal entries between the following times"
+msgstr ""
+"Den nya rapporten kommer inkludera alla journalinlägg som skapats mellan "
+"de följande tiderna"
 
 #: bocken/templates/admin/change_report_form.html:9
 #: bocken/templates/journalentry_create.html:12

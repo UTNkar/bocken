@@ -128,7 +128,21 @@ class ReportAdmin(ModelAdmin):
     add_form_template = 'admin/add_report_form.html'
     change_form_template = 'admin/change_report_form.html'
 
-    def change_view(self, request, object_id, extra_context=None):
+    def add_view(self, request, form_url='', extra_context=None):
+        extra_context = extra_context or {}
+
+        first, last, entries = Report.get_new_report()
+
+        extra_context['no_entries'] = not JournalEntry.entries_exists()
+        extra_context['entries'] = entries
+        extra_context['first'] = first
+        extra_context['last'] = last
+
+        return super(ReportAdmin, self).add_view(
+            request, form_url='', extra_context=extra_context
+        )
+
+    def change_view(self, request, object_id, form_url='', extra_context=None):
         """Django view for overriding the editing view for reports."""
         extra_context = extra_context or {}
 
@@ -143,7 +157,7 @@ class ReportAdmin(ModelAdmin):
         )
 
         return super(ReportAdmin, self).change_view(
-            request, object_id, extra_context=extra_context
+            request, object_id, form_url='', extra_context=extra_context
         )
 
 

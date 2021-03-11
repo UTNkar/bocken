@@ -4,6 +4,7 @@ from . import JournalEntry
 from collections import defaultdict
 from django.template.defaultfilters import date
 from django.utils.timezone import localtime
+from django.utils import timezone
 
 
 class Report(models.Model):
@@ -81,6 +82,15 @@ class Report(models.Model):
                 first = None
 
         return first
+
+    @staticmethod
+    def get_new_report():
+        first = Report.get_first_for_new_report()
+        last = timezone.now()
+
+        entries = JournalEntry.get_entries_between(first, last)
+
+        return first, last, entries
 
     @staticmethod
     def get_latest_report():

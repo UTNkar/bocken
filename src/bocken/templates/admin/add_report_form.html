@@ -1,8 +1,15 @@
 {# Override the default admin template #}
 {% extends "admin/change_form.html" %}
-{% load report_tags %}
+{% load i18n %}
+
 {% block submit_buttons_bottom %}
-{% get_new_first as first %}
-<p>{{ first|date:"j F Y H:i" }} - {% now "j F Y H:i" %}</p>
+{% if no_entries %}
+{% translate 'A report can not be created since there are no journal entries' %}
+{% elif not entries.exists %}
+{% translate 'A report can not be created since there are no new journal entries since the latest report' %}
+{% else %}
+{% translate 'The new report will include all journal entries between the following times' %}
+<p>{{ first|date:"j F Y H:i" }} - {{ last|date:"j F Y H:i" }}</p>
 <input type="submit" value="Skapa">
+{% endif %}
 {% endblock %}

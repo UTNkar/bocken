@@ -1,4 +1,4 @@
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 # All groups have been divided into main groups to make it easier to find
 # a specific group. Each main group has a verbose name and the groups belonging

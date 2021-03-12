@@ -1,12 +1,4 @@
 from django.db import models
-from ..constants import (
-    JOURNAL_ENTRY_COMMITTEES_WORKGROUPS,
-    JOURNAL_ENTRY_COOPERATINS,
-    JOURNAL_ENTRY_FUM,
-    JOURNAL_ENTRY_LG_AND_BOARD,
-    JOURNAL_ENTRY_OTHER_OFFICIALS,
-    JOURNAL_ENTRY_SECTIONS,
-)
 from django.utils.formats import date_format
 from django.utils.translation import gettext_lazy as _
 

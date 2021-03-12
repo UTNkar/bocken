@@ -24,17 +24,10 @@ class JournalEntry(models.Model):
         on_delete=models.PROTECT,
         verbose_name=_("Agreement")
     )
-    group = models.CharField(
-        max_length=120,
-        choices=(
-            JOURNAL_ENTRY_COMMITTEES_WORKGROUPS +
-            JOURNAL_ENTRY_COOPERATINS +
-            JOURNAL_ENTRY_FUM +
-            JOURNAL_ENTRY_LG_AND_BOARD +
-            JOURNAL_ENTRY_OTHER_OFFICIALS +
-            JOURNAL_ENTRY_SECTIONS
-        ),
-        verbose_name=_("Group")
+    group = models.ForeignKey(
+        "JournalEntryGroup",
+        on_delete=models.PROTECT,
+        verbose_name=("Group")
     )
     meter_start = models.PositiveIntegerField(
         verbose_name=_("Meter at start")

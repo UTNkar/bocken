@@ -22,5 +22,5 @@ class JournalEntryGroup(models.Model):
     cost_per_mil = models.PositiveIntegerField(default=20)
     starting_fee = models.PositiveIntegerField(default=0)
 
-    def __str__(self):
+    def __str__(self):  # noqa
         return self.name

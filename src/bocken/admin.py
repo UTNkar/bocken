@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django import forms
-from bocken.models import Admin, Agreement, JournalEntry, Report
+from bocken.models import (
+    Admin, Agreement, JournalEntry, Report, JournalEntryGroup
+)
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
@@ -164,10 +166,18 @@ class ReportAdmin(ModelAdmin):
         )
 
 
+class JournalEntryGroupAdmin(ModelAdmin):
+    """Custom class for the admin pages for JournalEntryGroup."""
+
+    list_display = ("name", "main_group", "cost_per_mil", "starting_fee")
+    ordering = ("main_group", "name")
+
+
 admin.site.register(Admin, UserAdmin)
 admin.site.register(Agreement, AgreementAdmin)
 admin.site.register(JournalEntry, JournalEntryAdmin)
 admin.site.register(Report, ReportAdmin)
+admin.site.register(JournalEntryGroup, JournalEntryGroupAdmin)
 
 # Hide groups from the admin view since they are not used
 admin.site.unregister(Group)

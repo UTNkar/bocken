@@ -1,5 +1,5 @@
 from django.forms.widgets import Select
-from .constants import JOURNAL_ENTRY_ALL_GROUPS
+from bocken.models import JournalEntryGroup
 
 
 class TwoLevelSelect(Select):
@@ -22,31 +22,39 @@ class TwoLevelSelect(Select):
         self.initial_group = initial_group
         self.initial_main_group = initial_main_group
 
-    @staticmethod
-    def _take_second(element):
-        return element[1]
-
     def get_context(self, name, value, attrs):
         """Provide all the groups and initial values to the template."""
         context = super(TwoLevelSelect, self).get_context(name, value, attrs)
 
-        # Convert all list of tuples to list of lists since javascript
-        # does not have tuples
-        groups = JOURNAL_ENTRY_ALL_GROUPS
-        for key, main_group in JOURNAL_ENTRY_ALL_GROUPS.items():
-            groups_to_array = []
+        groups = {}
 
-            # Sort the groups based on their verbose name
+        all_main_groups = JournalEntryGroup._meta.\
+            get_field('main_group').choices
+        all_groups = JournalEntryGroup.objects.all()
+
+        for main_group, verbose_name in all_main_groups:
+            # Get a list of the names of all groups that belong to the current
+            # main group
+            groups_in_main_group = all_groups.filter(
+                main_group=main_group
+            ).values_list('id', "name")
+
+            # Sort the groups alphabetically
             sorted_groups = sorted(
-                main_group['groups'],
-                key=TwoLevelSelect._take_second
+                groups_in_main_group,
+                key=lambda element: element[1]
             )
 
-            for group in sorted_groups:
-                groups_to_array.append(list(group))
-            groups[key]['groups'] = groups_to_array
+            groups[str(verbose_name)] = sorted_groups
 
+        # Groups will have the following structure:
+        # {
+        #   'Committees': ['committee1', 'committee2'],
+        #   'Sections': ['section1', 'section2'],
+        #    ...
+        # }
         context['groups'] = groups
+        context['all_main_groups'] = all_main_groups
 
         context['initial_group'] = self.initial_group
         context['initial_main_group'] = self.initial_main_group

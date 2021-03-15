@@ -1,7 +1,8 @@
 from .admin import Admin
 from .agreement import Agreement
 from .journal_entry import JournalEntry
-from .report import Report
 from .group import JournalEntryGroup
+from .report import Report
 
-__all__ = ['Admin', 'Agreement', 'JournalEntry', 'Report', 'JournalEntryGroup']
+__all__ = ['Admin', 'Agreement', 'JournalEntry',
+           'JournalEntryGroup', 'Report']

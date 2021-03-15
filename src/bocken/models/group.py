@@ -24,3 +24,6 @@ class JournalEntryGroup(models.Model):
 
     def __str__(self):  # noqa
         return self.name
+
+    def calculate_total_cost(self, mil):
+        return mil * self.cost_per_mil + self.starting_fee

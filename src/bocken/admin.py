@@ -148,18 +148,16 @@ class ReportAdmin(ModelAdmin):
         )
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
-        """Django view for overriding the editing view for reports."""
+        """
+        Django view for overriding the editing view for reports.
+
+        This is where the statistics is shown for a report.
+        """
         extra_context = extra_context or {}
 
         report = Report.objects.get(pk=object_id)
-        total_kilometers_groups = report.get_total_kilometers_for_groups()
-
-        # Templates in django don't handle defaultdicts well and
-        # should be converted to dicts according to the docs.
-        # https://docs.djangoproject.com/en/3.1/ref/templates/language/#variables
-        extra_context['total_kilometers_groups'] = sorted(
-            dict(total_kilometers_groups).items()
-        )
+        extra_context['statistics_for_groups'] = \
+            report.get_statistics_for_groups()
 
         return super(ReportAdmin, self).change_view(
             request, object_id, form_url='', extra_context=extra_context

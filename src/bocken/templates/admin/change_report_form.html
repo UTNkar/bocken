@@ -7,12 +7,16 @@
     <thead>
         <th>{% translate 'Group' %}</th>
         <th>{% translate 'Total kilometers' %}</th>
+        <th>{% translate 'Total mil' %}</th>
+        <th>{% translate 'Total cost' %}</th>
     </thead>
     <tbody>
-        {% for group, kilometers in total_kilometers_groups %}
+        {% for statistic in statistics_for_groups %}
         <tr>
-            <td>{{ group }}</td>
-            <td>{{ kilometers }}</td>
+            <td>{{ statistic.group }}</td>
+            <td>{{ statistic.kilometers }}</td>
+            <td>{{ statistic.mil }}</td>
+            <td>{{ statistic.cost }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -20,6 +24,8 @@
         <tr>
             <td>{% translate 'Total' %}</td>
             <td>{{ original.get_total_kilometers }}</td>
+            <td></td>
+            <td></td>
         </tr>
     </tfoot>
 </table>

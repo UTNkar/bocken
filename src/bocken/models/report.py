@@ -1,10 +1,11 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from . import JournalEntry
-from collections import defaultdict
+from . import JournalEntry, JournalEntryGroup
 from django.template.defaultfilters import date
 from django.utils.timezone import localtime
 from django.utils import timezone
+from django.db.models import Sum
+from ..utils import kilometers_to_mil
 
 
 class Report(models.Model):
@@ -29,7 +30,7 @@ class Report(models.Model):
         verbose_name_plural = _("Reports")
         get_latest_by = "created"
 
-    def __str__(self):
+    def __str__(self):  # noqa
         return "{} - {}".format(
             date(localtime(self.first), "j F Y H:i"),
             date(localtime(self.last), "j F Y H:i")
@@ -43,35 +44,57 @@ class Report(models.Model):
         """
         return JournalEntry.get_entries_between(self.first, self.last)
 
+    def get_statistics_for_groups(self):
+        """
+        Get statistics for each group that is a part of this report.
+
+        Included in these statistics are
+        - The group
+        - Total kilometers driven
+        - Total mil driven
+        - Total cost each group has to pay
+
+        Returns list of dicts where each dict has the following structure
+        {
+            'group': JournalEntryGroup instance
+            'kilometers': Total kilometers (int),
+            'mil': Total mil (int),
+            'cost': Total cost (int)
+        }
+        """
+        entries = self.get_entries()
+
+        # Calulate the total kilometers for each group by performing a
+        # "group by" query in the database. It can be a bit difficult
+        # to understand but the documentation has an explanation for it.
+        # https://docs.djangoproject.com/en/3.1/topics/db/aggregation/#values
+        kilometers_for_groups = entries.values("group").annotate(
+            total_kilometers=Sum("meter_stop") - Sum("meter_start")
+        ).order_by("group__name")
+
+        statistics = []
+        for group in kilometers_for_groups:
+            kilometers = group['total_kilometers']
+            actual_group = JournalEntryGroup.objects.get(pk=group['group'])
+            mil = kilometers_to_mil(kilometers)
+            cost = actual_group.calculate_total_cost(mil)
+
+            statistics.append({
+                'group': actual_group,
+                'kilometers': kilometers,
+                'mil': mil,
+                'cost': cost
+            })
+
+        return statistics
+
     def get_total_kilometers(self):
         """Get the total kilometers in this report."""
         entries = self.get_entries()
 
-        total_kilometers = 0
-        for entry in entries:
-            total_kilometers += entry.get_total_distance()
-
-        return total_kilometers
-
-    def get_total_kilometers_for_groups(self):
-        """
-        Get the total kilometers driven for each group.
-
-        If a group has not driven any kilometers they are not included.
-
-        Returns a defaultdict with the group names as keys and their total
-        kilometers driven as value.
-        Ex. {'Baskå': 20}
-        """
-        entries = self.get_entries()
-
-        total_kilometers = defaultdict(int)
-        if entries:
-            for entry in entries:
-                total_kilometers[entry.group.name] += \
-                    entry.get_total_distance()
-
-        return total_kilometers
+        return entries.aggregate(
+            total=Sum("meter_stop") - Sum("meter_start")
+        )['total']
 
     @staticmethod
     def get_first_for_new_report():

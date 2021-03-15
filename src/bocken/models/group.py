@@ -3,6 +3,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class JournalEntryGroup(models.Model):
+    """Represents a group that can be selected in a journal entry."""
+
     name = models.CharField(max_length=60)
     main_group = models.CharField(
         max_length=30,
@@ -25,5 +27,13 @@ class JournalEntryGroup(models.Model):
     def __str__(self):  # noqa
         return self.name
 
-    def calculate_total_cost(self, mil):
+    def calculate_total_cost(self, mil: int):
+        """
+        Calculate the total cost for the group.
+
+        Parameters:
+        mil (int): The total mil the group has driven
+
+        Returns the cost in kr
+        """
         return mil * self.cost_per_mil + self.starting_fee

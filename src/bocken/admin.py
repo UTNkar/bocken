@@ -134,6 +134,7 @@ class ReportAdmin(ModelAdmin):
     ordering = ("-created", )
 
     def add_view(self, request, form_url='', extra_context=None):
+        """Django view for overriding the view where you add reports."""
         extra_context = extra_context or {}
 
         first, last, entries = Report.get_new_report()

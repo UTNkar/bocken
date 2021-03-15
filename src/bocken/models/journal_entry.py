@@ -72,8 +72,14 @@ class JournalEntry(models.Model):
             return None
 
     @staticmethod
-    def get_entries_between(first, last):
+    def get_entries_between(start, end):
+        """
+        Get all entries between the timestamps start and end.
+
+        Returns all journal entries within the time range. All journal entries
+        that are equal to start or end are included.
+        """
         entries = JournalEntry.objects.filter(
-            created__range=(first, last)
+            created__range=(start, end)
         )
         return entries

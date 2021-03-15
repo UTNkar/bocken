@@ -68,8 +68,8 @@ class Report(models.Model):
         total_kilometers = defaultdict(int)
         if entries:
             for entry in entries:
-                total_kilometers[entry.get_group_display(
-                )] += entry.get_total_distance()
+                total_kilometers[entry.group.name] += \
+                    entry.get_total_distance()
 
         return total_kilometers
 

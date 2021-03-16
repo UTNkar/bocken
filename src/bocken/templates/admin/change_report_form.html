@@ -1,6 +1,6 @@
 {# Override the default admin template #}
 {% extends "admin/change_form.html" %}
-{% load i18n %}
+{% load i18n humanize %}
 {% block content %}
 {{ block.super }}
 <table>
@@ -14,9 +14,9 @@
         {% for statistic in statistics_for_groups %}
         <tr>
             <td>{{ statistic.group }}</td>
-            <td>{{ statistic.kilometers }}</td>
-            <td>{{ statistic.mil }}</td>
-            <td>{{ statistic.cost }}</td>
+            <td>{{ statistic.kilometers|intcomma }}</td>
+            <td>{{ statistic.mil|intcomma }}</td>
+            <td>{{ statistic.cost|intcomma }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -24,9 +24,9 @@
         <tr>
             {% with total_statistics=original.get_total_statistics %}
             <td>{% translate 'Total' %}</td>
-            <td>{{ total_statistics.total_kilometers }}</td>
-            <td>{{ total_statistics.total_mil }}</td>
-            <td>{{ total_statistics.total_cost }}</td>
+            <td>{{ total_statistics.total_kilometers|intcomma }}</td>
+            <td>{{ total_statistics.total_mil|intcomma }}</td>
+            <td>{{ total_statistics.total_cost|intcomma }}</td>
             {% endwith %}
         </tr>
     </tfoot>

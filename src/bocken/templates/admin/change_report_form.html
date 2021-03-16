@@ -6,17 +6,17 @@
 <table>
     <thead>
         <th>{% translate 'Group' %}</th>
-        <th>{% translate 'Total kilometers (km)' %}</th>
+        <th>{% translate 'Total kilometers' %}</th>
         <th>{% translate 'Total mil' %}</th>
-        <th>{% translate 'Total cost (kr)' %}</th>
+        <th>{% translate 'Total cost' %}&nbsp;({{ sitesettings.cost_per_mil }} kr/mil)</th>
     </thead>
     <tbody>
         {% for statistic in statistics_for_groups %}
         <tr>
             <td>{{ statistic.group }}</td>
-            <td>{{ statistic.kilometers|intcomma }}</td>
+            <td>{{ statistic.kilometers|intcomma }} km</td>
             <td>{{ statistic.mil|intcomma }}</td>
-            <td>{{ statistic.cost|intcomma }}</td>
+            <td>{{ statistic.cost|intcomma }} kr</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -24,13 +24,12 @@
         <tr>
             {% with total_statistics=original.get_total_statistics %}
             <td>{% translate 'Total' %}</td>
-            <td>{{ total_statistics.total_kilometers|intcomma }}</td>
+            <td>{{ total_statistics.total_kilometers|intcomma }} km</td>
             <td>{{ total_statistics.total_mil|intcomma }}</td>
-            <td>{{ total_statistics.total_cost|intcomma }}</td>
+            <td>{{ total_statistics.total_cost|intcomma }}kr </td>
             {% endwith %}
         </tr>
     </tfoot>
 </table>
-<p class="small">{% translate 'Groups that are not displayed above have not driven bocken during this time period' %}
-</p>
+<p class="small">{% translate 'Groups that are not displayed above have not driven bocken during this time period' %}</p>
 {% endblock %}

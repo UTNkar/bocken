@@ -24,10 +24,6 @@ class JournalEntryGroup(models.Model):
         ),
         verbose_name=_("Main group")
     )
-    cost_per_mil = models.PositiveIntegerField(
-        default=20,
-        verbose_name=_("Cost per mil")
-    )
 
     class Meta:
         verbose_name = _("Journal entry group")
@@ -35,14 +31,3 @@ class JournalEntryGroup(models.Model):
 
     def __str__(self):  # noqa
         return self.name
-
-    def calculate_total_cost(self, mil: int):
-        """
-        Calculate the total cost for the group.
-
-        Parameters:
-        mil (int): The total mil the group has driven
-
-        Returns the cost in kr
-        """
-        return mil * self.cost_per_mil

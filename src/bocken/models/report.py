@@ -6,6 +6,7 @@ from django.utils.timezone import localtime
 from django.utils import timezone
 from django.db.models import Sum
 from ..utils import kilometers_to_mil
+from ..models import SiteSettings
 
 
 class Report(models.Model):
@@ -77,7 +78,7 @@ class Report(models.Model):
             kilometers = group['total_kilometers']
             actual_group = JournalEntryGroup.objects.get(pk=group['group'])
             mil = kilometers_to_mil(kilometers)
-            cost = actual_group.calculate_total_cost(mil)
+            cost = self.calculate_total_cost(mil)
 
             statistics.append({
                 'group': actual_group,
@@ -116,6 +117,17 @@ class Report(models.Model):
             'total_mil': total_mil,
             'total_cost': total_cost
         }
+
+    def calculate_total_cost(self, mil: int):
+        """
+        Calculate the total cost for driving a certain amount of mil
+
+        Parameters:
+        mil (int): The total mil driven
+
+        Returns the cost in kr
+        """
+        return mil * SiteSettings.load().cost_per_mil
 
     @staticmethod
     def get_first_for_new_report():

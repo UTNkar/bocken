@@ -6,7 +6,7 @@ from django.utils.timezone import localtime
 from django.utils import timezone
 from django.db.models import Sum
 from ..utils import kilometers_to_mil
-from ..models import SiteSettings
+from django.conf import settings
 
 
 class Report(models.Model):
@@ -24,6 +24,15 @@ class Report(models.Model):
     created = models.DateTimeField(
         auto_now_add=True,
         verbose_name=_("Created")
+    )
+
+    cost_per_mil = models.PositiveIntegerField(
+        default=settings.COST_PER_MIL_DEFAULT,
+        verbose_name=_("Cost per mil (kr)"),
+        help_text=_(
+            "Each report can have a different cost per mil. This allows "
+            "the cost per mil to be changed without affecting previous reports"
+        )
     )
 
     class Meta:
@@ -120,14 +129,14 @@ class Report(models.Model):
 
     def calculate_total_cost(self, mil: int):
         """
-        Calculate the total cost for driving a certain amount of mil
+        Calculate the total cost for driving a certain amount of mil.
 
         Parameters:
         mil (int): The total mil driven
 
         Returns the cost in kr
         """
-        return mil * SiteSettings.load().cost_per_mil
+        return mil * self.cost_per_mil
 
     @staticmethod
     def get_first_for_new_report():

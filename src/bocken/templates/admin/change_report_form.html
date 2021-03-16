@@ -2,8 +2,8 @@
 {% extends "admin/change_form.html" %}
 {% load i18n humanize %}
 {% block content %}
-{{ block.super }}
-<table>
+<b style="color:red; font-size: 1.2rem;">{% translate 'OBS! The starting fee is not included in the total cost!' %}</b>
+<table style="margin-top: 1rem;">
     <thead>
         <th>{% translate 'Group' %}</th>
         <th>{% translate 'Total kilometers' %}</th>

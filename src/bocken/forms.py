@@ -154,7 +154,7 @@ class CreateReportForm(ModelForm):
 
     class Meta:
         model = Report
-        fields = []
+        fields = ['cost_per_mil']
 
     def clean(self):  # noqa
         super(CreateReportForm, self).clean()

@@ -2,13 +2,14 @@
 {% extends "admin/change_form.html" %}
 {% load i18n humanize %}
 {% block content %}
+{{ block.super }}
 <b style="color:red; font-size: 1.2rem;">{% translate 'OBS! The starting fee is not included in the total cost!' %}</b>
 <table style="margin-top: 1rem;">
     <thead>
         <th>{% translate 'Group' %}</th>
         <th>{% translate 'Total kilometers' %}</th>
         <th>{% translate 'Total mil' %}</th>
-        <th>{% translate 'Total cost' %}&nbsp;({{ sitesettings.cost_per_mil }} kr/mil)</th>
+        <th>{% translate 'Total cost' %}&nbsp;({{ original.cost_per_mil }} kr/mil)</th>
     </thead>
     <tbody>
         {% for statistic in statistics_for_groups %}
@@ -26,7 +27,7 @@
             <td>{% translate 'Total' %}</td>
             <td>{{ total_statistics.total_kilometers|intcomma }} km</td>
             <td>{{ total_statistics.total_mil|intcomma }}</td>
-            <td>{{ total_statistics.total_cost|intcomma }}kr </td>
+            <td>{{ total_statistics.total_cost|intcomma }} kr </td>
             {% endwith %}
         </tr>
     </tfoot>

@@ -28,10 +28,6 @@ class JournalEntryGroup(models.Model):
         default=20,
         verbose_name=_("Cost per mil")
     )
-    starting_fee = models.PositiveIntegerField(
-        default=0,
-        verbose_name=_("Starting fee")
-    )
 
     class Meta:
         verbose_name = _("Journal entry group")
@@ -49,4 +45,4 @@ class JournalEntryGroup(models.Model):
 
         Returns the cost in kr
         """
-        return mil * self.cost_per_mil + self.starting_fee
+        return mil * self.cost_per_mil

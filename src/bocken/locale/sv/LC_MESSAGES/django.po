@@ -156,10 +156,6 @@ msgstr "Huvudgrupp"
 msgid "Cost per mil"
 msgstr "Kostnad per mil"
 
-#: bocken/models/group.py:33
-msgid "Starting fee"
-msgstr "Startavgift"
-
 #: bocken/models/group.py:37
 msgid "Journal entry group"
 msgstr "Körjournalsgrupp"

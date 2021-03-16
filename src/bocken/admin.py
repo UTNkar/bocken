@@ -168,7 +168,7 @@ class ReportAdmin(ModelAdmin):
 class JournalEntryGroupAdmin(ModelAdmin):
     """Custom class for the admin pages for JournalEntryGroup."""
 
-    list_display = ("name", "main_group", "cost_per_mil", "starting_fee")
+    list_display = ("name", "main_group", "cost_per_mil")
     ordering = ("main_group", "name")
 
 

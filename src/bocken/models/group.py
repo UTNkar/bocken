@@ -5,7 +5,10 @@ from django.utils.translation import gettext_lazy as _
 class JournalEntryGroup(models.Model):
     """Represents a group that can be selected in a journal entry."""
 
-    name = models.CharField(max_length=60)
+    name = models.CharField(
+        max_length=60,
+        verbose_name=_("Name")
+    )
     main_group = models.CharField(
         max_length=30,
         choices=(
@@ -21,8 +24,18 @@ class JournalEntryGroup(models.Model):
         ),
         verbose_name=_("Main group")
     )
-    cost_per_mil = models.PositiveIntegerField(default=20)
-    starting_fee = models.PositiveIntegerField(default=0)
+    cost_per_mil = models.PositiveIntegerField(
+        default=20,
+        verbose_name=_("Cost per mil")
+    )
+    starting_fee = models.PositiveIntegerField(
+        default=0,
+        verbose_name=_("Starting fee")
+    )
+
+    class Meta:
+        verbose_name = _("Journal entry group")
+        verbose_name_plural = _("Journal entry groups")
 
     def __str__(self):  # noqa
         return self.name

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-11 17:10+0100\n"
+"POT-Creation-Date: 2021-03-16 11:20+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,55 +18,31 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bocken/admin.py:32
+#: bocken/admin.py:34
 msgid "Passwords don't match"
 msgstr "Lösenorden matchar inte"
 
-#: bocken/admin.py:52
+#: bocken/admin.py:54
 msgid "<a href=\"../password/\">Change the user's password here</a>."
 msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
 
-#: bocken/constants.py:92
-msgid "UTN's committees and workgroups"
-msgstr "UTN:s kommittéer och arbetsgrupper"
-
-#: bocken/constants.py:96
-msgid "UTN's management team and board"
-msgstr "UTN:s ledningsgrupp och styrelse"
-
-#: bocken/constants.py:100
-msgid "FUM"
-msgstr "FUM"
-
-#: bocken/constants.py:104
-msgid "Other officials within UTN"
-msgstr "Övriga ämbetsverkare inom UTN"
-
-#: bocken/constants.py:108
-msgid "Sections"
-msgstr "Sektioner"
-
-#: bocken/constants.py:112
-msgid "Cooperations"
-msgstr "Samarbetsföreningar"
-
-#: bocken/forms.py:23
+#: bocken/forms.py:22
 msgid "Your personnummer"
 msgstr "Ditt personnummer"
 
-#: bocken/forms.py:28
+#: bocken/forms.py:27
 msgid "I confirm that Bocken is clean and in good shape"
 msgstr "Jag intygar att Bocken är i gott skick"
 
-#: bocken/forms.py:40
+#: bocken/forms.py:39
 msgid "Trip meter at start"
 msgstr "Mätare vid start"
 
-#: bocken/forms.py:47
+#: bocken/forms.py:46
 msgid "Trip meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/forms.py:60
+#: bocken/forms.py:59
 msgid ""
 "Not sure which group to choose? Choose the group that seems most reasonable "
 "to be paying for your trip."
@@ -74,7 +50,7 @@ msgstr ""
 "Osäker på vilken grupp du ska välja? Välj den grupp som känns mest rimlig "
 "att betala din resa"
 
-#: bocken/forms.py:64
+#: bocken/forms.py:63
 msgid ""
 "Trip meter at start is filled in automatically from the latest entry. If the "
 "number is not correct, enter the value that the meter had when you started "
@@ -84,12 +60,12 @@ msgstr ""
 "inte stämmer, skriv in det värde som mätaren hade när du började köra samt "
 "informera UTN:s klubbmästare."
 
-#: bocken/forms.py:107
+#: bocken/forms.py:106
 msgid "Trip meter at start must be larger than the last entry in the journal"
 msgstr ""
 "Tripmätare vid start måste vara större än det senaste inlägget i körjournalen"
 
-#: bocken/forms.py:129
+#: bocken/forms.py:128
 msgid ""
 "You don't have a written agreement which you must have to drive bocken. "
 "Contact the head of the pub crew and send a copy of the details you wrote "
@@ -99,16 +75,16 @@ msgstr ""
 "UTN:s klubbmästare och skicka med en kopia av detaljerna som du skrev in i "
 "fälten nedan."
 
-#: bocken/forms.py:139
+#: bocken/forms.py:138
 msgid "Trip meter at stop must be larger than the trip meter at start"
 msgstr "Tripmätare vid stop måste vara större än trippmätare vid start"
 
-#: bocken/forms.py:165
+#: bocken/forms.py:164
 msgid "Can not create a report because there are no journal entries"
 msgstr ""
 "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg"
 
-#: bocken/forms.py:178
+#: bocken/forms.py:177
 msgid ""
 "Can not create a report because there are no journal entries between these "
 "two timestamps"
@@ -128,7 +104,7 @@ msgstr "Administratörer"
 msgid "Agreement number"
 msgstr "Avtalsnummer"
 
-#: bocken/models/agreement.py:22
+#: bocken/models/agreement.py:22 bocken/models/group.py:10
 msgid "Name"
 msgstr "Namn"
 
@@ -140,7 +116,7 @@ msgstr "Telefonnummer"
 msgid "Valid until"
 msgstr "Giltig t.o.m"
 
-#: bocken/models/agreement.py:49 bocken/models/journal_entry.py:25
+#: bocken/models/agreement.py:49 bocken/models/journal_entry.py:17
 msgid "Agreement"
 msgstr "Köravtal"
 
@@ -148,48 +124,87 @@ msgstr "Köravtal"
 msgid "Agreements"
 msgstr "Köravtal"
 
-#: bocken/models/journal_entry.py:37
-#: bocken/templates/admin/change_report_form.html:8
-msgid "Group"
-msgstr "Grupp"
+#: bocken/models/group.py:17
+msgid "UTN's committees and workgroups"
+msgstr "UTN:s kommittéer och arbetsgrupper"
 
-#: bocken/models/journal_entry.py:40
+#: bocken/models/group.py:19
+msgid "UTN's management team and board"
+msgstr "UTN:s ledningsgrupp och styrelse"
+
+#: bocken/models/group.py:20
+msgid "FUM"
+msgstr "FUM"
+
+#: bocken/models/group.py:21
+msgid "Other officials within UTN"
+msgstr "Övriga ämbetsverkare inom UTN"
+
+#: bocken/models/group.py:22
+msgid "Sections"
+msgstr "Sektioner"
+
+#: bocken/models/group.py:23
+msgid "Cooperations"
+msgstr "Samarbetsföreningar"
+
+#: bocken/models/group.py:25
+msgid "Main group"
+msgstr "Huvudgrupp"
+
+#: bocken/models/group.py:29
+msgid "Cost per mil"
+msgstr "Kostnad per mil"
+
+#: bocken/models/group.py:33
+msgid "Starting fee"
+msgstr "Startavgift"
+
+#: bocken/models/group.py:37
+msgid "Journal entry group"
+msgstr "Körjournalsgrupp"
+
+#: bocken/models/group.py:38
+msgid "Journal entry groups"
+msgstr "Körjournalsgrupper"
+
+#: bocken/models/journal_entry.py:25
 msgid "Meter at start"
 msgstr "Mätare vid start"
 
-#: bocken/models/journal_entry.py:43
+#: bocken/models/journal_entry.py:28
 msgid "Meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/models/journal_entry.py:47
+#: bocken/models/journal_entry.py:32 bocken/models/report.py:25
 msgid "Created"
 msgstr "Skapad"
 
-#: bocken/models/journal_entry.py:51
+#: bocken/models/journal_entry.py:36
 msgid "Journal Entry"
 msgstr "Journalinlägg"
 
-#: bocken/models/journal_entry.py:52
+#: bocken/models/journal_entry.py:37
 msgid "Journal Entries"
 msgstr "Journalinlägg"
 
-#: bocken/models/journal_entry.py:69
+#: bocken/models/journal_entry.py:54
 msgid "Driven Distance (km)"
 msgstr "Körd sträcka (km)"
 
-#: bocken/models/report.py:25
+#: bocken/models/report.py:29
 msgid "Report"
 msgstr "Rapport"
 
-#: bocken/models/report.py:26
+#: bocken/models/report.py:30
 msgid "Reports"
 msgstr "Rapporter"
 
-#: bocken/settings/base.py:116
+#: bocken/settings/base.py:117
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:117
+#: bocken/settings/base.py:118
 msgid "English"
 msgstr "Engelska"
 
@@ -227,21 +242,36 @@ msgstr ""
 "Den nya rapporten kommer inkludera alla journalinlägg som skapats mellan de "
 "följande tiderna"
 
-#: bocken/templates/admin/change_report_form.html:9
-#: bocken/templates/journalentry_create.html:12
-msgid "Total kilometers"
-msgstr "Antal kilometer"
+#: bocken/templates/admin/change_report_form.html:8
+msgid "Group"
+msgstr "Grupp"
 
-#: bocken/templates/admin/change_report_form.html:21
+#: bocken/templates/admin/change_report_form.html:9
+msgid "Total kilometers (km)"
+msgstr "Antal kilometer (km)"
+
+#: bocken/templates/admin/change_report_form.html:10
+msgid "Total mil"
+msgstr "Antal mil"
+
+#: bocken/templates/admin/change_report_form.html:11
+msgid "Total cost (kr)"
+msgstr "Total kostnad (kr)"
+
+#: bocken/templates/admin/change_report_form.html:26
 msgid "Total"
 msgstr "Totalt"
 
-#: bocken/templates/admin/change_report_form.html:26
+#: bocken/templates/admin/change_report_form.html:34
 msgid ""
 "Groups that are not displayed above have not driven bocken during this time "
 "period"
 msgstr ""
 "Grupper som inte visas ovan har inte kört bocken något under denna tidsperiod"
+
+#: bocken/templates/journalentry_create.html:12
+msgid "Total kilometers"
+msgstr "Antal kilometer"
 
 #: bocken/templates/journalentry_create.html:38
 msgid ""
@@ -261,7 +291,7 @@ msgstr ""
 "hitta din grupp. Välj den huvudgrupp som din grupp tillhör and sedan din "
 "grupp."
 
-#: bocken/templates/two_level_select.html:8
+#: bocken/templates/two_level_select.html:9
 msgid "Choose a main group"
 msgstr "Välj en huvudgrupp"
 

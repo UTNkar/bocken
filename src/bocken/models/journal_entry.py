@@ -19,7 +19,7 @@ class JournalEntry(models.Model):
     group = models.ForeignKey(
         "JournalEntryGroup",
         on_delete=models.PROTECT,
-        verbose_name=("Group")
+        verbose_name=_("Group")
     )
     meter_start = models.PositiveIntegerField(
         verbose_name=_("Meter at start")

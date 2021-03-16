@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django import forms
 from bocken.models import (
-    Admin, Agreement, JournalEntry, Report, JournalEntryGroup
+    Admin, Agreement, JournalEntry, Report, JournalEntryGroup, SiteSettings
 )
 from django.contrib.auth.models import Group
 from django.core.exceptions import ValidationError
@@ -10,6 +10,8 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.admin import ModelAdmin
 from django.utils.translation import gettext as _
 from .forms import CreateReportForm
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 class UserCreationForm(forms.ModelForm):
@@ -172,11 +174,52 @@ class JournalEntryGroupAdmin(ModelAdmin):
     ordering = ("main_group", "name")
 
 
+class SiteSettingsAdmin(ModelAdmin):
+    """Custom class for the admin pages for Site settings."""
+
+    def has_add_permission(self, request):
+        """Settings should not be created since it is only one row."""  # noqa
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        """Settings should not be deleted since it is only one row."""  # noqa
+        return False
+
+    def render_change_form(
+        self, request, context, add=False, change=False, form_url='', obj=None
+    ):
+        """Hide the show and continue button."""
+        context.update({'show_save_and_continue': False})
+
+        return super().render_change_form(
+            request, context, add, change, form_url, obj
+        )
+
+    def changelist_view(self, request, extra_context=None):
+        """
+        Redirect to the settings edit view.
+
+        This is done to remove the unecessary step of clicking the
+        first and only row in the list view since it always will be only
+        one row with settings.
+        """
+        return HttpResponseRedirect(
+            reverse(
+                "admin:%s_%s_change" % (
+                    SiteSettings._meta.app_label,
+                    SiteSettings._meta.model_name
+                ),
+                args=(SiteSettings.objects.first().id,)
+            )
+        )
+
+
 admin.site.register(Admin, UserAdmin)
 admin.site.register(Agreement, AgreementAdmin)
 admin.site.register(JournalEntry, JournalEntryAdmin)
 admin.site.register(Report, ReportAdmin)
 admin.site.register(JournalEntryGroup, JournalEntryGroupAdmin)
+admin.site.register(SiteSettings, SiteSettingsAdmin)
 
 # Hide groups from the admin view since they are not used
 admin.site.unregister(Group)

@@ -6,9 +6,9 @@
 <table>
     <thead>
         <th>{% translate 'Group' %}</th>
-        <th>{% translate 'Total kilometers' %}</th>
+        <th>{% translate 'Total kilometers (km)' %}</th>
         <th>{% translate 'Total mil' %}</th>
-        <th>{% translate 'Total cost' %}</th>
+        <th>{% translate 'Total cost (kr)' %}</th>
     </thead>
     <tbody>
         {% for statistic in statistics_for_groups %}
@@ -22,10 +22,12 @@
     </tbody>
     <tfoot>
         <tr>
+            {% with total_statistics=original.get_total_statistics %}
             <td>{% translate 'Total' %}</td>
-            <td>{{ original.get_total_kilometers }}</td>
-            <td></td>
-            <td></td>
+            <td>{{ total_statistics.total_kilometers }}</td>
+            <td>{{ total_statistics.total_mil }}</td>
+            <td>{{ total_statistics.total_cost }}</td>
+            {% endwith %}
         </tr>
     </tfoot>
 </table>

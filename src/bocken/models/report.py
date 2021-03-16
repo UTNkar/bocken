@@ -88,13 +88,34 @@ class Report(models.Model):
 
         return statistics
 
-    def get_total_kilometers(self):
-        """Get the total kilometers in this report."""
-        entries = self.get_entries()
+    def get_total_statistics(self):
+        """
+        Get the total values from the statisitcs in this report.
 
-        return entries.aggregate(
-            total=Sum("meter_stop") - Sum("meter_start")
-        )['total']
+        Returns a dict with the following structure:
+        {
+            'total_kilometers': Total kilometers driven in this report,
+            'total_mil': Total mil driven in this report,
+            'total_cost': Total cost for all groups in the report
+        }
+        """
+        statistics_for_groups = self.get_statistics_for_groups()
+
+        total_kilometers = sum(
+            statistic['kilometers'] for statistic in statistics_for_groups
+        )
+        total_mil = sum(
+            statistic['mil'] for statistic in statistics_for_groups
+        )
+        total_cost = sum(
+            statistic['cost'] for statistic in statistics_for_groups
+        )
+
+        return {
+            'total_kilometers': total_kilometers,
+            'total_mil': total_mil,
+            'total_cost': total_cost
+        }
 
     @staticmethod
     def get_first_for_new_report():

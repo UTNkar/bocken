@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-16 11:20+0100\n"
+"POT-Creation-Date: 2021-03-16 18:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bocken/admin.py:34
+#: bocken/admin.py:36
 msgid "Passwords don't match"
 msgstr "Lösenorden matchar inte"
 
-#: bocken/admin.py:54
+#: bocken/admin.py:56
 msgid "<a href=\"../password/\">Change the user's password here</a>."
 msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
 
@@ -153,16 +153,17 @@ msgid "Main group"
 msgstr "Huvudgrupp"
 
 #: bocken/models/group.py:29
-msgid "Cost per mil"
-msgstr "Kostnad per mil"
-
-#: bocken/models/group.py:37
 msgid "Journal entry group"
 msgstr "Körjournalsgrupp"
 
-#: bocken/models/group.py:38
+#: bocken/models/group.py:30
 msgid "Journal entry groups"
 msgstr "Körjournalsgrupper"
+
+#: bocken/models/journal_entry.py:22
+#: bocken/templates/admin/change_report_form.html:9
+msgid "Group"
+msgstr "Grupp"
 
 #: bocken/models/journal_entry.py:25
 msgid "Meter at start"
@@ -172,7 +173,7 @@ msgstr "Mätare vid start"
 msgid "Meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/models/journal_entry.py:32 bocken/models/report.py:25
+#: bocken/models/journal_entry.py:32 bocken/models/report.py:26
 msgid "Created"
 msgstr "Skapad"
 
@@ -188,19 +189,35 @@ msgstr "Journalinlägg"
 msgid "Driven Distance (km)"
 msgstr "Körd sträcka (km)"
 
-#: bocken/models/report.py:29
+#: bocken/models/report.py:31
+msgid "Cost per mil (kr)"
+msgstr "Kostnad per mil (kr)"
+
+#: bocken/models/report.py:33
+msgid ""
+"Each report can have a different cost per mil. This allows the cost per mil "
+"to be changed without affecting previous reports"
+msgstr ""
+"Alla rapporter kan ha olika kostnader per mil. Detta gör det möjligt att ändra "
+"kostnaden per mil utan att påverka tidigare rapporter"
+
+#: bocken/models/report.py:39
 msgid "Report"
 msgstr "Rapport"
 
-#: bocken/models/report.py:30
+#: bocken/models/report.py:40
 msgid "Reports"
 msgstr "Rapporter"
 
-#: bocken/settings/base.py:117
+#: bocken/models/site_settings.py:9 bocken/models/site_settings.py:10
+msgid "Site settings"
+msgstr "Sidinställningar"
+
+#: bocken/settings/base.py:118
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:118
+#: bocken/settings/base.py:119
 msgid "English"
 msgstr "Engelska"
 
@@ -238,36 +255,33 @@ msgstr ""
 "Den nya rapporten kommer inkludera alla journalinlägg som skapats mellan de "
 "följande tiderna"
 
-#: bocken/templates/admin/change_report_form.html:8
-msgid "Group"
-msgstr "Grupp"
-
-#: bocken/templates/admin/change_report_form.html:9
-msgid "Total kilometers (km)"
-msgstr "Antal kilometer (km)"
+#: bocken/templates/admin/change_report_form.html:6
+msgid "OBS! The starting fee is not included in the total cost!"
+msgstr "OBS! Startavgiften är inte inkluderad i den totala kostnaden!"
 
 #: bocken/templates/admin/change_report_form.html:10
+#: bocken/templates/journalentry_create.html:12
+msgid "Total kilometers"
+msgstr "Antal kilometer"
+
+#: bocken/templates/admin/change_report_form.html:11
 msgid "Total mil"
 msgstr "Antal mil"
 
-#: bocken/templates/admin/change_report_form.html:11
-msgid "Total cost (kr)"
-msgstr "Total kostnad (kr)"
+#: bocken/templates/admin/change_report_form.html:12
+msgid "Total cost"
+msgstr "Total kostnad"
 
-#: bocken/templates/admin/change_report_form.html:26
+#: bocken/templates/admin/change_report_form.html:27
 msgid "Total"
 msgstr "Totalt"
 
-#: bocken/templates/admin/change_report_form.html:34
+#: bocken/templates/admin/change_report_form.html:35
 msgid ""
 "Groups that are not displayed above have not driven bocken during this time "
 "period"
 msgstr ""
 "Grupper som inte visas ovan har inte kört bocken något under denna tidsperiod"
-
-#: bocken/templates/journalentry_create.html:12
-msgid "Total kilometers"
-msgstr "Antal kilometer"
 
 #: bocken/templates/journalentry_create.html:38
 msgid ""

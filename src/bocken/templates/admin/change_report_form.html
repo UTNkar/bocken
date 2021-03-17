@@ -17,7 +17,7 @@
             <tr>
                 <td>{{ statistic.group }}</td>
                 <td>{{ statistic.kilometers|intcomma }} km</td>
-                <td>{{ statistic.mil|intcomma }}</td>
+                <td>{{ statistic.mil|intcomma }} mil</td>
                 <td>{{ statistic.cost|intcomma }} kr</td>
             </tr>
             {% endfor %}
@@ -27,9 +27,8 @@
                 {% with total_statistics=original.get_total_statistics %}
                 <td>{% translate 'Total' %}</td>
                 <td>{{ total_statistics.total_kilometers|intcomma }} km</td>
-                <td>{{ total_statistics.total_mil|intcomma }}</td>
+                <td>{{ total_statistics.total_mil|intcomma }} mil</td>
                 <td>{{ total_statistics.total_cost|intcomma }} kr </td>
-                {% endwith %}
             </tr>
         </tfoot>
     </table>

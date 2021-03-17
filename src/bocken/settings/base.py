@@ -33,7 +33,8 @@ INSTALLED_APPS = [
     'fontawesome_5',
     'bocken',
     'tailwind',
-    'utn_tailwind_theme'
+    'utn_tailwind_theme',
+    'mathfilters'
 ]
 
 MIDDLEWARE = [

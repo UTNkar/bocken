@@ -20,3 +20,5 @@ django-widget-tweaks==1.4.8
 
 # Font awesome version 5
 django-fontawesome-5==1.0.18
+
+django-mathfilters==1.0.0

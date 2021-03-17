@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-16 18:19+0100\n"
+"POT-Creation-Date: 2021-03-17 12:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,12 +79,12 @@ msgstr ""
 msgid "Trip meter at stop must be larger than the trip meter at start"
 msgstr "Tripmätare vid stop måste vara större än trippmätare vid start"
 
-#: bocken/forms.py:164
+#: bocken/forms.py:166
 msgid "Can not create a report because there are no journal entries"
 msgstr ""
 "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg"
 
-#: bocken/forms.py:177
+#: bocken/forms.py:179
 msgid ""
 "Can not create a report because there are no journal entries between these "
 "two timestamps"
@@ -161,7 +161,7 @@ msgid "Journal entry groups"
 msgstr "Körjournalsgrupper"
 
 #: bocken/models/journal_entry.py:22
-#: bocken/templates/admin/change_report_form.html:9
+#: bocken/templates/admin/change_report_form.html:10
 msgid "Group"
 msgstr "Grupp"
 
@@ -198,8 +198,8 @@ msgid ""
 "Each report can have a different cost per mil. This allows the cost per mil "
 "to be changed without affecting previous reports"
 msgstr ""
-"Alla rapporter kan ha olika kostnader per mil. Detta gör det möjligt att ändra "
-"kostnaden per mil utan att påverka tidigare rapporter"
+"Alla rapporter kan ha olika kostnader per mil. Detta gör det möjligt att "
+"ändra kostnaden per mil utan att påverka tidigare rapporter"
 
 #: bocken/models/report.py:39
 msgid "Report"
@@ -209,7 +209,7 @@ msgstr "Rapport"
 msgid "Reports"
 msgstr "Rapporter"
 
-#: bocken/models/site_settings.py:9 bocken/models/site_settings.py:10
+#: bocken/models/site_settings.py:8 bocken/models/site_settings.py:9
 msgid "Site settings"
 msgstr "Sidinställningar"
 
@@ -255,33 +255,37 @@ msgstr ""
 "Den nya rapporten kommer inkludera alla journalinlägg som skapats mellan de "
 "följande tiderna"
 
-#: bocken/templates/admin/change_report_form.html:6
+#: bocken/templates/admin/change_report_form.html:7
 msgid "OBS! The starting fee is not included in the total cost!"
 msgstr "OBS! Startavgiften är inte inkluderad i den totala kostnaden!"
 
-#: bocken/templates/admin/change_report_form.html:10
+#: bocken/templates/admin/change_report_form.html:11
 #: bocken/templates/journalentry_create.html:12
 msgid "Total kilometers"
 msgstr "Antal kilometer"
 
-#: bocken/templates/admin/change_report_form.html:11
+#: bocken/templates/admin/change_report_form.html:12
 msgid "Total mil"
 msgstr "Antal mil"
 
-#: bocken/templates/admin/change_report_form.html:12
+#: bocken/templates/admin/change_report_form.html:13
 msgid "Total cost"
 msgstr "Total kostnad"
 
-#: bocken/templates/admin/change_report_form.html:27
+#: bocken/templates/admin/change_report_form.html:28
 msgid "Total"
 msgstr "Totalt"
 
-#: bocken/templates/admin/change_report_form.html:35
+#: bocken/templates/admin/change_report_form.html:36
 msgid ""
 "Groups that are not displayed above have not driven bocken during this time "
 "period"
 msgstr ""
 "Grupper som inte visas ovan har inte kört bocken något under denna tidsperiod"
+
+#: bocken/templates/admin/change_report_form.html:41
+msgid "Save cost per mil"
+msgstr "Spara kostnad per mil"
 
 #: bocken/templates/journalentry_create.html:38
 msgid ""

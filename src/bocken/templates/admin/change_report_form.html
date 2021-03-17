@@ -3,34 +3,40 @@
 {% load i18n humanize %}
 {% block content %}
 {{ block.super }}
-<b style="color:red; font-size: 1.2rem;">{% translate 'OBS! The starting fee is not included in the total cost!' %}</b>
-<table style="margin-top: 1rem;">
-    <thead>
-        <th>{% translate 'Group' %}</th>
-        <th>{% translate 'Total kilometers' %}</th>
-        <th>{% translate 'Total mil' %}</th>
-        <th>{% translate 'Total cost' %}&nbsp;({{ original.cost_per_mil }} kr/mil)</th>
-    </thead>
-    <tbody>
-        {% for statistic in statistics_for_groups %}
-        <tr>
-            <td>{{ statistic.group }}</td>
-            <td>{{ statistic.kilometers|intcomma }} km</td>
-            <td>{{ statistic.mil|intcomma }}</td>
-            <td>{{ statistic.cost|intcomma }} kr</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-    <tfoot>
-        <tr>
-            {% with total_statistics=original.get_total_statistics %}
-            <td>{% translate 'Total' %}</td>
-            <td>{{ total_statistics.total_kilometers|intcomma }} km</td>
-            <td>{{ total_statistics.total_mil|intcomma }}</td>
-            <td>{{ total_statistics.total_cost|intcomma }} kr </td>
-            {% endwith %}
-        </tr>
-    </tfoot>
-</table>
-<p class="small">{% translate 'Groups that are not displayed above have not driven bocken during this time period' %}</p>
+<div style="padding-top: 1em; clear:both">
+    <b style="color:red; font-size: 1.2rem;">{% translate 'OBS! The starting fee is not included in the total cost!' %}</b>
+    <table style="margin-top: 1rem;">
+        <thead>
+            <th>{% translate 'Group' %}</th>
+            <th>{% translate 'Total kilometers' %}</th>
+            <th>{% translate 'Total mil' %}</th>
+            <th>{% translate 'Total cost' %}&nbsp;({{ original.cost_per_mil }} kr/mil)</th>
+        </thead>
+        <tbody>
+            {% for statistic in statistics_for_groups %}
+            <tr>
+                <td>{{ statistic.group }}</td>
+                <td>{{ statistic.kilometers|intcomma }} km</td>
+                <td>{{ statistic.mil|intcomma }}</td>
+                <td>{{ statistic.cost|intcomma }} kr</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                {% with total_statistics=original.get_total_statistics %}
+                <td>{% translate 'Total' %}</td>
+                <td>{{ total_statistics.total_kilometers|intcomma }} km</td>
+                <td>{{ total_statistics.total_mil|intcomma }}</td>
+                <td>{{ total_statistics.total_cost|intcomma }} kr </td>
+                {% endwith %}
+            </tr>
+        </tfoot>
+    </table>
+    <p class="small">{% translate 'Groups that are not displayed above have not driven bocken during this time period' %}</p>
+</div>
+{% endblock %}
+
+{% block submit_buttons_bottom %}
+<input type="submit" value="{% translate 'Save cost per mil' %}" name="_continue">
 {% endblock %}

@@ -54,6 +54,13 @@ class Report(models.Model):
         """
         return JournalEntry.get_entries_between(self.first, self.last)
 
+    def get_expected_total_kilometers(self):
+        entries = self.get_entries()
+        first = entries.earliest()
+        last = entries.latest()
+
+        return last.meter_stop - first.meter_start
+
     def get_statistics_for_groups(self):
         """
         Get statistics for each group that is a part of this report.

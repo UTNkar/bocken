@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-17 12:35+0100\n"
+"POT-Creation-Date: 2021-03-17 14:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -213,11 +213,11 @@ msgstr "Rapporter"
 msgid "Site settings"
 msgstr "Sidinställningar"
 
-#: bocken/settings/base.py:118
+#: bocken/settings/base.py:119
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:119
+#: bocken/settings/base.py:120
 msgid "English"
 msgstr "Engelska"
 
@@ -276,14 +276,41 @@ msgstr "Total kostnad"
 msgid "Total"
 msgstr "Totalt"
 
-#: bocken/templates/admin/change_report_form.html:36
+#: bocken/templates/admin/change_report_form.html:35
 msgid ""
 "Groups that are not displayed above have not driven bocken during this time "
 "period"
 msgstr ""
 "Grupper som inte visas ovan har inte kört bocken något under denna tidsperiod"
 
-#: bocken/templates/admin/change_report_form.html:41
+#: bocken/templates/admin/change_report_form.html:37
+#: bocken/templates/admin/change_report_form.html:62
+msgid "Lost cost"
+msgstr "Förlorad kostnad"
+
+#: bocken/templates/admin/change_report_form.html:39
+msgid ""
+"Lost costs appear when a group has driven bocken but not filled in the "
+"journal afterwards. This means that it is not possible to know who should "
+"pay for those kilometers and the cost is therefore \"lost\"."
+msgstr ""
+"Förlorade kostnader uppstår när en grupp har kört bocken men glömt fylla i "
+"körjournalen efteråt. Det betyder att det inte går att avgöra vem som ska "
+"betala för dem kilometrarna och den kostnaden är därmed \"förlorad\"."
+
+#: bocken/templates/admin/change_report_form.html:44
+msgid "Total driven kilometers"
+msgstr "Totalt körda kilometer"
+
+#: bocken/templates/admin/change_report_form.html:48
+msgid "Total logged kilometers"
+msgstr "Totalt journalförda kilometer"
+
+#: bocken/templates/admin/change_report_form.html:53
+msgid "Difference"
+msgstr "Differens"
+
+#: bocken/templates/admin/change_report_form.html:72
 msgid "Save cost per mil"
 msgstr "Spara kostnad per mil"
 

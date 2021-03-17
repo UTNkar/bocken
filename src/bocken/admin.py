@@ -9,7 +9,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.admin import ModelAdmin
 from django.utils.translation import gettext as _
-from .forms import CreateReportForm
+from .forms import ReportForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
@@ -128,7 +128,7 @@ class AgreementAdmin(ModelAdmin):
 class ReportAdmin(ModelAdmin):
     """Custom class for the admin pages for Report."""
 
-    form = CreateReportForm
+    form = ReportForm
     add_form_template = 'admin/add_report_form.html'
     change_form_template = 'admin/change_report_form.html'
 

@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'bocken',
     'tailwind',
     'utn_tailwind_theme',
-    'mathfilters'
+    'mathfilters',
+    'django_object_actions'
 ]
 
 MIDDLEWARE = [

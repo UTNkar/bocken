@@ -12,6 +12,7 @@ from django.utils.translation import gettext as _
 from .forms import ReportForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django_object_actions import DjangoObjectActions
 
 
 class UserCreationForm(forms.ModelForm):
@@ -125,7 +126,7 @@ class AgreementAdmin(ModelAdmin):
     list_display = ('name', 'personnummer', 'phonenumber', 'email', 'expires')
 
 
-class ReportAdmin(ModelAdmin):
+class ReportAdmin(DjangoObjectActions, ModelAdmin):
     """Custom class for the admin pages for Report."""
 
     form = ReportForm
@@ -134,6 +135,34 @@ class ReportAdmin(ModelAdmin):
 
     list_display = ("__str__", "created")
     ordering = ("-created", )
+
+    changelist_actions = ('delete_latest_report', )
+    # changelist_actions is added by django-object-actions.
+    # https://pypi.org/project/django-object-actions/
+    # It adds the button for deleting the latest report. Djangos default
+    # actions require that the user selects a number of reports that
+    # they want to perform the action on. However, we want to remove the
+    # latest report which means that we don't want the user to select any
+    # of the reports in the admin view. Therefore we use
+    # django-object-actions instead.
+
+    # Also:
+    # django-object-actions also has the possibility to add similar buttons
+    # to the view where you edit a specific report. You can use
+    # change_actions in that case. More about this in the documentation for
+    # django-object-actions
+    # Ex. change_actions = ('name_of_func', )
+
+    def delete_latest_report(self, request, queryset):
+        report = Report.get_latest_report()
+        report_name = str(report)
+        report.delete()
+        self.message_user(
+            request,
+            "Report {} was deleted".format(report_name)
+        )
+    delete_latest_report.label = _("Delete latest report")
+    delete_latest_report.short_description = _("Delete the latest report")
 
     def add_view(self, request, form_url='', extra_context=None):
         """Django view for overriding the view where you add reports."""

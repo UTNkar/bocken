@@ -8,7 +8,7 @@ from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.admin import ModelAdmin
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from .forms import ReportForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse

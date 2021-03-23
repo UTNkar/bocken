@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-17 14:26+0100\n"
+"POT-Creation-Date: 2021-03-23 13:24+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,13 +18,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bocken/admin.py:36
+#: bocken/admin.py:37
 msgid "Passwords don't match"
 msgstr "Lösenorden matchar inte"
 
-#: bocken/admin.py:56
+#: bocken/admin.py:57
 msgid "<a href=\"../password/\">Change the user's password here</a>."
 msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
+
+#: bocken/admin.py:164
+msgid "Delete latest report"
+msgstr "Radera senaste rapporten"
+
+#: bocken/admin.py:165
+msgid "Delete the latest report"
+msgstr "Radera den senaste rapporten"
 
 #: bocken/forms.py:22
 msgid "Your personnummer"
@@ -213,11 +221,11 @@ msgstr "Rapporter"
 msgid "Site settings"
 msgstr "Sidinställningar"
 
-#: bocken/settings/base.py:119
+#: bocken/settings/base.py:120
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:120
+#: bocken/settings/base.py:121
 msgid "English"
 msgstr "Engelska"
 

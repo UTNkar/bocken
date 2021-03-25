@@ -40,3 +40,10 @@
 <input type="submit" value="Skapa">
 {% endif %}
 {% endblock %}
+
+{% block field_sets %}
+{# Only display form fields if there are any entries and there are entries in this report #}
+{% if not no_entries and entries.exists %}
+{{ block.super }}
+{% endif %}
+{% endblock %}

@@ -163,6 +163,8 @@ class ReportAdmin(DjangoObjectActions, ModelAdmin):
         )
     delete_latest_report.label = _("Delete latest report")
     delete_latest_report.short_description = _("Delete the latest report")
+    delete_latest_report.attrs = {'style': 'background:red'}
+
     def get_actions(self, request):
         """Remove the default deleting action."""
         actions = super().get_actions(request)

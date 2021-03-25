@@ -37,6 +37,13 @@
 {% else %}
 {% translate 'The new report will include all journal entries between the following times' %}
 <p>{{ first|date:"j F Y H:i" }} - {{ last|date:"j F Y H:i" }}</p>
+<p>
+{% blocktranslate %}
+The times are chosen automatically to prevent gaps from occuring between reports. The start time is
+chosen as the end time of the previous report. If there are no reports, it takes the time of the first journal entry.
+The end time is always the current time.
+{% endblocktranslate %}
+</p>
 <input type="submit" value="Skapa">
 {% endif %}
 {% endblock %}

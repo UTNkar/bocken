@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-23 13:24+0100\n"
+"POT-Creation-Date: 2021-03-25 11:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,11 +26,11 @@ msgstr "Lösenorden matchar inte"
 msgid "<a href=\"../password/\">Change the user's password here</a>."
 msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
 
-#: bocken/admin.py:164
+#: bocken/admin.py:175
 msgid "Delete latest report"
 msgstr "Radera senaste rapporten"
 
-#: bocken/admin.py:165
+#: bocken/admin.py:176
 msgid "Delete the latest report"
 msgstr "Radera den senaste rapporten"
 
@@ -321,6 +321,34 @@ msgstr "Differens"
 #: bocken/templates/admin/change_report_form.html:72
 msgid "Save cost per mil"
 msgstr "Spara kostnad per mil"
+
+#: bocken/templates/admin/report_list.html:9
+msgid ""
+"\n"
+"Reports are a collection of journal entries between two timestamps. These "
+"timestamps are automatically chosen so that two\n"
+"subsequent reports lie directly next to eachother i.e. the first one ends "
+"where the second one starts. This is to avoid\n"
+"gaps between the reports so that no journal entry is forgotten.\n"
+msgstr ""
+"\n"
+"Rapporter är en samanställning av journalinlägg mellan två tidsstämplar. "
+"Dessa tidsstämplar väljs automatiskt så att två efterliggande rapporter "
+"ligger direkt efter varandra, dvs. att den första slutar där den andra börjar. "
+"Detta är för att undvika att hål uppstår mellan rapporterna "
+"så att inga journalinlägg glöms bort.\n"
+
+#: bocken/templates/admin/report_list.html:16
+msgid ""
+"\n"
+"Since reports must lie next to eachother, only the latest report can be "
+"deleted. This prevents gaps from appearing between\n"
+"two reports if an intermediate report was to be deleted.\n"
+msgstr ""
+"\n"
+"Eftersom att rapporter måste ligga direkt efter varandra kan bara den "
+"senaste rapporten tas bort. Detta förhindrar att ett gap uppstår mellan två "
+"rapporter om en mellanliggande rapport skulle tas bort.\n"
 
 #: bocken/templates/journalentry_create.html:38
 msgid ""

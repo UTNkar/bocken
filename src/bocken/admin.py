@@ -132,6 +132,7 @@ class ReportAdmin(DjangoObjectActions, ModelAdmin):
     form = ReportForm
     add_form_template = 'admin/add_report_form.html'
     change_form_template = 'admin/change_report_form.html'
+    change_list_template = 'admin/report_list.html'
 
     list_display = ("__str__", "created")
     ordering = ("-created", )

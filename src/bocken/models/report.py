@@ -1,12 +1,14 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from . import JournalEntry, JournalEntryGroup
+from . import JournalEntryGroup
 from django.template.defaultfilters import date
 from django.utils.timezone import localtime
 from django.utils import timezone
 from django.db.models import Sum
 from ..utils import kilometers_to_mil
 from django.conf import settings
+# Journal entry must be imported like this to avoid circular import
+import bocken.models.journal_entry as journal_entry
 
 
 class Report(models.Model):
@@ -52,7 +54,9 @@ class Report(models.Model):
 
         Returns a queryset of journal entries
         """
-        return JournalEntry.get_entries_between(self.first, self.last)
+        return journal_entry.JournalEntry.get_entries_between(
+            self.first, self.last
+        )
 
     def get_expected_total_kilometers(self):
         entries = self.get_entries()
@@ -92,7 +96,9 @@ class Report(models.Model):
         statistics = []
         for group in kilometers_for_groups:
             kilometers = group['total_kilometers']
-            actual_group = JournalEntryGroup.objects.get(pk=group['group'])
+            actual_group = JournalEntryGroup.objects.get(
+                pk=group['group']
+            )
             mil = kilometers_to_mil(kilometers)
             cost = self.calculate_total_cost(mil)
 
@@ -152,8 +158,8 @@ class Report(models.Model):
             first = latest_report.last
         else:
             try:
-                first = JournalEntry.objects.earliest().created
-            except JournalEntry.DoesNotExist:
+                first = journal_entry.JournalEntry.objects.earliest().created
+            except journal_entry.JournalEntry.DoesNotExist:
                 first = None
 
         return first
@@ -163,7 +169,7 @@ class Report(models.Model):
         first = Report.get_first_for_new_report()
         last = timezone.now()
 
-        entries = JournalEntry.get_entries_between(first, last)
+        entries = journal_entry.JournalEntry.get_entries_between(first, last)
 
         return first, last, entries
 
@@ -182,7 +188,8 @@ class Report(models.Model):
 
         Return True if all journal entries belong to a report, False otherwise
         """
-        return Report.get_latest_report().last == JournalEntry.objects.latest()
+        return Report.get_latest_report().last == \
+            journal_entry.JournalEntry.objects.latest()
 
     @staticmethod
     def get_first_journal_entry_not_in_report():
@@ -195,11 +202,11 @@ class Report(models.Model):
         if latest_report:
             previous_last = latest_report.last
             try:
-                return JournalEntry.objects.exclude(
+                return journal_entry.JournalEntry.objects.exclude(
                     created__lte=previous_last.created
                 ).earliest()
-            except JournalEntry.DoesNotExist:
+            except journal_entry.JournalEntry.DoesNotExist:
                 # TODO: Make sure this is handled
                 return None
         else:
-            return JournalEntry.objects.earliest()
+            return journal_entry.JournalEntry.objects.earliest()

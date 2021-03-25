@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.formats import date_format
 from django.utils.translation import gettext_lazy as _
+# Report must be imported like this to avoid circular import
+import bocken.models.report as report
 
 
 class JournalEntry(models.Model):

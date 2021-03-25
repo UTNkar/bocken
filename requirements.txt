@@ -13,7 +13,7 @@ phonenumbers==8.12.20
 personnummer==3.0.2
 
 # Tailwind css
-django-tailwind==1.1.2
+django-tailwind==1.2.0
 
 # Adds handy filters to templates
 django-widget-tweaks==1.4.8

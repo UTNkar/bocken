@@ -163,6 +163,12 @@ class ReportAdmin(DjangoObjectActions, ModelAdmin):
         )
     delete_latest_report.label = _("Delete latest report")
     delete_latest_report.short_description = _("Delete the latest report")
+    def get_actions(self, request):
+        """Remove the default deleting action."""
+        actions = super().get_actions(request)
+        if 'delete_selected' in actions:
+            del actions['delete_selected']
+        return actions
 
     def add_view(self, request, form_url='', extra_context=None):
         """Django view for overriding the view where you add reports."""

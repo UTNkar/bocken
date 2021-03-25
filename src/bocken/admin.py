@@ -154,13 +154,23 @@ class ReportAdmin(DjangoObjectActions, ModelAdmin):
     # Ex. change_actions = ('name_of_func', )
 
     def delete_latest_report(self, request, queryset):
+        """Redirect to the delete view for the latest report."""
         report = Report.get_latest_report()
-        report_name = str(report)
-        report.delete()
-        self.message_user(
-            request,
-            "Report {} was deleted".format(report_name)
+        app_label = self.model._meta.app_label
+        model_name = self.model.__name__.lower()
+
+        # This url is a url that is defined in the django admin pages.
+        # It is used since it asks if you really want to delete the latest
+        # report
+        # https://docs.djangoproject.com/en/3.1/ref/contrib/admin/#reversing-admin-urls
+        delete_url = reverse(
+            'admin:{}_{}_delete'.format(
+                app_label, model_name
+            ),
+            args=(report.id,)
         )
+
+        return HttpResponseRedirect(delete_url)
     delete_latest_report.label = _("Delete latest report")
     delete_latest_report.short_description = _("Delete the latest report")
     delete_latest_report.attrs = {'style': 'background:red'}

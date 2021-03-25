@@ -85,3 +85,12 @@ class JournalEntry(models.Model):
             created__range=(start, end)
         )
         return entries
+
+    @staticmethod
+    def get_entries_since_last_report_amount():
+        latest_report = report.Report.get_latest_report()
+        entries = JournalEntry.objects.exclude(
+            created__lte=latest_report.created
+        )
+
+        return entries.count()

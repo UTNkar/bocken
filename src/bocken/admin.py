@@ -214,6 +214,15 @@ class ReportAdmin(DjangoObjectActions, ModelAdmin):
             request, object_id, form_url='', extra_context=extra_context
         )
 
+    def changelist_view(self, request, extra_context=None):
+        extra_context = extra_context or {}
+        extra_context['new_journal_entries'] = \
+            JournalEntry.get_entries_since_last_report_amount()
+
+        return super(ReportAdmin, self).changelist_view(
+            request, extra_context=extra_context
+        )
+
 
 class JournalEntryGroupAdmin(ModelAdmin):
     """Custom class for the admin pages for JournalEntryGroup."""

@@ -49,7 +49,7 @@
             <td>{{ total_logged|intcomma }} km</td>
         </tr>
         <tr>
-            {% calculate_lost_cost total_driven total_logged as lost_cost %}
+            {% calculate_lost_cost as lost_cost %}
             <td>{% translate 'Difference' %}</td>
             <td>
                 {{ lost_cost.difference }} km

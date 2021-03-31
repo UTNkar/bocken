@@ -155,6 +155,19 @@ class Report(models.Model):
         """
         return mil * self.cost_per_mil
 
+    def calculate_lost_cost(self):
+        total_driven = self.get_total_kilometers_driven()
+        total_logged = self.get_total_statistics()['total_kilometers']
+
+        difference = total_driven - total_logged
+        lost_mil = kilometers_to_mil(difference)
+        lost_cost = self.calculate_cost_for_mil(lost_mil)
+
+        return {
+            'difference': difference,
+            'lost_cost': lost_cost
+        }
+
     @staticmethod
     def get_first_for_new_report():
         """

@@ -1,13 +1,10 @@
 from django import template
-from bocken.utils import kilometers_to_mil
 
 register = template.Library()
 
 
 @register.simple_tag(takes_context=True)
-def calculate_lost_cost(
-    context, total_driven_kilometers, total_logged_kilometers
-):
+def calculate_lost_cost(context):
     """
     Calculate the lost cost in a report.
 
@@ -17,16 +14,4 @@ def calculate_lost_cost(
         'lost_cost': The lost cost (kr)
     }
     """
-    total_driven_kilometers = int(total_driven_kilometers)
-    total_logged_kilometers = int(total_logged_kilometers)
-
-    difference = total_driven_kilometers - total_logged_kilometers
-
-    report = context['original']
-    mil = kilometers_to_mil(difference)
-
-    lost_cost = report.calculate_cost_for_mil(mil)
-    return {
-        'difference': difference,
-        'lost_cost': lost_cost
-    }
+    return context['original'].calculate_lost_cost()

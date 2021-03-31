@@ -38,7 +38,7 @@
 
     <p>{% translate 'Lost costs appear when a group has driven bocken but not filled in the journal afterwards. This means that it is not possible to know who should pay for those kilometers and the cost is therefore "lost".' %}</p>
 
-    {% with total_driven=original.get_expected_total_kilometers total_logged=total_statistics.total_kilometers %}
+    {% with total_driven=original.get_total_kilometers_driven total_logged=total_statistics.total_kilometers %}
     <table>
         <tr>
             <td>{% translate 'Total driven kilometers' %}</td>

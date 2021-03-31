@@ -58,7 +58,8 @@ class Report(models.Model):
             self.first, self.last
         )
 
-    def get_expected_total_kilometers(self):
+    def get_total_kilometers_driven(self):
+        """Return the total kilometers that have been driven in this report."""
         entries = self.get_entries()
         first = entries.earliest()
         last = entries.latest()
@@ -89,6 +90,9 @@ class Report(models.Model):
         # "group by" query in the database. It can be a bit difficult
         # to understand but the documentation has an explanation for it.
         # https://docs.djangoproject.com/en/3.1/topics/db/aggregation/#values
+        # What it does is that it calculates the total distance driven for each
+        # journal entry and then sums them up for each group, giving us the
+        # total kilometers for each group.
         kilometers_for_groups = entries.values("group").annotate(
             total_kilometers=Sum("meter_stop") - Sum("meter_start")
         ).order_by("group__name")
@@ -100,7 +104,7 @@ class Report(models.Model):
                 pk=group['group']
             )
             mil = kilometers_to_mil(kilometers)
-            cost = self.calculate_total_cost(mil)
+            cost = self.calculate_cost_for_mil(mil)
 
             statistics.append({
                 'group': actual_group,
@@ -140,7 +144,7 @@ class Report(models.Model):
             'total_cost': total_cost
         }
 
-    def calculate_total_cost(self, mil: int):
+    def calculate_cost_for_mil(self, mil: int):
         """
         Calculate the total cost for driving a certain amount of mil.
 
@@ -153,6 +157,17 @@ class Report(models.Model):
 
     @staticmethod
     def get_first_for_new_report():
+        """
+        Get the first journal entry when creating a new report.
+
+        The first entry in a new report is the last entry in the previous
+        report. If there are no previous reports, the first entry is the
+        first ever created journal entry. If there are no journal entries,
+        a report can not be created.
+
+        Returns the journal entry that should be used as the first in a new
+        report.
+        """
         latest_report = Report.get_latest_report()
         if latest_report:
             first = latest_report.last

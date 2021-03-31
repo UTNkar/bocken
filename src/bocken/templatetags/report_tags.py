@@ -25,7 +25,7 @@ def calculate_lost_cost(
     report = context['original']
     mil = kilometers_to_mil(difference)
 
-    lost_cost = report.calculate_total_cost(mil)
+    lost_cost = report.calculate_cost_for_mil(mil)
     return {
         'difference': difference,
         'lost_cost': lost_cost

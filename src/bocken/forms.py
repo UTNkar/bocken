@@ -168,7 +168,7 @@ class ReportForm(ModelForm):
                     )
                 )
 
-            first, last, entries = Report.get_new_report()
+            first, last, entries = Report.get_new_report_details()
 
             if entries:
                 self.instance.first = first

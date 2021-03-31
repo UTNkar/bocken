@@ -165,7 +165,13 @@ class Report(models.Model):
         return first
 
     @staticmethod
-    def get_new_report():
+    def get_new_report_details():
+        """
+        Get all details for a new report.
+
+        Returns a tuple of the first and last journal entry for the new report
+        and all journal entries between the first and last.
+        """
         first = Report.get_first_for_new_report()
         last = timezone.now()
 

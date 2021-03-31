@@ -187,7 +187,7 @@ class ReportAdmin(DjangoObjectActions, ModelAdmin):
         """Django view for overriding the view where you add reports."""
         extra_context = extra_context or {}
 
-        first, last, entries = Report.get_new_report()
+        first, last, entries = Report.get_new_report_details()
 
         extra_context['no_entries'] = not JournalEntry.entries_exists()
         extra_context['entries'] = entries

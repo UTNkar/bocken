@@ -41,6 +41,7 @@ class Agreement(models.Model):
         blank=True,
         null=True
     )
+    # TODO: add default 1 year
     expires = models.DateField(
         verbose_name=_("Valid until")
     )
@@ -49,9 +50,9 @@ class Agreement(models.Model):
         verbose_name = _("Agreement")
         verbose_name_plural = _("Agreements")
 
-    def __str__(self): # noqa
+    def __str__(self):  # noqa
         return "{} - {}".format(self.name, self.personnummer)
 
-    def save(self, *args, **kwargs): # noqa
+    def save(self, *args, **kwargs):  # noqa
         self.personnummer = format_personnummer(self.personnummer)
         super(Agreement, self).save(*args, **kwargs)

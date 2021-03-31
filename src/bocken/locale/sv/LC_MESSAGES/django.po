@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-25 14:55+0100\n"
+"POT-Creation-Date: 2021-03-31 11:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -124,7 +124,7 @@ msgstr "Telefonnummer"
 msgid "Valid until"
 msgstr "Giltig t.o.m"
 
-#: bocken/models/agreement.py:49 bocken/models/journal_entry.py:17
+#: bocken/models/agreement.py:49 bocken/models/journal_entry.py:19
 msgid "Agreement"
 msgstr "Köravtal"
 
@@ -168,40 +168,40 @@ msgstr "Körjournalsgrupp"
 msgid "Journal entry groups"
 msgstr "Körjournalsgrupper"
 
-#: bocken/models/journal_entry.py:22
+#: bocken/models/journal_entry.py:24
 #: bocken/templates/admin/change_report_form.html:10
 msgid "Group"
 msgstr "Grupp"
 
-#: bocken/models/journal_entry.py:25
+#: bocken/models/journal_entry.py:27
 msgid "Meter at start"
 msgstr "Mätare vid start"
 
-#: bocken/models/journal_entry.py:28
+#: bocken/models/journal_entry.py:30
 msgid "Meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/models/journal_entry.py:32 bocken/models/report.py:26
+#: bocken/models/journal_entry.py:34 bocken/models/report.py:28
 msgid "Created"
 msgstr "Skapad"
 
-#: bocken/models/journal_entry.py:36
+#: bocken/models/journal_entry.py:38
 msgid "Journal Entry"
 msgstr "Journalinlägg"
 
-#: bocken/models/journal_entry.py:37
+#: bocken/models/journal_entry.py:39
 msgid "Journal Entries"
 msgstr "Journalinlägg"
 
-#: bocken/models/journal_entry.py:54
+#: bocken/models/journal_entry.py:56
 msgid "Driven Distance (km)"
 msgstr "Körd sträcka (km)"
 
-#: bocken/models/report.py:31
+#: bocken/models/report.py:33
 msgid "Cost per mil (kr)"
 msgstr "Kostnad per mil (kr)"
 
-#: bocken/models/report.py:33
+#: bocken/models/report.py:35
 msgid ""
 "Each report can have a different cost per mil. This allows the cost per mil "
 "to be changed without affecting previous reports"
@@ -209,11 +209,11 @@ msgstr ""
 "Alla rapporter kan ha olika kostnader per mil. Detta gör det möjligt att "
 "ändra kostnaden per mil utan att påverka tidigare rapporter"
 
-#: bocken/models/report.py:39
+#: bocken/models/report.py:41
 msgid "Report"
 msgstr "Rapport"
 
-#: bocken/models/report.py:40
+#: bocken/models/report.py:42
 msgid "Reports"
 msgstr "Rapporter"
 
@@ -275,8 +275,8 @@ msgstr ""
 "\n"
 "Tiderna väljs automatiskt för att unvika att hål uppstår mellan rapporter. "
 "Starttiden sätts till sluttiden av den senaste rapporten. Om det inte finns "
-"några rapporter sätts starttiden till tiden då det första journalinlägget skapades. "
-"Sluttiden sätts alltid den nuvarande tiden.\n"
+"några rapporter sätts starttiden till tiden då det första journalinlägget "
+"skapades. Sluttiden sätts alltid den nuvarande tiden.\n"
 
 #: bocken/templates/admin/change_report_form.html:7
 msgid "OBS! The starting fee is not included in the total cost!"
@@ -340,20 +340,30 @@ msgstr "Spara kostnad per mil"
 #: bocken/templates/admin/report_list.html:9
 msgid ""
 "\n"
-"Reports are a collection of all journal entries between two timestamps. These "
-"timestamps are automatically chosen so that two\n"
+"Reports are a collection of all journal entries between two timestamps. "
+"These timestamps are automatically chosen so that two\n"
 "subsequent reports lie directly next to eachother i.e. the first one ends "
 "where the second one starts. This is to avoid\n"
 "gaps between the reports so that no journal entry is forgotten.\n"
 msgstr ""
 "\n"
-"Rapporter är en samanställning av alla journalinlägg mellan två tidsstämplar. "
-"Dessa tidsstämplar väljs automatiskt så att två efterliggande rapporter "
-"ligger direkt efter varandra, dvs. att den första slutar där den andra "
-"börjar. Detta är för att undvika att hål uppstår mellan rapporterna så att "
-"inga journalinlägg glöms bort.\n"
+"Rapporter är en samanställning av alla journalinlägg mellan två "
+"tidsstämplar. Dessa tidsstämplar väljs automatiskt så att två efterliggande "
+"rapporter ligger direkt efter varandra, dvs. att den första slutar där den "
+"andra börjar. Detta är för att undvika att hål uppstår mellan rapporterna så "
+"att inga journalinlägg glöms bort.\n"
 
 #: bocken/templates/admin/report_list.html:16
+msgid ""
+"\n"
+"If a journal entry is included in a report and gets changed (updated, "
+"deleted etc.), the report will be automatically updated with that change.\n"
+msgstr ""
+"\n"
+"Om ett journalinlägg finns med i en rapport och förändras (uppdateras, tas bort etc.) "
+"kommer rapporten att automatiskt bli uppdaterad med den förändringen.\n"
+
+#: bocken/templates/admin/report_list.html:21
 msgid ""
 "\n"
 "Since reports must lie next to eachother, only the latest report can be "
@@ -364,6 +374,12 @@ msgstr ""
 "Eftersom att rapporter måste ligga direkt efter varandra kan bara den "
 "senaste rapporten tas bort. Detta förhindrar att ett hål uppstår mellan två "
 "rapporter om en mellanliggande rapport skulle tas bort.\n"
+
+#: bocken/templates/admin/report_list.html:29
+#, fuzzy
+#| msgid "Delete the latest report"
+msgid "new journal entries since the last report"
+msgstr "Radera den senaste rapporten"
 
 #: bocken/templates/journalentry_create.html:38
 msgid ""

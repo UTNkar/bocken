@@ -215,6 +215,7 @@ class ReportAdmin(DjangoObjectActions, ModelAdmin):
         )
 
     def changelist_view(self, request, extra_context=None):
+        """Django view for the view that lists all reports."""
         extra_context = extra_context or {}
         extra_context['new_journal_entries'] = \
             JournalEntry.get_entries_since_last_report_amount()

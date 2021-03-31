@@ -186,33 +186,3 @@ class Report(models.Model):
             return Report.objects.latest()
         except Report.DoesNotExist:
             return None
-
-    @staticmethod
-    def all_journal_entries_are_in_report():
-        """
-        Check if all journal entries already belong to a report.
-
-        Return True if all journal entries belong to a report, False otherwise
-        """
-        return Report.get_latest_report().last == \
-            journal_entry.JournalEntry.objects.latest()
-
-    @staticmethod
-    def get_first_journal_entry_not_in_report():
-        """
-        Get the first journal entry that is not included in any report.
-
-        If there are not reports, get the first journal entry created.
-        """
-        latest_report = Report.get_latest_report()
-        if latest_report:
-            previous_last = latest_report.last
-            try:
-                return journal_entry.JournalEntry.objects.exclude(
-                    created__lte=previous_last.created
-                ).earliest()
-            except journal_entry.JournalEntry.DoesNotExist:
-                # TODO: Make sure this is handled
-                return None
-        else:
-            return journal_entry.JournalEntry.objects.earliest()

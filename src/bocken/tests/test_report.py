@@ -140,5 +140,5 @@ class ReportTestCase(TestCase):
         report = Report.objects.create(first=first, last=last, cost_per_mil=20)
 
         lost_cost = report.calculate_lost_cost()
-        self.assertEqual(lost_cost['difference'], 10),
+        self.assertEqual(lost_cost['lost_kilometers'], 10),
         self.assertEqual(lost_cost['lost_cost'], 20)

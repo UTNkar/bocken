@@ -52,9 +52,9 @@
             {% calculate_lost_cost as lost_cost %}
             <td>{% translate 'Difference' %}</td>
             <td>
-                {{ lost_cost.difference }} km
+                {{ lost_cost.lost_kilometers }} km
                 <b class="small">
-                    ({{ lost_cost.difference|div:total_driven|floatformat:2 }}%)
+                    ({{ lost_cost.lost_kilometers|div:total_driven|floatformat:2 }}%)
                 </b>
             </td>
         </tr>

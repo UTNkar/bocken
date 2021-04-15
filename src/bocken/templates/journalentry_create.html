@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 {% load widget_tweaks fontawesome_5 i18n %}
+{% block extra_head %}
+{{ block.super }}
+{# Tell search engines to not index this page #}
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
 {% block body %}
 <form method="post">
     {% csrf_token %}

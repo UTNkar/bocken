@@ -17,17 +17,19 @@
                 {{ field }}
                 <label class="flex-1 ml-2" for="{{ field.id_for_label }}">{{ field.label }}</label>
             </div>
+            {% elif field == form.captcha %}
+                {{field}}
             {% else %}
             <div class="flex items-center relative font-thin font-sans text-gray-400 {% if field.errors %}border-red-600{% else %}border-gray-100{% endif %} border-solid border-2">
                 <label for="{{ field.id_for_label }}" class="absolute flex justify-center items-center text-xl w-8 h-full">{% fa5_icon field.label %}</label>
                 {{ field|add_class:"flex-1 flex justify-center font-extralight text-lg min-h-3 pl-8" }}
             </div>
+            <p class="text-xs">{{ field.help_text }}</p>
+            {% endif %}
             {% if field.errors %}
             {% for error in field.errors %}
             <p class="text-xs text-red-600">{{ error }}</p>
             {% endfor %}
-            {% endif %}
-            <p class="text-xs">{{ field.help_text }}</p>
             {% endif %}
         </div>
         {% endfor %}

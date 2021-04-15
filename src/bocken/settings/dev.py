@@ -12,4 +12,7 @@ SECRET_KEY = config(
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
+# TODO: is this needed?
 BASE_URL = 'http://localhost:8000'
+
+SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']

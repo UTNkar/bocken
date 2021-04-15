@@ -7,6 +7,7 @@ from .validators import validate_personnummer
 from .utils import format_personnummer
 from .widgets import TwoLevelSelect
 from django.utils.translation import gettext_lazy as _
+from captcha.fields import ReCaptchaField
 
 
 class JournalEntryForm(ModelForm):
@@ -27,6 +28,8 @@ class JournalEntryForm(ModelForm):
         label=_("I confirm that Bocken is clean and in good shape"),
         widget=CheckboxInput(attrs={'class': 'h-8 w-8'})
     )
+
+    captcha = ReCaptchaField()
 
     class Meta:
         model = JournalEntry

@@ -15,6 +15,7 @@ from decouple import config
 import sys
 import os
 from django.utils.translation import gettext_lazy as _
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -144,3 +145,9 @@ TAILWIND_APP_NAME = 'utn_tailwind_theme'
 COST_PER_MIL_DEFAULT = 20
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MESSAGE_TAGS = {
+    messages.WARNING: 'bg-yellow-300 mb-4 p-4 rounded',
+}
+
+KLUBBMASTARE_EMAIL = 'klubbmastare@utn.se'

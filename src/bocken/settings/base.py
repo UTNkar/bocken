@@ -142,3 +142,5 @@ AUTH_USER_MODEL = 'bocken.Admin'
 TAILWIND_APP_NAME = 'utn_tailwind_theme'
 
 COST_PER_MIL_DEFAULT = 20
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

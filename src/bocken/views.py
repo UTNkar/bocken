@@ -1,4 +1,5 @@
 from django.views.generic.edit import CreateView
+from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 from .models import JournalEntry
 from .forms import JournalEntryForm
@@ -10,7 +11,7 @@ class JournalEntryCreate(CreateView):
     model = JournalEntry
     form_class = JournalEntryForm
     template_name = 'journalentry_create.html'
-    success_url = reverse_lazy('add-entry')
+    success_url = reverse_lazy('add-entry-success')
 
     def post(self, request, *args, **kwargs):
         """
@@ -37,3 +38,7 @@ class JournalEntryCreate(CreateView):
             context['main_group'] = self.main_group
 
         return context
+
+
+class JournalEntryCreateSuccess(TemplateView):
+    template_name = 'journalentry_create_success.html'

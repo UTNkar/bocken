@@ -152,3 +152,9 @@ MESSAGE_TAGS = {
 }
 
 KLUBBMASTARE_EMAIL = 'klubbmastare@utn.se'
+
+SERVER_EMAIL = 'admin@utn.se'
+
+EMAIL_SUBJECT_PREFIX = '[Automatic message from bocken journal system] - '
+
+ADMINS = [('KM', KLUBBMASTARE_EMAIL)]

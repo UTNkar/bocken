@@ -6,7 +6,7 @@ from .forms import JournalEntryForm
 from django.contrib import messages
 from django.utils.translation import gettext as _
 from django.conf import settings
-from django.core.mail import send_mail
+from django.core.mail import mail_admins
 
 
 class JournalEntryCreate(CreateView):
@@ -32,7 +32,7 @@ class JournalEntryCreate(CreateView):
                 ) % {'email': settings.KLUBBMASTARE_EMAIL},
                 extra_tags="safe"
             )
-            send_mail(
+            mail_admins(
                 "Expired agreement",
                 '{}, personnummer: {}, added a journal entry but their '
                 'agreement has expired. Please contact them to update '
@@ -40,8 +40,6 @@ class JournalEntryCreate(CreateView):
                     agreement.name,
                     agreement.personnummer
                 ),
-                'admin@utn.se',
-                [settings.KLUBBMASTARE_EMAIL],
                 fail_silently=True
             )
 

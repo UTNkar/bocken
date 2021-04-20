@@ -55,6 +55,7 @@ class Agreement(models.Model):
         return "{} - {}".format(self.name, self.personnummer)
 
     def has_expired(self):
+        """Check if an agreement has expired."""
         return self.expires <= now().date()
 
     def save(self, *args, **kwargs):  # noqa

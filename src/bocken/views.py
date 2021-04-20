@@ -18,6 +18,7 @@ class JournalEntryCreate(CreateView):
     success_url = reverse_lazy('add-entry-success')
 
     def form_valid(self, form):
+        """Handle when a form submission was valid."""
         agreement = form.instance.agreement
         if agreement.has_expired():
             messages.warning(
@@ -73,4 +74,6 @@ class JournalEntryCreate(CreateView):
 
 
 class JournalEntryCreateSuccess(TemplateView):
+    """The success view when a valid journal entry was submitted."""
+
     template_name = 'journalentry_create_success.html'

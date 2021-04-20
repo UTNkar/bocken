@@ -13,3 +13,5 @@ SECRET_KEY = config(
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 BASE_URL = 'http://localhost:8000'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

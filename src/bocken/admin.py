@@ -9,7 +9,7 @@ from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.admin import ModelAdmin
 from django.utils.translation import gettext_lazy as _
-from .forms import ReportForm
+from .forms import ReportForm, AgreementForm
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django_object_actions import DjangoObjectActions
@@ -123,6 +123,7 @@ class JournalEntryAdmin(ModelAdmin):
 class AgreementAdmin(ModelAdmin):
     """Custom class for the admin pages for Agreement."""
 
+    form = AgreementForm
     list_display = ('name', 'personnummer', 'phonenumber', 'email', 'expires')
 
 

@@ -39,6 +39,17 @@
             <a class="text-blue-700" href="mailto:klubbmastare@utn.se">klubbmastare@utn.se</a>
         </p>
     </div>
+
+    <h2>{% translate 'Latest entries' %}</h2>
+    <div>
+    {% for entry in three_latest_entries %}
+        {{ entry.agreement.name }}
+        {{ entry.group }}
+        {{ entry.meter_start }}
+        {{ entry.meter_stop }}
+        {{ entry.created }}
+    {% endfor %}
+    </div>
 </form>
 {% endblock %}
 {% block extra_js %}

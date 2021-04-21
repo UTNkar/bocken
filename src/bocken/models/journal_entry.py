@@ -95,3 +95,8 @@ class JournalEntry(models.Model):
         )
 
         return entries.count()
+
+    @staticmethod
+    def get_three_latest_entries():
+        """Get the three latest entries."""
+        return JournalEntry.objects.reverse()[:3]

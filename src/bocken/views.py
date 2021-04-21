@@ -26,14 +26,18 @@ class JournalEntryCreate(CreateView):
 
     def get_context_data(self, **kwargs):
         """
-        Add the main group to the views context.
+        Add extra context to the view.
 
         This makes the main group available in the JournalEntryForm
+        and adds the three latest entries to the context.
         """
         context = super(CreateView, self).get_context_data(**kwargs)
 
         # On get requests, there is no main group
         if hasattr(self, 'main_group'):
             context['main_group'] = self.main_group
+
+        context['three_latest_entries'] = \
+            JournalEntry.get_three_latest_entries()
 
         return context

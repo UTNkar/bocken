@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-19 17:03+0200\n"
+"POT-Creation-Date: 2021-04-21 16:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,23 +34,23 @@ msgstr "Radera senaste rapporten"
 msgid "Delete the latest report"
 msgstr "Radera den senaste rapporten"
 
-#: bocken/forms.py:22
+#: bocken/forms.py:23
 msgid "Your personnummer"
 msgstr "Ditt personnummer"
 
-#: bocken/forms.py:27
+#: bocken/forms.py:28
 msgid "I confirm that Bocken is clean and in good shape"
 msgstr "Jag intygar att Bocken är i gott skick"
 
-#: bocken/forms.py:39
+#: bocken/forms.py:42
 msgid "Trip meter at start"
 msgstr "Mätare vid start"
 
-#: bocken/forms.py:46
+#: bocken/forms.py:49
 msgid "Trip meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/forms.py:59
+#: bocken/forms.py:62
 msgid ""
 "Not sure which group to choose? Choose the group that seems most reasonable "
 "to be paying for your trip."
@@ -58,7 +58,7 @@ msgstr ""
 "Osäker på vilken grupp du ska välja? Välj den grupp som känns mest rimlig "
 "att betala din resa"
 
-#: bocken/forms.py:63
+#: bocken/forms.py:66
 msgid ""
 "Trip meter at start is filled in automatically from the latest entry. If the "
 "number is not correct, enter the value that the meter had when you started "
@@ -68,12 +68,12 @@ msgstr ""
 "inte stämmer, skriv in det värde som mätaren hade när du började köra samt "
 "informera UTN:s klubbmästare."
 
-#: bocken/forms.py:106
+#: bocken/forms.py:109
 msgid "Trip meter at start must be larger than the last entry in the journal"
 msgstr ""
 "Tripmätare vid start måste vara större än det senaste inlägget i körjournalen"
 
-#: bocken/forms.py:128
+#: bocken/forms.py:131
 msgid ""
 "You don't have a written agreement which you must have to drive bocken. "
 "Contact the head of the pub crew and send a copy of the details you wrote "
@@ -83,16 +83,16 @@ msgstr ""
 "UTN:s klubbmästare och skicka med en kopia av detaljerna som du skrev in i "
 "fälten nedan."
 
-#: bocken/forms.py:138
+#: bocken/forms.py:141
 msgid "Trip meter at stop must be larger than the trip meter at start"
 msgstr "Tripmätare vid stop måste vara större än trippmätare vid start"
 
-#: bocken/forms.py:166
+#: bocken/forms.py:169
 msgid "Can not create a report because there are no journal entries"
 msgstr ""
 "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg"
 
-#: bocken/forms.py:179
+#: bocken/forms.py:182
 msgid ""
 "Can not create a report because there are no journal entries between these "
 "two timestamps"
@@ -113,6 +113,7 @@ msgid "Agreement number"
 msgstr "Avtalsnummer"
 
 #: bocken/models/agreement.py:23 bocken/models/group.py:10
+#: bocken/templates/journalentry_create.html:57
 msgid "Name"
 msgstr "Namn"
 
@@ -170,18 +171,22 @@ msgstr "Körjournalsgrupper"
 
 #: bocken/models/journal_entry.py:24
 #: bocken/templates/admin/change_report_form.html:10
+#: bocken/templates/journalentry_create.html:61
 msgid "Group"
 msgstr "Grupp"
 
 #: bocken/models/journal_entry.py:27
+#: bocken/templates/journalentry_create.html:65
 msgid "Meter at start"
 msgstr "Mätare vid start"
 
 #: bocken/models/journal_entry.py:30
+#: bocken/templates/journalentry_create.html:69
 msgid "Meter at stop"
 msgstr "Mätare vid stop"
 
 #: bocken/models/journal_entry.py:34 bocken/models/report.py:28
+#: bocken/templates/journalentry_create.html:73
 msgid "Created"
 msgstr "Skapad"
 
@@ -221,11 +226,11 @@ msgstr "Rapporter"
 msgid "Site settings"
 msgstr "Sidinställningar"
 
-#: bocken/settings/base.py:121
+#: bocken/settings/base.py:123
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:122
+#: bocken/settings/base.py:124
 msgid "English"
 msgstr "Engelska"
 
@@ -283,7 +288,7 @@ msgid "OBS! The starting fee is not included in the total cost!"
 msgstr "OBS! Startavgiften är inte inkluderad i den totala kostnaden!"
 
 #: bocken/templates/admin/change_report_form.html:11
-#: bocken/templates/journalentry_create.html:11
+#: bocken/templates/journalentry_create.html:16
 msgid "Total kilometers"
 msgstr "Antal kilometer"
 
@@ -382,13 +387,17 @@ msgstr ""
 msgid "new journal entries since the last report"
 msgstr "Radera den senaste rapporten"
 
-#: bocken/templates/journalentry_create.html:38
+#: bocken/templates/journalentry_create.html:45
 msgid ""
 "Is something not working? Contact the head of the pub crew and send a copy "
 "of the details you provided above to"
 msgstr ""
 "Strular formuläret? Kontakta UTN:s klubbmästare och skicka med en kopia av "
 "informationen som du skrev in ovanför till"
+
+#: bocken/templates/journalentry_create.html:52
+msgid "Previous entries"
+msgstr "Senaste inläggen"
 
 #: bocken/templates/journalentry_create_success.html:5
 msgid "Your journal entry has been saved!"
@@ -424,13 +433,13 @@ msgstr "Ditt personnummer måste vara på formen YYYYMMDD-XXXX"
 msgid "Invalid personnummer"
 msgstr "Ogiltigt personnummer"
 
-#: bocken/views.py:25
+#: bocken/views.py:27
 #, python-format
 msgid ""
 "Your agreement has expired! The journal entry you just created has been "
 "saved but you need to renew your agreement. Contact UTN:s Head of The "
 "Pubcrew: <a class='text-blue-700' href='mailto:%(email)s'>%(email)s</a>"
 msgstr ""
-"Ditt avtal har gått ut! Journalinlägget du nyss skapade har sparats "
-"men du måste förnya ditt avtal. Kontakta UTN:s klubbmästare: "
-"<a class='text-blue-700' href='mailto:%(email)s'>%(email)s</a>"
+"Ditt avtal har gått ut! Journalinlägget du nyss skapade har sparats men du "
+"måste förnya ditt avtal. Kontakta UTN:s klubbmästare: <a class='text-"
+"blue-700' href='mailto:%(email)s'>%(email)s</a>"

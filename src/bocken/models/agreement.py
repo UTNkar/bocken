@@ -42,7 +42,8 @@ class Agreement(models.Model):
     )
 
     expires = models.DateField(
-        verbose_name=_("Valid until")
+        verbose_name=_("Valid until"),
+        default=now().date() + timedelta(days=365)
     )
 
     class Meta:

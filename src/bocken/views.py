@@ -1,7 +1,12 @@
 from django.views.generic.edit import CreateView
+from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 from .models import JournalEntry
 from .forms import JournalEntryForm
+from django.contrib import messages
+from django.utils.translation import gettext as _
+from django.conf import settings
+from django.core.mail import mail_admins
 
 
 class JournalEntryCreate(CreateView):
@@ -10,7 +15,36 @@ class JournalEntryCreate(CreateView):
     model = JournalEntry
     form_class = JournalEntryForm
     template_name = 'journalentry_create.html'
-    success_url = reverse_lazy('add-entry')
+    success_url = reverse_lazy('add-entry-success')
+
+    def form_valid(self, form):
+        """Handle when a form submission was valid."""
+        agreement = form.instance.agreement
+        if agreement.has_expired():
+            messages.warning(
+                self.request,
+                _(
+                    "Your agreement has expired! The journal entry you just "
+                    "created has been saved but you need to renew your "
+                    "agreement. Contact UTN:s Head of The Pubcrew: "
+                    "<a class='text-blue-700' "
+                    "href='mailto:%(email)s'>"
+                    "%(email)s</a>"
+                ) % {'email': settings.KLUBBMASTARE_EMAIL},
+                extra_tags="safe"
+            )
+            mail_admins(
+                "Expired agreement",
+                '{}, personnummer: {}, added a journal entry but their '
+                'agreement has expired. Please contact them to update '
+                'their agreement.'.format(
+                    agreement.name,
+                    agreement.personnummer
+                ),
+                fail_silently=True
+            )
+
+        return super(JournalEntryCreate, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
         """
@@ -41,3 +75,9 @@ class JournalEntryCreate(CreateView):
             JournalEntry.get_three_latest_entries()
 
         return context
+
+
+class JournalEntryCreateSuccess(TemplateView):
+    """The success view when a valid journal entry was submitted."""
+
+    template_name = 'journalentry_create_success.html'

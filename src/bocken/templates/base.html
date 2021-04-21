@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-{% load static fontawesome_5 %}
+{% load static fontawesome_5 tailwind_tags %}
 <html>
     <head>
         <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&;700display=swap" rel="stylesheet">
+        {% tailwind_css %}
         {% fontawesome_5_static %}
         {% block extra_head %}
         {% endblock %}
@@ -16,8 +16,23 @@
             <div class="flex mb-4 justify-end">
                 {% include 'switch_language_button.html' %}
             </div>
-            {% block body %}
-            {% endblock %}
+            <div class="flex flex-col bg-white p-4">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        {% if 'safe' in message.tags %}
+                            {{ message|safe }}
+                        {% else %}
+                            {{ message }}
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% block body %}
+                {% endblock %}
+            </div>
         </main>
     </body>
     {% block extra_js %}

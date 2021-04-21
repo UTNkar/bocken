@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-31 11:08+0200\n"
+"POT-Creation-Date: 2021-04-19 17:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -108,27 +108,27 @@ msgstr "Administratör"
 msgid "Admins"
 msgstr "Administratörer"
 
-#: bocken/models/agreement.py:18
+#: bocken/models/agreement.py:19
 msgid "Agreement number"
 msgstr "Avtalsnummer"
 
-#: bocken/models/agreement.py:22 bocken/models/group.py:10
+#: bocken/models/agreement.py:23 bocken/models/group.py:10
 msgid "Name"
 msgstr "Namn"
 
-#: bocken/models/agreement.py:32
+#: bocken/models/agreement.py:33
 msgid "Phonenumber"
 msgstr "Telefonnummer"
 
-#: bocken/models/agreement.py:45
+#: bocken/models/agreement.py:47
 msgid "Valid until"
 msgstr "Giltig t.o.m"
 
-#: bocken/models/agreement.py:49 bocken/models/journal_entry.py:19
+#: bocken/models/agreement.py:51 bocken/models/journal_entry.py:19
 msgid "Agreement"
 msgstr "Köravtal"
 
-#: bocken/models/agreement.py:50
+#: bocken/models/agreement.py:52
 msgid "Agreements"
 msgstr "Köravtal"
 
@@ -217,15 +217,15 @@ msgstr "Rapport"
 msgid "Reports"
 msgstr "Rapporter"
 
-#: bocken/models/site_settings.py:8 bocken/models/site_settings.py:9
+#: bocken/models/site_settings.py:9 bocken/models/site_settings.py:10
 msgid "Site settings"
 msgstr "Sidinställningar"
 
-#: bocken/settings/base.py:120
+#: bocken/settings/base.py:121
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:121
+#: bocken/settings/base.py:122
 msgid "English"
 msgstr "Engelska"
 
@@ -283,7 +283,7 @@ msgid "OBS! The starting fee is not included in the total cost!"
 msgstr "OBS! Startavgiften är inte inkluderad i den totala kostnaden!"
 
 #: bocken/templates/admin/change_report_form.html:11
-#: bocken/templates/journalentry_create.html:12
+#: bocken/templates/journalentry_create.html:11
 msgid "Total kilometers"
 msgstr "Antal kilometer"
 
@@ -360,8 +360,9 @@ msgid ""
 "deleted etc.), the report will be automatically updated with that change.\n"
 msgstr ""
 "\n"
-"Om ett journalinlägg finns med i en rapport och förändras (uppdateras, tas bort etc.) "
-"kommer rapporten att automatiskt bli uppdaterad med den förändringen.\n"
+"Om ett journalinlägg finns med i en rapport och förändras (uppdateras, tas "
+"bort etc.) kommer rapporten att automatiskt bli uppdaterad med den "
+"förändringen.\n"
 
 #: bocken/templates/admin/report_list.html:21
 msgid ""
@@ -388,6 +389,10 @@ msgid ""
 msgstr ""
 "Strular formuläret? Kontakta UTN:s klubbmästare och skicka med en kopia av "
 "informationen som du skrev in ovanför till"
+
+#: bocken/templates/journalentry_create_success.html:5
+msgid "Your journal entry has been saved!"
+msgstr "Ditt journalinlägg har sparats!"
 
 #: bocken/templates/two_level_select.html:5
 msgid ""
@@ -418,3 +423,14 @@ msgstr "Ditt personnummer måste vara på formen YYYYMMDD-XXXX"
 #: bocken/validators.py:52
 msgid "Invalid personnummer"
 msgstr "Ogiltigt personnummer"
+
+#: bocken/views.py:25
+#, python-format
+msgid ""
+"Your agreement has expired! The journal entry you just created has been "
+"saved but you need to renew your agreement. Contact UTN:s Head of The "
+"Pubcrew: <a class='text-blue-700' href='mailto:%(email)s'>%(email)s</a>"
+msgstr ""
+"Ditt avtal har gått ut! Journalinlägget du nyss skapade har sparats "
+"men du måste förnya ditt avtal. Kontakta UTN:s klubbmästare: "
+"<a class='text-blue-700' href='mailto:%(email)s'>%(email)s</a>"

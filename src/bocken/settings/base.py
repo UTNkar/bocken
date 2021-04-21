@@ -15,6 +15,7 @@ from decouple import config
 import sys
 import os
 from django.utils.translation import gettext_lazy as _
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -35,7 +36,8 @@ INSTALLED_APPS = [
     'tailwind',
     'utn_tailwind_theme',
     'mathfilters',
-    'django_object_actions'
+    'django_object_actions',
+    'captcha'
 ]
 
 MIDDLEWARE = [
@@ -62,7 +64,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'bocken.context_processors.sitesettings'
+                'bocken.context_processors.sitesettings',
+                'bocken.context_processors.klubbmastare_email'
             ],
         },
     },
@@ -142,3 +145,21 @@ AUTH_USER_MODEL = 'bocken.Admin'
 TAILWIND_APP_NAME = 'utn_tailwind_theme'
 
 COST_PER_MIL_DEFAULT = 20
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MESSAGE_TAGS = {
+    messages.WARNING: 'bg-yellow-300 mb-4 p-4 rounded',
+}
+
+KLUBBMASTARE_EMAIL = 'klubbmastare@utn.se'
+
+SERVER_EMAIL = 'admin@utn.se'
+
+EMAIL_SUBJECT_PREFIX = '[Automatic message from bocken journal system] - '
+
+ADMINS = [('KM', KLUBBMASTARE_EMAIL)]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

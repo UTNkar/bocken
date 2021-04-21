@@ -3,6 +3,7 @@ from bocken.validators import validate_phonenumber, validate_personnummer
 from ..utils import format_personnummer
 from ..fields import PhonenumberField
 from django.utils.translation import gettext_lazy as _
+from django.utils.timezone import now
 
 
 class Agreement(models.Model):
@@ -52,6 +53,10 @@ class Agreement(models.Model):
 
     def __str__(self):  # noqa
         return "{} - {}".format(self.name, self.personnummer)
+
+    def has_expired(self):
+        """Check if an agreement has expired."""
+        return self.expires <= now().date()
 
     def save(self, *args, **kwargs):  # noqa
         self.personnummer = format_personnummer(self.personnummer)

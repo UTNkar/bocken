@@ -1,4 +1,4 @@
-Django[argon2]==3.1.7
+Django[argon2]==3.2
 
 # Postgres
 psycopg2==2.8.6
@@ -7,13 +7,13 @@ psycopg2==2.8.6
 python-decouple==3.4
 
 # Phone number validation and formatting
-phonenumbers==8.12.20
+phonenumbers==8.12.21
 
 # Personummer verification
 personnummer==3.0.2
 
 # Tailwind css
-django-tailwind==1.2.0
+django-tailwind==2.0.0
 
 # Adds handy filters to templates
 django-widget-tweaks==1.4.8
@@ -27,3 +27,6 @@ django-mathfilters==1.0.0
 # Makes it easy to add object actions in the admin view.
 # Object actions can be used when djangos admin actions aren't enough.
 django-object-actions==3.0.1
+
+# Add recapthca to forms
+django-recaptcha==2.0.6

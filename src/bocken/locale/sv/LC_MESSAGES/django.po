@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-16 10:11+0100\n"
+"POT-Creation-Date: 2021-04-19 17:03+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,55 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bocken/admin.py:30
+#: bocken/admin.py:37
 msgid "Passwords don't match"
 msgstr "Lösenorden matchar inte"
 
-#: bocken/admin.py:50
+#: bocken/admin.py:57
 msgid "<a href=\"../password/\">Change the user's password here</a>."
 msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
 
-#: bocken/constants.py:92
-msgid "UTN's committees and workgroups"
-msgstr "UTN:s kommittéer och arbetsgrupper"
+#: bocken/admin.py:175
+msgid "Delete latest report"
+msgstr "Radera senaste rapporten"
 
-#: bocken/constants.py:96
-msgid "UTN's management team and board"
-msgstr "UTN:s ledningsgrupp och styrelse"
+#: bocken/admin.py:176
+msgid "Delete the latest report"
+msgstr "Radera den senaste rapporten"
 
-#: bocken/constants.py:100
-msgid "FUM"
-msgstr "FUM"
-
-#: bocken/constants.py:104
-msgid "Other officials within UTN"
-msgstr "Övriga ämbetsverkare inom UTN"
-
-#: bocken/constants.py:108
-msgid "Sections"
-msgstr "Sektioner"
-
-#: bocken/constants.py:112
-msgid "Cooperations"
-msgstr "Samarbetsföreningar"
-
-#: bocken/forms.py:20
+#: bocken/forms.py:22
 msgid "Your personnummer"
 msgstr "Ditt personnummer"
 
-#: bocken/forms.py:25
+#: bocken/forms.py:27
 msgid "I confirm that Bocken is clean and in good shape"
 msgstr "Jag intygar att Bocken är i gott skick"
 
-#: bocken/forms.py:36
+#: bocken/forms.py:39
 msgid "Trip meter at start"
 msgstr "Mätare vid start"
 
-#: bocken/forms.py:43
+#: bocken/forms.py:46
 msgid "Trip meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/forms.py:56
+#: bocken/forms.py:59
 msgid ""
 "Not sure which group to choose? Choose the group that seems most reasonable "
 "to be paying for your trip."
@@ -74,7 +58,7 @@ msgstr ""
 "Osäker på vilken grupp du ska välja? Välj den grupp som känns mest rimlig "
 "att betala din resa"
 
-#: bocken/forms.py:60
+#: bocken/forms.py:63
 msgid ""
 "Trip meter at start is filled in automatically from the latest entry. If the "
 "number is not correct, enter the value that the meter had when you started "
@@ -84,12 +68,12 @@ msgstr ""
 "inte stämmer, skriv in det värde som mätaren hade när du började köra samt "
 "informera UTN:s klubbmästare."
 
-#: bocken/forms.py:114
+#: bocken/forms.py:106
 msgid "Trip meter at start must be larger than the last entry in the journal"
 msgstr ""
 "Tripmätare vid start måste vara större än det senaste inlägget i körjournalen"
 
-#: bocken/forms.py:136
+#: bocken/forms.py:128
 msgid ""
 "You don't have a written agreement which you must have to drive bocken. "
 "Contact the head of the pub crew and send a copy of the details you wrote "
@@ -99,21 +83,316 @@ msgstr ""
 "UTN:s klubbmästare och skicka med en kopia av detaljerna som du skrev in i "
 "fälten nedan."
 
-#: bocken/forms.py:146
+#: bocken/forms.py:138
 msgid "Trip meter at stop must be larger than the trip meter at start"
 msgstr "Tripmätare vid stop måste vara större än trippmätare vid start"
 
-#: bocken/templates/journalentry_create.html:12
+#: bocken/forms.py:166
+msgid "Can not create a report because there are no journal entries"
+msgstr ""
+"Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg"
+
+#: bocken/forms.py:179
+msgid ""
+"Can not create a report because there are no journal entries between these "
+"two timestamps"
+msgstr ""
+"Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg "
+"mellan dessa tidstämplar"
+
+#: bocken/models/admin.py:38
+msgid "Admin"
+msgstr "Administratör"
+
+#: bocken/models/admin.py:39
+msgid "Admins"
+msgstr "Administratörer"
+
+#: bocken/models/agreement.py:19
+msgid "Agreement number"
+msgstr "Avtalsnummer"
+
+#: bocken/models/agreement.py:23 bocken/models/group.py:10
+msgid "Name"
+msgstr "Namn"
+
+#: bocken/models/agreement.py:33
+msgid "Phonenumber"
+msgstr "Telefonnummer"
+
+#: bocken/models/agreement.py:47
+msgid "Valid until"
+msgstr "Giltig t.o.m"
+
+#: bocken/models/agreement.py:51 bocken/models/journal_entry.py:19
+msgid "Agreement"
+msgstr "Köravtal"
+
+#: bocken/models/agreement.py:52
+msgid "Agreements"
+msgstr "Köravtal"
+
+#: bocken/models/group.py:17
+msgid "UTN's committees and workgroups"
+msgstr "UTN:s kommittéer och arbetsgrupper"
+
+#: bocken/models/group.py:19
+msgid "UTN's management team and board"
+msgstr "UTN:s ledningsgrupp och styrelse"
+
+#: bocken/models/group.py:20
+msgid "FUM"
+msgstr "FUM"
+
+#: bocken/models/group.py:21
+msgid "Other officials within UTN"
+msgstr "Övriga ämbetsverkare inom UTN"
+
+#: bocken/models/group.py:22
+msgid "Sections"
+msgstr "Sektioner"
+
+#: bocken/models/group.py:23
+msgid "Cooperations"
+msgstr "Samarbetsföreningar"
+
+#: bocken/models/group.py:25
+msgid "Main group"
+msgstr "Huvudgrupp"
+
+#: bocken/models/group.py:29
+msgid "Journal entry group"
+msgstr "Körjournalsgrupp"
+
+#: bocken/models/group.py:30
+msgid "Journal entry groups"
+msgstr "Körjournalsgrupper"
+
+#: bocken/models/journal_entry.py:24
+#: bocken/templates/admin/change_report_form.html:10
+msgid "Group"
+msgstr "Grupp"
+
+#: bocken/models/journal_entry.py:27
+msgid "Meter at start"
+msgstr "Mätare vid start"
+
+#: bocken/models/journal_entry.py:30
+msgid "Meter at stop"
+msgstr "Mätare vid stop"
+
+#: bocken/models/journal_entry.py:34 bocken/models/report.py:28
+msgid "Created"
+msgstr "Skapad"
+
+#: bocken/models/journal_entry.py:38
+msgid "Journal Entry"
+msgstr "Journalinlägg"
+
+#: bocken/models/journal_entry.py:39
+msgid "Journal Entries"
+msgstr "Journalinlägg"
+
+#: bocken/models/journal_entry.py:56
+msgid "Driven Distance (km)"
+msgstr "Körd sträcka (km)"
+
+#: bocken/models/report.py:33
+msgid "Cost per mil (kr)"
+msgstr "Kostnad per mil (kr)"
+
+#: bocken/models/report.py:35
+msgid ""
+"Each report can have a different cost per mil. This allows the cost per mil "
+"to be changed without affecting previous reports"
+msgstr ""
+"Alla rapporter kan ha olika kostnader per mil. Detta gör det möjligt att "
+"ändra kostnaden per mil utan att påverka tidigare rapporter"
+
+#: bocken/models/report.py:41
+msgid "Report"
+msgstr "Rapport"
+
+#: bocken/models/report.py:42
+msgid "Reports"
+msgstr "Rapporter"
+
+#: bocken/models/site_settings.py:9 bocken/models/site_settings.py:10
+msgid "Site settings"
+msgstr "Sidinställningar"
+
+#: bocken/settings/base.py:121
+msgid "Swedish"
+msgstr "Svenska"
+
+#: bocken/settings/base.py:122
+msgid "English"
+msgstr "Engelska"
+
+#: bocken/templates/admin/add_report_form.html:4
+#: bocken/templates/admin/add_report_form.html:7
+#: bocken/templates/admin/add_report_form.html:24
+msgid "Create report"
+msgstr "Skapa rapport"
+
+#: bocken/templates/admin/add_report_form.html:4
+msgid "Django site admin"
+msgstr "Django webbplatsadministration"
+
+#: bocken/templates/admin/add_report_form.html:14
+msgid "Home"
+msgstr "Hem"
+
+#: bocken/templates/admin/add_report_form.html:34
+msgid "A report can not be created since there are no journal entries"
+msgstr ""
+"En rapport kan inte skapas eftersom att det inte finns några journalinlägg"
+
+#: bocken/templates/admin/add_report_form.html:36
+msgid ""
+"A report can not be created since there are no new journal entries since the "
+"latest report"
+msgstr ""
+"En rapport kan inte skapas eftersom att det inte finns några nya "
+"journalinlägg sen den senaste rapporten"
+
+#: bocken/templates/admin/add_report_form.html:38
+msgid ""
+"The new report will include all journal entries between the following times"
+msgstr ""
+"Den nya rapporten kommer inkludera alla journalinlägg som skapats mellan de "
+"följande tiderna"
+
+#: bocken/templates/admin/add_report_form.html:41
+msgid ""
+"\n"
+"The times are chosen automatically to prevent gaps from occuring between "
+"reports. The start time is\n"
+"chosen as the end time of the previous report. If there are no reports, it "
+"takes the time of the first journal entry.\n"
+"The end time is always the current time.\n"
+msgstr ""
+"\n"
+"Tiderna väljs automatiskt för att unvika att hål uppstår mellan rapporter. "
+"Starttiden sätts till sluttiden av den senaste rapporten. Om det inte finns "
+"några rapporter sätts starttiden till tiden då det första journalinlägget "
+"skapades. Sluttiden sätts alltid den nuvarande tiden.\n"
+
+#: bocken/templates/admin/change_report_form.html:7
+msgid "OBS! The starting fee is not included in the total cost!"
+msgstr "OBS! Startavgiften är inte inkluderad i den totala kostnaden!"
+
+#: bocken/templates/admin/change_report_form.html:11
+#: bocken/templates/journalentry_create.html:11
 msgid "Total kilometers"
 msgstr "Antal kilometer"
 
-#: bocken/templates/journalentry_create.html:38
+#: bocken/templates/admin/change_report_form.html:12
+msgid "Total mil"
+msgstr "Antal mil"
+
+#: bocken/templates/admin/change_report_form.html:13
+msgid "Total cost"
+msgstr "Total kostnad"
+
+#: bocken/templates/admin/change_report_form.html:28
+msgid "Total"
+msgstr "Totalt"
+
+#: bocken/templates/admin/change_report_form.html:35
+msgid ""
+"Groups that are not displayed above have not driven bocken during this time "
+"period"
+msgstr ""
+"Grupper som inte visas ovan har inte kört bocken något under denna tidsperiod"
+
+#: bocken/templates/admin/change_report_form.html:37
+#: bocken/templates/admin/change_report_form.html:62
+msgid "Lost cost"
+msgstr "Förlorad kostnad"
+
+#: bocken/templates/admin/change_report_form.html:39
+msgid ""
+"Lost costs appear when a group has driven bocken but not filled in the "
+"journal afterwards. This means that it is not possible to know who should "
+"pay for those kilometers and the cost is therefore \"lost\"."
+msgstr ""
+"Förlorade kostnader uppstår när en grupp har kört bocken men glömt fylla i "
+"körjournalen efteråt. Det betyder att det inte går att avgöra vem som ska "
+"betala för dem kilometrarna och den kostnaden är därmed \"förlorad\"."
+
+#: bocken/templates/admin/change_report_form.html:44
+msgid "Total driven kilometers"
+msgstr "Totalt körda kilometer"
+
+#: bocken/templates/admin/change_report_form.html:48
+msgid "Total logged kilometers"
+msgstr "Totalt journalförda kilometer"
+
+#: bocken/templates/admin/change_report_form.html:53
+msgid "Difference"
+msgstr "Differens"
+
+#: bocken/templates/admin/change_report_form.html:72
+msgid "Save cost per mil"
+msgstr "Spara kostnad per mil"
+
+#: bocken/templates/admin/report_list.html:9
+msgid ""
+"\n"
+"Reports are a collection of all journal entries between two timestamps. "
+"These timestamps are automatically chosen so that two\n"
+"subsequent reports lie directly next to eachother i.e. the first one ends "
+"where the second one starts. This is to avoid\n"
+"gaps between the reports so that no journal entry is forgotten.\n"
+msgstr ""
+"\n"
+"Rapporter är en samanställning av alla journalinlägg mellan två "
+"tidsstämplar. Dessa tidsstämplar väljs automatiskt så att två efterliggande "
+"rapporter ligger direkt efter varandra, dvs. att den första slutar där den "
+"andra börjar. Detta är för att undvika att hål uppstår mellan rapporterna så "
+"att inga journalinlägg glöms bort.\n"
+
+#: bocken/templates/admin/report_list.html:16
+msgid ""
+"\n"
+"If a journal entry is included in a report and gets changed (updated, "
+"deleted etc.), the report will be automatically updated with that change.\n"
+msgstr ""
+"\n"
+"Om ett journalinlägg finns med i en rapport och förändras (uppdateras, tas "
+"bort etc.) kommer rapporten att automatiskt bli uppdaterad med den "
+"förändringen.\n"
+
+#: bocken/templates/admin/report_list.html:21
+msgid ""
+"\n"
+"Since reports must lie next to eachother, only the latest report can be "
+"deleted. This prevents gaps from appearing between\n"
+"two reports if an intermediate report was to be deleted.\n"
+msgstr ""
+"\n"
+"Eftersom att rapporter måste ligga direkt efter varandra kan bara den "
+"senaste rapporten tas bort. Detta förhindrar att ett hål uppstår mellan två "
+"rapporter om en mellanliggande rapport skulle tas bort.\n"
+
+#: bocken/templates/admin/report_list.html:29
+#, fuzzy
+#| msgid "Delete the latest report"
+msgid "new journal entries since the last report"
+msgstr "Radera den senaste rapporten"
+
+#: bocken/templates/journalentry_create.html:37
 msgid ""
 "Is something not working? Contact the head of the pub crew and send a copy "
 "of the details you provided above to"
 msgstr ""
 "Strular formuläret? Kontakta UTN:s klubbmästare och skicka med en kopia av "
 "informationen som du skrev in ovanför till"
+
+#: bocken/templates/journalentry_create_success.html:5
+msgid "Your journal entry has been saved!"
+msgstr "Ditt journalinlägg har sparats!"
 
 #: bocken/templates/two_level_select.html:5
 msgid ""
@@ -125,7 +404,7 @@ msgstr ""
 "hitta din grupp. Välj den huvudgrupp som din grupp tillhör and sedan din "
 "grupp."
 
-#: bocken/templates/two_level_select.html:8
+#: bocken/templates/two_level_select.html:9
 msgid "Choose a main group"
 msgstr "Välj en huvudgrupp"
 
@@ -144,3 +423,14 @@ msgstr "Ditt personnummer måste vara på formen YYYYMMDD-XXXX"
 #: bocken/validators.py:52
 msgid "Invalid personnummer"
 msgstr "Ogiltigt personnummer"
+
+#: bocken/views.py:25
+#, python-format
+msgid ""
+"Your agreement has expired! The journal entry you just created has been "
+"saved but you need to renew your agreement. Contact UTN:s Head of The "
+"Pubcrew: <a class='text-blue-700' href='mailto:%(email)s'>%(email)s</a>"
+msgstr ""
+"Ditt avtal har gått ut! Journalinlägget du nyss skapade har sparats "
+"men du måste förnya ditt avtal. Kontakta UTN:s klubbmästare: "
+"<a class='text-blue-700' href='mailto:%(email)s'>%(email)s</a>"

@@ -5,9 +5,13 @@
             {% translate 'The groups have been split up into different main groups to make it easier to find your group. Choose the main group that your group belongs to and then your group.' %}
         </p>
         <select name="main-group" id="main-group" class="mb-2 border border-solid border-gray-200 p-2 w-full">
-            <option value="" disabled {% if not initial_main_group %}selected{% endif %}>{% translate 'Choose a main group' %}</option>
-            {% for key, main_group in groups.items %}
-            <option value="{{ key }}" {% if key == initial_main_group %}selected{% endif %}>{{ main_group.verbose_name }}</option>
+            <option value="" disabled {% if not initial_main_group %}selected{% endif %}>
+                {% translate 'Choose a main group' %}
+            </option>
+            {% for main_group_name, _ in groups.items %}
+            <option value="{{ main_group_name }}" {% if main_group_name == initial_main_group %}selected{% endif %}>
+                {{ main_group_name }}
+            </option>
             {% endfor %}
         </select>
 
@@ -16,26 +20,22 @@
             id="{{ widget.attrs.id }}"
             {% if widget.attrs.required %}required{% endif %}
             class="border border-solid border-gray-200 p-2 w-full"
-        >
-        </select>
+        ></select>
     </div>
 </div>
+
+{{ groups|json_script:"groups_json"}}
 <script>
     //Isolate the code using the javascript module pattern
-    (function() {
-        // The javascript version of all groups.
-        {% autoescape off %}
-        const all_groups = {
-            {% for key, main_group in groups.items %}
-            '{{ key }}': {{ main_group }},
-            {% endfor %}
-        };
-        {% endautoescape %}
+    (function () {
+        const all_groups = JSON.parse(document.getElementById('groups_json').textContent);
 
         let initialGroup = '{% if initial_group %}{{ initial_group }}{% endif %}';
 
-        // Parses the html string 'option_string' and appends it to 'select_element'
-        function add_option(select_element, option_string){
+        /**
+         * Parses the html string 'option_string' and appends it to 'select_element'
+        */
+        function add_option(select_element, option_string) {
             const parser = new DOMParser();
             const doc = parser.parseFromString(option_string, 'text/html');
             // DOMParser adds a body tag around the option tag. To get rid of it we
@@ -43,7 +43,9 @@
             select_element.append(doc.body.firstChild);
         }
 
-        // Changes the groups depending on which main group is selected.
+        /**
+         * Changes the groups that can be selected to those that belong to the selected main group.
+        */
         function change_groups() {
             const selectedMainGroup = document.getElementById('main-group').value;
             const groupSelect = document.getElementById('{{ widget.attrs.id }}');
@@ -51,31 +53,31 @@
             // Empty the current groups in the select tag
             groupSelect.innerHTML = "";
 
-            // The "choose your group" option should only be selected when the user switches main group.
-            // When the page loads the "choose your group" should only be selected if no group was chosen
-            // in the previous request (this occurs when a user has selected a group but some other field
-            // was invalid)
-            const selected = !initialGroup ? 'selected': '';
+            // Add a default "Choose your group" choice. This option should only be selected
+            // if no there is no initial group
+            const selected = !initialGroup ? 'selected' : '';
             add_option(groupSelect, "<option value='' disabled " + selected + ">{% translate 'Choose your group' %}</option>")
 
-            // For each group in the selected main group,
-            // only add the groups that belong to that main group
+            // If a main group has been selected, the groups select is populated with the groups
+            // that belong to the selected main group. If there is an initial group, it is selected
+            // by default
             if (selectedMainGroup) {
-                const groupsInSelectedMainGroup = all_groups[selectedMainGroup].groups;
+                const groupsInSelectedMainGroup = all_groups[selectedMainGroup];
                 for (let index in groupsInSelectedMainGroup) {
                     const group = groupsInSelectedMainGroup[index];
-                    const selected = group[0] == initialGroup ? 'selected': '';
+                    const selected = group[0] == initialGroup ? 'selected' : '';
                     add_option(groupSelect, `<option value='${group[0]}' ${selected}>${group[1]}</option>`);
                 }
             }
 
-            // Remove the initial group since it should only be loaded once on load
+            // Remove the initial group since it should only be used when the page loads.
+            // If it is not removed it can select the wrong group when switching main group
             initialGroup = "";
         }
 
-        // The groups are filled on load and when a user selects a new main group.
+        // The groups are filled when the page loads and when a user selects a new main group.
         // It is runned on load to allow the choice from the last request to be automatically
-        // selected.
+        // selected. This can happen if one of the fields were invalid.
         document.addEventListener('DOMContentLoaded', change_groups);
         document.getElementById('main-group').addEventListener('change', change_groups);
     })();

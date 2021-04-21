@@ -12,8 +12,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
-import sys, os
+import sys
+import os
 from django.utils.translation import gettext_lazy as _
+from django.contrib.messages import constants as messages
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -24,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.humanize',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -31,7 +34,10 @@ INSTALLED_APPS = [
     'fontawesome_5',
     'bocken',
     'tailwind',
-    'utn_tailwind_theme'
+    'utn_tailwind_theme',
+    'mathfilters',
+    'django_object_actions',
+    'captcha'
 ]
 
 MIDDLEWARE = [
@@ -58,6 +64,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'bocken.context_processors.sitesettings',
+                'bocken.context_processors.klubbmastare_email'
             ],
         },
     },
@@ -80,7 +88,7 @@ else:
             'USER': config('DJANGO_DB_USER', default='bocken'),
             'PASSWORD': config('DJANGO_DB_PASS', default=''),
             'HOST': config('DJANGO_DB_HOST', default='127.0.0.1'),
-            'PORT':  config('DJANGO_DB_PORT', default='5432'),
+            'PORT': config('DJANGO_DB_PORT', default='5432'),
         }
     }
 
@@ -135,3 +143,19 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 AUTH_USER_MODEL = 'bocken.Admin'
 
 TAILWIND_APP_NAME = 'utn_tailwind_theme'
+
+COST_PER_MIL_DEFAULT = 20
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MESSAGE_TAGS = {
+    messages.WARNING: 'bg-yellow-300 mb-4 p-4 rounded',
+}
+
+KLUBBMASTARE_EMAIL = 'klubbmastare@utn.se'
+
+SERVER_EMAIL = 'admin@utn.se'
+
+EMAIL_SUBJECT_PREFIX = '[Automatic message from bocken journal system] - '
+
+ADMINS = [('KM', KLUBBMASTARE_EMAIL)]

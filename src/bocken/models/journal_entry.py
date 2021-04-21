@@ -1,12 +1,8 @@
 from django.db import models
-from ..constants import (
-    JOURNAL_ENTRY_COMMITTEES_WORKGROUPS,
-    JOURNAL_ENTRY_COOPERATINS,
-    JOURNAL_ENTRY_FUM,
-    JOURNAL_ENTRY_LG_AND_BOARD,
-    JOURNAL_ENTRY_OTHER_OFFICIALS,
-    JOURNAL_ENTRY_SECTIONS,
-)
+from django.utils.formats import date_format
+from django.utils.translation import gettext_lazy as _
+# Report must be imported like this to avoid circular import
+import bocken.models.report as report
 
 
 class JournalEntry(models.Model):
@@ -17,35 +13,85 @@ class JournalEntry(models.Model):
     that describes how far they have driven
     """
 
-    agreement = models.ForeignKey("Agreement", on_delete=models.PROTECT)
-    group = models.CharField(
-        max_length=120,
-        choices=(
-            JOURNAL_ENTRY_COMMITTEES_WORKGROUPS +
-            JOURNAL_ENTRY_COOPERATINS +
-            JOURNAL_ENTRY_FUM +
-            JOURNAL_ENTRY_LG_AND_BOARD +
-            JOURNAL_ENTRY_OTHER_OFFICIALS +
-            JOURNAL_ENTRY_SECTIONS
-        )
+    agreement = models.ForeignKey(
+        "Agreement",
+        on_delete=models.PROTECT,
+        verbose_name=_("Agreement")
     )
-    meter_start = models.PositiveIntegerField()
-    meter_stop = models.PositiveIntegerField()
-    total_distance = models.PositiveIntegerField()
-    created = models.DateTimeField(auto_now_add=True)
+    group = models.ForeignKey(
+        "JournalEntryGroup",
+        on_delete=models.PROTECT,
+        verbose_name=_("Group")
+    )
+    meter_start = models.PositiveIntegerField(
+        verbose_name=_("Meter at start")
+    )
+    meter_stop = models.PositiveIntegerField(
+        verbose_name=_("Meter at stop")
+    )
+    created = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name=_('Created')
+    )
 
-    def calculate_total_distance(self):
+    class Meta:
+        verbose_name = _("Journal Entry")
+        verbose_name_plural = _("Journal Entries")
+        get_latest_by = "created"
+
+    def __str__(self):  # noqa
+        return "{} - {}".format(
+            self.created_formatted,
+            self.agreement.name
+        )
+
+    @property
+    def created_formatted(self):
+        """Return the created date in the correct format."""
+        return date_format(self.created, format='j F Y H:i')
+
+    def get_total_distance(self):
         """Calculate the total distance driven."""
         return self.meter_stop - self.meter_start
+    get_total_distance.short_description = _("Driven Distance (km)")
+
+    @staticmethod
+    def entries_exists():
+        """
+        Check if there exists any journal entries.
+
+        Returns True if there are not journal entries in the database,
+        False otherwise
+        """
+        return JournalEntry.objects.exists()
 
     @staticmethod
     def get_latest_entry():
         """Get the entry that was last created."""
         try:
-            return JournalEntry.objects.latest('created')
+            return JournalEntry.objects.latest()
         except JournalEntry.DoesNotExist:
             return None
 
-    def save(self, *args, **kwargs): # noqa
-        self.total_distance = self.calculate_total_distance()
-        super(JournalEntry, self).save(*args, **kwargs)
+    @staticmethod
+    def get_entries_between(start, end):
+        """
+        Get all entries between the timestamps start and end.
+
+        Returns all journal entries within the time range. All journal entries
+        that are equal to start or end are included.
+        """
+        entries = JournalEntry.objects.filter(
+            created__range=(start, end)
+        )
+        return entries
+
+    @staticmethod
+    def get_entries_since_last_report_amount():
+        """Get the number of new entries since the last report."""
+        latest_report = report.Report.get_latest_report()
+        entries = JournalEntry.objects.exclude(
+            created__lte=latest_report.created
+        )
+
+        return entries.count()

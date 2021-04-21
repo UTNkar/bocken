@@ -16,8 +16,23 @@
             <div class="flex mb-4 justify-end">
                 {% include 'switch_language_button.html' %}
             </div>
-            {% block body %}
-            {% endblock %}
+            <div class="flex flex-col bg-white p-4">
+                {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                        {% if 'safe' in message.tags %}
+                            {{ message|safe }}
+                        {% else %}
+                            {{ message }}
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                {% block body %}
+                {% endblock %}
+            </div>
         </main>
     </body>
     {% block extra_js %}

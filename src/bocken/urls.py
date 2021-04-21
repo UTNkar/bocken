@@ -19,6 +19,13 @@ from bocken import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('add_entry/', views.JournalEntryCreate.as_view(), name='add-entry'),
+    path('add_entry/', include([
+        path('', views.JournalEntryCreate.as_view(), name='add-entry'),
+        path(
+            'success',
+            views.JournalEntryCreateSuccess.as_view(),
+            name='add-entry-success'
+        )
+    ])),
     path('i18n/', include('django.conf.urls.i18n')),
 ]

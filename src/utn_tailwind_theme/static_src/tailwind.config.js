@@ -21,7 +21,11 @@ module.exports = {
         minHeight: {
             '3': '3rem',
             ...defaultTheme.minHeight
-        }
+        },
+        backgroundColor: theme => ({
+            ...theme('colors'),
+            'limegreen': 'limegreen'
+        })
     },
     variants: {
         extend: {},

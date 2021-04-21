@@ -16,7 +16,8 @@ class Agreement(models.Model):
 
     name = models.CharField(
         max_length=120,
-        verbose_name=_("Name")
+        verbose_name=_("Name"),
+        help_text=_("First and last name")
     )
 
     personnummer = models.CharField(
@@ -38,12 +39,17 @@ class Agreement(models.Model):
     email = models.EmailField(
         unique=True,
         blank=True,
-        null=True
+        null=True,
+        help_text=_(
+            "The person's private email. Should not be an email ending in "
+            "@utn.se."
+        ),
     )
 
     expires = models.DateField(
         verbose_name=_("Valid until"),
-        default=now().date() + timedelta(days=365)
+        default=now().date() + timedelta(days=365),
+        help_text=_("Agreements are valid for 1 year by default.")
     )
 
     class Meta:

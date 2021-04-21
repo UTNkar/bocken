@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-19 17:03+0200\n"
+"POT-Creation-Date: 2021-04-21 17:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,31 +26,31 @@ msgstr "Lösenorden matchar inte"
 msgid "<a href=\"../password/\">Change the user's password here</a>."
 msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
 
-#: bocken/admin.py:175
+#: bocken/admin.py:176
 msgid "Delete latest report"
 msgstr "Radera senaste rapporten"
 
-#: bocken/admin.py:176
+#: bocken/admin.py:177
 msgid "Delete the latest report"
 msgstr "Radera den senaste rapporten"
 
-#: bocken/forms.py:22
+#: bocken/forms.py:24
 msgid "Your personnummer"
 msgstr "Ditt personnummer"
 
-#: bocken/forms.py:27
+#: bocken/forms.py:29
 msgid "I confirm that Bocken is clean and in good shape"
 msgstr "Jag intygar att Bocken är i gott skick"
 
-#: bocken/forms.py:39
+#: bocken/forms.py:43
 msgid "Trip meter at start"
 msgstr "Mätare vid start"
 
-#: bocken/forms.py:46
+#: bocken/forms.py:50
 msgid "Trip meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/forms.py:59
+#: bocken/forms.py:63
 msgid ""
 "Not sure which group to choose? Choose the group that seems most reasonable "
 "to be paying for your trip."
@@ -58,7 +58,7 @@ msgstr ""
 "Osäker på vilken grupp du ska välja? Välj den grupp som känns mest rimlig "
 "att betala din resa"
 
-#: bocken/forms.py:63
+#: bocken/forms.py:67
 msgid ""
 "Trip meter at start is filled in automatically from the latest entry. If the "
 "number is not correct, enter the value that the meter had when you started "
@@ -68,12 +68,12 @@ msgstr ""
 "inte stämmer, skriv in det värde som mätaren hade när du började köra samt "
 "informera UTN:s klubbmästare."
 
-#: bocken/forms.py:106
+#: bocken/forms.py:110
 msgid "Trip meter at start must be larger than the last entry in the journal"
 msgstr ""
 "Tripmätare vid start måste vara större än det senaste inlägget i körjournalen"
 
-#: bocken/forms.py:128
+#: bocken/forms.py:132
 msgid ""
 "You don't have a written agreement which you must have to drive bocken. "
 "Contact the head of the pub crew and send a copy of the details you wrote "
@@ -83,22 +83,26 @@ msgstr ""
 "UTN:s klubbmästare och skicka med en kopia av detaljerna som du skrev in i "
 "fälten nedan."
 
-#: bocken/forms.py:138
+#: bocken/forms.py:142
 msgid "Trip meter at stop must be larger than the trip meter at start"
 msgstr "Tripmätare vid stop måste vara större än trippmätare vid start"
 
-#: bocken/forms.py:166
+#: bocken/forms.py:170
 msgid "Can not create a report because there are no journal entries"
 msgstr ""
 "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg"
 
-#: bocken/forms.py:179
+#: bocken/forms.py:183
 msgid ""
 "Can not create a report because there are no journal entries between these "
 "two timestamps"
 msgstr ""
 "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg "
 "mellan dessa tidstämplar"
+
+#: bocken/forms.py:198 bocken/models/agreement.py:44
+msgid "The person's private email. Should not be an email ending in @utn.se."
+msgstr "Personens privata email. Ska inte vara en email som slutar med @utn.se"
 
 #: bocken/models/admin.py:38
 msgid "Admin"
@@ -108,27 +112,31 @@ msgstr "Administratör"
 msgid "Admins"
 msgstr "Administratörer"
 
-#: bocken/models/agreement.py:19
-msgid "Agreement number"
-msgstr "Avtalsnummer"
-
-#: bocken/models/agreement.py:23 bocken/models/group.py:10
+#: bocken/models/agreement.py:19 bocken/models/group.py:10
 msgid "Name"
 msgstr "Namn"
 
-#: bocken/models/agreement.py:33
+#: bocken/models/agreement.py:20
+msgid "First and last name"
+msgstr "För- och efternamn"
+
+#: bocken/models/agreement.py:32
 msgid "Phonenumber"
 msgstr "Telefonnummer"
 
-#: bocken/models/agreement.py:47
+#: bocken/models/agreement.py:50
 msgid "Valid until"
 msgstr "Giltig t.o.m"
 
-#: bocken/models/agreement.py:51 bocken/models/journal_entry.py:19
+#: bocken/models/agreement.py:52
+msgid "Agreements are valid for 1 year by default."
+msgstr "Avtal är giltiga i 1 år som standard"
+
+#: bocken/models/agreement.py:56 bocken/models/journal_entry.py:19
 msgid "Agreement"
 msgstr "Köravtal"
 
-#: bocken/models/agreement.py:52
+#: bocken/models/agreement.py:57
 msgid "Agreements"
 msgstr "Köravtal"
 
@@ -221,11 +229,11 @@ msgstr "Rapporter"
 msgid "Site settings"
 msgstr "Sidinställningar"
 
-#: bocken/settings/base.py:121
+#: bocken/settings/base.py:123
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:122
+#: bocken/settings/base.py:124
 msgid "English"
 msgstr "Engelska"
 
@@ -283,7 +291,7 @@ msgid "OBS! The starting fee is not included in the total cost!"
 msgstr "OBS! Startavgiften är inte inkluderad i den totala kostnaden!"
 
 #: bocken/templates/admin/change_report_form.html:11
-#: bocken/templates/journalentry_create.html:11
+#: bocken/templates/journalentry_create.html:16
 msgid "Total kilometers"
 msgstr "Antal kilometer"
 
@@ -377,12 +385,10 @@ msgstr ""
 "rapporter om en mellanliggande rapport skulle tas bort.\n"
 
 #: bocken/templates/admin/report_list.html:29
-#, fuzzy
-#| msgid "Delete the latest report"
 msgid "new journal entries since the last report"
-msgstr "Radera den senaste rapporten"
+msgstr "nya journalinlägg sen den senaste rapporten"
 
-#: bocken/templates/journalentry_create.html:37
+#: bocken/templates/journalentry_create.html:45
 msgid ""
 "Is something not working? Contact the head of the pub crew and send a copy "
 "of the details you provided above to"
@@ -424,13 +430,13 @@ msgstr "Ditt personnummer måste vara på formen YYYYMMDD-XXXX"
 msgid "Invalid personnummer"
 msgstr "Ogiltigt personnummer"
 
-#: bocken/views.py:25
+#: bocken/views.py:27
 #, python-format
 msgid ""
 "Your agreement has expired! The journal entry you just created has been "
 "saved but you need to renew your agreement. Contact UTN:s Head of The "
 "Pubcrew: <a class='text-blue-700' href='mailto:%(email)s'>%(email)s</a>"
 msgstr ""
-"Ditt avtal har gått ut! Journalinlägget du nyss skapade har sparats "
-"men du måste förnya ditt avtal. Kontakta UTN:s klubbmästare: "
-"<a class='text-blue-700' href='mailto:%(email)s'>%(email)s</a>"
+"Ditt avtal har gått ut! Journalinlägget du nyss skapade har sparats men du "
+"måste förnya ditt avtal. Kontakta UTN:s klubbmästare: <a class='text-"
+"blue-700' href='mailto:%(email)s'>%(email)s</a>"

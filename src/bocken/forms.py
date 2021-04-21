@@ -192,7 +192,13 @@ class AgreementForm(ModelForm):
     # Email is set to required in this form so that new agreements
     # are created with emails. TODO: When all agreements have an email
     # this can be removed and the agreement model can be changed as well.
-    email = forms.EmailField(required=True)
+    email = forms.EmailField(
+        required=True,
+        help_text=_(
+            "The person's private email. Should not be an email ending in "
+            "@utn.se."
+        ),
+    )
 
     class Meta:
         model = Agreement

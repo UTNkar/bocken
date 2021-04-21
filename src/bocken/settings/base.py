@@ -36,7 +36,8 @@ INSTALLED_APPS = [
     'tailwind',
     'utn_tailwind_theme',
     'mathfilters',
-    'django_object_actions'
+    'django_object_actions',
+    'captcha'
 ]
 
 MIDDLEWARE = [

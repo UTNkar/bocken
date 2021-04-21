@@ -96,7 +96,8 @@ class JournalEntryFormTestCase(TestCase):
             'group': self.group.id,
             'meter_start': 45,
             'meter_stop': 49,
-            'confirm': True
+            'confirm': True,
+            'g-recaptcha-response': 'PASSED'
         }
         form = JournalEntryForm(form_data)
         self.assertTrue(form.is_valid())
@@ -119,7 +120,8 @@ class JournalEntryFormTestCase(TestCase):
             'group': self.group.id,
             'meter_start': 45,
             'meter_stop': 49,
-            'confirm': True
+            'confirm': True,
+            'g-recaptcha-response': 'PASSED'
         }
         form = JournalEntryForm(form_data)
         self.assertTrue(form.is_valid())

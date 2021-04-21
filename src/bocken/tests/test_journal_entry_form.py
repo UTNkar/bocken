@@ -145,7 +145,8 @@ class JournalEntryFormTestCase(TestCase):
             'group': self.group.id,
             'meter_start': 45,
             'meter_stop': 49,
-            'confirm': True
+            'confirm': True,
+            'g-recaptcha-response': 'PASSED'
         }
         response = self.client.post(
             reverse('add-entry'), form_data, follow=True

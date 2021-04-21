@@ -3,7 +3,7 @@ from bocken.validators import validate_phonenumber, validate_personnummer
 from ..utils import format_personnummer
 from ..fields import PhonenumberField
 from django.utils.translation import gettext_lazy as _
-from django.utils.timezone import now
+from django.utils.timezone import now, timedelta
 
 
 class Agreement(models.Model):
@@ -14,19 +14,17 @@ class Agreement(models.Model):
     for 1 year. After that year they have to sign a new agreement.
     """
 
-    number = models.IntegerField(
-        primary_key=True,
-        verbose_name=_("Agreement number")
-    )
     name = models.CharField(
         max_length=120,
         verbose_name=_("Name")
     )
+
     personnummer = models.CharField(
         max_length=13,
         validators=[validate_personnummer],
         unique=True
     )
+
     phonenumber = PhonenumberField(
         max_length=20,
         validators=[validate_phonenumber],
@@ -42,7 +40,7 @@ class Agreement(models.Model):
         blank=True,
         null=True
     )
-    # TODO: add default 1 year
+
     expires = models.DateField(
         verbose_name=_("Valid until")
     )

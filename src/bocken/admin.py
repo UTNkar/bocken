@@ -128,6 +128,7 @@ class AgreementAdmin(ModelAdmin):
         'name', 'personnummer', 'phonenumber',
         'email', 'expires_colored'
     )
+    search_fields = ['name', 'personnummer']
 
 
 class ReportAdmin(DjangoObjectActions, ModelAdmin):

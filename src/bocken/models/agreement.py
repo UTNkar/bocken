@@ -72,6 +72,11 @@ class Agreement(models.Model):
         return self.expires <= now().date()
 
     def expires_colored(self):
+        """
+        Color the expires field red if the agreement has expired.
+
+        This is used in the admin pages.
+        """
         if self.has_expired():
             return format_html(
                 (

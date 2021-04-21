@@ -15,4 +15,7 @@ SECRET_KEY = config(
 # TODO: is this needed?
 BASE_URL = 'http://localhost:8000'
 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
+

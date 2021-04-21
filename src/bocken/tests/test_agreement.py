@@ -9,7 +9,6 @@ class AgreementTestCase(TestCase):
     def test_has_expired(self):
         """Test if an agreement has expired."""
         agreement = Agreement.objects.create(
-            number=1,
             name="Name Nameson",
             personnummer="19980101-3039",
             email="mail@mail.se",
@@ -21,7 +20,6 @@ class AgreementTestCase(TestCase):
     def test_has_not_expired(self):
         """Test if an agreement has not expired."""
         agreement = Agreement.objects.create(
-            number=1,
             name="Name Nameson",
             personnummer="19980101-3039",
             email="mail@mail.se",

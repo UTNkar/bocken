@@ -9,7 +9,6 @@ class ReportTestCase(TestCase):
 
     def setUp(self):  # noqa
         self.agreement = Agreement.objects.create(
-            number=1,
             name="Name name",
             personnummer="980101-3039",
             phonenumber="0733221122",

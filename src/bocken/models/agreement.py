@@ -56,6 +56,12 @@ class Agreement(models.Model):
     class Meta:
         verbose_name = _("Agreement")
         verbose_name_plural = _("Agreements")
+        ordering = ('name',)
+        indexes = [
+            models.Index(
+                fields=['name', 'personnummer']
+            )
+        ]
 
     def __str__(self):  # noqa
         return "{} - {}".format(self.name, self.personnummer)

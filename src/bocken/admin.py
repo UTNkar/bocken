@@ -124,7 +124,10 @@ class AgreementAdmin(ModelAdmin):
     """Custom class for the admin pages for Agreement."""
 
     form = AgreementForm
-    list_display = ('name', 'personnummer', 'phonenumber', 'email', 'expires')
+    list_display = (
+        'name', 'personnummer', 'phonenumber',
+        'email', 'expires_colored'
+    )
 
 
 class ReportAdmin(DjangoObjectActions, ModelAdmin):

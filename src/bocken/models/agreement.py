@@ -4,6 +4,7 @@ from ..utils import format_personnummer
 from ..fields import PhonenumberField
 from django.utils.translation import gettext_lazy as _
 from django.utils.timezone import now, timedelta
+from django.utils.html import format_html
 
 
 class Agreement(models.Model):
@@ -62,6 +63,21 @@ class Agreement(models.Model):
     def has_expired(self):
         """Check if an agreement has expired."""
         return self.expires <= now().date()
+
+    def expires_colored(self):
+        if self.has_expired():
+            return format_html(
+                (
+                    '<p '
+                    'style="background: rgb(220, 38, 38);'
+                    'color: white; margin:0;'
+                    '">{}</p>'
+                ),
+                self.expires
+            )
+        else:
+            return self.expires
+    expires_colored.admin_order_field = 'expires'
 
     def save(self, *args, **kwargs):  # noqa
         self.personnummer = format_personnummer(self.personnummer)

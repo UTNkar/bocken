@@ -159,3 +159,7 @@ SERVER_EMAIL = 'admin@utn.se'
 EMAIL_SUBJECT_PREFIX = '[Automatic message from bocken journal system] - '
 
 ADMINS = [('KM', KLUBBMASTARE_EMAIL)]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]

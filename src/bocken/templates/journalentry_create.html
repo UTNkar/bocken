@@ -28,7 +28,7 @@
             <label for="{{ field.id_for_label }}" class="absolute flex justify-center items-center text-xl w-8 h-full">{% fa5_icon field.label %}</label>
             {{ field|add_class:"flex-1 flex justify-center font-extralight text-lg min-h-3 pl-8" }}
         </div>
-        
+
         {% if field.errors %}
             {% for error in field.errors %}
                 <p class="text-xs text-red-600">{{ error }}</p>

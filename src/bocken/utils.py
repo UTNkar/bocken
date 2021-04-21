@@ -1,4 +1,5 @@
 from personnummer import personnummer as pn
+from math import ceil
 
 
 def personnummer_is_t_number(personnummer):
@@ -27,3 +28,12 @@ def format_personnummer(personnummer):
         # All logic regarding the t-numbers are handled in the
         # personnummer validator so here we just return the personnummer.
         return personnummer
+
+
+def kilometers_to_mil(kilometers: int):
+    """
+    Convert kilometers to mil.
+
+    The result is rounded up since groups pay for every started mil.
+    """
+    return ceil(kilometers / 10)

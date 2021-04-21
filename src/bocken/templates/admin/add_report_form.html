@@ -1,0 +1,56 @@
+{# Override the default admin template #}
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls %}
+{% block title %}{% translate 'Create report' %} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block content_title %}
+<h1>{% translate 'Create report' %}</h1>
+{% endblock %}
+
+{# This block is copied from the parent template but changed to have a different title. It's the easiest way to do it #}
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">{% translate 'Home' %}</a>
+    &rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+    &rsaquo;
+    {% if has_view_permission %}
+    <a href="{% url opts|admin_urlname:'changelist' %}">{{opts.verbose_name_plural|capfirst }}</a>
+    {% else %}
+    {{ opts.verbose_name_plural|capfirst }}
+    {% endif %}
+    &rsaquo;
+    {% if add %}
+    {% translate 'Create report' %}
+    {% else%}
+    {{ original|truncatewords:"18" }}
+    {% endif %}
+</div>
+{% endblock %}
+{% endif %}
+
+{% block submit_buttons_bottom %}
+{% if no_entries %}
+{% translate 'A report can not be created since there are no journal entries' %}
+{% elif not entries.exists %}
+{% translate 'A report can not be created since there are no new journal entries since the latest report' %}
+{% else %}
+{% translate 'The new report will include all journal entries between the following times' %}
+<p>{{ first|date:"j F Y H:i" }} - {{ last|date:"j F Y H:i" }}</p>
+<p>
+{% blocktranslate %}
+The times are chosen automatically to prevent gaps from occuring between reports. The start time is
+chosen as the end time of the previous report. If there are no reports, it takes the time of the first journal entry.
+The end time is always the current time.
+{% endblocktranslate %}
+</p>
+<input type="submit" value="Skapa">
+{% endif %}
+{% endblock %}
+
+{% block field_sets %}
+{# Only display form fields if there are any entries and there are entries in this report #}
+{% if not no_entries and entries.exists %}
+{{ block.super }}
+{% endif %}
+{% endblock %}

@@ -2,7 +2,7 @@ from django.forms import (
     ModelForm, TextInput, BooleanField, CharField, CheckboxInput
 )
 from django.core.exceptions import ValidationError
-from .models import JournalEntry, Agreement
+from .models import JournalEntry, Agreement, Report
 from .validators import validate_personnummer
 from .utils import format_personnummer
 from .widgets import TwoLevelSelect
@@ -109,7 +109,7 @@ class JournalEntryForm(ModelForm):
 
         return self.cleaned_data['meter_start']
 
-    def clean(self): # noqa
+    def clean(self):  # noqa
         cleaned_data = super(JournalEntryForm, self).clean()
 
         # Find the corresponding agreement. If the personnummer is not
@@ -140,3 +140,43 @@ class JournalEntryForm(ModelForm):
             ))
 
         return cleaned_data
+
+
+class ReportForm(ModelForm):
+    """
+    Form for creating a report in the admin pages.
+
+    First and last are created automatically while cost per mil is set in
+    the form.
+    """
+
+    class Meta:
+        model = Report
+        fields = ['cost_per_mil']
+
+    def clean(self):  # noqa
+        super(ReportForm, self).clean()
+
+        # If there is no primary key on the instance we are creating
+        # a new report
+        if not self.instance.pk:
+            if not JournalEntry.entries_exists():
+                raise ValidationError(
+                    _(
+                        "Can not create a report because "
+                        "there are no journal entries"
+                    )
+                )
+
+            first, last, entries = Report.get_new_report_details()
+
+            if entries:
+                self.instance.first = first
+                self.instance.last = last
+            else:
+                raise ValidationError(
+                    _(
+                        "Can not create a report because there are no "
+                        "journal entries between these two timestamps"
+                    )
+                )

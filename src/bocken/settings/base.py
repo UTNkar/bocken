@@ -12,7 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 from decouple import config
-import sys, os
+import sys
+import os
 from django.utils.translation import gettext_lazy as _
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.humanize',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -31,7 +33,9 @@ INSTALLED_APPS = [
     'fontawesome_5',
     'bocken',
     'tailwind',
-    'utn_tailwind_theme'
+    'utn_tailwind_theme',
+    'mathfilters',
+    'django_object_actions'
 ]
 
 MIDDLEWARE = [
@@ -58,6 +62,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'bocken.context_processors.sitesettings'
             ],
         },
     },
@@ -80,7 +85,7 @@ else:
             'USER': config('DJANGO_DB_USER', default='bocken'),
             'PASSWORD': config('DJANGO_DB_PASS', default=''),
             'HOST': config('DJANGO_DB_HOST', default='127.0.0.1'),
-            'PORT':  config('DJANGO_DB_PORT', default='5432'),
+            'PORT': config('DJANGO_DB_PORT', default='5432'),
         }
     }
 
@@ -135,3 +140,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 AUTH_USER_MODEL = 'bocken.Admin'
 
 TAILWIND_APP_NAME = 'utn_tailwind_theme'
+
+COST_PER_MIL_DEFAULT = 20

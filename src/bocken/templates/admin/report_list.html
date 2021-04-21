@@ -1,0 +1,33 @@
+{# We extend the change list template provided by django object actions so that we both #}
+{# can display the buttons by django object actions but also extend the default change list template #}
+{% extends "django_object_actions/change_list.html" %}
+{% load i18n %}
+
+{% block content_title %}
+{{ block.super }}
+<p style="width: 50%;">
+{% blocktranslate %}
+Reports are a collection of all journal entries between two timestamps. These timestamps are automatically chosen so that two
+subsequent reports lie directly next to eachother i.e. the first one ends where the second one starts. This is to avoid
+gaps between the reports so that no journal entry is forgotten.
+{% endblocktranslate %}
+<br>
+<br>
+{% blocktranslate %}
+If a journal entry is included in a report and gets changed (updated, deleted etc.), the report will be automatically updated with that change.
+{% endblocktranslate %}
+<br>
+<br>
+{% blocktranslate %}
+Since reports must lie next to eachother, only the latest report can be deleted. This prevents gaps from appearing between
+two reports if an intermediate report was to be deleted.
+{% endblocktranslate %}
+</p>
+
+<p style="background: #79aec8; color:white; display: inline-block; padding: 1em">
+    <b style="font-size: 1.5rem;">{{ new_journal_entries }}</b>
+    {% translate 'new journal entries since the last report' %}
+</p>
+
+
+{% endblock %}

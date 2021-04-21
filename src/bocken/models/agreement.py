@@ -5,6 +5,7 @@ from ..fields import PhonenumberField
 from django.utils.translation import gettext_lazy as _
 from django.utils.timezone import now, timedelta
 from django.utils.html import format_html
+from django.template.defaultfilters import date
 
 
 class Agreement(models.Model):
@@ -76,10 +77,10 @@ class Agreement(models.Model):
                 (
                     '<p '
                     'style="background: rgb(220, 38, 38);'
-                    'color: white; margin:0;'
+                    'color: white; margin:0; padding:0;'
                     '">{}</p>'
                 ),
-                self.expires
+                date(self.expires),  # Format the date correctly
             )
         else:
             return self.expires

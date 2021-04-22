@@ -284,7 +284,7 @@ msgstr ""
 "Tiderna väljs automatiskt för att unvika att hål uppstår mellan rapporter. "
 "Starttiden sätts till sluttiden av den senaste rapporten. Om det inte finns "
 "några rapporter sätts starttiden till tiden då det första journalinlägget "
-"skapades. Sluttiden sätts alltid den nuvarande tiden.\n"
+"skapades. Sluttiden sätts alltid till den nuvarande tiden.\n"
 
 #: bocken/templates/admin/change_report_form.html:7
 msgid "OBS! The starting fee is not included in the total cost!"

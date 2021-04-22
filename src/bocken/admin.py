@@ -240,6 +240,7 @@ class JournalEntryGroupAdmin(ModelAdmin):
 
     list_display = ("name", "main_group")
     ordering = ("main_group", "name")
+    list_filter = ['main_group']
 
 
 admin.site.register(Admin, UserAdmin)

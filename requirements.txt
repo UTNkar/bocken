@@ -30,3 +30,6 @@ django-object-actions==3.0.1
 
 # Add recapthca to forms
 django-recaptcha==2.0.6
+
+# Creating background tasks with cron
+django-cron==0.5.1

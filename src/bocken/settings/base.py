@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'utn_tailwind_theme',
     'mathfilters',
     'django_object_actions',
-    'captcha'
+    'captcha',
+    'django_cron'
 ]
 
 MIDDLEWARE = [
@@ -161,4 +162,8 @@ ADMINS = [('KM', KLUBBMASTARE_EMAIL)]
 
 INTERNAL_IPS = [
     "127.0.0.1",
+]
+
+CRON_CLASSES = [
+    "bocken.cron.DeleteOldReportsCronJob",
 ]

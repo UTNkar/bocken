@@ -9,6 +9,7 @@ from ..utils import kilometers_to_mil
 from django.conf import settings
 # Journal entry must be imported like this to avoid circular import
 import bocken.models.journal_entry as journal_entry
+from dateutil.relativedelta import relativedelta
 
 
 class Report(models.Model):
@@ -222,3 +223,21 @@ class Report(models.Model):
             return Report.objects.latest()
         except Report.DoesNotExist:
             return None
+
+    @staticmethod
+    def delete_older_than_one_year():
+        """
+        Delete all reports that are older than one year.
+
+        Also deletes all journal entries in those reports.
+        """
+        one_year_ago = timezone.now() - relativedelta(years=1)
+        reports_to_delete = Report.objects.filter(
+            created__date__lte=one_year_ago
+        )
+
+        # Delete all related journal entries
+        for report in reports_to_delete:
+            report.get_entries().delete()
+
+        reports_to_delete.delete()

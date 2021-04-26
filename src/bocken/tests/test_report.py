@@ -2,6 +2,7 @@ from django.test import TestCase
 from ..models import JournalEntry, Agreement, JournalEntryGroup, Report
 from django.utils import timezone
 from datetime import timedelta
+from dateutil.relativedelta import relativedelta
 
 
 class ReportTestCase(TestCase):
@@ -141,3 +142,39 @@ class ReportTestCase(TestCase):
         lost_cost = report.calculate_lost_cost()
         self.assertEqual(lost_cost['lost_kilometers'], 10),
         self.assertEqual(lost_cost['lost_cost'], 20)
+
+    def test_delete_old_reports(self):
+        """Test deleting an old report."""
+        # Create an old report
+        first, last, _ = Report.get_new_report_details()
+        report = Report.objects.create(
+            first=first, last=last, cost_per_mil=20
+        )
+        report.created = timezone.now() - relativedelta(years=1, days=1)
+        report.save()
+
+        self.assertEqual(Report.objects.count(), 1)
+
+        # Create a new report to make sure new ones aren't deleted
+        JournalEntry.objects.create(
+            agreement=self.agreement,
+            group=self.group1,
+            meter_start=60,
+            meter_stop=70
+        )
+
+        first, last, _ = Report.get_new_report_details()
+        report_new = Report.objects.create(
+            first=first, last=last, cost_per_mil=20
+        )
+
+        self.assertEqual(Report.objects.count(), 2)
+        # Check that all journal entries in the report are deleted to
+        self.assertEqual(JournalEntry.objects.count(), 7)
+
+        Report.delete_older_than_one_year()
+        self.assertEqual(Report.objects.count(), 1)
+        self.assertEqual(JournalEntry.objects.count(), 1)
+
+        # Check that the new report still exists
+        self.assertTrue(Report.objects.filter(pk=report_new.pk).exists())

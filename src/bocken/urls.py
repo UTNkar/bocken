@@ -18,6 +18,7 @@ from django.urls import include, path
 from bocken import views
 
 urlpatterns = [
+    path('', views.StartPage.as_view(), name='start-page'),
     path('admin/', admin.site.urls),
     path('add_entry/', include([
         path('', views.JournalEntryCreate.as_view(), name='add-entry'),

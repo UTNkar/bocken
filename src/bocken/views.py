@@ -77,3 +77,9 @@ class JournalEntryCreateSuccess(TemplateView):
     """The success view when a valid journal entry was submitted."""
 
     template_name = 'journalentry_create_success.html'
+
+
+class StartPage(TemplateView):
+    """The start page."""
+
+    template_name = 'start_page.html'

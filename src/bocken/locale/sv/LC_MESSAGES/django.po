@@ -51,23 +51,6 @@ msgid "Trip meter at stop"
 msgstr "Mätare vid stop"
 
 #: bocken/forms.py:63
-#: bocken/forms.py:23
-msgid "Your personnummer"
-msgstr "Ditt personnummer"
-
-#: bocken/forms.py:28
-msgid "I confirm that Bocken is clean and in good shape"
-msgstr "Jag intygar att Bocken är i gott skick"
-
-#: bocken/forms.py:42
-msgid "Trip meter at start"
-msgstr "Mätare vid start"
-
-#: bocken/forms.py:49
-msgid "Trip meter at stop"
-msgstr "Mätare vid stop"
-
-#: bocken/forms.py:62
 msgid ""
 "Not sure which group to choose? Choose the group that seems most reasonable "
 "to be paying for your trip."
@@ -310,7 +293,7 @@ msgstr ""
 "Tiderna väljs automatiskt för att unvika att hål uppstår mellan rapporter. "
 "Starttiden sätts till sluttiden av den senaste rapporten. Om det inte finns "
 "några rapporter sätts starttiden till tiden då det första journalinlägget "
-"skapades. Sluttiden sätts alltid den nuvarande tiden.\n"
+"skapades. Sluttiden sätts alltid till den nuvarande tiden.\n"
 
 #: bocken/templates/admin/change_report_form.html:7
 msgid "OBS! The starting fee is not included in the total cost!"

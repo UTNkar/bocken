@@ -1,9 +1,4 @@
-from .models import SiteSettings
 from django.conf import settings
-
-
-def sitesettings(request):  # noqa
-    return {'sitesettings': SiteSettings.load()}
 
 
 def klubbmastare_email(request):  # noqa

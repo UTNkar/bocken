@@ -46,6 +46,36 @@
         <a class="text-blue-700" href="mailto:{{ klubbmastare_email }}">{{ klubbmastare_email }}</a>
     </p>
 </form>
+
+<hr class="mt-12">
+
+<h2 class="mt-2 text-4xl text-center">{% translate 'Previous entries' %}</h2>
+{% for entry in three_latest_entries %}
+<div class="border border-solid border-black mt-2 p-2">
+    <table class="w-full">
+        <tr>
+            <td>{% translate 'Name' %}</td>
+            <td>{{ entry.agreement.name }}</td>
+        </tr>
+        <tr>
+            <td>{% translate 'Group' %}</td>
+            <td>{{ entry.group }}</td>
+        </tr>
+        <tr>
+            <td>{% translate 'Meter at start' %}</td>
+            <td>{{ entry.meter_start }} km</td>
+        </tr>
+        <tr>
+            <td>{% translate 'Meter at stop' %}</td>
+            <td>{{ entry.meter_stop }} km</td>
+        </tr>
+        <tr>
+            <td>{% translate 'Created' %}</td>
+            <td>{{ entry.created }}</td>
+        </tr>
+    </table>
+</div>
+{% endfor %}
 {% endblock %}
 {% block extra_js %}
 {{ block.super }}

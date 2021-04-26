@@ -113,6 +113,11 @@ msgid "Admins"
 msgstr "Administratörer"
 
 #: bocken/models/agreement.py:19 bocken/models/group.py:10
+msgid "Agreement number"
+msgstr "Avtalsnummer"
+
+#: bocken/models/agreement.py:23 bocken/models/group.py:10
+#: bocken/templates/journalentry_create.html:57
 msgid "Name"
 msgstr "Namn"
 
@@ -178,18 +183,22 @@ msgstr "Körjournalsgrupper"
 
 #: bocken/models/journal_entry.py:24
 #: bocken/templates/admin/change_report_form.html:10
+#: bocken/templates/journalentry_create.html:61
 msgid "Group"
 msgstr "Grupp"
 
 #: bocken/models/journal_entry.py:27
+#: bocken/templates/journalentry_create.html:65
 msgid "Meter at start"
 msgstr "Mätare vid start"
 
 #: bocken/models/journal_entry.py:30
+#: bocken/templates/journalentry_create.html:69
 msgid "Meter at stop"
 msgstr "Mätare vid stop"
 
 #: bocken/models/journal_entry.py:34 bocken/models/report.py:28
+#: bocken/templates/journalentry_create.html:73
 msgid "Created"
 msgstr "Skapad"
 
@@ -395,6 +404,10 @@ msgid ""
 msgstr ""
 "Strular formuläret? Kontakta UTN:s klubbmästare och skicka med en kopia av "
 "informationen som du skrev in ovanför till"
+
+#: bocken/templates/journalentry_create.html:52
+msgid "Previous entries"
+msgstr "Senaste inläggen"
 
 #: bocken/templates/journalentry_create_success.html:5
 msgid "Your journal entry has been saved!"

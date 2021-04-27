@@ -202,4 +202,7 @@ class AgreementForm(ModelForm):
 
     class Meta:
         model = Agreement
-        fields = ['name', 'personnummer', 'phonenumber', 'email', 'expires']
+        fields = [
+            'name', 'personnummer', 'phonenumber',
+            'email', 'agreement_file', 'expires'
+        ]

@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.utils.translation import gettext as _
 from django.conf import settings
 from django.core.mail import mail_admins
+from django.utils.timezone import localtime, now
 
 
 class JournalEntryCreate(CreateView):
@@ -44,6 +45,25 @@ class JournalEntryCreate(CreateView):
                 fail_silently=True
             )
 
+        # Check if a gap has occured
+        latest_entry = JournalEntry.get_latest_entry()
+        if latest_entry:
+            previous_meter_stop = latest_entry.meter_stop
+            if form.cleaned_data['meter_start'] > previous_meter_stop:
+                mail_admins(
+                    "A gap has occured",
+                    (
+                        "A journal entry was added by {} at {} which created "
+                        "a gap between the two latest journal entries. In "
+                        "order to avoid lost costs this needs to be "
+                        "investigated and fixed."
+                    ).format(
+                        form.instance.agreement.name,
+                        localtime(now()).strftime("%Y-%m-%d %H:%M")
+                    ),
+                    fail_silently=True
+                )
+
         return super(JournalEntryCreate, self).form_valid(form)
 
     def post(self, request, *args, **kwargs):
@@ -60,15 +80,19 @@ class JournalEntryCreate(CreateView):
 
     def get_context_data(self, **kwargs):
         """
-        Add the main group to the views context.
+        Add extra context to the view.
 
         This makes the main group available in the JournalEntryForm
+        and adds the three latest entries to the context.
         """
         context = super(CreateView, self).get_context_data(**kwargs)
 
         # On get requests, there is no main group
         if hasattr(self, 'main_group'):
             context['main_group'] = self.main_group
+
+        context['three_latest_entries'] = \
+            JournalEntry.get_three_latest_entries()
 
         return context
 

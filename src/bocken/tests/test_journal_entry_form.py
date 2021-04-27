@@ -165,3 +165,37 @@ class JournalEntryFormTestCase(TestCase):
         self.assertTrue(
             settings.KLUBBMASTARE_EMAIL in first_email.recipients()
         )
+
+    def test_gap_notification(self):
+        """Test that an email is sent if a gap occurs."""
+        # Create an earlier journal entry
+        JournalEntry.objects.create(
+            agreement=self.agreement,
+            group=self.group,
+            meter_start=45,
+            meter_stop=49
+        )
+
+        form_data = {
+            'personnummer': '19980101-3039',
+            'group': self.group.id,
+            'meter_start': 50,
+            'meter_stop': 70,
+            'confirm': True,
+            'g-recaptcha-response': 'PASSED'
+        }
+
+        response = self.client.post(
+            reverse('add-entry'), form_data, follow=True
+        )
+        self.assertRedirects(response, reverse('add-entry-success'))
+
+        self.assertEqual(len(mail.outbox), 1)
+        first_email = mail.outbox[0]
+
+        # Test that the name actually is in the email
+        self.assertTrue(self.agreement.name in first_email.body)
+
+        self.assertTrue(
+            settings.KLUBBMASTARE_EMAIL in first_email.recipients()
+        )

@@ -12,14 +12,19 @@ A digital journal system for UTN's car Bocken
    - libpq-dev
 5. Clone the repository.
 6. Copy the file `.env-template` and name the copy `.env`
-7. Fill in the necessary variables in `.env`. All variables have defaults which can be found in `bocken/settings/dev.py`. If you need to override these defaults, uncomment the variable in `.env` and set its value.
-8. Run `source ./source_me.sh` to create a virtual environment.
-9. Run `pip install --upgrade pip` to make sure that pip is running the latest version
-10. Run `pip install -r dev-requirements.txt`
-11. Use `cd src` to enter the website directory.
-12. Run `./manage.py migrate` to initialize the database.
-13. Run `./manage.py compilemessages` to create all tranlsations
-14. Run `./manage.py createsuperuser` to create an admin user.
+7. Fill in the following variables in `.env`. Uncomment only the variables that you fill in a value:
+    1. `DJANGO_DB_NAME`: The name of the database you created in step 2. (default value: bocken)
+    2. `DJANGO_DB_USER`: The name of the database user you created in step 2. (default value: bocken)
+    3. `DJANGO_DB_PASS`: The password for the database user you created in step 2. (no default value)
+    4. `DJANGO_DB_HOST` (default value: localhost) and `DJANGO_DB_PORT` (default value: 5432): **You only have to fill in these if you have setup your database to not be hosted on the default host and port**. If you followed the steps in step 2, you should not have to set these.
+    5. (optional) `DJANGO_SECRET`: The secret key that django uses. You can fill in this to a custom value but you don't have to.
+9. Run `source ./source_me.sh` to create a virtual environment.
+10. Run `pip install --upgrade pip` to make sure that pip is running the latest version
+11. Run `pip install -r dev-requirements.txt`
+12. Use `cd src` to enter the website directory.
+13. Run `./manage.py migrate` to initialize the database.
+14. Run `./manage.py compilemessages` to create all translations
+15. Run `./manage.py createsuperuser` to create an admin user that you will use to log in to the admin pages.
 
 During development, you can run a test web server using `./manage.py runserver`.
 

@@ -48,6 +48,11 @@ class Agreement(models.Model):
         ),
     )
 
+    agreement_file = models.FileField(
+        upload_to='agreements/',
+        verbose_name=_("Signed agreement"),
+    )
+
     expires = models.DateField(
         verbose_name=_("Valid until"),
         default=now().date() + timedelta(days=365),

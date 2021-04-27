@@ -83,6 +83,7 @@
     // Calculates the total distance driven
     document.getElementById("id_meter_start").addEventListener("input", calculateTotalDistance);
     document.getElementById("id_meter_stop").addEventListener("input", calculateTotalDistance);
+    document.addEventListener("DOMContentLoaded", calculateTotalDistance);
     function calculateTotalDistance(){
         const start = parseInt(document.getElementById("id_meter_start").value);
         const stop = parseInt(document.getElementById("id_meter_stop").value);

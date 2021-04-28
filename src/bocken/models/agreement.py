@@ -90,6 +90,7 @@ class Agreement(models.Model):
         else:
             return self.expires
     expires_colored.admin_order_field = 'expires'
+    expires_colored.short_description = expires.verbose_name
 
     def save(self, *args, **kwargs):  # noqa
         self.personnummer = format_personnummer(self.personnummer)

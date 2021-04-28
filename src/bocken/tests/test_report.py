@@ -150,7 +150,8 @@ class ReportTestCase(TestCase):
         report = Report.objects.create(
             first=first, last=last, cost_per_mil=20
         )
-        report.created = timezone.now() - relativedelta(years=1, days=1)
+        report.created = \
+            timezone.now() - relativedelta(years=1, months=6, days=1)
         report.save()
 
         self.assertEqual(Report.objects.count(), 1)
@@ -172,7 +173,8 @@ class ReportTestCase(TestCase):
         # Check that all journal entries in the report are deleted to
         self.assertEqual(JournalEntry.objects.count(), 7)
 
-        Report.delete_older_than_one_year()
+        Report.delete_old_reports()
+
         self.assertEqual(Report.objects.count(), 1)
         self.assertEqual(JournalEntry.objects.count(), 1)
 

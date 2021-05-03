@@ -40,7 +40,6 @@ class Agreement(models.Model):
     # agreements
     email = models.EmailField(
         unique=True,
-        blank=True,
         null=True,
         help_text=_(
             "The person's private email. Should not be an email ending in "

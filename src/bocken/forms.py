@@ -8,7 +8,6 @@ from .utils import format_personnummer
 from .widgets import TwoLevelSelect
 from django.utils.translation import gettext_lazy as _
 from captcha.fields import ReCaptchaField
-from django import forms
 
 
 class JournalEntryForm(ModelForm):
@@ -184,22 +183,3 @@ class ReportForm(ModelForm):
                         "journal entries between these two timestamps"
                     )
                 )
-
-
-class AgreementForm(ModelForm):
-    """A form for agreements."""
-
-    # Email is set to required in this form so that new agreements
-    # are created with emails. TODO: When all agreements have an email
-    # this can be removed and the agreement model can be changed as well.
-    email = forms.EmailField(
-        required=True,
-        help_text=_(
-            "The person's private email. Should not be an email ending in "
-            "@utn.se."
-        ),
-    )
-
-    class Meta:
-        model = Agreement
-        fields = ['name', 'personnummer', 'phonenumber', 'email', 'expires']

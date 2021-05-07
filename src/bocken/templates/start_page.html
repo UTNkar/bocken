@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block body %}
+<h1 class="text-2xl text-center mb-4">{% translate 'The digital journal system for UTN:s car Bocken'%}</h1>
+<b class="font-bold mb-2">
+    Bocken can only be used by UTN, the sections at TekNat and UTN:s associated organisations!
+</b>
+<p>In order to drive Bocken you need to sign an agreement. Follow these steps:</p>
+<ol class="list-decimal list-inside pl-4">
+    <li>Download <a class="underline text-blue-700" href="{% static 'bockenavtal.pdf' %}">the agreement</a></li>
+    <li>Read through the agreement</li>
+    <li>
+        Fill in the form and sign it. You can do this digitally on
+        <a
+            class="underline text-blue-700"
+            target="_blank"
+            href="https://www.digisigner.com/free-electronic-signature/"
+        >www.digisigner.com/free-electronic-signature.</a>
+        Press on MORE and then on download when you have signed it to download it.
+    </li>
+    <li>
+        Send the agreement along with a picture of your driving licens to
+        <a class="underline text-blue-700" href="{{ klubbmastare_email }}">{{ klubbmastare_email }}</a>
+    </li>
+</ol>
+{% endblock %}

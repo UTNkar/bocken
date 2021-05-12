@@ -20,6 +20,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', views.StartPage.as_view(), name='start-page'),
     path('admin/', admin.site.urls),
     path('add_entry/', include([
         path('', views.JournalEntryCreate.as_view(), name='add-entry'),

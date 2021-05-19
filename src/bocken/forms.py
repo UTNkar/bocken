@@ -200,6 +200,11 @@ class AgreementForm(ModelForm):
         ),
     )
 
+    agreement_file = forms.FileField(
+        required=True,
+        label=_("Signed agreement"),
+    )
+
     class Meta:
         model = Agreement
         fields = [

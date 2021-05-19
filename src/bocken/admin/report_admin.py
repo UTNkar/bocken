@@ -5,6 +5,7 @@ from django.urls import reverse
 from django_object_actions import DjangoObjectActions
 from django.contrib.admin import ModelAdmin
 from bocken.models import Report, JournalEntry
+from django.contrib import messages
 
 
 class ReportAdmin(DjangoObjectActions, ModelAdmin):
@@ -38,6 +39,10 @@ class ReportAdmin(DjangoObjectActions, ModelAdmin):
     def delete_latest_report(self, request, queryset):
         """Redirect to the delete view for the latest report."""
         report = Report.get_latest_report()
+        if not report:
+            messages.error(request, _("There are no reports to delete"))
+            return
+
         app_label = self.model._meta.app_label
         model_name = self.model.__name__.lower()
 

@@ -218,7 +218,11 @@ class Report(models.Model):
 
     @staticmethod
     def get_latest_report():
-        """Return the lastest created report."""
+        """
+        Return the lastest created report.
+
+        If no reports exist, None is returned
+        """
         try:
             return Report.objects.latest()
         except Report.DoesNotExist:

@@ -133,3 +133,5 @@ dmypy.json
 # Tailwind theme
 */utn_tailwind_theme/static/
 */utn_tailwind_theme/templates/
+
+*/bocken/media/*

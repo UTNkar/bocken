@@ -28,6 +28,7 @@
             <label for="{{ field.id_for_label }}" class="absolute flex justify-center items-center text-xl w-8 h-full">{% fa5_icon field.label %}</label>
             {{ field|add_class:"flex-1 flex justify-center font-extralight text-lg min-h-3 pl-8" }}
         </div>
+        {% endif %}
 
         {% if field.errors %}
             {% for error in field.errors %}
@@ -35,7 +36,6 @@
             {% endfor %}
         {% endif %}
         <p class="text-xs">{{ field.help_text }}</p>
-        {% endif %}
     </div>
     {% endfor %}
 
@@ -83,6 +83,7 @@
     // Calculates the total distance driven
     document.getElementById("id_meter_start").addEventListener("input", calculateTotalDistance);
     document.getElementById("id_meter_stop").addEventListener("input", calculateTotalDistance);
+    document.addEventListener("DOMContentLoaded", calculateTotalDistance);
     function calculateTotalDistance(){
         const start = parseInt(document.getElementById("id_meter_start").value);
         const stop = parseInt(document.getElementById("id_meter_stop").value);

@@ -51,6 +51,7 @@ class Agreement(models.Model):
     agreement_file = models.FileField(
         upload_to='agreements/',
         verbose_name=_("Signed agreement"),
+        blank=True
     )
 
     expires = models.DateField(

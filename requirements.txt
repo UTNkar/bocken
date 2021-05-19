@@ -34,5 +34,8 @@ django-recaptcha==2.0.6
 # Creating background tasks with cron
 django-cron==0.5.1
 
+# Sentry for logging errors
+sentry_sdk==1.0.0
+
 # Automatically remove files from filefield if the file is changed
 django-cleanup==5.2.0

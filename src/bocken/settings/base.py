@@ -171,4 +171,5 @@ INTERNAL_IPS = [
 
 CRON_CLASSES = [
     "bocken.cron.DeleteOldReportsCronJob",
+    "bocken.cron.AutomaticRenewalReminder"
 ]

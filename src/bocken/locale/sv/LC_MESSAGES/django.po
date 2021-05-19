@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 12:40+0200\n"
+"POT-Creation-Date: 2021-04-27 14:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -121,33 +121,53 @@ msgstr "Administratörer"
 msgid "Name"
 msgstr "Namn"
 
-#: bocken/models/agreement.py:22
+#: bocken/models/agreement.py:24
 msgid "First and last name"
 msgstr "För- och efternamn"
 
-#: bocken/models/agreement.py:34
+#: bocken/models/agreement.py:36
 msgid "Phonenumber"
 msgstr "Telefonnummer"
+
+#: bocken/models/agreement.py:54
+msgid "Valid until"
+msgstr "Giltig t.o.m"
+
+#: bocken/models/agreement.py:56
+msgid "Agreements are valid for 1 year by default."
+msgstr "Avtal är giltiga i 1 år som standard"
+
+#: bocken/models/agreement.py:60 bocken/models/journal_entry.py:19
+msgid "Agreement"
+msgstr "Köravtal"
+
+#: bocken/models/agreement.py:61
+msgid "Agreements"
+msgstr "Köravtal"
+
+#: bocken/models/agreement.py:106
+msgid "Reminder to update your Bocken agreement"
+msgstr "Påminnelse för att uppdatera ditt Bockenavtal"
+
+#: bocken/models/agreement.py:108
+msgid ""
+"This is an automated message from UTN:s journal system for Bocken. You are "
+"receiving this email because you have a Bocken agreement that will expire in "
+"10 days. If you want to continue driving Bocken you must contact UTN:s "
+"klubbmästare by replying to this email.\n"
+"\n"
+"If you do not want to continue driving Bocken, you can ignore this email."
+msgstr ""
+"Detta är ett automatiskt meddelande från UTN:s journalsystem för Bocken. Du "
+"får detta email eftersom att du har ett Bockenavtal som går ut om 10 dagar. "
+"Om du vill fortsätta köra Bocken måste du kontakta UTN:s klubbmästare genom "
+"att svara på detta email.\n"
+"\n"
+"Om du inte vill fortsätta köra Bocken kan du ignorera detta email"
 
 #: bocken/models/agreement.py:53
 msgid "Signed agreement"
 msgstr "Signerat köravtal"
-
-#: bocken/models/agreement.py:57
-msgid "Valid until"
-msgstr "Giltig t.o.m"
-
-#: bocken/models/agreement.py:59
-msgid "Agreements are valid for 1 year by default."
-msgstr "Avtal är giltiga i 1 år som standard"
-
-#: bocken/models/agreement.py:63 bocken/models/journal_entry.py:19
-msgid "Agreement"
-msgstr "Köravtal"
-
-#: bocken/models/agreement.py:64
-msgid "Agreements"
-msgstr "Köravtal"
 
 #: bocken/models/journal_entry.py:24
 #: bocken/templates/admin/change_report_form.html:10

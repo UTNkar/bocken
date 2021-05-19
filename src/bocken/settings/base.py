@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'mathfilters',
     'django_object_actions',
     'captcha',
-    'django_cron'
+    'django_cron',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
@@ -140,6 +141,10 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
 AUTH_USER_MODEL = 'bocken.Admin'
 
 TAILWIND_APP_NAME = 'utn_tailwind_theme'
@@ -166,4 +171,5 @@ INTERNAL_IPS = [
 
 CRON_CLASSES = [
     "bocken.cron.DeleteOldReportsCronJob",
+    "bocken.cron.AutomaticRenewalReminder"
 ]

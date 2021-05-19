@@ -22,11 +22,19 @@ A digital journal system for UTN's car Bocken
 10. Run `pip install --upgrade pip` to make sure that pip is running the latest version
 11. Run `pip install -r dev-requirements.txt`
 12. Use `cd src` to enter the website directory.
+13. Run `./manage.py tailwind init` to install tailwind
 13. Run `./manage.py migrate` to initialize the database.
 14. Run `./manage.py compilemessages` to create all translations
 15. Run `./manage.py createsuperuser` to create an admin user that you will use to log in to the admin pages.
 
-During development, you can run a test web server using `./manage.py runserver`.
+The journal system is now installed!
+
+During development, you need to use two terminals. **Dont forget to run `source ./source_me.sh` in both terminals before running these commands!**
+
+1. In one run the command `./manage.py runserver` to start the django server.
+2. In the other run `./manage.py tailwind start` to start tailwind.
+
+You can now visit the journal system on `http://localhost:8000`.
 
 ## Documentation
 

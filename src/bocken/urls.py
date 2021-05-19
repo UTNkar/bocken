@@ -16,8 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from bocken import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', views.StartPage.as_view(), name='start-page'),
     path('admin/', admin.site.urls),
     path('add_entry/', include([
         path('', views.JournalEntryCreate.as_view(), name='add-entry'),
@@ -28,4 +31,4 @@ urlpatterns = [
         )
     ])),
     path('i18n/', include('django.conf.urls.i18n')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

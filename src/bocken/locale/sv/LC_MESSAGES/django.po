@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-21 17:06+0200\n"
+"POT-Creation-Date: 2021-04-27 12:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,21 +18,25 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bocken/admin.py:37
-msgid "Passwords don't match"
-msgstr "Lösenorden matchar inte"
+#: bocken/admin/report_admin.py:43
+msgid "There are no reports to delete"
+msgstr "Det finns inga rapporter att ta bort"
 
-#: bocken/admin.py:57
-msgid "<a href=\"../password/\">Change the user's password here</a>."
-msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
-
-#: bocken/admin.py:176
+#: bocken/admin/report_admin.py:61
 msgid "Delete latest report"
 msgstr "Radera senaste rapporten"
 
-#: bocken/admin.py:177
+#: bocken/admin/report_admin.py:62
 msgid "Delete the latest report"
 msgstr "Radera den senaste rapporten"
+
+#: bocken/admin/user_admin.py:28
+msgid "Passwords don't match"
+msgstr "Lösenorden matchar inte"
+
+#: bocken/admin/user_admin.py:48
+msgid "<a href=\"../password/\">Change the user's password here</a>."
+msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
 
 #: bocken/forms.py:24
 msgid "Your personnummer"
@@ -100,86 +104,50 @@ msgstr ""
 "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg "
 "mellan dessa tidstämplar"
 
-#: bocken/forms.py:198 bocken/models/agreement.py:44
+#: bocken/forms.py:198 bocken/models/agreement.py:46
 msgid "The person's private email. Should not be an email ending in @utn.se."
 msgstr "Personens privata email. Ska inte vara en email som slutar med @utn.se"
 
-#: bocken/models/admin.py:38
+#: bocken/models/admin.py:39
 msgid "Admin"
 msgstr "Administratör"
 
-#: bocken/models/admin.py:39
+#: bocken/models/admin.py:40
 msgid "Admins"
 msgstr "Administratörer"
 
-#: bocken/models/agreement.py:19 bocken/models/group.py:10
-msgid "Agreement number"
-msgstr "Avtalsnummer"
-
-#: bocken/models/agreement.py:23 bocken/models/group.py:10
+#: bocken/models/agreement.py:21 bocken/models/journal_entry_group.py:10
 #: bocken/templates/journalentry_create.html:57
 msgid "Name"
 msgstr "Namn"
 
-#: bocken/models/agreement.py:20
+#: bocken/models/agreement.py:22
 msgid "First and last name"
 msgstr "För- och efternamn"
 
-#: bocken/models/agreement.py:32
+#: bocken/models/agreement.py:34
 msgid "Phonenumber"
 msgstr "Telefonnummer"
 
-#: bocken/models/agreement.py:50
+#: bocken/models/agreement.py:53
+msgid "Signed agreement"
+msgstr "Signerat köravtal"
+
+#: bocken/models/agreement.py:57
 msgid "Valid until"
 msgstr "Giltig t.o.m"
 
-#: bocken/models/agreement.py:52
+#: bocken/models/agreement.py:59
 msgid "Agreements are valid for 1 year by default."
 msgstr "Avtal är giltiga i 1 år som standard"
 
-#: bocken/models/agreement.py:56 bocken/models/journal_entry.py:19
+#: bocken/models/agreement.py:63 bocken/models/journal_entry.py:19
 msgid "Agreement"
 msgstr "Köravtal"
 
-#: bocken/models/agreement.py:57
+#: bocken/models/agreement.py:64
 msgid "Agreements"
 msgstr "Köravtal"
-
-#: bocken/models/group.py:17
-msgid "UTN's committees and workgroups"
-msgstr "UTN:s kommittéer och arbetsgrupper"
-
-#: bocken/models/group.py:19
-msgid "UTN's management team and board"
-msgstr "UTN:s ledningsgrupp och styrelse"
-
-#: bocken/models/group.py:20
-msgid "FUM"
-msgstr "FUM"
-
-#: bocken/models/group.py:21
-msgid "Other officials within UTN"
-msgstr "Övriga ämbetsverkare inom UTN"
-
-#: bocken/models/group.py:22
-msgid "Sections"
-msgstr "Sektioner"
-
-#: bocken/models/group.py:23
-msgid "Cooperations"
-msgstr "Samarbetsföreningar"
-
-#: bocken/models/group.py:25
-msgid "Main group"
-msgstr "Huvudgrupp"
-
-#: bocken/models/group.py:29
-msgid "Journal entry group"
-msgstr "Körjournalsgrupp"
-
-#: bocken/models/group.py:30
-msgid "Journal entry groups"
-msgstr "Körjournalsgrupper"
 
 #: bocken/models/journal_entry.py:24
 #: bocken/templates/admin/change_report_form.html:10
@@ -197,7 +165,7 @@ msgstr "Mätare vid start"
 msgid "Meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/models/journal_entry.py:34 bocken/models/report.py:28
+#: bocken/models/journal_entry.py:34 bocken/models/report.py:29
 #: bocken/templates/journalentry_create.html:73
 msgid "Created"
 msgstr "Skapad"
@@ -214,11 +182,47 @@ msgstr "Journalinlägg"
 msgid "Driven Distance (km)"
 msgstr "Körd sträcka (km)"
 
-#: bocken/models/report.py:33
+#: bocken/models/journal_entry_group.py:17
+msgid "UTN's committees and workgroups"
+msgstr "UTN:s kommittéer och arbetsgrupper"
+
+#: bocken/models/journal_entry_group.py:19
+msgid "UTN's management team and board"
+msgstr "UTN:s ledningsgrupp och styrelse"
+
+#: bocken/models/journal_entry_group.py:20
+msgid "FUM"
+msgstr "FUM"
+
+#: bocken/models/journal_entry_group.py:21
+msgid "Other officials within UTN"
+msgstr "Övriga ämbetsverkare inom UTN"
+
+#: bocken/models/journal_entry_group.py:22
+msgid "Sections"
+msgstr "Sektioner"
+
+#: bocken/models/journal_entry_group.py:23
+msgid "Cooperations"
+msgstr "Samarbetsföreningar"
+
+#: bocken/models/journal_entry_group.py:25
+msgid "Main group"
+msgstr "Huvudgrupp"
+
+#: bocken/models/journal_entry_group.py:29
+msgid "Journal entry group"
+msgstr "Körjournalsgrupp"
+
+#: bocken/models/journal_entry_group.py:30
+msgid "Journal entry groups"
+msgstr "Körjournalsgrupper"
+
+#: bocken/models/report.py:34
 msgid "Cost per mil (kr)"
 msgstr "Kostnad per mil (kr)"
 
-#: bocken/models/report.py:35
+#: bocken/models/report.py:36
 msgid ""
 "Each report can have a different cost per mil. This allows the cost per mil "
 "to be changed without affecting previous reports"
@@ -226,23 +230,19 @@ msgstr ""
 "Alla rapporter kan ha olika kostnader per mil. Detta gör det möjligt att "
 "ändra kostnaden per mil utan att påverka tidigare rapporter"
 
-#: bocken/models/report.py:41
+#: bocken/models/report.py:42
 msgid "Report"
 msgstr "Rapport"
 
-#: bocken/models/report.py:42
+#: bocken/models/report.py:43
 msgid "Reports"
 msgstr "Rapporter"
-
-#: bocken/models/site_settings.py:9 bocken/models/site_settings.py:10
-msgid "Site settings"
-msgstr "Sidinställningar"
 
 #: bocken/settings/base.py:123
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:124
+#: bocken/settings/base.py:125
 msgid "English"
 msgstr "Engelska"
 
@@ -443,7 +443,7 @@ msgstr "Ditt personnummer måste vara på formen YYYYMMDD-XXXX"
 msgid "Invalid personnummer"
 msgstr "Ogiltigt personnummer"
 
-#: bocken/views.py:27
+#: bocken/views.py:28
 #, python-format
 msgid ""
 "Your agreement has expired! The journal entry you just created has been "

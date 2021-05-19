@@ -34,20 +34,24 @@ class Agreement(models.Model):
         verbose_name=_("Phonenumber")
     )
 
-    # Email is allowed to be null since we don't have an email address to
+    # Email is allowed to be blank since we don't have an email address to
     # everyone who has an agreement at the time of creation of this system.
-    # TODO: Remove blank and null when there is an email address for all
+    # TODO: Remove blank when there is an email address for all
     # agreements
     email = models.EmailField(
         unique=True,
         blank=True,
-        null=True,
         help_text=_(
             "The person's private email. Should not be an email ending in "
             "@utn.se."
         ),
     )
 
+    # agreement file is allowed to be blank since not everyone has signed the
+    # latest agreement at the time of creation of this system. Instead of
+    # scanning all those agreements, they will remain in their folder until
+    # everyone has signed the new agreement.
+    # TODO: Remove blank when everyone has an agreement file in the system
     agreement_file = models.FileField(
         upload_to='agreements/',
         verbose_name=_("Signed agreement"),

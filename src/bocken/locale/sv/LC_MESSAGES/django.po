@@ -129,19 +129,23 @@ msgstr "För- och efternamn"
 msgid "Phonenumber"
 msgstr "Telefonnummer"
 
-#: bocken/models/agreement.py:52
+#: bocken/models/agreement.py:53
+msgid "Signed agreement"
+msgstr "Signerat köravtal"
+
+#: bocken/models/agreement.py:57
 msgid "Valid until"
 msgstr "Giltig t.o.m"
 
-#: bocken/models/agreement.py:54
+#: bocken/models/agreement.py:59
 msgid "Agreements are valid for 1 year by default."
 msgstr "Avtal är giltiga i 1 år som standard"
 
-#: bocken/models/agreement.py:58 bocken/models/journal_entry.py:19
+#: bocken/models/agreement.py:63 bocken/models/journal_entry.py:19
 msgid "Agreement"
 msgstr "Köravtal"
 
-#: bocken/models/agreement.py:59
+#: bocken/models/agreement.py:64
 msgid "Agreements"
 msgstr "Köravtal"
 
@@ -238,7 +242,7 @@ msgstr "Rapporter"
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:124
+#: bocken/settings/base.py:125
 msgid "English"
 msgstr "Engelska"
 

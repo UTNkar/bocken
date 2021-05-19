@@ -12,7 +12,7 @@ class DeleteOldReportsCronJob(CronJobBase):
     code = 'bocken.delete_old_reports'
 
     def do(self):  # noqa
-        Report.delete_old_reports()    
+        Report.delete_old_reports()
 
 
 class AutomaticRenewalReminder(CronJobBase):

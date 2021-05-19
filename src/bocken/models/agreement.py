@@ -102,6 +102,7 @@ class Agreement(models.Model):
         else:
             return self.expires
     expires_colored.admin_order_field = 'expires'
+    expires_colored.short_description = expires.verbose_name
 
     @staticmethod
     def send_renewal_reminder_10_days_left():

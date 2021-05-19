@@ -38,7 +38,7 @@ You can now visit the journal system on `http://localhost:8000`.
 
 ## Documentation
 
-Documentation for the journal system can be found on [docs.utn.se](https://docs.utn.se/)
+Documentation for the journal system can be found on [docs.utn.se](https://docs.utn.se/bocken_journal_system/)
 
 ## Testing
 
@@ -56,7 +56,7 @@ commands in the project root directory:
 
 ## Translating
 
-Project Moore intends to be multilingual. The web application is available in
+The journal system for Bocken intends to be multilingual. The web application is available in
 both Swedish and English. Whenever any translatable text is added or changed it
 should be translated using translation files.
 

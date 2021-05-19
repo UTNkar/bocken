@@ -90,11 +90,13 @@ class JournalEntry(models.Model):
     def get_entries_since_last_report_amount():
         """Get the number of new entries since the last report."""
         latest_report = report.Report.get_latest_report()
-        entries = JournalEntry.objects.exclude(
-            created__lte=latest_report.created
-        )
-
-        return entries.count()
+        if latest_report:
+            entries = JournalEntry.objects.exclude(
+                created__lte=latest_report.created
+            )
+            return entries.count()
+        else:
+            return JournalEntry.objects.count()
 
     @staticmethod
     def get_three_latest_entries():

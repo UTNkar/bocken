@@ -218,22 +218,27 @@ class Report(models.Model):
 
     @staticmethod
     def get_latest_report():
-        """Return the lastest created report."""
+        """
+        Return the lastest created report.
+
+        If no reports exist, None is returned
+        """
         try:
             return Report.objects.latest()
         except Report.DoesNotExist:
             return None
 
     @staticmethod
-    def delete_older_than_one_year():
+    def delete_old_reports():
         """
         Delete all reports that are older than one year.
 
         Also deletes all journal entries in those reports.
         """
-        one_year_ago = timezone.now() - relativedelta(years=1)
+        one_and_half_years_ago = \
+            timezone.now() - relativedelta(years=1, months=6)
         reports_to_delete = Report.objects.filter(
-            created__date__lte=one_year_ago
+            created__date__lte=one_and_half_years_ago
         )
 
         # Delete all related journal entries

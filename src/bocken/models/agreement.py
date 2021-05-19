@@ -10,6 +10,11 @@ from django.core.mail import send_mass_mail
 from django.conf import settings
 
 
+def get_default_expires():
+    """Return the default expires date for an agreement."""
+    return now().date() + timedelta(days=365)
+
+
 class Agreement(models.Model):
     """
     Represents a person who has signed a bocken-agreement.
@@ -62,7 +67,7 @@ class Agreement(models.Model):
 
     expires = models.DateField(
         verbose_name=_("Valid until"),
-        default=now().date() + timedelta(days=365),
+        default=get_default_expires,
         help_text=_("Agreements are valid for 1 year by default.")
     )
 

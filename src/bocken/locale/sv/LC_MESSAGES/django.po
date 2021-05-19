@@ -18,11 +18,15 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bocken/admin/report_admin.py:56
+#: bocken/admin/report_admin.py:43
+msgid "There are no reports to delete"
+msgstr "Det finns inga rapporter att ta bort"
+
+#: bocken/admin/report_admin.py:61
 msgid "Delete latest report"
 msgstr "Radera senaste rapporten"
 
-#: bocken/admin/report_admin.py:57
+#: bocken/admin/report_admin.py:62
 msgid "Delete the latest report"
 msgstr "Radera den senaste rapporten"
 
@@ -100,7 +104,7 @@ msgstr ""
 "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg "
 "mellan dessa tidstämplar"
 
-#: bocken/forms.py:198 bocken/models/agreement.py:48
+#: bocken/forms.py:198 bocken/models/agreement.py:46
 msgid "The person's private email. Should not be an email ending in @utn.se."
 msgstr "Personens privata email. Ska inte vara en email som slutar med @utn.se"
 
@@ -112,7 +116,7 @@ msgstr "Administratör"
 msgid "Admins"
 msgstr "Administratörer"
 
-#: bocken/models/agreement.py:23 bocken/models/journal_entry_group.py:10
+#: bocken/models/agreement.py:21 bocken/models/journal_entry_group.py:10
 #: bocken/templates/journalentry_create.html:57
 msgid "Name"
 msgstr "Namn"
@@ -160,6 +164,10 @@ msgstr ""
 "att svara på detta email.\n"
 "\n"
 "Om du inte vill fortsätta köra Bocken kan du ignorera detta email"
+
+#: bocken/models/agreement.py:53
+msgid "Signed agreement"
+msgstr "Signerat köravtal"
 
 #: bocken/models/journal_entry.py:24
 #: bocken/templates/admin/change_report_form.html:10
@@ -254,7 +262,7 @@ msgstr "Rapporter"
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:124
+#: bocken/settings/base.py:125
 msgid "English"
 msgstr "Engelska"
 

@@ -9,6 +9,7 @@ from django.template.defaultfilters import date
 
 
 def get_default_expires():
+    """Return the default expires date for an agreement."""
     return now().date() + timedelta(days=365)
 
 

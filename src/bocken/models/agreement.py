@@ -141,6 +141,7 @@ class Agreement(models.Model):
 
 
 class AgreementResource(resources.ModelResource):
+    """The agreement resource for django-import-export."""
 
     class Meta:
         model = Agreement

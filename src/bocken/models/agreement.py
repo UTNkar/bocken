@@ -44,9 +44,8 @@ class Agreement(models.Model):
     # Email is allowed to be blank since we don't have an email address to
     # everyone who has an agreement at the time of creation of this system.
     # TODO: Remove blank when there is an email address for all
-    # agreements
+    # agreements. Also make email unique=True at the same time
     email = models.EmailField(
-        unique=True,
         blank=True,
         help_text=_(
             "The person's private email. Should not be an email ending in "

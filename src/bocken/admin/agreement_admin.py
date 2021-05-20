@@ -1,8 +1,8 @@
-from django.contrib.admin import ModelAdmin
 from bocken.forms import AgreementForm
+from import_export.admin import ImportExportModelAdmin
 
 
-class AgreementAdmin(ModelAdmin):
+class AgreementAdmin(ImportExportModelAdmin):
     """Custom class for the admin pages for Agreement."""
 
     form = AgreementForm

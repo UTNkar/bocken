@@ -8,6 +8,7 @@ from django.utils.html import format_html
 from django.template.defaultfilters import date
 from django.core.mail import send_mass_mail
 from django.conf import settings
+from import_export import resources
 
 
 def get_default_expires():
@@ -137,3 +138,12 @@ class Agreement(models.Model):
     def save(self, *args, **kwargs):  # noqa
         self.personnummer = format_personnummer(self.personnummer)
         super(Agreement, self).save(*args, **kwargs)
+
+
+class AgreementResource(resources.ModelResource):
+
+    class Meta:
+        model = Agreement
+        exclude = ('id', 'email', 'agreement_file')
+        import_id_fields = ('personnummer',)
+        clean_model_instances = True

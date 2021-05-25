@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'captcha',
     'django_cron',
     'django_cleanup.apps.CleanupConfig',
+    'import_export'
 ]
 
 MIDDLEWARE = [

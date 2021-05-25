@@ -8,6 +8,7 @@ from django.utils.html import format_html
 from django.template.defaultfilters import date
 from django.core.mail import send_mass_mail
 from django.conf import settings
+from import_export import resources
 
 
 def get_default_expires():
@@ -44,9 +45,8 @@ class Agreement(models.Model):
     # Email is allowed to be blank since we don't have an email address to
     # everyone who has an agreement at the time of creation of this system.
     # TODO: Remove blank when there is an email address for all
-    # agreements
+    # agreements. Also make email unique=True at the same time
     email = models.EmailField(
-        unique=True,
         blank=True,
         help_text=_(
             "The person's private email. Should not be an email ending in "
@@ -138,3 +138,13 @@ class Agreement(models.Model):
     def save(self, *args, **kwargs):  # noqa
         self.personnummer = format_personnummer(self.personnummer)
         super(Agreement, self).save(*args, **kwargs)
+
+
+class AgreementResource(resources.ModelResource):
+    """The agreement resource for django-import-export."""
+
+    class Meta:
+        model = Agreement
+        exclude = ('id', 'email', 'agreement_file')
+        import_id_fields = ('personnummer',)
+        clean_model_instances = True

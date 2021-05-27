@@ -22,7 +22,7 @@ A digital journal system for UTN's car Bocken
 10. Run `pip install --upgrade pip` to make sure that pip is running the latest version
 11. Run `pip install -r dev-requirements.txt`
 12. Use `cd src` to enter the website directory.
-13. Run `./manage.py tailwind init` to install tailwind
+13. Run `./manage.py tailwind install` to install tailwind
 13. Run `./manage.py migrate` to initialize the database.
 14. Run `./manage.py compilemessages` to create all translations
 15. Run `./manage.py createsuperuser` to create an admin user that you will use to log in to the admin pages.

@@ -7,7 +7,7 @@ psycopg2==2.8.6
 python-decouple==3.4
 
 # Phone number validation and formatting
-phonenumbers==8.12.23
+phonenumbers==8.12.24
 
 # Personummer verification
 personnummer==3.0.2

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-04-27 14:45+0200\n"
+"POT-Creation-Date: 2021-05-31 17:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,9 +104,13 @@ msgstr ""
 "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg "
 "mellan dessa tidstämplar"
 
-#: bocken/forms.py:198 bocken/models/agreement.py:46
+#: bocken/forms.py:198 bocken/models/agreement.py:52
 msgid "The person's private email. Should not be an email ending in @utn.se."
 msgstr "Personens privata email. Ska inte vara en email som slutar med @utn.se"
+
+#: bocken/forms.py:205 bocken/models/agreement.py:64
+msgid "Signed agreement"
+msgstr "Signerat köravtal"
 
 #: bocken/models/admin.py:39
 msgid "Admin"
@@ -116,40 +120,40 @@ msgstr "Administratör"
 msgid "Admins"
 msgstr "Administratörer"
 
-#: bocken/models/agreement.py:21 bocken/models/journal_entry_group.py:10
+#: bocken/models/agreement.py:29 bocken/models/journal_entry_group.py:10
 #: bocken/templates/journalentry_create.html:57
 msgid "Name"
 msgstr "Namn"
 
-#: bocken/models/agreement.py:24
+#: bocken/models/agreement.py:30
 msgid "First and last name"
 msgstr "För- och efternamn"
 
-#: bocken/models/agreement.py:36
+#: bocken/models/agreement.py:42
 msgid "Phonenumber"
 msgstr "Telefonnummer"
 
-#: bocken/models/agreement.py:54
+#: bocken/models/agreement.py:69
 msgid "Valid until"
 msgstr "Giltig t.o.m"
 
-#: bocken/models/agreement.py:56
+#: bocken/models/agreement.py:71
 msgid "Agreements are valid for 1 year by default."
 msgstr "Avtal är giltiga i 1 år som standard"
 
-#: bocken/models/agreement.py:60 bocken/models/journal_entry.py:19
+#: bocken/models/agreement.py:75 bocken/models/journal_entry.py:19
 msgid "Agreement"
 msgstr "Köravtal"
 
-#: bocken/models/agreement.py:61
+#: bocken/models/agreement.py:76
 msgid "Agreements"
 msgstr "Köravtal"
 
-#: bocken/models/agreement.py:106
+#: bocken/models/agreement.py:122
 msgid "Reminder to update your Bocken agreement"
 msgstr "Påminnelse för att uppdatera ditt Bockenavtal"
 
-#: bocken/models/agreement.py:108
+#: bocken/models/agreement.py:124
 msgid ""
 "This is an automated message from UTN:s journal system for Bocken. You are "
 "receiving this email because you have a Bocken agreement that will expire in "
@@ -164,10 +168,6 @@ msgstr ""
 "att svara på detta email.\n"
 "\n"
 "Om du inte vill fortsätta köra Bocken kan du ignorera detta email"
-
-#: bocken/models/agreement.py:53
-msgid "Signed agreement"
-msgstr "Signerat köravtal"
 
 #: bocken/models/journal_entry.py:24
 #: bocken/templates/admin/change_report_form.html:10
@@ -258,11 +258,11 @@ msgstr "Rapport"
 msgid "Reports"
 msgstr "Rapporter"
 
-#: bocken/settings/base.py:123
+#: bocken/settings/base.py:125
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:125
+#: bocken/settings/base.py:126
 msgid "English"
 msgstr "Engelska"
 
@@ -432,6 +432,49 @@ msgstr "Senaste inläggen"
 #: bocken/templates/journalentry_create_success.html:5
 msgid "Your journal entry has been saved!"
 msgstr "Ditt journalinlägg har sparats!"
+
+#: bocken/templates/start_page.html:5
+msgid "The digital journal system for UTN:s car Bocken"
+msgstr "Den digitala körjournalen för UTN:s bil Bocken"
+
+#: bocken/templates/start_page.html:7
+msgid ""
+"Bocken can only be used by UTN, the sections at TekNat and UTN:s associated "
+"organisations!"
+msgstr ""
+"Bocken får endast användas av UTN, sektionerna på TekNat och UTN:s samarbetsföreningar!"
+
+#: bocken/templates/start_page.html:9
+msgid ""
+"In order to drive Bocken you need to sign an agreement. Follow these steps:"
+msgstr ""
+"För att få köra Bocken måste du har ett signerat köravtal. Följ dessa steg:"
+
+#: bocken/templates/start_page.html:12
+msgid "Download"
+msgstr "Ladda ner"
+
+#: bocken/templates/start_page.html:14
+msgid "the agreement"
+msgstr "avtalet"
+
+#: bocken/templates/start_page.html:17
+msgid "Read through the agreement"
+msgstr "Läs igenom hela avtalet"
+
+#: bocken/templates/start_page.html:19
+msgid "Fill in the form and sign it. You can do this digitally on"
+msgstr "Fyll i formuläret och skriv under det. Du kan göra detta digital på"
+
+#: bocken/templates/start_page.html:25
+msgid ""
+"Press on DONE and then on download when you have signed it to download it."
+msgstr ""
+"Tryck på DONE och sen på download när du har signerat det för att ladda ner det påskrivna avtalet."
+
+#: bocken/templates/start_page.html:28
+msgid "Send the agreement along with a picture of your driving licens to"
+msgstr "Skicka avtalet tillsammans med en bild på ditt körkort till"
 
 #: bocken/templates/two_level_select.html:5
 msgid ""

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-31 17:02+0200\n"
+"POT-Creation-Date: 2021-06-16 16:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -417,6 +417,10 @@ msgstr ""
 msgid "new journal entries since the last report"
 msgstr "nya journalinlägg sen den senaste rapporten"
 
+#: bocken/templates/base.html:9
+msgid "The digital journalsystem for Bocken"
+msgstr "Den digitala körjournalen för Bocken"
+
 #: bocken/templates/journalentry_create.html:45
 msgid ""
 "Is something not working? Contact the head of the pub crew and send a copy "
@@ -442,7 +446,8 @@ msgid ""
 "Bocken can only be used by UTN, the sections at TekNat and UTN:s associated "
 "organisations!"
 msgstr ""
-"Bocken får endast användas av UTN, sektionerna på TekNat och UTN:s samarbetsföreningar!"
+"Bocken får endast användas av UTN, sektionerna på TekNat och UTN:s "
+"samarbetsföreningar!"
 
 #: bocken/templates/start_page.html:9
 msgid ""
@@ -466,13 +471,14 @@ msgstr "Läs igenom hela avtalet"
 msgid "Fill in the form and sign it. You can do this digitally on"
 msgstr "Fyll i formuläret och skriv under det. Du kan göra detta digital på"
 
-#: bocken/templates/start_page.html:25
+#: bocken/templates/start_page.html:26
 msgid ""
 "Press on DONE and then on download when you have signed it to download it."
 msgstr ""
-"Tryck på DONE och sen på download när du har signerat det för att ladda ner det påskrivna avtalet."
+"Tryck på DONE och sen på download när du har signerat det för att ladda ner "
+"det påskrivna avtalet."
 
-#: bocken/templates/start_page.html:28
+#: bocken/templates/start_page.html:29
 msgid "Send the agreement along with a picture of your driving licens to"
 msgstr "Skicka avtalet tillsammans med en bild på ditt körkort till"
 

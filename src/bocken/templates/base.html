@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-{% load static fontawesome_5 tailwind_tags %}
+{% load static fontawesome_5 tailwind_tags i18n %}
 <html>
     <head>
         <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&;700display=swap" rel="stylesheet">
+        <title>{% translate 'The digital journalsystem for Bocken' %}</title>
         {% tailwind_css %}
         {% fontawesome_5_static %}
         {% block extra_head %}

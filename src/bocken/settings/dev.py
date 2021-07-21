@@ -1,4 +1,5 @@
 from .base import *
+from decouple import config
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -9,13 +10,13 @@ SECRET_KEY = config(
     default='azzlevclmzxgnv7e0yi+fx1!hah9=r4+s%*wif52^!xq5%spgj'
 )
 
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-# TODO: is this needed?
-BASE_URL = 'http://localhost:8000'
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 SILENCED_SYSTEM_CHECKS = ['captcha.recaptcha_test_key_error']
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}

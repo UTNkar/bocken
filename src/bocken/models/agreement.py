@@ -113,7 +113,7 @@ class Agreement(models.Model):
     def send_renewal_reminder_10_days_left():
         """Send an email to all agreements that expire in 10 days."""
         agreements = Agreement.objects.filter(
-            expires=now() + timedelta(days=10)
+            expires=now().date() + timedelta(days=10)
         )
 
         emails = agreements.exclude(email=None).values_list('email', flat=True)

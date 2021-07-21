@@ -10,6 +10,7 @@ A digital journal system for UTN's car Bocken
    - python3-dev
    - build-essentials
    - libpq-dev
+   - gettext
 5. Clone the repository.
 6. Copy the file `.env-template` and name the copy `.env`
 7. Fill in the following variables in `.env`. Uncomment only the variables that you fill in a value:

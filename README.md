@@ -1,31 +1,26 @@
-# bocken
-A digital journal system for UTN's car Bocken
+# Bocken
+A digital journal system for UTN's car Bocken.
 
 # Installing
 1. Install Python 3, at least version 3.8 or up.
 2. [Install NodeJs](https://nodejs.org) and npm (npm is included in the nodejs installation). This is needed for tailwind.
-3. [Install postgresql](INSTALLING_POSTGRES.md)
-4. Install the following packages (with apt on ubuntu):
-   - python3-venv
-   - python3-dev
-   - build-essentials
-   - libpq-dev
-5. Clone the repository.
-6. Copy the file `.env-template` and name the copy `.env`
-7. Fill in the following variables in `.env`. Uncomment only the variables that you fill in a value:
-    1. `DJANGO_DB_NAME`: The name of the database you created in step 2. (default value: bocken)
-    2. `DJANGO_DB_USER`: The name of the database user you created in step 2. (default value: bocken)
-    3. `DJANGO_DB_PASS`: The password for the database user you created in step 2. (no default value)
-    4. `DJANGO_DB_HOST` (default value: localhost) and `DJANGO_DB_PORT` (default value: 5432): **You only have to fill in these if you have setup your database to not be hosted on the default host and port**. If you followed the steps in step 2, you should not have to set these.
-    5. (optional) `DJANGO_SECRET`: The secret key that django uses. You can fill in this to a custom value but you don't have to.
-9. Run `source ./source_me.sh` to create a virtual environment.
-10. Run `pip install --upgrade pip` to make sure that pip is running the latest version
-11. Run `pip install -r dev-requirements.txt`
-12. Use `cd src` to enter the website directory.
-13. Run `./manage.py tailwind install` to install tailwind
-13. Run `./manage.py migrate` to initialize the database.
-14. Run `./manage.py compilemessages` to create all translations
-15. Run `./manage.py createsuperuser` to create an admin user that you will use to log in to the admin pages.
+3. Install the following packages
+    - Python virtual environment
+        - Ubuntu: `sudo apt install python3-venv`
+        - Mac: `brew install virtualenv`
+        - Windows: `pip install virtualenv`
+    - GNU gettext:
+        - Ubuntu: `sudo apt install gettext`
+        - Mac: `brew install gettext`
+        - Windows: [Download gettext here](https://mlocati.github.io/articles/gettext-iconv-windows.html)
+4. Clone the repository.
+5. Run `source ./source_me.sh` to create a virtual environment.
+6. Run `pip install -r dev-requirements.txt`
+7. Use `cd src` to enter the website directory.
+8. Run `./manage.py tailwind install` to install tailwind
+9. Run `./manage.py migrate` to initialize the database.
+10. Run `./manage.py compilemessages` to create all translations
+11. Run `./manage.py createsuperuser` to create an admin user that you will use to log in to the admin pages.
 
 The journal system is now installed!
 
@@ -35,6 +30,14 @@ During development, you need to use two terminals. **Dont forget to run `source 
 2. In the other run `./manage.py tailwind start` to start tailwind.
 
 You can now visit the journal system on `http://localhost:8000`.
+
+### Troubleshooting
+
+#### The styles from tailwind is not loading in the browser
+
+If the styles from tailwind are not loading in the browser, (a.k.a. the css file gets error 404), stop the command that runs the server (`./manage.py runserver`) and then restart it.
+
+This is because django must be restarted when new static files are added which can happen if the django server is started before the tailwind command (which creates the css file for tailwind).
 
 ## Documentation
 
@@ -70,5 +73,7 @@ To create or edit translations:
 
 ## Tailwind
 The journal system uses a css framework for the frontend called [Tailwind](https://tailwindcss.com/) and it is installed via the pip package [django-tailwind](https://pypi.org/project/django-tailwind/). Tailwind adds a bunch of css classes that do only one thing. For example the class `bg-red-400` adds a red background, the 400 is one of the predefined red colors that tailwind offers. The idea of tailwind is that instead of creating a bunch of css classes with many attributes, you add these classes on the HTML elements directly and thus not having to write any own css.
+
+All tailwind documentation and classes can be found on [their website](https://tailwindcss.com/).
 
 It should be noted that it is not used in the admin pages since those pages uses their own predefined styling

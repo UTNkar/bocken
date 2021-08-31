@@ -37,7 +37,7 @@ class JournalEntry(models.Model):
     class Meta:
         verbose_name = _("Journal Entry")
         verbose_name_plural = _("Journal Entries")
-        get_latest_by = "created"
+        get_latest_by = "meter_stop"
 
     def __str__(self):  # noqa
         return "{} - {}".format(

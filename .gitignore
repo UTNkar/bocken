@@ -134,6 +134,5 @@ dmypy.json
 */utn_tailwind_theme/static/
 */utn_tailwind_theme/templates/
 
-*/bocken/media/*
-
+/src/media/*
 /src/static/*

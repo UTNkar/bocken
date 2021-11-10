@@ -10,7 +10,7 @@ python-decouple==3.4
 phonenumbers==8.12.36
 
 # Personummer verification
-personnummer==3.0.2
+personnummer==3.0.3
 
 # Tailwind css
 django-tailwind==2.0.1

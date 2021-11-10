@@ -1,4 +1,4 @@
-Django[argon2]==3.2.6
+Django[argon2]==3.2.9
 
 # Postgres
 psycopg2==2.9.1
@@ -16,7 +16,7 @@ personnummer==3.0.2
 django-tailwind==2.0.1
 
 # Adds handy filters to templates
-django-widget-tweaks==1.4.8
+django-widget-tweaks==1.4.9
 
 # Font awesome version 5
 django-fontawesome-5==1.0.18

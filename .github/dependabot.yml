@@ -4,3 +4,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+  - package-ecosystem: "npm"
+    directory: "/src/utn_tailwind_theme/static_src"
+    schedule:
+      interval: "daily"

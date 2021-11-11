@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-16 16:45+0200\n"
+"POT-Creation-Date: 2021-06-21 14:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -322,6 +322,10 @@ msgstr ""
 "Starttiden sätts till sluttiden av den senaste rapporten. Om det inte finns "
 "några rapporter sätts starttiden till tiden då det första journalinlägget "
 "skapades. Sluttiden sätts alltid till den nuvarande tiden.\n"
+
+#: bocken/templates/admin/base.html:4
+msgid "Documentation at docs.utn.se"
+msgstr "Dokumentation på docs.utn.se"
 
 #: bocken/templates/admin/change_report_form.html:7
 msgid "OBS! The starting fee is not included in the total cost!"

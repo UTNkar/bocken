@@ -1,0 +1,6 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+{% block userlinks %}
+    <a href="https://docs.utn.se/bocken_journal_system/" target="_blank">{% translate 'Documentation at docs.utn.se' %}</a> /
+    {{ block.super }}
+{% endblock %}

@@ -8,7 +8,7 @@ class JournalEntryAdmin(ModelAdmin):
         'agreement', 'created', 'group',
         'meter_start', 'meter_stop', 'get_total_distance'
     )
-    ordering = ('-created', )
+    ordering = ('-meter_stop', )
     search_fields = [
         'agreement__name', 'agreement__personnummer', 'group__name'
     ]

@@ -21,6 +21,17 @@ RECAPTCHA_PUBLIC_KEY = config('RECAPTCHA_PUBLIC_KEY', default='')
 RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY', default='')
 SENTRY_DSN = config('SENTRY_DSN', default='')
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DJANGO_DB_NAME', default='bocken'),
+        'USER': config('DJANGO_DB_USER', default='bocken'),
+        'PASSWORD': config('DJANGO_DB_PASS', default=''),
+        'HOST': config('DJANGO_DB_HOST', default=''),
+        'PORT': config('DJANGO_DB_PORT', default='5432'),
+    }
+}
+
 sentry_sdk.init(
     dsn=SENTRY_DSN,
     integrations=[DjangoIntegration()],

@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-from decouple import config
-import sys
 import os
 from django.utils.translation import gettext_lazy as _
 from django.contrib.messages import constants as messages
@@ -73,29 +71,7 @@ TEMPLATES = [
     },
 ]
 
-IS_RUNNING_TEST = 'test' in sys.argv
-
-if IS_RUNNING_TEST:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': config('DJANGO_DB_NAME', default='bocken'),
-            'USER': config('DJANGO_DB_USER', default='bocken'),
-            'PASSWORD': config('DJANGO_DB_PASS', default=''),
-            'HOST': config('DJANGO_DB_HOST', default='127.0.0.1'),
-            'PORT': config('DJANGO_DB_PORT', default='5432'),
-        }
-    }
-
 WSGI_APPLICATION = 'bocken.wsgi.application'
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

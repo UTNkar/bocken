@@ -1,4 +1,3 @@
-from django.contrib.admin import AdminSite
 from bocken.models import (
     Admin, Agreement, JournalEntry, Report, JournalEntryGroup
 )
@@ -8,19 +7,17 @@ from .journal_entry_group_admin import JournalEntryGroupAdmin
 from .report_admin import ReportAdmin
 from .user_admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
+from django.contrib import admin
+from django.contrib.auth.models import Group
 
 
-class BockenAdminSite(AdminSite):
-    """Override the default admin site."""
+admin.site.register(Admin, UserAdmin)
+admin.site.register(Agreement, AgreementAdmin)
+admin.site.register(JournalEntry, JournalEntryAdmin)
+admin.site.register(Report, ReportAdmin)
+admin.site.register(JournalEntryGroup, JournalEntryGroupAdmin)
 
-    site_header = _("Bocken Administration")
-    site_title = _("Bocken Journal System")
+admin.site.unregister(Group)
 
-
-admin_site = BockenAdminSite(name='bocken')
-
-admin_site.register(Admin, UserAdmin)
-admin_site.register(Agreement, AgreementAdmin)
-admin_site.register(JournalEntry, JournalEntryAdmin)
-admin_site.register(Report, ReportAdmin)
-admin_site.register(JournalEntryGroup, JournalEntryGroupAdmin)
+admin.site.site_header = _("Bocken Administration")
+admin.site.site_title = _("Bocken Journal System")

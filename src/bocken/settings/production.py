@@ -27,7 +27,7 @@ DATABASES = {
         'NAME': config('DJANGO_DB_NAME', default='bocken'),
         'USER': config('DJANGO_DB_USER', default='bocken'),
         'PASSWORD': config('DJANGO_DB_PASS', default=''),
-        'HOST': config('DJANGO_DB_HOST', default='127.0.0.1'),
+        'HOST': config('DJANGO_DB_HOST', default=''),
         'PORT': config('DJANGO_DB_PORT', default='5432'),
     }
 }

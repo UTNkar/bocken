@@ -1,7 +1,7 @@
 Django[argon2]==3.2.9
 
 # Postgres
-psycopg2==2.9.1
+psycopg2==2.9.2
 
 # Improved handling of environment variables
 python-decouple==3.5

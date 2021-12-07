@@ -41,4 +41,4 @@ sentry_sdk==1.5.0
 django-cleanup==5.2.0
 
 # Importing and exporting in django admin
-django-import-export==2.6.1
+django-import-export==2.7.0

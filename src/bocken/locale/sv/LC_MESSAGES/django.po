@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-21 14:41+0200\n"
+"POT-Creation-Date: 2021-12-29 00:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: bocken/admin/__init__.py:16
+#: bocken/admin/__init__.py:22
 msgid "Bocken Administration"
 msgstr "Bocken Administration"
 
-#: bocken/admin/__init__.py:17
+#: bocken/admin/__init__.py:23
 msgid "Bocken Journal System"
 msgstr "Bockens Journalsystem"
 
@@ -266,11 +266,11 @@ msgstr "Rapport"
 msgid "Reports"
 msgstr "Rapporter"
 
-#: bocken/settings/base.py:125
+#: bocken/settings/base.py:101
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:126
+#: bocken/settings/base.py:102
 msgid "English"
 msgstr "Engelska"
 
@@ -461,38 +461,50 @@ msgstr ""
 "Bocken får endast användas av UTN, sektionerna på TekNat och UTN:s "
 "samarbetsföreningar!"
 
-#: bocken/templates/start_page.html:9
+#: bocken/templates/start_page.html:10
+msgid "Sign an agreement"
+msgstr "Skriv under ett köravtal"
+
+#: bocken/templates/start_page.html:12
 msgid ""
 "In order to drive Bocken you need to sign an agreement. Follow these steps:"
 msgstr ""
 "För att få köra Bocken måste du har ett signerat köravtal. Följ dessa steg:"
 
-#: bocken/templates/start_page.html:12
+#: bocken/templates/start_page.html:15
 msgid "Download"
 msgstr "Ladda ner"
 
-#: bocken/templates/start_page.html:14
+#: bocken/templates/start_page.html:17
 msgid "the agreement"
 msgstr "avtalet"
 
-#: bocken/templates/start_page.html:17
+#: bocken/templates/start_page.html:20
 msgid "Read through the agreement"
 msgstr "Läs igenom hela avtalet"
 
-#: bocken/templates/start_page.html:19
+#: bocken/templates/start_page.html:22
 msgid "Fill in the form and sign it. You can do this digitally on"
 msgstr "Fyll i formuläret och skriv under det. Du kan göra detta digital på"
 
-#: bocken/templates/start_page.html:26
+#: bocken/templates/start_page.html:29
 msgid ""
 "Press on DONE and then on download when you have signed it to download it."
 msgstr ""
 "Tryck på DONE och sen på download när du har signerat det för att ladda ner "
 "det påskrivna avtalet."
 
-#: bocken/templates/start_page.html:29
+#: bocken/templates/start_page.html:32
 msgid "Send the agreement along with a picture of your driving licens to"
 msgstr "Skicka avtalet tillsammans med en bild på ditt körkort till"
+
+#: bocken/templates/start_page.html:40
+msgid "Have you finished driving?"
+msgstr "Har du kört färdigt?"
+
+#: bocken/templates/start_page.html:43
+msgid "Fill in the journal here"
+msgstr "Fyll i körjournalen här"
 
 #: bocken/templates/two_level_select.html:5
 msgid ""

@@ -3,9 +3,12 @@
 
 {% block body %}
 <h1 class="text-2xl text-center mb-4">{% translate 'The digital journal system for UTN:s car Bocken'%}</h1>
-<b class="font-bold mb-2">
+<b class="font-bold mb-2 text-sm">
     {% translate 'Bocken can only be used by UTN, the sections at TekNat and UTN:s associated organisations!' %}
 </b>
+
+<h2 class="text-xl text-center">{% translate 'Sign an agreement' %}</h2>
+
 <p>{% translate 'In order to drive Bocken you need to sign an agreement. Follow these steps:' %}</p>
 <ol class="list-decimal list-inside pl-4">
     <li>
@@ -30,4 +33,14 @@
         <a class="underline text-blue-700" href="{{ klubbmastare_email }}">{{ klubbmastare_email }}</a>
     </li>
 </ol>
+
+<hr class="mt-6 mb-4">
+
+<h1 class="text-2xl text-center mb-4">
+    {% translate 'Have you finished driving?' %}
+</h1>
+<a href={% url "add-entry" %} class="text-center underline text-blue-700">
+    {% translate 'Fill in the journal here' %}
+</a>
+
 {% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-29 00:29+0100\n"
+"POT-Creation-Date: 2021-12-29 00:38+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -485,18 +485,13 @@ msgstr "Läs igenom hela avtalet"
 
 #: bocken/templates/start_page.html:22
 msgid "Fill in the form and sign it. You can do this digitally on"
-msgstr "Fyll i formuläret och skriv under det. Du kan göra detta digital på"
+msgstr "Fyll i formuläret och skriv under det. Du kan göra detta digitalt på"
 
-#: bocken/templates/start_page.html:29
+#: bocken/templates/start_page.html:28
 msgid ""
-"Press on DONE and then on download when you have signed it to download it."
-msgstr ""
-"Tryck på DONE och sen på download när du har signerat det för att ladda ner "
-"det påskrivna avtalet."
-
-#: bocken/templates/start_page.html:32
-msgid "Send the agreement along with a picture of your driving licens to"
-msgstr "Skicka avtalet tillsammans med en bild på ditt körkort till"
+"Download the signed agreement and send it along with a picture of your "
+"driving licens to"
+msgstr "Ladda ner det signerade avtalet och skicka det tillsammans med en bild på ditt körkort till"
 
 #: bocken/templates/start_page.html:40
 msgid "Have you finished driving?"

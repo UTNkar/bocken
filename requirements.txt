@@ -1,7 +1,7 @@
 Django[argon2]==3.2.9
 
 # Postgres
-psycopg2==2.9.2
+psycopg2==2.9.3
 
 # Improved handling of environment variables
 python-decouple==3.5
@@ -13,7 +13,7 @@ phonenumbers==8.12.42
 personnummer==3.0.3
 
 # Tailwind css
-django-tailwind==3.0.1
+django-tailwind==3.1.1
 
 # Adds handy filters to templates
 django-widget-tweaks==1.4.9
@@ -35,7 +35,7 @@ django-recaptcha==2.0.6
 django-cron==0.5.1
 
 # Sentry for logging errors
-sentry_sdk==1.5.1
+sentry_sdk==1.5.4
 
 # Automatically remove files from filefield if the file is changed
 django-cleanup==6.0.0

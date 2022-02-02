@@ -57,6 +57,7 @@ class JournalEntry(models.Model):
     get_total_distance.short_description = _("Driven Distance (km)")
 
     def meter_start_gap_marker(self):
+        """Mark meter_start cells in the admin view if a gap has occured."""
         try:
             previous_entry = JournalEntry.objects.filter(
                 meter_stop__lt=self.meter_stop
@@ -72,6 +73,7 @@ class JournalEntry(models.Model):
     meter_start_gap_marker.short_description = meter_start.verbose_name
 
     def meter_stop_gap_marker(self):
+        """Mark meter_stop cells in the admin view if a gap has occured."""
         try:
             previous_entry = JournalEntry.objects.filter(
                 meter_stop__gt=self.meter_stop

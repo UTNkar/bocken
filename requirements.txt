@@ -16,7 +16,7 @@ personnummer==3.0.3
 django-tailwind==3.1.1
 
 # Adds handy filters to templates
-django-widget-tweaks==1.4.9
+django-widget-tweaks==1.4.12
 
 # Font awesome version 5
 django-fontawesome-5==1.0.18

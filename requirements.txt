@@ -1,13 +1,13 @@
 Django[argon2]==3.2.9
 
 # Postgres
-psycopg2==2.9.2
+psycopg2==2.9.3
 
 # Improved handling of environment variables
 python-decouple==3.5
 
 # Phone number validation and formatting
-phonenumbers==8.12.40
+phonenumbers==8.12.42
 
 # Personummer verification
 personnummer==3.0.3
@@ -35,7 +35,7 @@ django-recaptcha==2.0.6
 django-cron==0.5.1
 
 # Sentry for logging errors
-sentry_sdk==1.5.1
+sentry_sdk==1.5.4
 
 # Automatically remove files from filefield if the file is changed
 django-cleanup==5.2.0

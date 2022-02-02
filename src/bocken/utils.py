@@ -1,5 +1,6 @@
 from personnummer import personnummer as pn
 from math import ceil
+from django.utils.html import format_html
 
 
 def personnummer_is_t_number(personnummer):
@@ -37,3 +38,20 @@ def kilometers_to_mil(kilometers: int):
     The result is rounded up since groups pay for every started mil.
     """
     return ceil(kilometers / 10)
+
+
+def mark_admin_list_cell(value):
+    """
+    Mark a list cell in the admin pages by making the cell red.
+
+    Returns the formatted list cell with the value provided
+    """
+    return format_html(
+        (
+            '<p '
+            'style="background: rgb(220, 38, 38);'
+            'color: white; margin:0; padding:0;'
+            '">{}</p>'
+        ),
+        value,  # Format the date correctly
+    )

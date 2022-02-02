@@ -3,6 +3,7 @@ from django.utils.formats import date_format
 from django.utils.translation import gettext_lazy as _
 # Report must be imported like this to avoid circular import
 import bocken.models.report as report
+from bocken.utils import mark_admin_list_cell
 
 
 class JournalEntry(models.Model):
@@ -54,6 +55,38 @@ class JournalEntry(models.Model):
         """Calculate the total distance driven."""
         return self.meter_stop - self.meter_start
     get_total_distance.short_description = _("Driven Distance (km)")
+
+    def meter_start_gap_marker(self):
+        """Mark meter_start cells in the admin view if a gap has occured."""
+        try:
+            previous_entry = JournalEntry.objects.filter(
+                meter_stop__lt=self.meter_stop
+            ).latest()
+        except JournalEntry.DoesNotExist:
+            return self.meter_start
+
+        if previous_entry.meter_stop != self.meter_start:
+            return mark_admin_list_cell(self.meter_start)
+        else:
+            return self.meter_start
+    meter_start_gap_marker.admin_order_field = 'meter_start'
+    meter_start_gap_marker.short_description = meter_start.verbose_name
+
+    def meter_stop_gap_marker(self):
+        """Mark meter_stop cells in the admin view if a gap has occured."""
+        try:
+            previous_entry = JournalEntry.objects.filter(
+                meter_stop__gt=self.meter_stop
+            ).earliest()
+        except JournalEntry.DoesNotExist:
+            return self.meter_stop
+
+        if previous_entry.meter_start != self.meter_stop:
+            return mark_admin_list_cell(self.meter_stop)
+        else:
+            return self.meter_stop
+    meter_stop_gap_marker.admin_order_field = 'meter_stop'
+    meter_stop_gap_marker.short_description = meter_stop.verbose_name
 
     @staticmethod
     def entries_exists():

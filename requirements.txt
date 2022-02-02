@@ -7,13 +7,13 @@ psycopg2==2.9.2
 python-decouple==3.5
 
 # Phone number validation and formatting
-phonenumbers==8.12.40
+phonenumbers==8.12.42
 
 # Personummer verification
 personnummer==3.0.3
 
 # Tailwind css
-django-tailwind==3.0.1
+django-tailwind==3.1.1
 
 # Adds handy filters to templates
 django-widget-tweaks==1.4.9

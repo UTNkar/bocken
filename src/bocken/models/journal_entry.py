@@ -1,9 +1,9 @@
 from django.db import models
 from django.utils.formats import date_format
-from django.utils.html import format_html
 from django.utils.translation import gettext_lazy as _
 # Report must be imported like this to avoid circular import
 import bocken.models.report as report
+from bocken.utils import mark_admin_list_cell
 
 
 class JournalEntry(models.Model):
@@ -65,15 +65,7 @@ class JournalEntry(models.Model):
             return self.meter_start
 
         if previous_entry.meter_stop != self.meter_start:
-            return format_html(
-                (
-                    '<p '
-                    'style="background: rgb(220, 38, 38);'
-                    'color: white; margin:0; padding:0;'
-                    '">{}</p>'
-                ),
-                self.meter_start
-            )
+            return mark_admin_list_cell(self.meter_start)
         else:
             return self.meter_start
     meter_start_gap_marker.admin_order_field = 'meter_start'
@@ -88,15 +80,7 @@ class JournalEntry(models.Model):
             return self.meter_stop
 
         if previous_entry.meter_start != self.meter_stop:
-            return format_html(
-                (
-                    '<p '
-                    'style="background: rgb(220, 38, 38);'
-                    'color: white; margin:0; padding:0;'
-                    '">{}</p>'
-                ),
-                self.meter_stop
-            )
+            return mark_admin_list_cell(self.meter_stop)
         else:
             return self.meter_stop
     meter_stop_gap_marker.admin_order_field = 'meter_stop'

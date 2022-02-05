@@ -1,4 +1,4 @@
-Django[argon2]==3.2.9
+Django[argon2]==3.2.11
 
 # Postgres
 psycopg2==2.9.3
@@ -38,7 +38,7 @@ django-cron==0.5.1
 sentry_sdk==1.5.4
 
 # Automatically remove files from filefield if the file is changed
-django-cleanup==5.2.0
+django-cleanup==6.0.0
 
 # Importing and exporting in django admin
 django-import-export==2.7.1

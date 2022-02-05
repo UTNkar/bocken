@@ -1,10 +1,9 @@
 from django.db import models
 from bocken.validators import validate_phonenumber, validate_personnummer
-from ..utils import format_personnummer
+from ..utils import format_personnummer, mark_admin_list_cell
 from ..fields import PhonenumberField
 from django.utils.translation import gettext_lazy as _
 from django.utils.timezone import now, timedelta
-from django.utils.html import format_html
 from django.template.defaultfilters import date
 from django.core.mail import send_mass_mail
 from django.conf import settings
@@ -95,15 +94,8 @@ class Agreement(models.Model):
         This is used in the admin pages.
         """
         if self.has_expired():
-            return format_html(
-                (
-                    '<p '
-                    'style="background: rgb(220, 38, 38);'
-                    'color: white; margin:0; padding:0;'
-                    '">{}</p>'
-                ),
-                date(self.expires),  # Format the date correctly
-            )
+            formatted_date = date(self.expires)  # Format the date correctly
+            return mark_admin_list_cell(formatted_date)
         else:
             return self.expires
     expires_colored.admin_order_field = 'expires'

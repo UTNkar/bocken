@@ -6,7 +6,7 @@ class JournalEntryAdmin(ModelAdmin):
 
     list_display = (
         'agreement', 'created', 'group',
-        'meter_start', 'meter_stop', 'get_total_distance'
+        'meter_start_gap_marker', 'meter_stop_gap_marker', 'get_total_distance'
     )
     ordering = ('-meter_stop', )
     search_fields = [

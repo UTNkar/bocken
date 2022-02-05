@@ -4,7 +4,7 @@ Django[argon2]==4.0.2
 psycopg2==2.9.3
 
 # Improved handling of environment variables
-python-decouple==3.5
+python-decouple==3.6
 
 # Phone number validation and formatting
 phonenumbers==8.12.42
@@ -16,7 +16,7 @@ personnummer==3.0.3
 django-tailwind==3.1.1
 
 # Adds handy filters to templates
-django-widget-tweaks==1.4.9
+django-widget-tweaks==1.4.12
 
 # Font awesome version 5
 django-fontawesome-5==1.0.18
@@ -38,7 +38,7 @@ django-cron==0.5.1
 sentry_sdk==1.5.4
 
 # Automatically remove files from filefield if the file is changed
-django-cleanup==5.2.0
+django-cleanup==6.0.0
 
 # Importing and exporting in django admin
 django-import-export==2.7.1

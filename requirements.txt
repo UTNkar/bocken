@@ -7,7 +7,7 @@ psycopg2==2.9.3
 python-decouple==3.6
 
 # Phone number validation and formatting
-phonenumbers==8.12.42
+phonenumbers==8.12.43
 
 # Personummer verification
 personnummer==3.0.3
@@ -35,7 +35,7 @@ django-recaptcha==2.0.6
 django-cron==0.5.1
 
 # Sentry for logging errors
-sentry_sdk==1.5.4
+sentry_sdk==1.5.5
 
 # Automatically remove files from filefield if the file is changed
 django-cleanup==6.0.0

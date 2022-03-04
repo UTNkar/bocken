@@ -31,9 +31,6 @@ django-object-actions==3.1.0
 # Add recapthca to forms
 django-recaptcha==3.0.0
 
-# Creating background tasks with cron
-django-cron==0.5.1
-
 # Sentry for logging errors
 sentry_sdk==1.5.6
 

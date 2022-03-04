@@ -461,25 +461,29 @@ msgstr ""
 "Bocken får endast användas av UTN, sektionerna på TekNat och UTN:s "
 "samarbetsföreningar!"
 
-#: bocken/templates/start_page.html:9
+#: bocken/templates/start_page.html:10
+msgid "Sign an agreement"
+msgstr "Skriv under ett köravtal"
+
+#: bocken/templates/start_page.html:12
 msgid ""
 "In order to drive Bocken you need to sign an agreement. Follow these steps:"
 msgstr ""
 "För att få köra Bocken måste du har ett signerat köravtal. Följ dessa steg:"
 
-#: bocken/templates/start_page.html:12
+#: bocken/templates/start_page.html:15
 msgid "Download"
 msgstr "Ladda ner"
 
-#: bocken/templates/start_page.html:14
+#: bocken/templates/start_page.html:17
 msgid "the agreement"
 msgstr "avtalet"
 
-#: bocken/templates/start_page.html:17
+#: bocken/templates/start_page.html:20
 msgid "Read through the agreement"
 msgstr "Läs igenom hela avtalet"
 
-#: bocken/templates/start_page.html:19
+#: bocken/templates/start_page.html:22
 msgid "Fill in the form and sign it. You can do this digitally on"
 msgstr "Fyll i formuläret och skriv under det. Du kan göra detta digitalt på"
 
@@ -488,6 +492,14 @@ msgid ""
 "Download the signed agreement and send it along with a picture of your "
 "driving licens to"
 msgstr "Ladda ner det signerade avtalet och skicka det tillsammans med en bild på ditt körkort till"
+
+#: bocken/templates/start_page.html:40
+msgid "Have you finished driving?"
+msgstr "Har du kört färdigt?"
+
+#: bocken/templates/start_page.html:43
+msgid "Fill in the journal here"
+msgstr "Fyll i körjournalen här"
 
 #: bocken/templates/two_level_select.html:5
 msgid ""

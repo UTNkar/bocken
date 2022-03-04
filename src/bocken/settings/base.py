@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'mathfilters',
     'django_object_actions',
     'captcha',
-    'django_cron',
     'django_cleanup.apps.CleanupConfig',
     'import_export'
 ]

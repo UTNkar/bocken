@@ -1,8 +1,5 @@
 Django[argon2]==4.0.3
 
-# Postgres
-psycopg2==2.9.3
-
 # Improved handling of environment variables
 python-decouple==3.6
 
@@ -30,9 +27,6 @@ django-object-actions==3.1.0
 
 # Add recapthca to forms
 django-recaptcha==3.0.0
-
-# Sentry for logging errors
-sentry_sdk==1.5.6
 
 # Automatically remove files from filefield if the file is changed
 django-cleanup==6.0.0

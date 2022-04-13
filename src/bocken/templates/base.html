@@ -5,6 +5,7 @@
         <meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400&;700display=swap" rel="stylesheet">
         <title>{% translate 'The digital journalsystem for Bocken' %}</title>
         {% tailwind_css %}
@@ -13,7 +14,7 @@
         {% endblock %}
     </head>
     <body class="h-screen bg-indigo-100">
-        <main class="container mx-auto px-4">
+        <main class="container mx-auto px-4 pb-4 md:pb-12">
             <div class="flex mb-4 justify-end">
                 {% include 'switch_language_button.html' %}
             </div>

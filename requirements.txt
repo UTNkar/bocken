@@ -33,3 +33,6 @@ django-cleanup==6.0.0
 
 # Importing and exporting in django admin
 django-import-export==2.8.0
+
+# Dateutil for relativedelta function and more
+python-dateutil==2.8.2

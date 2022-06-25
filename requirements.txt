@@ -4,13 +4,13 @@ Django[argon2]==4.0.5
 python-decouple==3.6
 
 # Phone number validation and formatting
-phonenumbers==8.12.49
+phonenumbers==8.12.50
 
 # Personummer verification
 personnummer==3.0.3
 
 # Tailwind css
-django-tailwind==3.1.1
+django-tailwind==3.3.0
 
 # Adds handy filters to templates
 django-widget-tweaks==1.4.12
@@ -33,3 +33,6 @@ django-cleanup==6.0.0
 
 # Importing and exporting in django admin
 django-import-export==2.8.0
+
+# Dateutil for relativedelta function and more
+python-dateutil==2.8.2

@@ -5,4 +5,4 @@
 psycopg2==2.9.3
 
 # Sentry for logging errors
-sentry_sdk==1.6.0
+sentry_sdk==1.7.0

@@ -1,16 +1,16 @@
-Django[argon2]==4.0.5
+Django[argon2]==4.1
 
 # Improved handling of environment variables
 python-decouple==3.6
 
 # Phone number validation and formatting
-phonenumbers==8.12.50
+phonenumbers==8.12.53
 
 # Personummer verification
 personnummer==3.0.3
 
 # Tailwind css
-django-tailwind==3.3.0
+django-tailwind==3.4.0
 
 # Adds handy filters to templates
 django-widget-tweaks==1.4.12

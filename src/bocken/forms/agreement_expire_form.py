@@ -1,9 +1,20 @@
-from django.forms import Form, CharField
+from django.forms import Form, CharField, TextInput
+from bocken.utils import format_personnummer
 from bocken.validators import validate_personnummer
+from django.utils.translation import gettext_lazy as _
 
 
 class AgreementExpireForm(Form):
     personnummer = CharField(
         required=True,
-        validators=[validate_personnummer]
+        validators=[validate_personnummer],
+        label='user',
+        widget=TextInput(attrs={
+            'placeholder': 'YYYYMMDD-XXXX',
+        }),
+        help_text=_("Your personnummer")
     )
+
+    # def clean_personnummer(self):
+    #     """Format the personnummer to the correct format."""
+    #     return format_personnummer(self.cleaned_data['personnummer'])

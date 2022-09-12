@@ -1,6 +1,8 @@
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
+
+from bocken.forms import AgreementExpireForm
 from .models import JournalEntry
 from .forms import JournalEntryForm
 from django.contrib import messages
@@ -103,7 +105,14 @@ class JournalEntryCreateSuccess(TemplateView):
     template_name = 'journalentry_create_success.html'
 
 
-class StartPage(TemplateView):
+class StartPage(FormView):
     """The start page."""
 
+    form_class = AgreementExpireForm
     template_name = 'start_page.html'
+    success_url = reverse_lazy('start-page')
+
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        return super().form_valid(form)

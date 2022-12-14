@@ -3,20 +3,20 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-29 00:38+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2022-12-14 15:54+0100\n"
+"PO-Revision-Date: 2022-12-14 15:56+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: bocken/admin/__init__.py:22
 msgid "Bocken Administration"
@@ -46,31 +46,41 @@ msgstr "Lösenorden matchar inte"
 msgid "<a href=\"../password/\">Change the user's password here</a>."
 msgstr "<a href=\"../password/\">Ändra användarens lösenord här</a>."
 
-#: bocken/forms.py:24
+#: bocken/forms/agreement_expire_form.py:15
+#: bocken/forms/journal_entry_form.py:24
 msgid "Your personnummer"
 msgstr "Ditt personnummer"
 
-#: bocken/forms.py:29
+#: bocken/forms/agreement_form.py:15 bocken/models/agreement.py:51
+msgid "The person's private email. Should not be an email ending in @utn.se."
+msgstr ""
+"Personens privata email. Ska inte vara en email som slutar med @utn.se."
+
+#: bocken/forms/agreement_form.py:22 bocken/models/agreement.py:63
+msgid "Signed agreement"
+msgstr "Signerat köravtal"
+
+#: bocken/forms/journal_entry_form.py:29
 msgid "I confirm that Bocken is clean and in good shape"
 msgstr "Jag intygar att Bocken är i gott skick"
 
-#: bocken/forms.py:43
+#: bocken/forms/journal_entry_form.py:43
 msgid "Trip meter at start"
 msgstr "Mätare vid start"
 
-#: bocken/forms.py:50
+#: bocken/forms/journal_entry_form.py:50
 msgid "Trip meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/forms.py:63
+#: bocken/forms/journal_entry_form.py:63
 msgid ""
 "Not sure which group to choose? Choose the group that seems most reasonable "
 "to be paying for your trip."
 msgstr ""
 "Osäker på vilken grupp du ska välja? Välj den grupp som känns mest rimlig "
-"att betala din resa"
+"att betala din resa."
 
-#: bocken/forms.py:67
+#: bocken/forms/journal_entry_form.py:67
 msgid ""
 "Trip meter at start is filled in automatically from the latest entry. If the "
 "number is not correct, enter the value that the meter had when you started "
@@ -80,12 +90,12 @@ msgstr ""
 "inte stämmer, skriv in det värde som mätaren hade när du började köra samt "
 "informera UTN:s klubbmästare."
 
-#: bocken/forms.py:110
+#: bocken/forms/journal_entry_form.py:110
 msgid "Trip meter at start must be larger than the last entry in the journal"
 msgstr ""
 "Tripmätare vid start måste vara större än det senaste inlägget i körjournalen"
 
-#: bocken/forms.py:132
+#: bocken/forms/journal_entry_form.py:132
 msgid ""
 "You don't have a written agreement which you must have to drive bocken. "
 "Contact the head of the pub crew and send a copy of the details you wrote "
@@ -95,30 +105,22 @@ msgstr ""
 "UTN:s klubbmästare och skicka med en kopia av detaljerna som du skrev in i "
 "fälten nedan."
 
-#: bocken/forms.py:142
+#: bocken/forms/journal_entry_form.py:142
 msgid "Trip meter at stop must be larger than the trip meter at start"
 msgstr "Tripmätare vid stop måste vara större än trippmätare vid start"
 
-#: bocken/forms.py:170
+#: bocken/forms/report_form.py:28
 msgid "Can not create a report because there are no journal entries"
 msgstr ""
 "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg"
 
-#: bocken/forms.py:183
+#: bocken/forms/report_form.py:41
 msgid ""
 "Can not create a report because there are no journal entries between these "
 "two timestamps"
 msgstr ""
 "Kunde inte skapa en rapport eftersom att det inte finns några journalinlägg "
 "mellan dessa tidstämplar"
-
-#: bocken/forms.py:198 bocken/models/agreement.py:52
-msgid "The person's private email. Should not be an email ending in @utn.se."
-msgstr "Personens privata email. Ska inte vara en email som slutar med @utn.se"
-
-#: bocken/forms.py:205 bocken/models/agreement.py:64
-msgid "Signed agreement"
-msgstr "Signerat köravtal"
 
 #: bocken/models/admin.py:39
 msgid "Admin"
@@ -128,40 +130,40 @@ msgstr "Administratör"
 msgid "Admins"
 msgstr "Administratörer"
 
-#: bocken/models/agreement.py:29 bocken/models/journal_entry_group.py:10
+#: bocken/models/agreement.py:28 bocken/models/journal_entry_group.py:10
 #: bocken/templates/journalentry_create.html:57
 msgid "Name"
 msgstr "Namn"
 
-#: bocken/models/agreement.py:30
+#: bocken/models/agreement.py:29
 msgid "First and last name"
 msgstr "För- och efternamn"
 
-#: bocken/models/agreement.py:42
+#: bocken/models/agreement.py:41
 msgid "Phonenumber"
 msgstr "Telefonnummer"
 
-#: bocken/models/agreement.py:69
+#: bocken/models/agreement.py:68
 msgid "Valid until"
 msgstr "Giltig t.o.m"
 
-#: bocken/models/agreement.py:71
+#: bocken/models/agreement.py:70
 msgid "Agreements are valid for 1 year by default."
-msgstr "Avtal är giltiga i 1 år som standard"
+msgstr "Avtal är giltiga i 1 år som standard."
 
-#: bocken/models/agreement.py:75 bocken/models/journal_entry.py:19
+#: bocken/models/agreement.py:74 bocken/models/journal_entry.py:20
 msgid "Agreement"
 msgstr "Köravtal"
 
-#: bocken/models/agreement.py:76
+#: bocken/models/agreement.py:75
 msgid "Agreements"
 msgstr "Köravtal"
 
-#: bocken/models/agreement.py:122
+#: bocken/models/agreement.py:114
 msgid "Reminder to update your Bocken agreement"
 msgstr "Påminnelse för att uppdatera ditt Bockenavtal"
 
-#: bocken/models/agreement.py:124
+#: bocken/models/agreement.py:116
 msgid ""
 "This is an automated message from UTN:s journal system for Bocken. You are "
 "receiving this email because you have a Bocken agreement that will expire in "
@@ -175,38 +177,38 @@ msgstr ""
 "Om du vill fortsätta köra Bocken måste du kontakta UTN:s klubbmästare genom "
 "att svara på detta email.\n"
 "\n"
-"Om du inte vill fortsätta köra Bocken kan du ignorera detta email"
+"Om du inte vill fortsätta köra Bocken kan du ignorera detta email."
 
-#: bocken/models/journal_entry.py:24
+#: bocken/models/journal_entry.py:25
 #: bocken/templates/admin/change_report_form.html:10
 #: bocken/templates/journalentry_create.html:61
 msgid "Group"
 msgstr "Grupp"
 
-#: bocken/models/journal_entry.py:27
+#: bocken/models/journal_entry.py:28
 #: bocken/templates/journalentry_create.html:65
 msgid "Meter at start"
 msgstr "Mätare vid start"
 
-#: bocken/models/journal_entry.py:30
+#: bocken/models/journal_entry.py:31
 #: bocken/templates/journalentry_create.html:69
 msgid "Meter at stop"
 msgstr "Mätare vid stop"
 
-#: bocken/models/journal_entry.py:34 bocken/models/report.py:29
+#: bocken/models/journal_entry.py:35 bocken/models/report.py:29
 #: bocken/templates/journalentry_create.html:73
 msgid "Created"
 msgstr "Skapad"
 
-#: bocken/models/journal_entry.py:38
+#: bocken/models/journal_entry.py:39
 msgid "Journal Entry"
 msgstr "Journalinlägg"
 
-#: bocken/models/journal_entry.py:39
+#: bocken/models/journal_entry.py:40
 msgid "Journal Entries"
 msgstr "Journalinlägg"
 
-#: bocken/models/journal_entry.py:56
+#: bocken/models/journal_entry.py:57
 msgid "Driven Distance (km)"
 msgstr "Körd sträcka (km)"
 
@@ -266,11 +268,11 @@ msgstr "Rapport"
 msgid "Reports"
 msgstr "Rapporter"
 
-#: bocken/settings/base.py:101
+#: bocken/settings/base.py:100
 msgid "Swedish"
 msgstr "Svenska"
 
-#: bocken/settings/base.py:102
+#: bocken/settings/base.py:101
 msgid "English"
 msgstr "Engelska"
 
@@ -323,7 +325,7 @@ msgstr ""
 "några rapporter sätts starttiden till tiden då det första journalinlägget "
 "skapades. Sluttiden sätts alltid till den nuvarande tiden.\n"
 
-#: bocken/templates/admin/base.html:4
+#: bocken/templates/admin/base.html:5
 msgid "Documentation at docs.utn.se"
 msgstr "Dokumentation på docs.utn.se"
 
@@ -429,7 +431,7 @@ msgstr ""
 msgid "new journal entries since the last report"
 msgstr "nya journalinlägg sen den senaste rapporten"
 
-#: bocken/templates/base.html:9
+#: bocken/templates/base.html:10
 msgid "The digital journalsystem for Bocken"
 msgstr "Den digitala körjournalen för Bocken"
 
@@ -487,19 +489,45 @@ msgstr "Läs igenom hela avtalet"
 msgid "Fill in the form and sign it. You can do this digitally on"
 msgstr "Fyll i formuläret och skriv under det. Du kan göra detta digitalt på"
 
-#: bocken/templates/start_page.html:28
+#: bocken/templates/start_page.html:31
 msgid ""
 "Download the signed agreement and send it along with a picture of your "
 "driving licens to"
-msgstr "Ladda ner det signerade avtalet och skicka det tillsammans med en bild på ditt körkort till"
+msgstr ""
+"Ladda ner det signerade avtalet och skicka det tillsammans med en bild på "
+"ditt körkort till"
 
-#: bocken/templates/start_page.html:40
+#: bocken/templates/start_page.html:39
 msgid "Have you finished driving?"
 msgstr "Har du kört färdigt?"
 
-#: bocken/templates/start_page.html:43
+#: bocken/templates/start_page.html:42
 msgid "Fill in the journal here"
 msgstr "Fyll i körjournalen här"
+
+#: bocken/templates/start_page.html:48
+msgid "When does my agreement expire?"
+msgstr "När går mitt köravtal ut?"
+
+#: bocken/templates/start_page.html:51
+msgid "Enter your personnummer to see when your agreement will expire"
+msgstr "Skriv in ditt personnummer för att ta reda på när ditt köravtal går ut"
+
+#: bocken/templates/start_page.html:67
+msgid "Check"
+msgstr "Visa"
+
+#: bocken/templates/start_page.html:81
+msgid "Your agreement expired"
+msgstr "Ditt avtal gick ut"
+
+#: bocken/templates/start_page.html:83
+msgid "Your agreement expires"
+msgstr "Ditt avtal går ut"
+
+#: bocken/templates/start_page.html:86
+msgid "You do not have an agreement!"
+msgstr "Du har inte ett avtal!"
 
 #: bocken/templates/two_level_select.html:5
 msgid ""
@@ -531,7 +559,7 @@ msgstr "Ditt personnummer måste vara på formen YYYYMMDD-XXXX"
 msgid "Invalid personnummer"
 msgstr "Ogiltigt personnummer"
 
-#: bocken/views.py:28
+#: bocken/views.py:31
 #, python-format
 msgid ""
 "Your agreement has expired! The journal entry you just created has been "

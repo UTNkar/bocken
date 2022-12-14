@@ -1,9 +1,10 @@
+from django.shortcuts import render
 from django.views.generic.edit import CreateView, FormView
 from django.views.generic.base import TemplateView
 from django.urls import reverse_lazy
 
 from bocken.forms import AgreementExpireForm
-from .models import JournalEntry
+from .models import JournalEntry, Agreement
 from .forms import JournalEntryForm
 from django.contrib import messages
 from django.utils.translation import gettext as _
@@ -110,9 +111,16 @@ class StartPage(FormView):
 
     form_class = AgreementExpireForm
     template_name = 'start_page.html'
-    success_url = reverse_lazy('start-page')
 
     def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        return super().form_valid(form)
+        personnummer = form.cleaned_data['personnummer']
+        expires = ''
+        try:
+            expires = Agreement.objects.get(personnummer=personnummer).expires
+        except Agreement.DoesNotExist:
+            expires = False
+        context = self.get_context_data()
+        context['has_expired'] = expires < now().date() if expires else False
+        context['expires'] = expires
+
+        return render(self.request, self.template_name, context=context)

@@ -65,6 +65,28 @@
     {% endfor %}
 
     <input value="Check" type="submit" class="block mx-auto mt-4 py-2 px-8 rounded text-white bg-blue-500">
+    {% if expires is not None %}
+        <h1 class="
+            text-2xl p-4 rounded text-white text-center mt-4
+            {% if expires == False %}
+                bg-yellow-400
+            {% elif has_expired %}
+                bg-red-500
+            {% else %}
+                bg-limegreen
+            {% endif %}"
+        >
+            {% if expires %}
+                {% if has_expired %}
+                    {% translate 'Your agreement expired' %} {{ expires }}!
+                {% else %}
+                    {% translate 'Your agreement expires' %} {{ expires }}
+                {% endif %}
+            {% else %}
+                {% translate 'You do not have an agreement!' %}
+            {% endif %}
+        </h1>
+    {% endif %}
 </form>
 
 {% endblock %}

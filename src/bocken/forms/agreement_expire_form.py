@@ -12,9 +12,11 @@ class AgreementExpireForm(Form):
         widget=TextInput(attrs={
             'placeholder': 'YYYYMMDD-XXXX',
         }),
-        help_text=_("Your personnummer")
+        help_text=_("Your personnummer"),
+        min_length=10,  # Shortest format is 10 characters long
+        max_length=13  # Longest format is 13 characters long
     )
 
-    # def clean_personnummer(self):
-    #     """Format the personnummer to the correct format."""
-    #     return format_personnummer(self.cleaned_data['personnummer'])
+    def clean_personnummer(self):
+        """Format the personnummer to the correct format."""
+        return format_personnummer(self.cleaned_data['personnummer'])

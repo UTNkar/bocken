@@ -5,6 +5,8 @@ from django.utils.translation import gettext_lazy as _
 
 
 class AgreementExpireForm(Form):
+    """A form for checking when an agreement expires."""
+
     personnummer = CharField(
         required=True,
         validators=[validate_personnummer],

@@ -113,6 +113,7 @@ class StartPage(FormView):
     template_name = 'start_page.html'
 
     def form_valid(self, form):
+        """When the form is valid."""
         personnummer = form.cleaned_data['personnummer']
         expires = ''
         try:

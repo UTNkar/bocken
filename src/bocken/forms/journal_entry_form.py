@@ -19,7 +19,7 @@ class JournalEntryForm(ModelForm):
         validators=[validate_personnummer],
         label='user',
         widget=TextInput(attrs={
-            'placeholder': 'YYYYMMDD-XXXX',
+            'placeholder': 'YYYYMMDDXXXX',
         }),
         help_text=_("Your personnummer")
     )

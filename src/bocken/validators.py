@@ -3,6 +3,7 @@ from django.core.exceptions import ValidationError
 from personnummer import personnummer
 from django.utils.translation import gettext as _
 from .utils import personnummer_is_t_number
+from django.core.validators import RegexValidator
 
 INVALID_PERSONNUMMER = _("Invalid personnummer")
 INVALID_PHONENUMBER = _("Invalid phonenumber")
@@ -44,7 +45,15 @@ def validate_tnummer(tnummer):
     # library can't parse or format T-numbers, we must do it on our own.
     # The letter in a t-number is counted as a 1 when validating it.
     # Therefor we exchange the letter for a 1 and validate it as a normal
-    # personnummer. It's not guaranteed that this will work in all cases
+    # personnummer. It's not guaranteed that this will work in all cases.
+    # We also need to make sure that the T-number is in the correct format
+    # since the personnummer module can't format it
+
+    RegexValidator(
+        r'^[0-9]{8}[A-Za-z][0-9]{3}$',
+        message=_('Your personnummer must be on the format YYYYMMDDXXXX')
+    )(tnummer)
+
     tnummer = tnummer[:-4] + '1' + tnummer[-3:]
     valid = personnummer.valid(tnummer)
 

@@ -13,10 +13,18 @@ class PersonnummerValidatorTests(TestCase):
         except ValidationError:
             self.fail("A valid personnummer was considered invalid")
 
+    def test_invalid_personnummer(self):
+        """Test an invalid personnummer."""
+        self.assertRaises(
+            ValidationError,
+            validate_personnummer,
+            "980111-3366"
+        )
+
     def test_t_number(self):
         """Test a valid t-number."""
         try:
-            validate_personnummer("19980101-T116")
+            validate_personnummer("19980101T116")
         except ValidationError:
             self.fail("A valid t-number was considered invalid")
 

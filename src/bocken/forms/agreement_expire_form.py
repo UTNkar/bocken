@@ -12,7 +12,7 @@ class AgreementExpireForm(Form):
         validators=[validate_personnummer],
         label='user',
         widget=TextInput(attrs={
-            'placeholder': 'YYYYMMDD-XXXX',
+            'placeholder': 'YYYYMMDDXXXX',
         }),
         help_text=_("Your personnummer"),
         min_length=10,  # Shortest format is 10 characters long

@@ -15,6 +15,20 @@ def get_default_expires():
     return now().date() + timedelta(days=365)
 
 
+class AgreementManager(models.Manager):
+    """Manager for the Agreement model."""
+
+    def get(self, **kwargs):
+        """Override the default get."""
+        # Before each lookup the personnummer is formatted to match
+        # the format in the database
+        if 'personnummer' in kwargs:
+            kwargs['personnummer'] = format_personnummer(
+                kwargs['personnummer']
+            )
+        return super().get(**kwargs)
+
+
 class Agreement(models.Model):
     """
     Represents a person who has signed a bocken-agreement.
@@ -22,6 +36,8 @@ class Agreement(models.Model):
     When a person has signed a bocken-agreement they can drive bocken
     for 1 year. After that year they have to sign a new agreement.
     """
+
+    objects = AgreementManager()
 
     name = models.CharField(
         max_length=120,
@@ -85,7 +101,7 @@ class Agreement(models.Model):
 
     def has_expired(self):
         """Check if an agreement has expired."""
-        return self.expires <= now().date()
+        return self.expires < now().date()
 
     def expires_colored(self):
         """
@@ -127,7 +143,11 @@ class Agreement(models.Model):
                 (message_tuple, )
             )
 
+    def clean(self):  # noqa: D102
+        validate_personnummer(self.personnummer)
+
     def save(self, *args, **kwargs):  # noqa
+        self.full_clean()
         self.personnummer = format_personnummer(self.personnummer)
         super(Agreement, self).save(*args, **kwargs)
 

@@ -101,7 +101,7 @@ class Agreement(models.Model):
 
     def has_expired(self):
         """Check if an agreement has expired."""
-        return self.expires <= now().date()
+        return self.expires < now().date()
 
     def expires_colored(self):
         """

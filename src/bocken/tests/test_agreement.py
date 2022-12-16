@@ -16,17 +16,23 @@ class AgreementTestCase(TestCase):
             personnummer="19980101-3039",
             email="mail@mail.se",
             phonenumber="0733221122",
-            expires=now().date() + timedelta(weeks=5)
         )
 
     def test_has_expired(self):
         """Test if an agreement has expired."""
-        self.agreement1.expires = now().date() - timedelta(weeks=5)
+        self.agreement1.expires = now().date() - timedelta(days=1)
 
         self.assertTrue(self.agreement1.has_expired())
 
+    def test_has_not_expired_today(self):
+        """Test if an agreement has not expired today."""
+        self.agreement1.expires = now().date()
+
+        self.assertFalse(self.agreement1.has_expired())
+
     def test_has_not_expired(self):
         """Test if an agreement has not expired."""
+        self.agreement1.expires = now().date() + timedelta(days=1)
         self.assertFalse(self.agreement1.has_expired())
 
     def test_automatic_reminder(self):

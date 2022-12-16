@@ -17,7 +17,7 @@ def personnummer_is_t_number(personnummer):
     ]
 
 
-def combine_names(apps, schema_editor):
+def alter_t_numbers(apps, schema_editor):
     # We can't import the Agreement model directly as it may be a newer
     # version than this migration expects. We use the historical version.
     agreement_model = apps.get_model('bocken', 'Agreement')
@@ -34,5 +34,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(combine_names),
+        migrations.RunPython(alter_t_numbers),
     ]

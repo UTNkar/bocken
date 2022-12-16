@@ -7,9 +7,10 @@ from django.core import mail
 
 class AgreementTestCase(TestCase):
     """Tests for the agreement model."""
+
     agreement1 = None
 
-    def setUp(self):
+    def setUp(self):  # noqa
         self.agreement1 = Agreement.objects.create(
             name="Name Nameson",
             personnummer="19980101-3039",
@@ -50,13 +51,16 @@ class AgreementTestCase(TestCase):
             agreement_without_email not in first_email.recipients()
         )
 
-    def test_personnummer_created_in_correct_format(self):
-        # This assumes that the agreement was created with a different format
-        # of the personnummer
+    def test_personnummer_saved_in_correct_format(self):
+        """Test that personnummer is saved in the correct format."""
+        self.agreement1.personnummer = '19980101-3039'
+        self.agreement1.save()
+
         agreement = Agreement.objects.get(personnummer="199801013039")
         self.assertEqual(agreement.personnummer, "199801013039")
 
     def test_create_agreement_with_invalid_personnummer(self):
+        """Test that an agreement can not be created with an invalid personnummer."""  # noqa: E501
         invalid_personnummer = "980111-3366"
         self.assertRaises(
             ValidationError,
@@ -71,3 +75,28 @@ class AgreementTestCase(TestCase):
             Agreement.objects.get,
             personnummer=invalid_personnummer
         )
+
+    def test_t_number_wrong_format(self):
+        """Test that an agreement can not be created with the wrong format on the T number."""  # noqa: E501
+        self.assertRaises(
+            ValidationError,
+            Agreement.objects.create,
+            name="Tname sonson",
+            personnummer="19980101-T728",
+            email="mailtt@maitttl.se",
+            phonenumber="0733225566"
+        )
+
+    def test_t_number_correct_format(self):
+        """Test that an agreement with correct format on the T number can be created."""  # noqa: E501
+        try:
+            Agreement.objects.create(
+                name="Tname sonson",
+                personnummer="19980101T728",
+                email="mailtt@maitttl.se",
+                phonenumber="0733225566"
+            )
+        except ValidationError:
+            self.fail(
+                "An agreement with a valid T number could not be created"
+            )

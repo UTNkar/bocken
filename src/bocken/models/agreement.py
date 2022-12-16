@@ -16,7 +16,12 @@ def get_default_expires():
 
 
 class AgreementManager(models.Manager):
+    """Manager for the Agreement model."""
+
     def get(self, **kwargs):
+        """Override the default get."""
+        # Before each lookup the personnummer is formatted to match
+        # the format in the database
         if 'personnummer' in kwargs:
             kwargs['personnummer'] = format_personnummer(
                 kwargs['personnummer']
@@ -138,7 +143,7 @@ class Agreement(models.Model):
                 (message_tuple, )
             )
 
-    def clean(self):
+    def clean(self):  # noqa: D102
         validate_personnummer(self.personnummer)
 
     def save(self, *args, **kwargs):  # noqa

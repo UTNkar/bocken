@@ -41,6 +41,11 @@ def validate_personnummer(person_nummer):
 
 
 def validate_tnummer(tnummer):
+    """
+    Validate a t number.
+
+    Raises ValidationError if the personnummer is not valid
+    """
     # T-numbers are a bit difficult to handle. Since the personnummer
     # library can't parse or format T-numbers, we must do it on our own.
     # The letter in a t-number is counted as a 1 when validating it.

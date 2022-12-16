@@ -19,11 +19,24 @@ class JournalEntryFormTestCase(TestCase):
             email="mail@mail.se",
             expires=timezone.now() + timedelta(days=365)
         )
-        self.agreement.save()
+        self.t_number_agreement = Agreement.objects.create(
+            name="Blipp blopp",
+            personnummer="19980101T728",
+            phonenumber="0733221144",
+            email="mail2@mail2.se",
+        )
         self.group = JournalEntryGroup.objects.create(
             name="Gruppen",
             main_group='lg_and_board',
         )
+        self.form_data = {
+            'personnummer': '980101-3039',
+            'group': self.group.id,
+            'meter_start': 45,
+            'meter_stop': 49,
+            'confirm': True,
+            'g-recaptcha-response': 'PASSED'
+        }
 
     def test_initial_meter_start(self):
         """
@@ -43,14 +56,9 @@ class JournalEntryFormTestCase(TestCase):
 
     def test_invalid_personnummer(self):
         """Test form submission with invalid personnummer."""
-        form_data = {
-            'personnummer': '980101-1111',
-            'group': self.group.id,
-            'meter_start': 40,
-            'meter_stop': 58,
-            'confirm': True
-        }
-        form = JournalEntryForm(form_data)
+        self.form_data['personnummer'] = '980101-1111'
+
+        form = JournalEntryForm(self.form_data)
         self.assertFalse(form.is_valid())
         self.assertTrue('personnummer' in form.errors)
 
@@ -62,49 +70,31 @@ class JournalEntryFormTestCase(TestCase):
             meter_start=40,
             meter_stop=49
         )
-        form_data = {
-            'personnummer': '980101-1111',
-            'group': self.group.id,
-            'meter_start': 45,
-            'meter_stop': 58,
-            'confirm': True
-        }
 
-        form = JournalEntryForm(form_data)
+        self.form_data['meter_start'] = 45
+
+        form = JournalEntryForm(self.form_data)
         self.assertFalse(form.is_valid())
         self.assertTrue('meter_start' in form.errors)
 
     def test_too_small_meter_stop(self):
         """Test when meter stop is smaller than meter start."""
-        form_data = {
-            'personnummer': '980101-1111',
-            'group': self.group.id,
-            'meter_start': 45,
-            'meter_stop': 39,
-            'confirm': True
-        }
+        self.form_data['meter_stop'] = 25
 
-        form = JournalEntryForm(form_data)
+        form = JournalEntryForm(self.form_data)
         self.assertFalse(form.is_valid())
         self.assertTrue('meter_stop' in form.errors)
 
     def test_valid_submission(self):
         """Test a valid submission."""
-        form_data = {
-            'personnummer': '980101-3039',
-            'group': self.group.id,
-            'meter_start': 45,
-            'meter_stop': 49,
-            'confirm': True,
-            'g-recaptcha-response': 'PASSED'
-        }
-        form = JournalEntryForm(form_data)
+        form = JournalEntryForm(self.form_data)
         self.assertTrue(form.is_valid())
         form.save()
 
         latest_entry = JournalEntry.get_latest_entry()
         self.assertEqual(latest_entry.agreement, self.agreement)
         self.assertEqual(latest_entry.meter_start, 45)
+        self.assertEqual(latest_entry.meter_stop, 49)
 
     def test_different_personnummer_format(self):
         """
@@ -139,16 +129,8 @@ class JournalEntryFormTestCase(TestCase):
         self.agreement.expires = timezone.now().date() - timedelta(days=365)
         self.agreement.save()
 
-        form_data = {
-            'personnummer': '19980101-3039',
-            'group': self.group.id,
-            'meter_start': 45,
-            'meter_stop': 49,
-            'confirm': True,
-            'g-recaptcha-response': 'PASSED'
-        }
         response = self.client.post(
-            reverse('add-entry'), form_data, follow=True
+            reverse('add-entry'), self.form_data, follow=True
         )
         self.assertRedirects(response, reverse('add-entry-success'))
 
@@ -176,17 +158,11 @@ class JournalEntryFormTestCase(TestCase):
             meter_stop=49
         )
 
-        form_data = {
-            'personnummer': '19980101-3039',
-            'group': self.group.id,
-            'meter_start': 50,
-            'meter_stop': 70,
-            'confirm': True,
-            'g-recaptcha-response': 'PASSED'
-        }
+        self.form_data['meter_start'] = 60
+        self.form_data['meter_stop'] = 70
 
         response = self.client.post(
-            reverse('add-entry'), form_data, follow=True
+            reverse('add-entry'), self.form_data, follow=True
         )
         self.assertRedirects(response, reverse('add-entry-success'))
 
@@ -199,3 +175,19 @@ class JournalEntryFormTestCase(TestCase):
         self.assertTrue(
             settings.KLUBBMASTARE_EMAIL in first_email.recipients()
         )
+
+    def test_t_number_wrong_format(self):
+        """Test a submission with the wrong format on the T number."""
+        self.form_data['personnummer'] = '19980101-T728'
+
+        form = JournalEntryForm(self.form_data)
+        self.assertFalse(form.is_valid())
+        self.assertTrue('personnummer' in form.errors)
+        self.assertIn('YYYYMMDDXXXX', form.errors['personnummer'][0])
+
+    def test_t_number(self):
+        """Test submitting with the correct format on T-number."""
+        self.form_data['personnummer'] = '19980101T728'
+
+        form = JournalEntryForm(self.form_data)
+        self.assertTrue(form.is_valid())

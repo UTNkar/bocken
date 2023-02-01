@@ -35,12 +35,19 @@
         /**
          * Parses the html string 'option_string' and appends it to 'select_element'
         */
-        function add_option(select_element, option_string) {
-            const parser = new DOMParser();
-            const doc = parser.parseFromString(option_string, 'text/html');
-            // DOMParser adds a body tag around the option tag. To get rid of it we
-            // append the first child in the body tag a.k.a. the option tag
-            select_element.append(doc.body.firstChild);
+        function add_option(select_element, value, textContent, {disabled=false, selected=false}) {
+            const option = document.createElement("option");
+            option.value = value;
+            option.innerText = textContent;
+            option.disabled = disabled;
+            option.selected = selected;
+
+            select_element.append(option)
+            // const parser = new DOMParser();
+            // const doc = parser.parseFromString(option_string, 'text/html');
+            // // DOMParser adds a body tag around the option tag. To get rid of it we
+            // // append the first child in the body tag a.k.a. the option tag
+            // select_element.append(doc.body.firstChild);
         }
 
         /**
@@ -56,7 +63,15 @@
             // Add a default "Choose your group" choice. This option should only be selected
             // if no there is no initial group
             const selected = !initialGroup ? 'selected' : '';
-            add_option(groupSelect, "<option value='' disabled " + selected + ">{% translate 'Choose your group' %}</option>")
+            add_option(
+                groupSelect,
+                '',
+                "{% translate 'Choose your group' %}",
+                {
+                    disabled: true,
+                    selected: selected
+                }
+            );
 
             // If a main group has been selected, the groups select is populated with the groups
             // that belong to the selected main group. If there is an initial group, it is selected
@@ -66,7 +81,9 @@
                 for (let index in groupsInSelectedMainGroup) {
                     const group = groupsInSelectedMainGroup[index];
                     const selected = group[0] == initialGroup ? 'selected' : '';
-                    add_option(groupSelect, `<option value='${group[0]}' ${selected}>${group[1]}</option>`);
+                    add_option(
+                        groupSelect, group[0], group[1], {selected: selected}
+                    );
                 }
             }
 

@@ -22,7 +22,7 @@
     "@tailwindcss/line-clamp": "^0.4.2",
     "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.13",
-    "browser-sync": "^2.27.12",
+    "browser-sync": "^2.28.3",
     "clean-css-cli": "^5.6.2",
     "cross-env": "^7.0.3",
     "nodemon": "^2.0.21",

@@ -2,7 +2,7 @@
 -r requirements.txt
 
 # Postgres
-psycopg2==2.9.5
+psycopg2==2.9.6
 
 # Sentry for logging errors
 sentry_sdk==1.19.1

@@ -4,7 +4,7 @@ Django[argon2]==4.2.1
 python-decouple==3.8
 
 # Phone number validation and formatting
-phonenumbers==8.13.11
+phonenumbers==8.13.13
 
 # Personummer verification
 personnummer==3.0.4

@@ -29,7 +29,7 @@ django-object-actions==4.1.0
 django-recaptcha==3.0.0
 
 # Automatically remove files from filefield if the file is changed
-django-cleanup==7.0.0
+django-cleanup==8.0.0
 
 # Importing and exporting in django admin
 django-import-export==3.2.0

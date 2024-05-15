@@ -124,8 +124,19 @@ class JournalEntryForm(ModelForm):
         if person_nummer:
             try:
                 agreement = Agreement.objects.get(
-                    personnummer=person_nummer
+                    personnummer=person_nummer,
                 )
+                valid_bocken_agreement = agreement.agreement_bocken_type # TODO: add check for me here :))
+
+                #Validation logic for checking against the type of agreement the individual has
+                if not valid_bocken_agreement:
+                    self.add_error('personnummer',_(
+                        "You don't have the correct type of agreement "
+                        "to add an entry for bocken. Contact the head of "
+                        "the pub crew with a new agreement to be able to "
+                        "drive bocken."
+                    ))
+
                 self.instance.agreement = agreement
             except Agreement.DoesNotExist:
                 self.add_error('personnummer', _(

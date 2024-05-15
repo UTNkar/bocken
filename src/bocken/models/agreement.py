@@ -80,6 +80,18 @@ class Agreement(models.Model):
         blank=True
     )
 
+    agreement_bocken_type = models.BooleanField(
+        verbose_name=_("Agreement for Bocken"),
+        default=False,
+        help_text=_("Designates whether user has a agreement which applies for Bocken or not.")
+    )
+
+    agreement_hornet_type = models.BooleanField(
+        verbose_name=_("Agreement for Hornet"),
+        default=False,
+        help_text=_("Designates whether user has a agreement which applies for Hornet or not.")
+    )
+
     expires = models.DateField(
         verbose_name=_("Valid until"),
         default=get_default_expires,

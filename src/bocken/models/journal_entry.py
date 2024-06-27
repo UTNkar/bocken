@@ -24,6 +24,13 @@ class JournalEntry(models.Model):
         on_delete=models.PROTECT,
         verbose_name=_("Group")
     )
+    vehicle = models.ForeignKey(
+        "Vehicle",
+        on_delete=models.PROTECT,
+        verbose_name=_("Vehicle"),
+        default=1
+    )
+
     meter_start = models.PositiveIntegerField(
         verbose_name=_("Meter at start")
     )
@@ -56,11 +63,13 @@ class JournalEntry(models.Model):
         return self.meter_stop - self.meter_start
     get_total_distance.short_description = _("Driven Distance (km)")
 
+    # TODO: Refactor following functions to just check diff between vehicle of the same type
     def meter_start_gap_marker(self):
         """Mark meter_start cells in the admin view if a gap has occured."""
         try:
             previous_entry = JournalEntry.objects.filter(
-                meter_stop__lt=self.meter_stop
+                meter_stop__lt=self.meter_stop,
+                vehicle=self.vehicle
             ).latest()
         except JournalEntry.DoesNotExist:
             return self.meter_start
@@ -76,7 +85,8 @@ class JournalEntry(models.Model):
         """Mark meter_stop cells in the admin view if a gap has occured."""
         try:
             previous_entry = JournalEntry.objects.filter(
-                meter_stop__gt=self.meter_stop
+                meter_stop__gt=self.meter_stop,
+                vehicle=self.vehicle
             ).earliest()
         except JournalEntry.DoesNotExist:
             return self.meter_stop
@@ -99,10 +109,13 @@ class JournalEntry(models.Model):
         return JournalEntry.objects.exists()
 
     @staticmethod
-    def get_latest_entry():
+    def get_latest_entry(vehicle_type = None):
         """Get the entry that was last created."""
         try:
-            return JournalEntry.objects.latest()
+            if vehicle_type:
+                return JournalEntry.objects.filter(vehicle=vehicle_type).latest()
+            else:
+                return JournalEntry.objects.latest()
         except JournalEntry.DoesNotExist:
             return None
 

@@ -5,9 +5,18 @@ from django.utils.translation import gettext_lazy as _
 class Vehicle(models.Model):
     """Represents a vehicle that can be selected in a journal entry."""
 
-    vehicle_type = models.CharField(
+    vehicle_name = models.CharField(
         max_length=60,
-        verbose_name=_("Type")
+        verbose_name=_("Name")
+    )
+
+    car = models.BooleanField(
+        verbose_name=_("Is the vehicle a car"),
+        default=False,
+    )
+    bike = models.BooleanField(
+        verbose_name=_("Is the vehicle a bike"),
+        default=False,
     )
     vehicle_meter_start = models.PositiveIntegerField(
         verbose_name=_("Meter at start (Latest Entry)"),
@@ -23,4 +32,4 @@ class Vehicle(models.Model):
         verbose_name_plural = _("Vehicles")
 
     def __str__(self):  # noqa
-        return self.vehicle_type
+        return self.vehicle_name

@@ -1,5 +1,6 @@
 from bocken.models.agreement import Agreement
 from bocken.models.journal_entry import JournalEntry
+from bocken.models.vehicle import Vehicle
 from ..validators import validate_personnummer
 from ..utils import format_personnummer
 from ..widgets import TwoLevelSelect
@@ -35,7 +36,7 @@ class JournalEntryForm(ModelForm):
     class Meta:
         model = JournalEntry
         fields = [
-            'personnummer', 'group', 'meter_start', 'meter_stop'
+            'personnummer', 'vehicle', 'group', 'meter_start', 'meter_stop'
         ]
         widgets = {
             "meter_start": TextInput(
@@ -57,6 +58,7 @@ class JournalEntryForm(ModelForm):
             'group': 'users',
             'meter_start': 'play-circle',
             'meter_stop': 'stop-circle',
+            'vehicle': 'truck'
         }
         help_texts = {
             'group': _(
@@ -68,6 +70,9 @@ class JournalEntryForm(ModelForm):
                 "latest entry. If the number is not correct, enter the value "
                 "that the meter had when you started driving. Also inform the "
                 "head of the pub crew about this."
+            ),
+            'vehicle': _(
+                "Choose the type of vehicle you have driven."
             )
         }
 
@@ -103,7 +108,8 @@ class JournalEntryForm(ModelForm):
 
     def clean_meter_start(self):
         """Meter start must be larger than the meter stop in the last entry."""
-        latest_entry = JournalEntry.get_latest_entry()
+        form_vehicle = self.cleaned_data['vehicle']
+        latest_entry = JournalEntry.get_latest_entry(form_vehicle)
         if latest_entry:
             if latest_entry.meter_stop > self.cleaned_data['meter_start']:
                 raise ValidationError(_(
@@ -124,18 +130,27 @@ class JournalEntryForm(ModelForm):
         if person_nummer:
             try:
                 agreement = Agreement.objects.get(
-                    personnummer=person_nummer,
+                    personnummer=person_nummer
                 )
-                valid_bocken_agreement = agreement.agreement_bocken_type # TODO: add check for me here :))
-
-                #Validation logic for checking against the type of agreement the individual has
-                if not valid_bocken_agreement:
-                    self.add_error('personnummer',_(
-                        "You don't have the correct type of agreement "
-                        "to add an entry for bocken. Contact the head of "
-                        "the pub crew with a new agreement to be able to "
-                        "drive bocken."
-                    ))
+                can_use_car = agreement.car_agreement
+                can_use_bike = agreement.bike_agreement
+                veh = self.cleaned_data.get('vehicle')
+                if veh.car:
+                    if not can_use_car:
+                        self.add_error('vehicle', _(
+                            "You don't have a written agreement which you must have "
+                            "to drive a car. Contact the head of the pub crew and "
+                            "send a copy of the details you wrote into the fields "
+                            "below."
+                        ))
+                else:
+                    if not can_use_bike:
+                        self.add_error('vehicle', _(
+                            "You don't have a written agreement which you must have "
+                            "to drive a bike. Contact the head of the pub crew and "
+                            "send a copy of the details you wrote into the fields "
+                            "below."
+                        ))
 
                 self.instance.agreement = agreement
             except Agreement.DoesNotExist:
@@ -148,10 +163,11 @@ class JournalEntryForm(ModelForm):
 
         # Make sure meter stop is larger than meter start
         meter_start = cleaned_data.get('meter_start', 0)
+        meter_stop = cleaned_data['meter_stop']
         if cleaned_data['meter_stop'] <= meter_start:
             self.add_error('meter_stop', _(
                 "Trip meter at stop must be larger than the trip meter at "
                 "start"
             ))
-
+        Vehicle.objects.filter(id=veh.id).update(vehicle_meter_start = meter_start, vehicle_meter_stop = meter_stop)
         return cleaned_data

@@ -79,18 +79,19 @@ class Agreement(models.Model):
         verbose_name=_("Signed agreement"),
         blank=True
     )
-
-    agreement_bocken_type = models.BooleanField(
-        verbose_name=_("Agreement for Bocken"),
+    car_agreement = models.BooleanField(
+        verbose_name=_("Agreement for cars"),
         default=False,
-        help_text=_("Designates whether user has a agreement which applies for Bocken or not.")
+        help_text=_("Designates whether user has a agreement which applies for cars or not.")
     )
 
-    agreement_hornet_type = models.BooleanField(
-        verbose_name=_("Agreement for Hornet"),
+    bike_agreement = models.BooleanField(
+        verbose_name=_("Agreement for bikes"),
         default=False,
-        help_text=_("Designates whether user has a agreement which applies for Hornet or not.")
+        help_text=_("Designates whether user has a agreement which applies for bikes or not.")
     )
+
+
 
     expires = models.DateField(
         verbose_name=_("Valid until"),

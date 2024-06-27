@@ -14,10 +14,10 @@ from django.contrib.auth.models import Group
 
 admin.site.register(Admin, UserAdmin)
 admin.site.register(Agreement, AgreementAdmin)
+admin.site.register(Vehicle, VehicleAdmin)
 admin.site.register(JournalEntry, JournalEntryAdmin)
 admin.site.register(Report, ReportAdmin)
 admin.site.register(JournalEntryGroup, JournalEntryGroupAdmin)
-admin.site.register(Vehicle, VehicleAdmin)
 
 admin.site.unregister(Group)
 

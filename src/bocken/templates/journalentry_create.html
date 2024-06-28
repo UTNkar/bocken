@@ -23,6 +23,19 @@
         </div>
         {% elif field == form.captcha %}
             {{field}}
+        {% elif field == form.meter_start %}
+            <div class="flex items-center relative font-thin font-sans text-gray-400 {% if field.errors %}border-red-600{% else %}border-gray-100{% endif %} border-solid border-2"
+            {#%
+                Following templates iterates over the initial items and stores them as an attribute for this container.
+                These values are then used to dynamically set the last meter_stop in the form based on the vehicle choosen
+            %#}
+            {% for value,name in form.initial.items %}
+            {{value}}={{name}}
+            {% endfor %}
+            id="{{field.id_for_label}}_container">
+                <label for="{{ field.id_for_label }}" class="absolute flex justify-center items-center text-xl w-8 h-full">{% fa5_icon field.label %}</label>
+                {{ field|add_class:"flex-1 flex justify-center font-extralight text-lg min-h-3 pl-8" }}
+        </div>
         {% else %}
         <div class="flex items-center relative font-thin font-sans text-gray-400 {% if field.errors %}border-red-600{% else %}border-gray-100{% endif %} border-solid border-2">
             <label for="{{ field.id_for_label }}" class="absolute flex justify-center items-center text-xl w-8 h-full">{% fa5_icon field.label %}</label>
@@ -38,7 +51,6 @@
         <p class="text-xs">{{ field.help_text }}</p>
     </div>
     {% endfor %}
-
     <input type="submit" class="block mx-auto mt-4 py-2 px-8 rounded text-white bg-blue-500">
 
     <p class="text-xs mt-8">
@@ -102,6 +114,24 @@
         }
 
         document.querySelector("#nr-kilometers").innerHTML = value;
+    }
+    document.getElementById("id_vehicle").addEventListener("change", getSpecificVehicleValue);
+    function getSpecificVehicleValue(){
+        const v_id = document.getElementById("id_vehicle").value;
+        const meter_start_container_elem = document.getElementById("id_meter_start_container");
+        const meter_start_elem = document.getElementById("id_meter_start");
+        switch(v_id) {
+            case "2": //bike
+                const bike_meter = parseInt(meter_start_container_elem.getAttribute("meter_start_bjällran"));
+                meter_start_elem.value = bike_meter;
+                break;
+            case "1": //car
+                const car_meter = parseInt(meter_start_container_elem.getAttribute("meter_start_bocken"));
+                meter_start_elem.value = car_meter;
+                break;
+            default:
+                console.log("Couldn't identify the type of vehicle choose, silently failing :(")
+        }
     }
 </script>
 {% endblock %}

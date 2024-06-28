@@ -79,13 +79,21 @@ class JournalEntryForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(JournalEntryForm, self).__init__(*args, **kwargs)
         # Set the initial value for the meter start to the stop value of the
-        # last entry since it most likely is the value of the meter when a
-        # person starts driving.
-        latest_entry = JournalEntry.get_latest_entry()
-        if latest_entry:
+        # last entry based on the current vehicle choice since it most
+        # likely is the value of the meter when a person starts driving.
+        all_vehicles = Vehicle.objects.all()
+        latest_entries = [JournalEntry.get_latest_entry(x) for x in all_vehicles]
+        if latest_entries:
+            latest_entry = latest_entries[0]
             self.initial = {
-                'meter_start': latest_entry.meter_stop
+                'meter_start': latest_entry.meter_stop,
             }
+            # This stores all of the latest registered trips for each available vehicle.
+            # By doing this we can hence "support" any amount of vehicle and fetch
+            # their latest trip to automatically set as a value for when
+            # a user is registering a new journal entry
+            for item in latest_entries:
+                self.initial[f'meter_start_{str(item.vehicle).lower()}'] = item.meter_stop
 
         # If there is data from the previous form (a.k.a. invalid data
         # was passed) we need to add some of that data to the TwoLevelSelect

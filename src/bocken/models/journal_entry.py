@@ -110,7 +110,10 @@ class JournalEntry(models.Model):
 
     @staticmethod
     def get_latest_entry(vehicle_type = None):
-        """Get the entry that was last created."""
+        """
+        Get the entry that was last created based on the vehicle,
+        if no vehicle is supplied the latest trip in general is fetched.
+        """
         try:
             if vehicle_type:
                 return JournalEntry.objects.filter(vehicle=vehicle_type).latest()
@@ -120,7 +123,7 @@ class JournalEntry(models.Model):
             return None
 
     @staticmethod
-    def get_entries_between(start, end):
+    def get_entries_between(start, end, vehicle_type = None):
         """
         Get all entries between the timestamps start and end.
 
@@ -128,8 +131,10 @@ class JournalEntry(models.Model):
         that are equal to start or end are included.
         """
         entries = JournalEntry.objects.filter(
-            created__range=(start, end)
+            created__range=(start, end),
+            vehicle = vehicle_type if vehicle_type != None else 1
         )
+
         return entries
 
     @staticmethod

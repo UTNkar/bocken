@@ -49,7 +49,6 @@ class Report(models.Model):
             date(localtime(self.last), "j F Y H:i"),
         )
 
-    # TODO: Refactor all of the following code to have either a car or bike report (necessary?)
     def get_entries(self):
         """
         Get all journal entries within this report.
@@ -66,13 +65,13 @@ class Report(models.Model):
 
         return last.meter_stop - first.meter_start
 
-    #TODO: Refactor this method to fetch for ALL Vehicle types and not just normal ones
     def get_statistics_for_groups(self):
         """
         Get statistics for each group that is a part of this report.
 
         Included in these statistics are
         - The group
+        - The main group's display name
         - Total kilometers driven
         - Total mil driven
         - Total cost each group has to pay
@@ -80,6 +79,7 @@ class Report(models.Model):
         Returns list of dicts where each dict has the following structure
         {
             'group': JournalEntryGroup instance
+            'main_group', Display Name of main_group based on JournalEntryGroup instance
             'kilometers': Total kilometers (int),
             'mil': Total mil (int),
             'cost': Total cost (int)
@@ -93,14 +93,14 @@ class Report(models.Model):
         # What it does is that it calculates the total distance driven for each
         # journal entry and then sums them up for each group, giving us the
         # total kilometers for each group.
+        #TODO: Test this without vehicle-values
         kilometers_for_groups = (
-            entries.values("group", "vehicle")
+            entries.values("group","vehicle")
             .annotate(total_kilometers=Sum("meter_stop") - Sum("meter_start"))
             .order_by("group__main_group","group__name")
         )
 
         statistics = []
-        #TODO: Add vehicle stats here?
         for group in kilometers_for_groups:
             kilometers = group["total_kilometers"]
             actual_group = JournalEntryGroup.objects.get(pk=group["group"])

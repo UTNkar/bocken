@@ -37,7 +37,7 @@ class JournalEntryFormTestCase(TestCase):
             'confirm': True,
             'g-recaptcha-response': 'PASSED'
         }
-
+    #TODO: fixme
     def test_initial_meter_start(self):
         """
         Test the initial meter start.
@@ -54,6 +54,7 @@ class JournalEntryFormTestCase(TestCase):
         form = JournalEntryForm()
         self.assertEqual(form.initial['meter_start'], 49)
 
+    #TODO: fixme
     def test_invalid_personnummer(self):
         """Test form submission with invalid personnummer."""
         self.form_data['personnummer'] = '980101-1111'
@@ -62,6 +63,7 @@ class JournalEntryFormTestCase(TestCase):
         self.assertFalse(form.is_valid())
         self.assertTrue('personnummer' in form.errors)
 
+    #TODO: fixme
     def test_too_small_meter_start(self):
         """Test when meter start is smaller than the latest entry."""
         JournalEntry.objects.create(
@@ -77,6 +79,7 @@ class JournalEntryFormTestCase(TestCase):
         self.assertFalse(form.is_valid())
         self.assertTrue('meter_start' in form.errors)
 
+    #TODO: fixme
     def test_too_small_meter_stop(self):
         """Test when meter stop is smaller than meter start."""
         self.form_data['meter_stop'] = 25
@@ -85,6 +88,7 @@ class JournalEntryFormTestCase(TestCase):
         self.assertFalse(form.is_valid())
         self.assertTrue('meter_stop' in form.errors)
 
+    #TODO: fixme
     def test_valid_submission(self):
         """Test a valid submission."""
         form = JournalEntryForm(self.form_data)
@@ -95,7 +99,7 @@ class JournalEntryFormTestCase(TestCase):
         self.assertEqual(latest_entry.agreement, self.agreement)
         self.assertEqual(latest_entry.meter_start, 45)
         self.assertEqual(latest_entry.meter_stop, 49)
-
+    #TODO: fixme
     def test_different_personnummer_format(self):
         """
         Test a personnummer that has a different format.
@@ -119,6 +123,7 @@ class JournalEntryFormTestCase(TestCase):
         latest_entry = JournalEntry.get_latest_entry()
         self.assertEqual(latest_entry.agreement, self.agreement)
 
+    #TODO: fixme
     def test_expired_agreement(self):
         """
         Test when a form is submitted with an expired agreement.
@@ -148,6 +153,7 @@ class JournalEntryFormTestCase(TestCase):
             settings.KLUBBMASTARE_EMAIL in first_email.recipients()
         )
 
+    #TODO: fixme
     def test_gap_notification(self):
         """Test that an email is sent if a gap occurs."""
         # Create an earlier journal entry
@@ -176,6 +182,7 @@ class JournalEntryFormTestCase(TestCase):
             settings.KLUBBMASTARE_EMAIL in first_email.recipients()
         )
 
+    #TODO: fixme
     def test_t_number_wrong_format(self):
         """Test a submission with the wrong format on the T number."""
         self.form_data['personnummer'] = '19980101-T728'
@@ -185,6 +192,7 @@ class JournalEntryFormTestCase(TestCase):
         self.assertTrue('personnummer' in form.errors)
         self.assertIn('YYYYMMDDXXXX', form.errors['personnummer'][0])
 
+    #TODO: fixme
     def test_t_number(self):
         """Test submitting with the correct format on T-number."""
         self.form_data['personnummer'] = '19980101T728'

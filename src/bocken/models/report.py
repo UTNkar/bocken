@@ -1,15 +1,18 @@
-from django.db import models
-from django.utils.translation import gettext_lazy as _
-from . import JournalEntryGroup
-from django.template.defaultfilters import date
-from django.utils.timezone import localtime
-from django.utils import timezone
-from django.db.models import Sum
-from ..utils import kilometers_to_mil
+from dateutil.relativedelta import relativedelta
 from django.conf import settings
+from django.db import models
+from django.db.models import Sum
+from django.template.defaultfilters import date
+from django.utils import timezone
+from django.utils.timezone import localtime
+from django.utils.translation import gettext_lazy as _
+
 # Journal entry must be imported like this to avoid circular import
 import bocken.models.journal_entry as journal_entry
-from dateutil.relativedelta import relativedelta
+import bocken.models.vehicle as vehicle
+
+from ..utils import kilometers_to_mil
+from . import JournalEntryGroup
 
 
 class Report(models.Model):
@@ -24,10 +27,7 @@ class Report(models.Model):
 
     last = models.DateTimeField()
 
-    created = models.DateTimeField(
-        auto_now_add=True,
-        verbose_name=_("Created")
-    )
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
 
     cost_per_mil = models.PositiveIntegerField(
         default=settings.COST_PER_MIL_DEFAULT,
@@ -35,7 +35,7 @@ class Report(models.Model):
         help_text=_(
             "Each report can have a different cost per mil. This allows "
             "the cost per mil to be changed without affecting previous reports"
-        )
+        ),
     )
 
     class Meta:
@@ -46,18 +46,17 @@ class Report(models.Model):
     def __str__(self):  # noqa
         return "{} - {}".format(
             date(localtime(self.first), "j F Y H:i"),
-            date(localtime(self.last), "j F Y H:i")
+            date(localtime(self.last), "j F Y H:i"),
         )
 
+    # TODO: Refactor all of the following code to have either a car or bike report (necessary?)
     def get_entries(self):
         """
         Get all journal entries within this report.
 
         Returns a queryset of journal entries
         """
-        return journal_entry.JournalEntry.get_entries_between(
-            self.first, self.last
-        )
+        return journal_entry.JournalEntry.get_entries_between(self.first, self.last)
 
     def get_total_kilometers_driven(self):
         """Return the total kilometers that have been driven in this report."""
@@ -67,6 +66,7 @@ class Report(models.Model):
 
         return last.meter_stop - first.meter_start
 
+    #TODO: Refactor this method to fetch for ALL Vehicle types and not just normal ones
     def get_statistics_for_groups(self):
         """
         Get statistics for each group that is a part of this report.
@@ -86,7 +86,7 @@ class Report(models.Model):
         }
         """
         entries = self.get_entries()
-
+        print(entries)
         # Calulate the total kilometers for each group by performing a
         # "group by" query in the database. It can be a bit difficult
         # to understand but the documentation has an explanation for it.
@@ -94,25 +94,30 @@ class Report(models.Model):
         # What it does is that it calculates the total distance driven for each
         # journal entry and then sums them up for each group, giving us the
         # total kilometers for each group.
-        kilometers_for_groups = entries.values("group").annotate(
-            total_kilometers=Sum("meter_stop") - Sum("meter_start")
-        ).order_by("group__name")
+        kilometers_for_groups = (
+            entries.values("group", "vehicle")
+            .annotate(total_kilometers=Sum("meter_stop") - Sum("meter_start"))
+            .order_by("group__main_group","group__name")
+        )
 
         statistics = []
+        #TODO: Add vehicle stats here?
         for group in kilometers_for_groups:
-            kilometers = group['total_kilometers']
-            actual_group = JournalEntryGroup.objects.get(
-                pk=group['group']
-            )
+            kilometers = group["total_kilometers"]
+            actual_group = JournalEntryGroup.objects.get(pk=group["group"])
             mil = kilometers_to_mil(kilometers)
             cost = self.calculate_cost_for_mil(mil)
-
-            statistics.append({
-                'group': actual_group,
-                'kilometers': kilometers,
-                'mil': mil,
-                'cost': cost
-            })
+            actual_vehicle = vehicle.Vehicle.objects.get(pk=group["vehicle"])
+            statistics.append(
+                {
+                    "group": actual_group,
+                    "main_group": actual_group.get_main_group_display,
+                    "kilometers": kilometers,
+                    "mil": mil,
+                    "cost": cost,
+                    "vehicle": actual_vehicle,
+                }
+            )
 
         return statistics
 
@@ -130,19 +135,15 @@ class Report(models.Model):
         statistics_for_groups = self.get_statistics_for_groups()
 
         total_kilometers = sum(
-            statistic['kilometers'] for statistic in statistics_for_groups
+            statistic["kilometers"] for statistic in statistics_for_groups
         )
-        total_mil = sum(
-            statistic['mil'] for statistic in statistics_for_groups
-        )
-        total_cost = sum(
-            statistic['cost'] for statistic in statistics_for_groups
-        )
+        total_mil = sum(statistic["mil"] for statistic in statistics_for_groups)
+        total_cost = sum(statistic["cost"] for statistic in statistics_for_groups)
 
         return {
-            'total_kilometers': total_kilometers,
-            'total_mil': total_mil,
-            'total_cost': total_cost
+            "total_kilometers": total_kilometers,
+            "total_mil": total_mil,
+            "total_cost": total_cost,
         }
 
     def calculate_cost_for_mil(self, mil: int):
@@ -166,16 +167,13 @@ class Report(models.Model):
         }
         """
         total_driven = self.get_total_kilometers_driven()
-        total_logged = self.get_total_statistics()['total_kilometers']
+        total_logged = self.get_total_statistics()["total_kilometers"]
 
         lost_kilometers = total_driven - total_logged
         lost_mil = kilometers_to_mil(lost_kilometers)
         lost_cost = self.calculate_cost_for_mil(lost_mil)
 
-        return {
-            'lost_kilometers': lost_kilometers,
-            'lost_cost': lost_cost
-        }
+        return {"lost_kilometers": lost_kilometers, "lost_cost": lost_cost}
 
     @staticmethod
     def get_first_for_new_report():
@@ -235,8 +233,7 @@ class Report(models.Model):
 
         Also deletes all journal entries in those reports.
         """
-        one_and_half_years_ago = \
-            timezone.now() - relativedelta(years=1, months=6)
+        one_and_half_years_ago = timezone.now() - relativedelta(years=1, months=6)
         reports_to_delete = Report.objects.filter(
             created__date__lte=one_and_half_years_ago
         )

@@ -86,7 +86,6 @@ class Report(models.Model):
         }
         """
         entries = self.get_entries()
-        print(entries)
         # Calulate the total kilometers for each group by performing a
         # "group by" query in the database. It can be a bit difficult
         # to understand but the documentation has an explanation for it.

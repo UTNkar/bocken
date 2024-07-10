@@ -52,7 +52,8 @@ class JournalEntryCreate(CreateView):
         latest_entry = JournalEntry.get_latest_entry()
         if latest_entry:
             previous_meter_stop = latest_entry.meter_stop
-            if form.cleaned_data['meter_start'] > previous_meter_stop:
+            previous_vehicle = latest_entry.vehicle
+            if form.cleaned_data['meter_start'] > previous_meter_stop and previous_vehicle == form.cleaned_data['vehicle']:
                 mail_admins(
                     "A gap has occured",
                     (

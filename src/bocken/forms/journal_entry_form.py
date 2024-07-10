@@ -82,7 +82,7 @@ class JournalEntryForm(ModelForm):
         # last entry based on the current vehicle choice since it most
         # likely is the value of the meter when a person starts driving.
         all_vehicles = Vehicle.objects.all()
-        latest_entries = [JournalEntry.get_latest_entry(x) for x in all_vehicles]
+        latest_entries = [JournalEntry.get_latest_entry(x) for x in all_vehicles if JournalEntry.get_latest_entry(x) != None]
         if latest_entries:
             latest_entry = latest_entries[0]
             self.initial = {
@@ -135,6 +135,7 @@ class JournalEntryForm(ModelForm):
         # we don't need to add an error message that a user does not
         # have a written agreement.
         person_nummer = self.cleaned_data.get('personnummer')
+        veh = self.cleaned_data.get('vehicle')
         if person_nummer:
             try:
                 agreement = Agreement.objects.get(
@@ -142,7 +143,6 @@ class JournalEntryForm(ModelForm):
                 )
                 can_use_car = agreement.car_agreement
                 can_use_bike = agreement.bike_agreement
-                veh = self.cleaned_data.get('vehicle')
                 if veh.car:
                     if not can_use_car:
                         self.add_error('vehicle', _(
@@ -177,5 +177,7 @@ class JournalEntryForm(ModelForm):
                 "Trip meter at stop must be larger than the trip meter at "
                 "start"
             ))
-        Vehicle.objects.filter(id=veh.id).update(vehicle_meter_start = meter_start, vehicle_meter_stop = meter_stop)
+        else:
+            if veh:
+                Vehicle.objects.filter(id=veh.id).update(vehicle_meter_start = meter_start, vehicle_meter_stop = meter_stop)
         return cleaned_data

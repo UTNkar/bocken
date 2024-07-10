@@ -63,7 +63,6 @@ class JournalEntry(models.Model):
         return self.meter_stop - self.meter_start
     get_total_distance.short_description = _("Driven Distance (km)")
 
-    # TODO: Refactor following functions to just check diff between vehicle of the same type
     def meter_start_gap_marker(self):
         """Mark meter_start cells in the admin view if a gap has occured."""
         try:
@@ -130,10 +129,15 @@ class JournalEntry(models.Model):
         Returns all journal entries within the time range. All journal entries
         that are equal to start or end are included.
         """
-        entries = JournalEntry.objects.filter(
-            created__range=(start, end),
-            vehicle = vehicle_type if vehicle_type != None else 1
-        )
+        if vehicle_type:
+            entries = JournalEntry.objects.filter(
+                created__range=(start, end),
+                vehicle = vehicle_type
+            )
+        else:
+            entries = JournalEntry.objects.filter(
+                created__range=(start, end)
+            )
 
         return entries
 

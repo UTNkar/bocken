@@ -101,8 +101,8 @@
     document.getElementById("id_meter_stop").addEventListener("input", calculateTotalDistance);
     document.addEventListener("DOMContentLoaded", calculateTotalDistance);
     function calculateTotalDistance(){
-        const start = parseInt(document.getElementById("id_meter_start").value);
-        const stop = parseInt(document.getElementById("id_meter_stop").value);
+        const start = parseInt(document.getElementById("id_meter_start").value,10);
+        const stop = parseInt(document.getElementById("id_meter_stop").value,10);
         let value = 0;
 
         // Only show the distance driven if the stop is larger than the start.
@@ -117,10 +117,13 @@
     }
     document.getElementById("id_vehicle").addEventListener("change", getSpecificVehicleValue);
     function getSpecificVehicleValue(){
+        // fetch primary key based on selection in option-element
         const v_id = document.getElementById("id_vehicle").value;
+
+        // update meter_start with v_id via reading the attribute for that particular vehicle
         const meter_start_container_elem = document.getElementById("id_meter_start_container");
         const meter_start_elem = document.getElementById("id_meter_start");
-        const vehicle_meter = parseInt(meter_start_container_elem.getAttribute("meter_start_"+v_id));
+        const vehicle_meter = parseInt(meter_start_container_elem.getAttribute("meter_start_"+v_id),10);
         meter_start_elem.value = vehicle_meter
     }
 </script>

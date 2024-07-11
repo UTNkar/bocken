@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 15:25+0200\n"
+"POT-Creation-Date: 2024-07-11 14:25+0200\n"
 "PO-Revision-Date: 2022-12-14 15:56+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -61,8 +61,10 @@ msgid "Signed agreement"
 msgstr "Signerat köravtal"
 
 #: bocken/forms/journal_entry_form.py:30
-msgid "I confirm that Bocken is clean and in good shape"
-msgstr "Jag intygar att Bocken är i gott skick"
+#, fuzzy
+#| msgid "I confirm that Bocken is clean and in good shape"
+msgid "I confirm that the vehicle is clean and in good shape"
+msgstr "Jag intygar att fordonet är i gott skick"
 
 #: bocken/forms/journal_entry_form.py:44
 msgid "Trip meter at start"
@@ -110,7 +112,7 @@ msgid ""
 "Contact the head of the pub crew and send a copy of the details you wrote "
 "into the fields below."
 msgstr ""
-"Du har inte ett skrivet avtal som du måsta ha för att köra bilar. Kontakta "
+"Du har inte de skrivna avtalet som du måsta ha för att köra bilar. Kontakta "
 "UTN:s klubbmästare och skicka med en kopia av detaljerna som du skrev in i "
 "fälten nedan."
 
@@ -125,7 +127,7 @@ msgid ""
 "Contact the head of the pub crew and send a copy of the details you wrote "
 "into the fields below."
 msgstr ""
-"Du har inte ett skrivet avtal som du måsta ha för att köra cyklar. Kontakta "
+"Du har inte de skrivna avtalet som du måsta ha för att köra cyklar. Kontakta "
 "UTN:s klubbmästare och skicka med en kopia av detaljerna som du skrev in i "
 "fälten nedan."
 
@@ -178,8 +180,6 @@ msgid "Phonenumber"
 msgstr "Telefonnummer"
 
 #: bocken/models/agreement.py:83
-#, fuzzy
-#| msgid "Agreement"
 msgid "Agreement for cars"
 msgstr "Avtal för bilar"
 
@@ -191,8 +191,6 @@ msgid "Designates whether user has a agreement which applies for cars or not."
 msgstr "Avgör ifall en användare har ett avtal som gäller bilar eller ej."
 
 #: bocken/models/agreement.py:89
-#, fuzzy
-#| msgid "Agreement"
 msgid "Agreement for bikes"
 msgstr "Avtal för cyklar"
 
@@ -249,7 +247,7 @@ msgstr "Grupp"
 #: bocken/templates/admin/change_report_form.html:12
 #: bocken/templates/journalentry_create.html:73
 msgid "Vehicle"
-msgstr ""
+msgstr "Fordon"
 
 #: bocken/models/journal_entry.py:35
 #: bocken/templates/journalentry_create.html:81
@@ -319,10 +317,10 @@ msgid "Cost per mil (kr)"
 msgstr "Kostnad per mil (kr)"
 
 #: bocken/models/report.py:36
-msgid ""
+msgid
 "Each report can have a different cost per mil. This allows the cost per mil "
 "to be changed without affecting previous reports"
-msgstr ""
+msgstr
 "Alla rapporter kan ha olika kostnader per mil. Detta gör det möjligt att "
 "ändra kostnaden per mil utan att påverka tidigare rapporter"
 
@@ -336,27 +334,23 @@ msgstr "Rapporter"
 
 #: bocken/models/vehicle.py:14
 msgid "Is the vehicle a car"
-msgstr ""
+msgstr "Är fordonet en bil"
 
 #: bocken/models/vehicle.py:18
 msgid "Is the vehicle a bike"
-msgstr ""
+msgstr "Är fordonet en cykel"
 
 #: bocken/models/vehicle.py:22
-#, fuzzy
-#| msgid "Meter at start"
 msgid "Meter at start (Latest Entry)"
 msgstr "Mätare vid start (Senaste inlägg)"
 
 #: bocken/models/vehicle.py:26
-#, fuzzy
-#| msgid "Meter at stop"
 msgid "Meter at stop (Latest Entry)"
 msgstr "Mätare vid stop (Senaste inlägg)"
 
 #: bocken/models/vehicle.py:32
 msgid "Vehicles"
-msgstr ""
+msgstr "Fordon"
 
 #: bocken/settings/base.py:100
 msgid "Swedish"
@@ -382,8 +376,7 @@ msgstr "Hem"
 
 #: bocken/templates/admin/add_report_form.html:34
 msgid "A report can not be created since there are no journal entries"
-msgstr ""
-"En rapport kan inte skapas eftersom att det inte finns några journalinlägg"
+msgstr "En rapport kan inte skapas eftersom att det inte finns några journalinlägg"
 
 #: bocken/templates/admin/add_report_form.html:36
 msgid ""
@@ -424,8 +417,6 @@ msgid "OBS! The starting fee is not included in the total cost!"
 msgstr "OBS! Startavgiften är inte inkluderad i den totala kostnaden!"
 
 #: bocken/templates/admin/change_report_form.html:11
-#, fuzzy
-#| msgid "Main group"
 msgid "Main Group"
 msgstr "Huvudgrupp"
 
@@ -447,15 +438,11 @@ msgid "Total"
 msgstr "Totalt"
 
 #: bocken/templates/admin/change_report_form.html:39
-#, fuzzy
-#| msgid ""
-#| "Groups that are not displayed above have not driven bocken during this "
-#| "time period"
 msgid ""
 "Groups that are not displayed above have not driven any vehicle during this "
 "time period"
 msgstr ""
-"Grupper som inte visas ovan har inte kört bocken något under denna tidsperiod"
+"Grupper som inte visas ovan har inte kört något fordon något under denna tidsperiod"
 
 #: bocken/templates/admin/change_report_form.html:41
 #: bocken/templates/admin/change_report_form.html:66
@@ -463,18 +450,13 @@ msgid "Lost cost"
 msgstr "Förlorad kostnad"
 
 #: bocken/templates/admin/change_report_form.html:43
-#, fuzzy
-#| msgid ""
-#| "Lost costs appear when a group has driven bocken but not filled in the "
-#| "journal afterwards. This means that it is not possible to know who should "
-#| "pay for those kilometers and the cost is therefore \"lost\"."
 msgid ""
 "Lost costs appear when a group has driven a vehicle but not filled in the "
 "journal afterwards. This means that it is not possible to know who should "
 "pay for those kilometers and the cost is therefore \"lost\"."
 msgstr ""
-"Förlorade kostnader uppstår när en grupp har kört ett fordon men glömt fylla i "
-"körjournalen efteråt. Det betyder att det inte går att avgöra vem som ska "
+"Förlorade kostnader uppstår när en grupp har kört ett fordon men glömt fylla "
+"i körjournalen efteråt. Det betyder att det inte går att avgöra vem som ska "
 "betala för dem kilometrarna och den kostnaden är därmed \"förlorad\"."
 
 #: bocken/templates/admin/change_report_form.html:48
@@ -573,10 +555,8 @@ msgid "Sign an agreement"
 msgstr "Skriv under ett köravtal"
 
 #: bocken/templates/start_page.html:12
-msgid ""
-"In order to drive Bocken you need to sign an agreement. Follow these steps:"
-msgstr ""
-"För att få köra Bocken måste du har ett signerat köravtal. Följ dessa steg:"
+msgid "In order to drive Bocken you need to sign an agreement. Follow these steps:"
+msgstr "För att få köra Bocken måste du har ett signerat köravtal. Följ dessa steg:"
 
 #: bocken/templates/start_page.html:15
 msgid "Download"
@@ -661,8 +641,6 @@ msgid "Invalid phonenumber"
 msgstr "Ogiltigt telefonnummer"
 
 #: bocken/validators.py:59
-#, fuzzy
-#| msgid "Your personnummer must be on the format YYYYMMDD-XXXX"
 msgid "Your personnummer must be on the format YYYYMMDDXXXX"
 msgstr "Ditt personnummer måste vara på formen YYYYMMDD-XXXX"
 
@@ -676,26 +654,3 @@ msgstr ""
 "Ditt avtal har gått ut! Journalinlägget du nyss skapade har sparats men du "
 "måste förnya ditt avtal. Kontakta UTN:s klubbmästare: <a class='text-"
 "blue-700' href='mailto:%(email)s'>%(email)s</a>"
-
-#, fuzzy
-#~| msgid ""
-#~| "You don't have a written agreement which you must have to drive bocken. "
-#~| "Contact the head of the pub crew and send a copy of the details you "
-#~| "wrote into the fields below."
-#~ msgid ""
-#~ "You don't have the correct type of agreement to add an entry for bocken. "
-#~ "Contact the head of the pub crew with a new agreement to be able to drive "
-#~ "bocken."
-#~ msgstr ""
-#~ "Du har inte skrivit de avtal som du måsta ha för att köra bocken. "
-#~ "Kontakta UTN:s klubbmästare och skicka med en kopia av detaljerna som du "
-#~ "skrev in i fälten nedan."
-
-#, fuzzy
-#~| msgid "Agreement"
-#~ msgid "Agreement for Hornet"
-#~ msgstr "Avtal för Hornet"
-
-#~ msgid ""
-#~ "Designates whether user has a agreement which applies for Hornet or not."
-#~ msgstr "Avgör ifall en användare har ett avtal som gäller Hornet eller ej."

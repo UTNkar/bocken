@@ -27,7 +27,7 @@ class JournalEntryForm(ModelForm):
 
     confirm = BooleanField(
         required=True,
-        label=_("I confirm that Bocken is clean and in good shape"),
+        label=_("I confirm that the vehicle is clean and in good shape"),
         widget=CheckboxInput(attrs={'class': 'h-8 w-8'})
     )
 

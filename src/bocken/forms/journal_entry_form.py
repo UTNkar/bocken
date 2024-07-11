@@ -93,7 +93,7 @@ class JournalEntryForm(ModelForm):
             # their latest trip to automatically set as a value for when
             # a user is registering a new journal entry
             for item in latest_entries:
-                self.initial[f'meter_start_{str(item.vehicle).lower()}'] = item.meter_stop
+                self.initial[f'meter_start_{str(item.vehicle.id).lower()}'] = item.meter_stop
 
         # If there is data from the previous form (a.k.a. invalid data
         # was passed) we need to add some of that data to the TwoLevelSelect

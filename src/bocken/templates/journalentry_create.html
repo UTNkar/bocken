@@ -120,18 +120,8 @@
         const v_id = document.getElementById("id_vehicle").value;
         const meter_start_container_elem = document.getElementById("id_meter_start_container");
         const meter_start_elem = document.getElementById("id_meter_start");
-        switch(v_id) {
-            case "2": //bike
-                const bike_meter = parseInt(meter_start_container_elem.getAttribute("meter_start_bjällran"));
-                meter_start_elem.value = bike_meter;
-                break;
-            case "1": //car
-                const car_meter = parseInt(meter_start_container_elem.getAttribute("meter_start_bocken"));
-                meter_start_elem.value = car_meter;
-                break;
-            default:
-                console.log("Couldn't identify the type of vehicle choose, silently failing :(")
-        }
+        const vehicle_meter = parseInt(meter_start_container_elem.getAttribute("meter_start_"+v_id));
+        meter_start_elem.value = vehicle_meter
     }
 </script>
 {% endblock %}

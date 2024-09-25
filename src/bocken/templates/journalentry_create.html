@@ -25,10 +25,6 @@
             {{field}}
         {% elif field == form.meter_start %}
             <div class="flex items-center relative font-thin font-sans text-gray-400 {% if field.errors %}border-red-600{% else %}border-gray-100{% endif %} border-solid border-2"
-            {#%
-                Following templates iterates over the initial items and stores them as an attribute for this container.
-                These values are then used to dynamically set the last meter_stop in the form based on the vehicle choosen
-            %#}
             {% for value,name in form.initial.items %}
             {{value}}={{name}}
             {% endfor %}

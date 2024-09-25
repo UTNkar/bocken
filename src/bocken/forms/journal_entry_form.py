@@ -93,8 +93,14 @@ class JournalEntryForm(ModelForm):
             # their latest trip to automatically set as a value for when
             # a user is registering a new journal entry
             for item in latest_entries:
-                self.initial[f'meter_start_{str(item.vehicle.id).lower()}'] = item.meter_stop
-
+                print(f"{str(item.vehicle.id)}")
+                print(f"{str(item.vehicle.id).lower()}")
+                self.initial[f'meter_start_{str(item.vehicle.id)}'] = item.meter_stop
+        else:
+            #if there is not a latest entry, then fetch from vehicle objects
+            #ideally it should always be fetched from here but..?
+            for vehicle in all_vehicles:
+                self.initial[f'meter_start_{str(vehicle.id)}'] = vehicle.vehicle_meter_stop
         # If there is data from the previous form (a.k.a. invalid data
         # was passed) we need to add some of that data to the TwoLevelSelect
         # widget so that it can automatically choose a default option.

@@ -112,6 +112,7 @@
         document.querySelector("#nr-kilometers").innerHTML = value;
     }
     document.getElementById("id_vehicle").addEventListener("change", getSpecificVehicleValue);
+    document.addEventListener("DOMContentLoaded", getSpecificVehicleValue);
     function getSpecificVehicleValue(){
         // fetch primary key based on selection in option-element
         const v_id = document.getElementById("id_vehicle").value;

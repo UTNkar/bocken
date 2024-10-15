@@ -8,6 +8,8 @@
     <table style="margin-top: 1rem;">
         <thead>
             <th>{% translate 'Group' %}</th>
+            <th>{% translate 'Main Group' %}</th>
+            <th>{% translate 'Vehicle' %}</th>
             <th>{% translate 'Total kilometers' %}</th>
             <th>{% translate 'Total mil' %}</th>
             <th>{% translate 'Total cost' %}&nbsp;({{ original.cost_per_mil }} kr/mil)</th>
@@ -16,6 +18,8 @@
             {% for statistic in statistics_for_groups %}
             <tr>
                 <td>{{ statistic.group }}</td>
+                <td>{{ statistic.main_group }}</td>
+                <td>{{ statistic.vehicle }}</td>
                 <td>{{ statistic.kilometers|intcomma }} km</td>
                 <td>{{ statistic.mil|intcomma }} mil</td>
                 <td>{{ statistic.cost|intcomma }} kr</td>
@@ -32,11 +36,11 @@
             </tr>
         </tfoot>
     </table>
-    <p class="small">{% translate 'Groups that are not displayed above have not driven bocken during this time period' %}</p>
+    <p class="small">{% translate 'Groups that are not displayed above have not driven any vehicle during this time period' %}</p>
 
     <h2>{% translate 'Lost cost' %}</h2>
 
-    <p>{% translate 'Lost costs appear when a group has driven bocken but not filled in the journal afterwards. This means that it is not possible to know who should pay for those kilometers and the cost is therefore "lost".' %}</p>
+    <p>{% translate 'Lost costs appear when a group has driven a vehicle but not filled in the journal afterwards. This means that it is not possible to know who should pay for those kilometers and the cost is therefore "lost".' %}</p>
 
     {% with total_driven=original.get_total_kilometers_driven total_logged=total_statistics.total_kilometers %}
     <table>

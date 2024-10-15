@@ -23,6 +23,15 @@
         </div>
         {% elif field == form.captcha %}
             {{field}}
+        {% elif field == form.meter_start %}
+            <div class="flex items-center relative font-thin font-sans text-gray-400 {% if field.errors %}border-red-600{% else %}border-gray-100{% endif %} border-solid border-2"
+            {% for value,name in form.initial.items %}
+            {{value}}={{name}}
+            {% endfor %}
+            id="{{field.id_for_label}}_container">
+                <label for="{{ field.id_for_label }}" class="absolute flex justify-center items-center text-xl w-8 h-full">{% fa5_icon field.label %}</label>
+                {{ field|add_class:"flex-1 flex justify-center font-extralight text-lg min-h-3 pl-8" }}
+        </div>
         {% else %}
         <div class="flex items-center relative font-thin font-sans text-gray-400 {% if field.errors %}border-red-600{% else %}border-gray-100{% endif %} border-solid border-2">
             <label for="{{ field.id_for_label }}" class="absolute flex justify-center items-center text-xl w-8 h-full">{% fa5_icon field.label %}</label>
@@ -38,7 +47,6 @@
         <p class="text-xs">{{ field.help_text }}</p>
     </div>
     {% endfor %}
-
     <input type="submit" class="block mx-auto mt-4 py-2 px-8 rounded text-white bg-blue-500">
 
     <p class="text-xs mt-8">
@@ -56,6 +64,10 @@
         <tr>
             <td class="w-1/2">{% translate 'Name' %}</td>
             <td class="w-1/2">{{ entry.agreement.name }}</td>
+        </tr>
+        <tr>
+            <td class="w-1/2">{% translate 'Vehicle' %}</td>
+            <td class="w-1/2">{{ entry.vehicle }}</td>
         </tr>
         <tr>
             <td class="w-1/2">{% translate 'Group' %}</td>
@@ -85,8 +97,8 @@
     document.getElementById("id_meter_stop").addEventListener("input", calculateTotalDistance);
     document.addEventListener("DOMContentLoaded", calculateTotalDistance);
     function calculateTotalDistance(){
-        const start = parseInt(document.getElementById("id_meter_start").value);
-        const stop = parseInt(document.getElementById("id_meter_stop").value);
+        const start = parseInt(document.getElementById("id_meter_start").value,10);
+        const stop = parseInt(document.getElementById("id_meter_stop").value,10);
         let value = 0;
 
         // Only show the distance driven if the stop is larger than the start.
@@ -98,6 +110,18 @@
         }
 
         document.querySelector("#nr-kilometers").innerHTML = value;
+    }
+    document.getElementById("id_vehicle").addEventListener("change", getSpecificVehicleValue);
+    document.addEventListener("DOMContentLoaded", getSpecificVehicleValue);
+    function getSpecificVehicleValue(){
+        // fetch primary key based on selection in option-element
+        const v_id = document.getElementById("id_vehicle").value;
+
+        // update meter_start with v_id via reading the attribute for that particular vehicle
+        const meter_start_container_elem = document.getElementById("id_meter_start_container");
+        const meter_start_elem = document.getElementById("id_meter_start");
+        const vehicle_meter = parseInt(meter_start_container_elem.getAttribute("meter_start_"+v_id),10);
+        meter_start_elem.value = vehicle_meter
     }
 </script>
 {% endblock %}

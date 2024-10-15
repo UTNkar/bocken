@@ -5,10 +5,10 @@ class JournalEntryAdmin(ModelAdmin):
     """Custom class for the admin pages for journal entry."""
 
     list_display = (
-        'agreement', 'created', 'group',
+        'agreement', 'created', 'group', 'vehicle',
         'meter_start_gap_marker', 'meter_stop_gap_marker', 'get_total_distance'
     )
-    ordering = ('-meter_stop', )
+    ordering = ('vehicle', '-meter_stop', )
     search_fields = [
         'agreement__name', 'agreement__personnummer', 'group__name'
     ]

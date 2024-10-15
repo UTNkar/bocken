@@ -27,7 +27,8 @@ class Report(models.Model):
 
     last = models.DateTimeField()
 
-    created = models.DateTimeField(auto_now_add=True, verbose_name=_("Created"))
+    created = models.DateTimeField(auto_now_add=True,
+                                   verbose_name=_("Created"))
 
     cost_per_mil = models.PositiveIntegerField(
         default=settings.COST_PER_MIL_DEFAULT,
@@ -55,7 +56,9 @@ class Report(models.Model):
 
         Returns a queryset of journal entries
         """
-        return journal_entry.JournalEntry.get_entries_between(self.first, self.last)
+        return journal_entry.JournalEntry.get_entries_between(
+            self.first, self.last
+        )
 
     def get_total_kilometers_driven(self):
         """Return the total kilometers that have been driven in this report."""
@@ -79,7 +82,8 @@ class Report(models.Model):
         Returns list of dicts where each dict has the following structure
         {
             'group': JournalEntryGroup instance
-            'main_group', Display Name of main_group based on JournalEntryGroup instance
+            'main_group', Display Name of main_group based
+                          on JournalEntryGroup instance
             'kilometers': Total kilometers (int),
             'mil': Total mil (int),
             'cost': Total cost (int)
@@ -93,11 +97,11 @@ class Report(models.Model):
         # What it does is that it calculates the total distance driven for each
         # journal entry and then sums them up for each group, giving us the
         # total kilometers for each group.
-        #TODO: Test this without vehicle-values
+        # TODO: Test this without vehicle-values
         kilometers_for_groups = (
-            entries.values("group","vehicle")
+            entries.values("group", "vehicle")
             .annotate(total_kilometers=Sum("meter_stop") - Sum("meter_start"))
-            .order_by("group__main_group","group__name")
+            .order_by("group__main_group", "group__name")
         )
 
         statistics = []
@@ -136,8 +140,12 @@ class Report(models.Model):
         total_kilometers = sum(
             statistic["kilometers"] for statistic in statistics_for_groups
         )
-        total_mil = sum(statistic["mil"] for statistic in statistics_for_groups)
-        total_cost = sum(statistic["cost"] for statistic in statistics_for_groups)
+        total_mil = sum(
+            statistic["mil"] for statistic in statistics_for_groups
+        )
+        total_cost = sum(
+            statistic["cost"] for statistic in statistics_for_groups
+        )
 
         return {
             "total_kilometers": total_kilometers,
@@ -232,9 +240,11 @@ class Report(models.Model):
 
         Also deletes all journal entries in those reports.
         """
-        one_and_half_years_ago = timezone.now() - relativedelta(years=1, months=6)
+        one_and_half_year_ago = (
+            timezone.now() - relativedelta(years=1, months=6)
+        )
         reports_to_delete = Report.objects.filter(
-            created__date__lte=one_and_half_years_ago
+            created__date__lte=one_and_half_year_ago
         )
 
         # Delete all related journal entries

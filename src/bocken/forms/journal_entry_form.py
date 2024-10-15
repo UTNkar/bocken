@@ -82,25 +82,31 @@ class JournalEntryForm(ModelForm):
         # last entry based on the current vehicle choice since it most
         # likely is the value of the meter when a person starts driving.
         all_vehicles = Vehicle.objects.all()
-        latest_entries = [JournalEntry.get_latest_entry(x) for x in all_vehicles if JournalEntry.get_latest_entry(x) != None]
+        latest_entries = [
+            JournalEntry.get_latest_entry(x)
+            for x in all_vehicles
+            if JournalEntry.get_latest_entry(x) is not None
+        ]
         if latest_entries:
             latest_entry = latest_entries[0]
             self.initial = {
                 'meter_start': latest_entry.meter_stop,
             }
-            # This stores all of the latest registered trips for each available vehicle.
-            # By doing this we can hence "support" any amount of vehicle and fetch
-            # their latest trip to automatically set as a value for when
-            # a user is registering a new journal entry
+            # This stores all of the latest registered trips for vehicle.
+            # By doing this we can hence "support" any amount of vehicle
+            # and fetch their latest trip to automatically set as
+            # a value for when a user is registering a new journal entry
             for item in latest_entries:
-                print(f"{str(item.vehicle.id)}")
-                print(f"{str(item.vehicle.id).lower()}")
-                self.initial[f'meter_start_{str(item.vehicle.id)}'] = item.meter_stop
+                self.initial[
+                    f'meter_start_{str(item.vehicle.id)}'
+                ] = item.meter_stop
         else:
-            #if there is not a latest entry, then fetch from vehicle objects
-            #ideally it should always be fetched from here but..?
+            # if there is not a latest entry, then fetch from vehicle objects
+            # ideally it should always be fetched from here but..?
             for vehicle in all_vehicles:
-                self.initial[f'meter_start_{str(vehicle.id)}'] = vehicle.vehicle_meter_stop
+                self.initial[
+                    f'meter_start_{str(vehicle.id)}'
+                ] = vehicle.vehicle_meter_stop
         # If there is data from the previous form (a.k.a. invalid data
         # was passed) we need to add some of that data to the TwoLevelSelect
         # widget so that it can automatically choose a default option.
@@ -152,27 +158,27 @@ class JournalEntryForm(ModelForm):
                 if veh.car:
                     if not can_use_car:
                         self.add_error('vehicle', _(
-                            "You don't have a written agreement which you must have "
-                            "to drive a car. Contact the head of the pub crew and "
-                            "send a copy of the details you wrote into the fields "
-                            "below."
+                            "You don't have a written agreement which you "
+                            "must have to drive a car. Contact the head of "
+                            "the pub crew and send a copy of the details "
+                            "you wrote inte the fields below."
                         ))
                 else:
                     if not can_use_bike:
                         self.add_error('vehicle', _(
-                            "You don't have a written agreement which you must have "
-                            "to drive a bike. Contact the head of the pub crew and "
-                            "send a copy of the details you wrote into the fields "
-                            "below."
+                            "You don't have a written agreement which you "
+                            "must have to drive a bike. Contact the head of "
+                            "the pub crew and send a copy of the details "
+                            "you wrote inte the fields below."
                         ))
 
                 self.instance.agreement = agreement
             except Agreement.DoesNotExist:
                 self.add_error('personnummer', _(
-                    "You don't have a written agreement which you must have "
-                    "to drive bocken. Contact the head of the pub crew and "
-                    "send a copy of the details you wrote into the fields "
-                    "below."
+                    "You don't have a written agreement which you "
+                    "must have to drive a vehicle. Contact the head of "
+                    "the pub crew and send a copy of the details "
+                    "you wrote inte the fields below."
                 ))
 
         # Make sure meter stop is larger than meter start
@@ -185,5 +191,8 @@ class JournalEntryForm(ModelForm):
             ))
         else:
             if veh:
-                Vehicle.objects.filter(id=veh.id).update(vehicle_meter_start = meter_start, vehicle_meter_stop = meter_stop)
+                Vehicle.objects.filter(id=veh.id).update(
+                    vehicle_meter_start=meter_start,
+                    vehicle_meter_stop=meter_stop
+                )
         return cleaned_data

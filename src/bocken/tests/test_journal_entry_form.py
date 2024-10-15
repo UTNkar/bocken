@@ -50,11 +50,15 @@ class JournalEntryFormTestCase(TestCase):
             name="Gruppen",
             main_group="lg_and_board",
         )
-        self.vehicle = Vehicle.objects.create(vehicle_name="TockenKrocken", car=True)
+        self.vehicle = Vehicle.objects.create(
+            vehicle_name="TockenKrocken", car=True
+        )
         self.form_data = {
             "personnummer": "980101-3039",
             "group": self.group.id,
-            "vehicle": self.vehicle.id,  # This id correlates to bocken as should be the default for all current journal entries
+            "vehicle": self.vehicle.id,
+            # This id correlates to bocken as should be the
+            # default for all current journal entries
             "meter_start": 45,
             "meter_stop": 49,
             "confirm": True,
@@ -146,13 +150,14 @@ class JournalEntryFormTestCase(TestCase):
         self.assertEqual(latest_entry.agreement, self.agreement)
 
     def test_incorrect_vehicle_has_agreement_for_bikes(self):
-        """
-        Test that a user which may only drive cars cannot submit a entry for bikes.
+        """Test that a car only user submitting bike entry.
 
-        A error should be added to to the form and it should be the only error available
-        in the form.
+        A error should be added to to the form and it should
+        be the only error available in the form.
         """
-        vehicle = Vehicle.objects.exclude(id=self.vehicle.id).filter(car=False).get()
+        vehicle = Vehicle.objects.exclude(
+            id=self.vehicle.id
+        ).filter(car=False).get()
         form_data = {
             "personnummer": "19980101-3039",
             "group": self.group.id,
@@ -164,17 +169,19 @@ class JournalEntryFormTestCase(TestCase):
         }
         form = JournalEntryForm(form_data)
         self.assertFalse(form.is_valid())
-        all_errors = [(x, form.has_error(x)) for x in form.fields if form.has_error(x)]
+        all_errors = [
+            (x, form.has_error(x)) for x in form.fields if form.has_error(x)
+        ]
         self.assertTrue(len(all_errors) == 1)
         self.assertTrue(all_errors[0][0] == "vehicle")
 
     def test_correct_vehicle_has_agreement_for_cars(self):
-        """
-        Test that a user may drive vehicles of the same type, i.e. cars.
-        """
+        """Test that a user may drive vehicles of the same type, i.e. cars."""
         vehicle = (
             Vehicle.objects.exclude(id=self.vehicle.id).filter(car=True).get()
-        )  # this picks a car which is not the initial vehicle type created within this test suite
+        )
+        # this picks a car which is not the
+        # initial vehicle type created within this test suite
         form_data = {
             "personnummer": "19980101-3039",
             "group": self.group.id,
@@ -186,7 +193,9 @@ class JournalEntryFormTestCase(TestCase):
         }
         form = JournalEntryForm(form_data)
         self.assertTrue(form.is_valid())
-        all_errors = [(x, form.has_error(x)) for x in form.fields if form.has_error(x)]
+        all_errors = [
+            (x, form.has_error(x)) for x in form.fields if form.has_error(x)
+        ]
         self.assertTrue(len(all_errors) == 0)
 
     def test_expired_agreement(self):
@@ -199,7 +208,9 @@ class JournalEntryFormTestCase(TestCase):
         self.agreement.expires = timezone.now().date() - timedelta(days=365)
         self.agreement.save()
 
-        response = self.client.post(reverse("add-entry"), self.form_data, follow=True)
+        response = self.client.post(
+            reverse("add-entry"), self.form_data, follow=True
+        )
         self.assertRedirects(response, reverse("add-entry-success"))
 
         messages = list(response.context["messages"])
@@ -212,7 +223,9 @@ class JournalEntryFormTestCase(TestCase):
         self.assertTrue(self.agreement.name in first_email.body)
         self.assertTrue(self.agreement.personnummer in first_email.body)
 
-        self.assertTrue(settings.KLUBBMASTARE_EMAIL in first_email.recipients())
+        self.assertTrue(
+            settings.KLUBBMASTARE_EMAIL in first_email.recipients()
+        )
 
     def test_gap_notification(self):
         """Test that an email is sent if a gap occurs."""
@@ -228,7 +241,9 @@ class JournalEntryFormTestCase(TestCase):
         self.form_data["meter_start"] = 60
         self.form_data["meter_stop"] = 70
         self.form_data["vehicle"] = self.vehicle.id
-        response = self.client.post(reverse("add-entry"), self.form_data, follow=True)
+        response = self.client.post(
+            reverse("add-entry"), self.form_data, follow=True
+        )
         self.assertRedirects(response, reverse("add-entry-success"))
 
         self.assertEqual(len(mail.outbox), 1)
@@ -237,10 +252,12 @@ class JournalEntryFormTestCase(TestCase):
         # Test that the name actually is in the email
         self.assertTrue(self.agreement.name in first_email.body)
 
-        self.assertTrue(settings.KLUBBMASTARE_EMAIL in first_email.recipients())
+        self.assertTrue(
+            settings.KLUBBMASTARE_EMAIL in first_email.recipients()
+        )
 
     def test_no_gap_notification_different_vehicles(self):
-        """Test that an email is not sent if a gap occurs for different vehicles."""
+        """Test no email if a gap occurs for different vehicles."""
         # Create an earlier journal entry
         JournalEntry.objects.create(
             agreement=self.agreement,
@@ -249,12 +266,18 @@ class JournalEntryFormTestCase(TestCase):
             meter_start=45,
             meter_stop=49,
         )
-        vehicle = Vehicle.objects.exclude(id=self.vehicle.id).filter(car=True).get()
+        vehicle = Vehicle.objects.exclude(
+            id=self.vehicle.id
+        ).filter(car=True).get()
         self.form_data["meter_start"] = 60
         self.form_data["meter_stop"] = 70
-        self.form_data["vehicle"] = vehicle.id  # comparing bocken with trockenkrocken
+        # comparing bocken with trockenkrocken
+        self.form_data["vehicle"] = vehicle.id
 
-        response = self.client.post(reverse("add-entry"), self.form_data, follow=True)
+        response = self.client.post(
+            reverse("add-entry"), self.form_data, follow=True
+        )
+        self.assertRedirects(response, reverse("add-entry-success"))
         self.assertEqual(len(mail.outbox), 0)
 
     def test_t_number_wrong_format(self):

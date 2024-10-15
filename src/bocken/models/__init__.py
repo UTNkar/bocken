@@ -6,5 +6,6 @@ from .report import Report
 from .vehicle import Vehicle
 
 __all__ = [
-    'Admin', 'Agreement', 'JournalEntryGroup', 'Report', 'JournalEntry', 'Vehicle'
+    'Admin', 'Agreement', 'JournalEntryGroup',
+    'Report', 'JournalEntry', 'Vehicle'
 ]

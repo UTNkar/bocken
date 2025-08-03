@@ -24,6 +24,13 @@ class JournalEntry(models.Model):
         on_delete=models.PROTECT,
         verbose_name=_("Group")
     )
+    vehicle = models.ForeignKey(
+        "Vehicle",
+        on_delete=models.PROTECT,
+        verbose_name=_("Vehicle"),
+        default=1
+    )
+
     meter_start = models.PositiveIntegerField(
         verbose_name=_("Meter at start")
     )
@@ -60,7 +67,8 @@ class JournalEntry(models.Model):
         """Mark meter_start cells in the admin view if a gap has occured."""
         try:
             previous_entry = JournalEntry.objects.filter(
-                meter_stop__lt=self.meter_stop
+                meter_stop__lt=self.meter_stop,
+                vehicle=self.vehicle
             ).latest()
         except JournalEntry.DoesNotExist:
             return self.meter_start
@@ -76,7 +84,8 @@ class JournalEntry(models.Model):
         """Mark meter_stop cells in the admin view if a gap has occured."""
         try:
             previous_entry = JournalEntry.objects.filter(
-                meter_stop__gt=self.meter_stop
+                meter_stop__gt=self.meter_stop,
+                vehicle=self.vehicle
             ).earliest()
         except JournalEntry.DoesNotExist:
             return self.meter_stop
@@ -99,24 +108,39 @@ class JournalEntry(models.Model):
         return JournalEntry.objects.exists()
 
     @staticmethod
-    def get_latest_entry():
-        """Get the entry that was last created."""
+    def get_latest_entry(vehicle_type=None):
+        """Get the entry that was last created.
+
+        If no vehicle_type is supplied the latest trip in general is fetched.
+        """
         try:
-            return JournalEntry.objects.latest()
+            if vehicle_type:
+                return JournalEntry.objects.filter(
+                    vehicle=vehicle_type
+                ).latest()
+            else:
+                return JournalEntry.objects.latest()
         except JournalEntry.DoesNotExist:
             return None
 
     @staticmethod
-    def get_entries_between(start, end):
+    def get_entries_between(start, end, vehicle_type=None):
         """
         Get all entries between the timestamps start and end.
 
         Returns all journal entries within the time range. All journal entries
         that are equal to start or end are included.
         """
-        entries = JournalEntry.objects.filter(
-            created__range=(start, end)
-        )
+        if vehicle_type:
+            entries = JournalEntry.objects.filter(
+                created__range=(start, end),
+                vehicle=vehicle_type
+            )
+        else:
+            entries = JournalEntry.objects.filter(
+                created__range=(start, end)
+            )
+
         return entries
 
     @staticmethod

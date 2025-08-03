@@ -10,6 +10,7 @@ class AgreementAdmin(ImportExportModelAdmin):
     form = AgreementForm
     list_display = (
         'name', 'personnummer', 'phonenumber',
+        'bike_agreement', 'car_agreement',
         'email', 'expires_colored'
     )
     search_fields = ['name', 'personnummer']

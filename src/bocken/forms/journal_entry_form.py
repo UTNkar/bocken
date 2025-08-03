@@ -66,8 +66,8 @@ class JournalEntryForm(ModelForm):
             'meter_start': _(
                 "Trip meter at start is filled in automatically from the "
                 "latest entry. If the number is not correct, enter the value "
-                "that the meter had when you started driving. Also inform UTN:s "
-                "Union House Manager about this."
+                "that the meter had when you started driving. Also inform "
+                "UTN:s Union House Manager about this."
             )
         }
 

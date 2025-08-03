@@ -133,7 +133,7 @@ class Agreement(models.Model):
                 "Bocken. You are receiving this email because you have a "
                 "Bocken agreement that will expire in 10 days. If you want "
                 "to continue driving Bocken you must contact UTN:s "
-                "klubbmästare by replying to this email.\n\n"
+                "Union House Manager by replying to this email.\n\n"
                 "If you do not want to continue driving Bocken, you can "
                 "ignore this email."
             )

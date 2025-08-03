@@ -131,13 +131,18 @@ MESSAGE_TAGS = {
     messages.WARNING: 'bg-yellow-300 mb-4 p-4 rounded',
 }
 
+KLUBBMASTARE_EMAIL = 'klubbmastare@utn.se'
+
 UNION_HOUSE_MANAGER_EMAIL = 'karhus@utn.se'
 
 SERVER_EMAIL = 'admin@utn.se'
 
 EMAIL_SUBJECT_PREFIX = '[Automatic message from bocken journal system] - '
 
-ADMINS = [('KM', UNION_HOUSE_MANAGER_EMAIL)]
+ADMINS = [
+    ('KM', KLUBBMASTARE_EMAIL),
+    ('KA', UNION_HOUSE_MANAGER_EMAIL)
+]
 
 INTERNAL_IPS = [
     "127.0.0.1",

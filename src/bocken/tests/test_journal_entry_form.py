@@ -124,7 +124,7 @@ class JournalEntryFormTestCase(TestCase):
         Test when a form is submitted with an expired agreement.
 
         A message should be set and an email should be sent to the
-        klubbmästare.
+        Head of the Pub Crew and the Union House Manager.
         """
         self.agreement.expires = timezone.now().date() - timedelta(days=365)
         self.agreement.save()
@@ -145,8 +145,8 @@ class JournalEntryFormTestCase(TestCase):
         self.assertTrue(self.agreement.personnummer in first_email.body)
 
         self.assertTrue(
-            settings.UNION_HOUSE_MANAGER_EMAIL in first_email.recipients()
-        )
+            settings.KLUBBMASTARE_EMAIL in first_email.recipients()
+            and settings.UNION_HOUSE_MANAGER_EMAIL in first_email.recipients())
 
     def test_gap_notification(self):
         """Test that an email is sent if a gap occurs."""

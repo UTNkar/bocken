@@ -145,7 +145,7 @@ class JournalEntryFormTestCase(TestCase):
         self.assertTrue(self.agreement.personnummer in first_email.body)
 
         self.assertTrue(
-            settings.KLUBBMASTARE_EMAIL in first_email.recipients()
+            settings.UNION_HOUSE_MANAGER_EMAIL in first_email.recipients()
         )
 
     def test_gap_notification(self):
@@ -173,7 +173,7 @@ class JournalEntryFormTestCase(TestCase):
         self.assertTrue(self.agreement.name in first_email.body)
 
         self.assertTrue(
-            settings.KLUBBMASTARE_EMAIL in first_email.recipients()
+            settings.UNION_HOUSE_MANAGER_EMAIL in first_email.recipients()
         )
 
     def test_t_number_wrong_format(self):

@@ -138,7 +138,7 @@ class Agreement(models.Model):
                 "ignore this email."
             )
             message_tuple = \
-                subject, message, settings.KLUBBMASTARE_EMAIL, list(emails)
+                subject, message, settings.UNION_HOUSE_MANAGER_EMAIL, list(emails)
             send_mass_mail(
                 (message_tuple, )
             )

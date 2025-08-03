@@ -64,7 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'bocken.context_processors.klubbmastare_email'
+                'bocken.context_processors.union_house_manager_email'
             ],
         },
     },
@@ -131,13 +131,13 @@ MESSAGE_TAGS = {
     messages.WARNING: 'bg-yellow-300 mb-4 p-4 rounded',
 }
 
-KLUBBMASTARE_EMAIL = 'klubbmastare@utn.se'
+UNION_HOUSE_MANAGER_EMAIL = 'karhus@utn.se'
 
 SERVER_EMAIL = 'admin@utn.se'
 
 EMAIL_SUBJECT_PREFIX = '[Automatic message from bocken journal system] - '
 
-ADMINS = [('KM', KLUBBMASTARE_EMAIL)]
+ADMINS = [('KM', UNION_HOUSE_MANAGER_EMAIL)]
 
 INTERNAL_IPS = [
     "127.0.0.1",

@@ -66,8 +66,8 @@ class JournalEntryForm(ModelForm):
             'meter_start': _(
                 "Trip meter at start is filled in automatically from the "
                 "latest entry. If the number is not correct, enter the value "
-                "that the meter had when you started driving. Also inform the "
-                "head of the pub crew about this."
+                "that the meter had when you started driving. Also inform UTN:s "
+                "Union House Manager about this."
             )
         }
 
@@ -130,7 +130,7 @@ class JournalEntryForm(ModelForm):
             except Agreement.DoesNotExist:
                 self.add_error('personnummer', _(
                     "You don't have a written agreement which you must have "
-                    "to drive bocken. Contact the head of the pub crew and "
+                    "to drive bocken. Contact the Union House Manager and "
                     "send a copy of the details you wrote into the fields "
                     "below."
                 ))

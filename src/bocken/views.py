@@ -30,11 +30,11 @@ class JournalEntryCreate(CreateView):
                 _(
                     "Your agreement has expired! The journal entry you just "
                     "created has been saved but you need to renew your "
-                    "agreement. Contact UTN:s Head of The Pubcrew: "
+                    "agreement. Contact UTN:s Union House Manager: "
                     "<a class='text-blue-700' "
                     "href='mailto:%(email)s'>"
                     "%(email)s</a>"
-                ) % {'email': settings.KLUBBMASTARE_EMAIL},
+                ) % {'email': settings.UNION_HOUSE_MANAGER_EMAIL},
                 extra_tags="safe"
             )
             mail_admins(

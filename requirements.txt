@@ -36,3 +36,6 @@ django-import-export==3.2.0
 
 # Dateutil for relativedelta function and more
 python-dateutil==2.8.2
+
+# Setup tools required for some packages (tailwind)
+setuptools==80.9.0

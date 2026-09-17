@@ -79,6 +79,23 @@ class Agreement(models.Model):
         verbose_name=_("Signed agreement"),
         blank=True
     )
+    car_agreement = models.BooleanField(
+        verbose_name=_("Agreement for cars"),
+        default=False,
+        help_text=_(
+            """Designates whether user has a agreement
+            which applies for cars or not."""
+        )
+    )
+
+    bike_agreement = models.BooleanField(
+        verbose_name=_("Agreement for bikes"),
+        default=False,
+        help_text=_(
+            """Designates whether user has a agreement
+            which applies for bikes or not."""
+        )
+    )
 
     expires = models.DateField(
         verbose_name=_("Valid until"),
@@ -133,12 +150,14 @@ class Agreement(models.Model):
                 "Bocken. You are receiving this email because you have a "
                 "Bocken agreement that will expire in 10 days. If you want "
                 "to continue driving Bocken you must contact UTN:s "
-                "klubbmästare by replying to this email.\n\n"
+                "Union House Manager by replying to this email.\n\n"
                 "If you do not want to continue driving Bocken, you can "
                 "ignore this email."
             )
-            message_tuple = \
-                subject, message, settings.KLUBBMASTARE_EMAIL, list(emails)
+            message_tuple = (
+                subject, message, settings.UNION_HOUSE_MANAGER_EMAIL,
+                list(emails)
+            )
             send_mass_mail(
                 (message_tuple, )
             )

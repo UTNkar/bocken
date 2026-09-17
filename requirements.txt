@@ -29,10 +29,13 @@ django-object-actions==4.1.0
 django-recaptcha==3.0.0
 
 # Automatically remove files from filefield if the file is changed
-django-cleanup==7.0.0
+django-cleanup==9.0.0
 
 # Importing and exporting in django admin
 django-import-export==3.2.0
 
 # Dateutil for relativedelta function and more
 python-dateutil==2.8.2
+
+# Setup tools required for some packages (tailwind)
+setuptools==80.9.0

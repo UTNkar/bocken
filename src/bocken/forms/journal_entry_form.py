@@ -70,6 +70,7 @@ class JournalEntryForm(ModelForm):
                 "latest entry. If the number is not correct, enter the value "
                 "that the meter had when you started driving. Also inform "
                 "UTN:s Union House Manager about this."
+            ),
             'vehicle': _(
                 "Choose the type of vehicle you have driven."
             )

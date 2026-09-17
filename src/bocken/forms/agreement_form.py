@@ -26,5 +26,6 @@ class AgreementForm(ModelForm):
         model = Agreement
         fields = [
             'name', 'personnummer', 'phonenumber',
-            'email', 'agreement_file', 'expires'
+            'email', 'bike_agreement', 'car_agreement',
+            'agreement_file', 'expires'
         ]

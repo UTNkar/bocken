@@ -30,11 +30,11 @@ class JournalEntryCreate(CreateView):
                 _(
                     "Your agreement has expired! The journal entry you just "
                     "created has been saved but you need to renew your "
-                    "agreement. Contact UTN:s Head of The Pubcrew: "
+                    "agreement. Contact UTN:s Union House Manager: "
                     "<a class='text-blue-700' "
                     "href='mailto:%(email)s'>"
                     "%(email)s</a>"
-                ) % {'email': settings.KLUBBMASTARE_EMAIL},
+                ) % {'email': settings.UNION_HOUSE_MANAGER_EMAIL},
                 extra_tags="safe"
             )
             mail_admins(
@@ -52,7 +52,10 @@ class JournalEntryCreate(CreateView):
         latest_entry = JournalEntry.get_latest_entry()
         if latest_entry:
             previous_meter_stop = latest_entry.meter_stop
-            if form.cleaned_data['meter_start'] > previous_meter_stop:
+            previous_vehicle = latest_entry.vehicle
+            c_stop = form.cleaned_data['meter_start']
+            c_veh = form.cleaned_data['vehicle']
+            if c_stop > previous_meter_stop and previous_vehicle == c_veh:
                 mail_admins(
                     "A gap has occured",
                     (

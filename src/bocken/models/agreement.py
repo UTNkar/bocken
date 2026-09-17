@@ -154,8 +154,10 @@ class Agreement(models.Model):
                 "If you do not want to continue driving Bocken, you can "
                 "ignore this email."
             )
-            message_tuple = \
-                subject, message, settings.UNION_HOUSE_MANAGER_EMAIL, list(emails)
+            message_tuple = (
+                subject, message, settings.UNION_HOUSE_MANAGER_EMAIL,
+                list(emails)
+            )
             send_mass_mail(
                 (message_tuple, )
             )

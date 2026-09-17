@@ -224,8 +224,8 @@ class JournalEntryFormTestCase(TestCase):
         self.assertTrue(self.agreement.personnummer in first_email.body)
 
         self.assertTrue(
-            settings.KLUBBMASTARE_EMAIL in first_email.recipients()
-            and settings.UNION_HOUSE_MANAGER_EMAIL in first_email.recipients())
+            settings.KLUBBMASTARE_EMAIL in first_email.recipients() and
+            settings.UNION_HOUSE_MANAGER_EMAIL in first_email.recipients())
 
     def test_gap_notification(self):
         """Test that an email is sent if a gap occurs."""

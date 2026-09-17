@@ -1,7 +1,8 @@
 from django.conf import settings
 
 
-def klubbmastare_email(request):  # noqa
+def union_house_manager_email(request):
+    """Expose the union house manager email to all templates."""
     return {
-        'klubbmastare_email': settings.KLUBBMASTARE_EMAIL
+        'union_house_manager_email': settings.UNION_HOUSE_MANAGER_EMAIL
     }

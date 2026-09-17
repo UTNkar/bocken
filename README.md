@@ -2,7 +2,7 @@
 A digital journal system for UTN's car Bocken.
 
 # Installing
-1. Install Python 3, at least version 3.8 or up.
+1. Install Python 3, at least version 3.11 or up.
 2. [Install NodeJs](https://nodejs.org) and npm (npm is included in the nodejs installation). This is needed for tailwind.
 3. Install the following packages
     - Python virtual environment

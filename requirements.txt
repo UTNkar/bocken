@@ -13,7 +13,7 @@ personnummer==3.0.4
 django-tailwind==4.5.0
 
 # Adds handy filters to templates
-django-widget-tweaks==1.4.12
+django-widget-tweaks==1.5.1
 
 # Font awesome version 5
 django-fontawesome-5==1.0.18
@@ -38,4 +38,4 @@ django-import-export==3.2.0
 python-dateutil==2.8.2
 
 # Setup tools required for some packages (tailwind)
-setuptools==80.9.0
+setuptools==83.0.0

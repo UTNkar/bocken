@@ -1,4 +1,4 @@
-Django[argon2]==5.2.16
+Django[argon2]==6.1.1
 
 # Improved handling of environment variables
 python-decouple==3.8
